@@ -10,5 +10,6 @@ package pichis;
  * @author molit_000
  */
 public class DPI {
-    
+    private DMA dma;
+    private DM dm;
 }
