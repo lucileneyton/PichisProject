@@ -1,13 +1,10 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package pichisUI;
 
-/**
- *
- * @author Matilas
- */
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
@@ -16,11 +13,9 @@ import javax.swing.JPanel;
  *
  * @author Matilas
  */
-public class FdEcran_Identification extends JPanel {
-
-  
-
-    public void paintComponent(Graphics g) {
+public class FenetreIdentification extends JPanel{
+    
+     public void paintComponent(Graphics g) {
 
 
         java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
@@ -35,4 +30,5 @@ public class FdEcran_Identification extends JPanel {
 
 
     }
+    
 }
