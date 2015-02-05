@@ -14,5 +14,12 @@ import java.util.ArrayList;
 public class DMA {
     private ArrayList<Sejour> sejour;
     
+    public DMA(){
+        this.sejour = new ArrayList<Sejour>();
+    }
+    
+    public void ajouterSejour(Sejour sejour){
+        this.sejour.add(sejour);
+    }
     
 }

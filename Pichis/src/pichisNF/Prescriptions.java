@@ -11,16 +11,17 @@ import java.util.Date;
  *
  * @author molit_000
  */
-public class Observations {
+public class Prescriptions {
     Date date;
-    String description;
+    String prescriptions;
     
-    public Observations(){
+    
+    public Prescriptions(){
     }
     
-    public Observations(Date date, String description){
+    public Prescriptions(Date date, String prescriptions){
         this.date = date;
-        this.description = description;
+        this.prescriptions = prescriptions;
     }
 
     public Date getDate() {
@@ -31,14 +32,13 @@ public class Observations {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPrescriptions() {
+        return prescriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrescriptions(String prescriptions) {
+        this.prescriptions = prescriptions;
     }
-    
     
     
 }

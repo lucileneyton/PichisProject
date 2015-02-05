@@ -13,7 +13,7 @@ public class Medecin extends Personnel{
     
     private Services specialite;
     
-    public Medecin(String id, String nom, String prenom, String motDePasse){
+    public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite){
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
     }

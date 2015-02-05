@@ -11,16 +11,16 @@ import java.util.Date;
  *
  * @author molit_000
  */
-public class Observations {
-    Date date;
-    String description;
+public class LettresDeSortie {
+    private Date date;
+    private String contenu;
     
-    public Observations(){
+    public LettresDeSortie(){
     }
     
-    public Observations(Date date, String description){
+    public LettresDeSortie(Date date, String contenu){
         this.date = date;
-        this.description = description;
+        this.contenu = contenu;
     }
 
     public Date getDate() {
@@ -31,14 +31,13 @@ public class Observations {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContenu() {
+        return contenu;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
     }
-    
     
     
 }

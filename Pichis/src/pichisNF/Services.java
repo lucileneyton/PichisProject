@@ -9,6 +9,30 @@ package pichisNF;
  *
  * @author molit_000
  */
-public enum Services {
+public class Services {
+    TypeServices type;
+    String specialite;
+    
+    public Services(TypeServices type, String specialite){
+        this.type = type;
+        this.specialite = specialite;
+    }
+
+    public TypeServices getType() {
+        return type;
+    }
+
+    public void setType(TypeServices type) {
+        this.type = type;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+    
     
 }

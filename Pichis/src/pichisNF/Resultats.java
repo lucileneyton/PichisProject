@@ -5,22 +5,23 @@
  */
 package pichisNF;
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
  *
  * @author molit_000
  */
-public class Observations {
+public class Resultats {
     Date date;
-    String description;
+    String descriptions;
     
-    public Observations(){
+    public Resultats(){
+        
     }
-    
-    public Observations(Date date, String description){
+    public Resultats(Date date, String descriptions){
         this.date = date;
-        this.description = description;
+        this.descriptions = descriptions;
     }
 
     public Date getDate() {
@@ -31,13 +32,15 @@ public class Observations {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
+    
+    
     
     
     

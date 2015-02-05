@@ -20,12 +20,18 @@ public class DPI {
     private Date dateNaissance;
     private String sexe;
     private String adresse;
+    private boolean estOuvert;
     
-    
-    public DPI(String ipp, String nom, String prenom, String DateNaissance, String sexe, String adresse){
+    public DPI(String ipp, String nom, String prenom, Date DateNaissance, String sexe, String adresse){
+        this.dma = new DMA();
+        this.dm = new DM();
         this.ipp = ipp;
         this.nom = nom;
         this.prenom = prenom;
+        this.dateNaissance = DateNaissance;
+        this.sexe = sexe;
+        this.adresse = adresse;
+        estOuvert = true; // le DPI est ouvert à l'ouverture
     }
 
     public DMA getDma() {
@@ -91,9 +97,13 @@ public class DPI {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-    
-    
-    
-    
+
+    public boolean isEstOuvert() {
+        return estOuvert;
+    }
+
+    public void setEstOuvert(boolean estOuvert) {
+        this.estOuvert = estOuvert;
+    }
     
 }
