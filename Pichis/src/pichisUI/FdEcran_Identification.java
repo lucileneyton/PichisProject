@@ -21,6 +21,7 @@ public class FdEcran_Identification extends JPanel {
     public FdEcran_Identification() {
     }
     boolean etat = true;
+    
 
     @Override
     public void paintComponent(Graphics g) {
