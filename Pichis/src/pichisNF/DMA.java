@@ -5,10 +5,14 @@
  */
 package pichisNF;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author molit_000
  */
 public class DMA {
+    private ArrayList<Sejour> sejour;
+    
     
 }
