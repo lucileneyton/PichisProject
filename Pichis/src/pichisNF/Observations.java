@@ -15,8 +15,6 @@ public class Observations {
     Date date;
     String description;
     
-    public Observations(){
-    }
     
     public Observations(Date date, String description){
         this.date = date;

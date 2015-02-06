@@ -15,9 +15,6 @@ public class Resultats {
     Date date;
     String descriptions;
     
-    public Resultats(){
-        
-    }
     public Resultats(Date date, String descriptions){
         this.date = date;
         this.descriptions = descriptions;

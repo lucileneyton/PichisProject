@@ -14,14 +14,15 @@ import java.util.Date;
 public class Prescriptions {
     Date date;
     String prescriptions;
-    
+    Medecin medecin;
     
     public Prescriptions(){
     }
     
-    public Prescriptions(Date date, String prescriptions){
+    public Prescriptions(Date date, String prescriptions, Medecin medecin){
         this.date = date;
         this.prescriptions = prescriptions;
+        this.medecin = medecin;
     }
 
     public Date getDate() {
