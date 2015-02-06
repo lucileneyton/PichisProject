@@ -29,6 +29,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         setTitle("PICHISManager");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
         setSize(1365, 765);
+        this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
@@ -140,7 +141,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addContainerGap(208, Short.MAX_VALUE))
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fenetreIdentification1Layout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
     fenetreIdentification1Layout.setVerticalGroup(
         fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +158,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
-    jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 0, 48)); // NOI18N
+    jLabel2.setFont(new java.awt.Font("Garamond", 0, 85)); // NOI18N
     jLabel2.setText("Bienvenue    ");
 
     javax.swing.GroupLayout fdEcran_Identification1Layout = new javax.swing.GroupLayout(fdEcran_Identification1);
@@ -166,17 +167,17 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(fdEcran_Identification1Layout.createSequentialGroup()
             .addGap(105, 105, 105)
-            .addGroup(fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2)
-                .addComponent(fenetreIdentification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(fenetreIdentification1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
             .addContainerGap(164, Short.MAX_VALUE))
     );
     fdEcran_Identification1Layout.setVerticalGroup(
         fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(fdEcran_Identification1Layout.createSequentialGroup()
-            .addGap(183, 183, 183)
+            .addGap(153, 153, 153)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
+            .addGap(48, 48, 48)
             .addComponent(fenetreIdentification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(30, Short.MAX_VALUE))
     );
