@@ -15,11 +15,17 @@ public class DM {
     ArrayList<Prescriptions> prescriptions;
     ArrayList<Observations> observations;
     ArrayList<LettresDeSortie> lettresDeSortie;
+    ArrayList<Operations> operations;
+    ArrayList<Resultats> resultats;
+
+    
     
     public DM(){
         this.prescriptions = new ArrayList<Prescriptions>();
         this.observations = new ArrayList<Observations>();
         this.lettresDeSortie = new ArrayList<LettresDeSortie>();
+        this.resultats = new ArrayList<Resultats>();
+        this.operations = new ArrayList<Operations>();
     }
 
     public ArrayList<Prescriptions> getPrescriptions() {
@@ -46,5 +52,20 @@ public class DM {
         this.lettresDeSortie = lettresDeSortie;
     }
     
+    public ArrayList<Operations> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(ArrayList<Operations> operations) {
+        this.operations = operations;
+    }
+
+    public ArrayList<Resultats> getResultats() {
+        return resultats;
+    }
+
+    public void setResultats(ArrayList<Resultats> resultats) {
+        this.resultats = resultats;
+    }
     
 }
