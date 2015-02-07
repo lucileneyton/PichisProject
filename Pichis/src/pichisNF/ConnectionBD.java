@@ -53,13 +53,7 @@ Connection connexion;
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe !
             instruction = connexion.createStatement();
 
-            resultat = instruction.executeQuery("SELECT adresse FROM dpi WHERE adresse='pifpafpouf'");
-            while (resultat.next()) {
-
-                String adresse = resultat.getString("adresse");
-                System.out.println(adresse);
-
-            }
+            
 
         } catch (Exception e) {
 

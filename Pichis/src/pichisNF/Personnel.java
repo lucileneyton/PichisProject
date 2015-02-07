@@ -6,7 +6,6 @@
 package pichisNF;
 
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -68,9 +67,11 @@ public class Personnel {
         
         
         try{
-         
+        
+     
         ResultSet resul;
-        resul = bd.instruction.executeQuery("SELECT * FROM personnel WHERE id= "+id);
+        Statement ins = bd.connexion.createStatement();
+        resul = ins.executeQuery("SELECT * FROM personnel WHERE id= "+id);
         while (resul.next()) {
 
                 identif = resul.getString("id");
