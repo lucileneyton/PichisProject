@@ -5,6 +5,11 @@
  */
 package pichisNF;
 
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author molit_000
@@ -52,6 +57,40 @@ public class Personnel {
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+    
+    public static boolean identification(String id, String motDePasse){
+        
+        ConnectionBD bd = new ConnectionBD() ;
+        String identif;
+        String mdp="null";
+        
+        
+        
+        try{
+         
+        ResultSet resul;
+        resul = bd.instruction.executeQuery("SELECT * FROM personnel WHERE id= "+id);
+        while (resul.next()) {
+
+                identif = resul.getString("id");
+                mdp = resul.getString("mdp");
+                
+            }
+        }
+        
+        catch(Exception e){
+            System.out.println("erreur : " + e);
+        }
+        
+        if(mdp.equals(motDePasse)){
+            return true;
+        }
+        
+        else{
+            return false;
+        }
+        
     }
     
     
