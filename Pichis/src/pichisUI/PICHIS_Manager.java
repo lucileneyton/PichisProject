@@ -23,17 +23,20 @@ public class PICHIS_Manager extends javax.swing.JFrame {
      */
     public PICHIS_Manager() {
         initComponents();
-        
-        
-         //Définit un titre pour notre fenêtre
+
+        //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        setSize(1365, 765);
+        //setSize(1365, 765);
         this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -85,7 +88,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/logo3.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/Connaxion.png")));
         jLabel3.addMouseListener(new MouseListener() {
 
             @Override
@@ -227,7 +230,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
     }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     /**
