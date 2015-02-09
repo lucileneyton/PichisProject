@@ -5,7 +5,8 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -17,18 +18,18 @@ public class DPI {
     private String ipp;
     private String nom;
     private String prenom;
-    private Date dateNaissance;
+    private DateSimple dateNaissance;
     private String sexe;
     private String adresse;
     private boolean estOuvert;
     
-    public DPI(String ipp, String nom, String prenom, Date DateNaissance, String sexe, String adresse){
+    public DPI(String ipp, String nom, String prenom, DateSimple dateNaissance, String sexe, String adresse){
         this.dma = new DMA();
         this.dm = new DM();
         this.ipp = ipp;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateNaissance = DateNaissance;
+        this.dateNaissance = dateNaissance;
         this.sexe = sexe;
         this.adresse = adresse;
         estOuvert = true; // le DPI est ouvert à l'ouverture
@@ -74,11 +75,11 @@ public class DPI {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
+    public DateSimple getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(DateSimple dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -104,6 +105,24 @@ public class DPI {
 
     public void setEstOuvert(boolean estOuvert) {
         this.estOuvert = estOuvert;
+    }
+    
+    public String toString(){
+        if(this.estOuvert == true){
+           return "----- dpi -----"
+             + "\nipp : " + this.ipp
+             + "\nnom : " + this.nom 
+             + "\nprenom : "+this.prenom
+             + "\nDate de Naissance : "+this.dateNaissance.toString()
+             + "\nSexe : "+this.sexe
+             + "\nAdresse : "+this.adresse
+             + "\n";
+        }
+        else{
+            return "----- dpi -----"
+                   + "\nCe DPI n'est pas ouvert \n";
+        }
+        
     }
     
 }

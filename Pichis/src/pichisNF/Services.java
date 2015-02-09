@@ -34,5 +34,7 @@ public class Services {
         this.specialite = specialite;
     }
     
-    
+    public String toString(){
+        return specialite;
+    }
 }

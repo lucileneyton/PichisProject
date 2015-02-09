@@ -24,5 +24,7 @@ public class Localisation {
         this.localisation = localisation;
     }
     
-    
+    public String toString(){
+        return localisation.toString();
+    }
 }

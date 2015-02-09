@@ -10,5 +10,6 @@ package pichisNF;
  * @author molit_000
  */
 public enum TypeServices {
-    
+    CLINIQUE,
+    MEDICO_TECHNIQUE;
 }

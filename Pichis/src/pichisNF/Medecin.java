@@ -26,4 +26,8 @@ public class Medecin extends Personnel{
         this.specialite = specialite;
     }
     
+    public String toString(){
+        return super.getNom() + " " + super.getPrenom() + " ";
+    }
+    
 }

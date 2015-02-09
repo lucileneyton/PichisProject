@@ -18,8 +18,24 @@ public class DMA {
         this.sejour = new ArrayList<Sejour>();
     }
     
+    public Sejour getSejour(int i){
+        return this.sejour.get(i);
+    }
+    
+    public ArrayList<Sejour> getListeSejours(){
+        return this.sejour;
+    } 
+    
     public void ajouterSejour(Sejour sejour){
         this.sejour.add(sejour);
+    }
+
+    public ArrayList<Sejour> getSejour() {
+        return sejour;
+    }
+
+    public void setSejour(ArrayList<Sejour> sejour) {
+        this.sejour = sejour;
     }
     
 }
