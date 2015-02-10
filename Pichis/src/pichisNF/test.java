@@ -5,7 +5,7 @@
  */
 package pichisNF;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -42,6 +42,7 @@ public class test {
        System.out.println(dpi2.toString());
        System.out.println(dpi1.getDma().getSejour().get(0).toString());
        System.out.println(dpi1.getDma().getSejour().get(1).toString());
+       
     }
     
 }
