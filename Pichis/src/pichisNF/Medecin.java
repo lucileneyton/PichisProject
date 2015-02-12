@@ -5,6 +5,9 @@
  */
 package pichisNF;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author molit_000
@@ -16,6 +19,17 @@ public class Medecin extends Personnel{
     public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite){
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
+        
+        bd = new ConnectionBD();
+        
+        Statement ins;
+        try {
+            ins = bd.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('"+id+"','"+nom+"','"+prenom+"','"+motDePasse+"','"+specialite+"')");
+            
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création du medecin"+ex);
+        }
     }
 
     public Services getSpecialite() {

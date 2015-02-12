@@ -27,7 +27,7 @@ public class Administratif extends Personnel{
             ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('"+id+"','"+nom+"','"+prenom+"','"+motDePasse+"','"+"NULL"+"')");
             
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du patient"+ex);
+            System.out.println("Erreur lors de la création de l'administratif"+ex);
         }
         
        
