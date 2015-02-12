@@ -138,9 +138,28 @@ public class DPI {
         this.operations.add(op);
     }
     
+    public String afficherDM(){
+        return "----- DM -----"
+                +"\nPatient : " + this.nom + " " +this.prenom
+                +"\nOperation : "; // a finir !
+            }
+    
+public String afficherDMA(){
+    String texteDMA;
+    Sejour sejourEnCours = this.getDma().getListeSejours().get(this.getDma().getListeSejours().size() - 1);
+    texteDMA = "----- DMA -----\nPatient : " + this.nom + this.prenom;
+    
+    texteDMA = texteDMA + "\n" + sejourEnCours.toString(); // on affiche le dernier sejour de la liste, on suppose que c'est le sejour en cours
+  
+    texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
+    
+    return texteDMA;
+    
+}
+    
     public String toString(){
         if(this.estOuvert == true){
-           return "----- dpi -----"
+           return "----- DPI -----"
              + "\nipp : " + this.ipp
              + "\nnom : " + this.nom 
              + "\nprenom : "+this.prenom
@@ -155,6 +174,22 @@ public class DPI {
                    + "\nCe DPI n'est pas ouvert \n";
         }
         
+    }
+    
+    public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour){
+        int i = 0;
+        while( (this.getLettresDeSortie().get(i).getNumeroSejour().equals(sejour.getNumeroSejour())==false) && 
+                (i<this.getLettresDeSortie().size())
+             ){
+            i++;
+        }
+        if(i == this.getLettresDeSortie().size()){
+            System.out.println("\nAucune lettre de sortie trouvée");
+            return null;
+        }
+        else{
+            return this.getLettresDeSortie().get(i);
+        }
     }
     
 }

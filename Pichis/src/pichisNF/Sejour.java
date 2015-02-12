@@ -62,11 +62,11 @@ public class Sejour {
     }
     
     public String toString(){
-        return  "----- Sejour -----"
-                + "\nnumeroSejour : " + this.numeroSejour
-                + "\ndate : " + this.date.toString()
-                + "\nPH responsable : " + this.PHResponsable.toString()
-                + "\nlocalisation : " + this.localisation.toString()
+        return  "   ----- Sejour -----"
+                + "\n   numeroSejour : " + this.numeroSejour
+                + "\n   date : " + this.date.toString()
+                + "\n   PH responsable : " + this.PHResponsable.toString()
+                + "\n   localisation : " + this.localisation.toString()
                 + "\n";
 
     }

@@ -14,11 +14,22 @@ import java.text.SimpleDateFormat;
 public class Operation {
     DateSimple date;
     String operation;
+    String numeroSejour;
     
-    public Operation(DateSimple date, String operation){
+    public Operation(String numeroSejour, DateSimple date, String operation){
         this.date = date;
         this.operation = operation;
+        this.numeroSejour = numeroSejour;
     }
+
+    public String getNumeroSejour() {
+        return numeroSejour;
+    }
+
+    public void setNumeroSejour(String numeroSejour) {
+        this.numeroSejour = numeroSejour;
+    }
+    
 
     public DateSimple getDate() {
         return date;
@@ -36,5 +47,8 @@ public class Operation {
         this.operation = operation;
     }
     
-    
+    public String toString(){
+        return "date : " + this.date
+                +"\noperation : " + this.operation;
+    }
 }

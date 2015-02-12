@@ -13,15 +13,25 @@ import java.util.Calendar;
  * @author molit_000
  */
 public class LettreDeSortie {
+    private String numeroSejour;
     private DateSimple date;
     private String contenu;
     
     public LettreDeSortie(){
     }
     
-    public LettreDeSortie(DateSimple date, String contenu){
+    public LettreDeSortie(String numeroSejour, DateSimple date, String contenu){
+        this.numeroSejour = numeroSejour;
         this.date = date;
         this.contenu = contenu;
+    }
+
+    public String getNumeroSejour() {
+        return numeroSejour;
+    }
+
+    public void setNumeroSejour(String numeroSejour) {
+        this.numeroSejour = numeroSejour;
     }
 
     public DateSimple getDate() {
@@ -38,6 +48,13 @@ public class LettreDeSortie {
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+    
+    public String toString(){
+        return "    ----- Lettre de sortie -----"
+        + "\n     date : " + this.date  
+        + "\n      contenu : " + this.contenu;
+        
     }
     
     
