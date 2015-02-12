@@ -22,7 +22,7 @@ public class test {
         
        DateSimple date1 = new DateSimple("24", "04", "1993");
        DateSimple date2 = new DateSimple("12", "01", "2015");
-       DateSimple date3 = new DateSimple("15", "01", "2015");
+       DateSimple date3 = new DateSimple("01", "05", "2014");
        
        Services service1 = new Services(TypeServices.CLINIQUE, "cardiologie");
        
@@ -34,18 +34,24 @@ public class test {
        DPI dpi1 = new DPI("1", "Me", "Henry", date1, "M", "21, rue des agagous");
        DPI dpi2 = new DPI("2", "Vousmalade", "Josette", date1, "F", "22, rue des agagous");
        
+       Prescription prescription1 = new Prescription(date3, "Aspirine 10 fois/jour", medecin1);
+       dpi1.getDm().ajouterPrescription(prescription1);
+       
        Sejour sejour1 = new Sejour(dpi1.getDma(), date2, medecin1, localisation1);
        dpi1.getDma().ajouterSejour(sejour1);
        Sejour sejour2 = new Sejour(dpi1.getDma(), date3, medecin2, localisation1);
        dpi1.getDma().ajouterSejour(sejour2);
        
+       Operation op1 = new Operation(date2, "Pansement");
+       dpi1.getDm().ajouterOperation(op1);
+       
        dpi2.setEstOuvert(false);
          
        System.out.println(dpi1.toString());
        System.out.println(dpi2.toString());
-       System.out.println(dpi1.getDma().getSejour().get(0).toString());
-       System.out.println(dpi1.getDma().getSejour().get(1).toString());
-       
+       System.out.println(dpi1.getDma().getListeSejours().toString());
+       System.out.println(dpi1.getDm().getPrescriptions().toString());
+        
     }
     
 }

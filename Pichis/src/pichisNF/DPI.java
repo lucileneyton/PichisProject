@@ -13,14 +13,14 @@ import java.util.Calendar;
  * @author molit_000
  */
 public class DPI {
-    private DMA dma;
-    private DM dm;
     private String ipp;
     private String nom;
-    private String prenom;
-    private DateSimple dateNaissance;
+    private String prenom; 
     private String sexe;
+    private DateSimple dateNaissance;
     private String adresse;
+    private DMA dma;
+    private DM dm;
     private boolean estOuvert;
     
     public DPI(String ipp, String nom, String prenom, DateSimple dateNaissance, String sexe, String adresse){
