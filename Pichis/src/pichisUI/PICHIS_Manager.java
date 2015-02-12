@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import pichisNF.ConnectionBD;
+import pichisNF.Personnel;
 
 /**
  *
@@ -25,6 +27,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     public PICHIS_Manager() {
         initComponents();
 
+        ConnectionBD bd = new ConnectionBD();
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
@@ -51,17 +54,18 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        fdEcran_Identification1 = new pichisUI.FenetreIdentification();
-        fenetreIdentification1 = new pichisUI.FenetreIdentification();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        FenetreIdentification = new javax.swing.JPanel();
+        ComposantPrincipal = new pichisUI.FenetreIdentification();
+        PanneauEntreeDesChamps = new pichisUI.FenetreIdentification();
+        identifiant = new javax.swing.JTextField();
+        mdp = new javax.swing.JPasswordField();
+        BoutonDeConnexion = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        MessageErreur = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        InterfaceMedicale = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -96,7 +100,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jPanel11 = new javax.swing.JPanel();
+        InterfaceAdministratif = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -138,38 +142,47 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(908, 17));
         jPanel2.setLayout(new java.awt.CardLayout());
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        FenetreIdentification.setLayout(new java.awt.BorderLayout());
 
-        fdEcran_Identification1.setPreferredSize(new java.awt.Dimension(1559, 100));
+        ComposantPrincipal.setPreferredSize(new java.awt.Dimension(1559, 100));
 
-        fenetreIdentification1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        PanneauEntreeDesChamps.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("");
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+        identifiant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        identifiant.setText("");
+        identifiant.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         Font font1 = new Font(Font.DIALOG_INPUT, Font.ITALIC, 20);
 
-        jTextField2.setFont(font1);
-        jTextField2.setHorizontalAlignment(JTextField.CENTER);
+        identifiant.setFont(font1);
+        identifiant.setHorizontalAlignment(JTextField.CENTER);
 
-        jPasswordField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField2.setText("");
-        jPasswordField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+        mdp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        mdp.setText("");
+        mdp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         Font font2 = new Font(Font.DIALOG_INPUT, Font.ITALIC, 20);
 
-        jPasswordField2.setFont(font1);
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        mdp.setFont(font1);
+        mdp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                mdpActionPerformed(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/Connaxion.png")));
-        jLabel3.addMouseListener(new MouseListener() {
+        BoutonDeConnexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/Connaxion.png")));
+        BoutonDeConnexion.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                boolean b = Personnel.identification(identifiant.getText(),mdp.getText());
+                if (b==false){
+                    MessageErreur.setVisible(true);
+                    MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
 
+                }
+                else{
+                    CardLayout c = (CardLayout) (jPanel2.getLayout());
+                    c.show(jPanel2, "card3");
+                }
             }
 
             @Override
@@ -195,7 +208,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             }
         }
     );
-    jLabel3.setText("");
+    BoutonDeConnexion.setText("");
 
     jLabel4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel4.setText("Identifiant");
@@ -203,40 +216,50 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     jLabel5.setForeground(new java.awt.Color(255, 255, 255));
     jLabel5.setText("Mot de passe ");
 
-    javax.swing.GroupLayout fenetreIdentification1Layout = new javax.swing.GroupLayout(fenetreIdentification1);
-    fenetreIdentification1.setLayout(fenetreIdentification1Layout);
-    fenetreIdentification1Layout.setHorizontalGroup(
-        fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(fenetreIdentification1Layout.createSequentialGroup()
+    MessageErreur.setForeground(new java.awt.Color(255, 51, 0));
+    MessageErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    MessageErreur.setText("jLabel16");
+    MessageErreur.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    MessageErreur.setVisible(false);
+
+    javax.swing.GroupLayout PanneauEntreeDesChampsLayout = new javax.swing.GroupLayout(PanneauEntreeDesChamps);
+    PanneauEntreeDesChamps.setLayout(PanneauEntreeDesChampsLayout);
+    PanneauEntreeDesChampsLayout.setHorizontalGroup(
+        PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(PanneauEntreeDesChampsLayout.createSequentialGroup()
             .addGap(104, 104, 104)
-            .addGroup(fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
-                .addGroup(fenetreIdentification1Layout.createSequentialGroup()
+            .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(identifiant))
+                .addGroup(PanneauEntreeDesChampsLayout.createSequentialGroup()
                     .addGap(8, 8, 8)
-                    .addGroup(fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5))))
             .addContainerGap(208, Short.MAX_VALUE))
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fenetreIdentification1Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel3)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanneauEntreeDesChampsLayout.createSequentialGroup()
+            .addGap(33, 33, 33)
+            .addComponent(MessageErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BoutonDeConnexion)
             .addContainerGap())
     );
-    fenetreIdentification1Layout.setVerticalGroup(
-        fenetreIdentification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(fenetreIdentification1Layout.createSequentialGroup()
+    PanneauEntreeDesChampsLayout.setVerticalGroup(
+        PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(PanneauEntreeDesChampsLayout.createSequentialGroup()
             .addGap(24, 24, 24)
             .addComponent(jLabel4)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(identifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(jLabel5)
             .addGap(5, 5, 5)
-            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mdp, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(BoutonDeConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MessageErreur)))
     );
 
     jLabel2.setFont(new java.awt.Font("Garamond", 0, 85)); // NOI18N
@@ -244,39 +267,39 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/logo4.png"))); // NOI18N
 
-    javax.swing.GroupLayout fdEcran_Identification1Layout = new javax.swing.GroupLayout(fdEcran_Identification1);
-    fdEcran_Identification1.setLayout(fdEcran_Identification1Layout);
-    fdEcran_Identification1Layout.setHorizontalGroup(
-        fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(fdEcran_Identification1Layout.createSequentialGroup()
+    javax.swing.GroupLayout ComposantPrincipalLayout = new javax.swing.GroupLayout(ComposantPrincipal);
+    ComposantPrincipal.setLayout(ComposantPrincipalLayout);
+    ComposantPrincipalLayout.setHorizontalGroup(
+        ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(ComposantPrincipalLayout.createSequentialGroup()
             .addGap(117, 117, 117)
-            .addGroup(fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(fenetreIdentification1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
             .addContainerGap(803, Short.MAX_VALUE))
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fdEcran_Identification1Layout.createSequentialGroup()
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComposantPrincipalLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(204, 204, 204))
     );
-    fdEcran_Identification1Layout.setVerticalGroup(
-        fdEcran_Identification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(fdEcran_Identification1Layout.createSequentialGroup()
+    ComposantPrincipalLayout.setVerticalGroup(
+        ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(ComposantPrincipalLayout.createSequentialGroup()
             .addGap(135, 135, 135)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(48, 48, 48)
-            .addComponent(fenetreIdentification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(133, 133, 133)
             .addComponent(jLabel6)
             .addContainerGap(179, Short.MAX_VALUE))
     );
 
-    jPanel1.add(fdEcran_Identification1, java.awt.BorderLayout.CENTER);
+    FenetreIdentification.add(ComposantPrincipal, java.awt.BorderLayout.CENTER);
 
-    jPanel2.add(jPanel1, "card2");
+    jPanel2.add(FenetreIdentification, "card2");
 
-    jPanel4.setBackground(new java.awt.Color(229, 229, 229));
-    jPanel4.setLayout(new java.awt.BorderLayout());
+    InterfaceMedicale.setBackground(new java.awt.Color(229, 229, 229));
+    InterfaceMedicale.setLayout(new java.awt.BorderLayout());
 
     jPanel3.setPreferredSize(new java.awt.Dimension(1550, 200));
     jPanel3.setLayout(new java.awt.BorderLayout());
@@ -385,7 +408,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
-    jPanel4.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+    InterfaceMedicale.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
     jPanel8.setBackground(new java.awt.Color(204, 204, 204));
     jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Renseignements supplémentaires"));
@@ -576,12 +599,12 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addContainerGap(203, Short.MAX_VALUE))
     );
 
-    jPanel4.add(jPanel7, java.awt.BorderLayout.CENTER);
+    InterfaceMedicale.add(jPanel7, java.awt.BorderLayout.CENTER);
 
-    jPanel2.add(jPanel4, "card3");
+    jPanel2.add(InterfaceMedicale, "card3");
 
-    jPanel11.setBackground(new java.awt.Color(229, 229, 229));
-    jPanel11.setLayout(new java.awt.BorderLayout());
+    InterfaceAdministratif.setBackground(new java.awt.Color(229, 229, 229));
+    InterfaceAdministratif.setLayout(new java.awt.BorderLayout());
 
     jPanel12.setLayout(new java.awt.BorderLayout());
 
@@ -687,7 +710,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     jPanel12.add(jPanel14, java.awt.BorderLayout.PAGE_END);
 
-    jPanel11.add(jPanel12, java.awt.BorderLayout.PAGE_START);
+    InterfaceAdministratif.add(jPanel12, java.awt.BorderLayout.PAGE_START);
 
     jPanel17.setBackground(new java.awt.Color(204, 204, 204));
     jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients pris en charge"));
@@ -865,18 +888,18 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addContainerGap(106, Short.MAX_VALUE))
     );
 
-    jPanel11.add(jPanel15, java.awt.BorderLayout.CENTER);
+    InterfaceAdministratif.add(jPanel15, java.awt.BorderLayout.CENTER);
 
-    jPanel2.add(jPanel11, "card3");
+    jPanel2.add(InterfaceAdministratif, "card3");
 
     getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1559, 910));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
         // TODO add your handling code here:    
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_mdpActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
@@ -918,8 +941,14 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pichisUI.FenetreIdentification fdEcran_Identification1;
-    private pichisUI.FenetreIdentification fenetreIdentification1;
+    private javax.swing.JLabel BoutonDeConnexion;
+    private pichisUI.FenetreIdentification ComposantPrincipal;
+    private javax.swing.JPanel FenetreIdentification;
+    private javax.swing.JPanel InterfaceAdministratif;
+    private javax.swing.JPanel InterfaceMedicale;
+    private javax.swing.JLabel MessageErreur;
+    private pichisUI.FenetreIdentification PanneauEntreeDesChamps;
+    private javax.swing.JTextField identifiant;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -946,7 +975,6 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -969,8 +997,6 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
     private javax.swing.JList jList5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -981,21 +1007,19 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPasswordField mdp;
     // End of variables declaration//GEN-END:variables
 }
