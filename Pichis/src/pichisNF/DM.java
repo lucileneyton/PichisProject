@@ -12,60 +12,50 @@ import java.util.ArrayList;
  * @author molit_000
  */
 public class DM {
-    ArrayList<Prescriptions> prescriptions;
-    ArrayList<Observations> observations;
-    ArrayList<LettresDeSortie> lettresDeSortie;
-    ArrayList<Operations> operations;
-    ArrayList<Resultats> resultats;
+    ArrayList<Prescription> prescriptions;
+    ArrayList<Observation> observations;
+    ArrayList<Resultat> resultats;
 
-    
-    
+
     public DM(){
-        this.prescriptions = new ArrayList<Prescriptions>();
-        this.observations = new ArrayList<Observations>();
-        this.lettresDeSortie = new ArrayList<LettresDeSortie>();
-        this.resultats = new ArrayList<Resultats>();
-        this.operations = new ArrayList<Operations>();
+        this.prescriptions = new ArrayList<Prescription>();
+        this.observations = new ArrayList<Observation>();
+        this.resultats = new ArrayList<Resultat>();
     }
 
-    public ArrayList<Prescriptions> getPrescriptions() {
+    public ArrayList<Prescription> getPrescriptions() {
         return prescriptions;
     }
 
-    public void setPrescriptions(ArrayList<Prescriptions> prescriptions) {
+    public void setPrescriptions(ArrayList<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
 
-    public ArrayList<Observations> getObservations() {
+    public ArrayList<Observation> getObservations() {
         return observations;
     }
 
-    public void setObservations(ArrayList<Observations> observations) {
+    public void setObservations(ArrayList<Observation> observations) {
         this.observations = observations;
     }
 
-    public ArrayList<LettresDeSortie> getLettresDeSortie() {
-        return lettresDeSortie;
-    }
-
-    public void setLettresDeSortie(ArrayList<LettresDeSortie> lettresDeSortie) {
-        this.lettresDeSortie = lettresDeSortie;
-    }
-    
-    public ArrayList<Operations> getOperations() {
-        return operations;
-    }
-
-    public void setOperations(ArrayList<Operations> operations) {
-        this.operations = operations;
-    }
-
-    public ArrayList<Resultats> getResultats() {
+    public ArrayList<Resultat> getResultats() {
         return resultats;
     }
 
-    public void setResultats(ArrayList<Resultats> resultats) {
+    public void setResultats(ArrayList<Resultat> resultats) {
         this.resultats = resultats;
     }
     
+    public void ajouterPrescription(Prescription pres){
+        this.prescriptions.add(pres);
+    }
+    
+    public void ajouterObservation(Observation obs){
+        this.observations.add(obs);
+    }
+    
+    public void ajouteResultat(Resultat res){
+        this.resultats.add(res);
+    }
 }

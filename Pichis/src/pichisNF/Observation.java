@@ -5,27 +5,27 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author molit_000
  */
-public class Observations {
-    Date date;
+public class Observation {
+    DateSimple date;
     String description;
     
     
-    public Observations(Date date, String description){
+    public Observation(DateSimple date, String description){
         this.date = date;
         this.description = description;
     }
 
-    public Date getDate() {
+    public DateSimple getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSimple date) {
         this.date = date;
     }
 

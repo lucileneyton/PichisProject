@@ -5,7 +5,9 @@
  */
 package pichisNF;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,28 +15,18 @@ import java.util.Date;
  * @author molit_000
  */
 public class Sejour {
-    String numeroSejour;
-    Date date;
-    Medecin PHResponsable;
-    ArrayList<Operations> operations;    
-    ArrayList<LettresDeSortie> lettresDeSorties;
-    Localisation localisation;
+    private String numeroSejour;
+    private DateSimple date;
+    private Medecin PHResponsable;
+    private Localisation localisation;
     
-    public Sejour(String numeroSejour, Date date, Medecin PHResponsable, Localisation localisation){
-        this.numeroSejour = numeroSejour;
+    
+    public Sejour(DMA dma, DateSimple date, Medecin PHResponsable, Localisation localisation){
+        int compteurSejour = 10000 + dma.getListeSejours().size();
+        this.numeroSejour = date.get2derniersChiffresAnnee() + date.getMois() + compteurSejour;
         this.date = date;
         this.PHResponsable = PHResponsable;
-        this.operations = new ArrayList<Operations>();
-        this.lettresDeSorties = new ArrayList<LettresDeSortie>();
         this.localisation = localisation;
-    }
-
-    public ArrayList<Operations> getOperations() {
-        return operations;
-    }
-
-    public void setOperations(ArrayList<Operations> operations) {
-        this.operations = operations;
     }
 
     public String getNumeroSejour() {
@@ -45,11 +37,11 @@ public class Sejour {
         this.numeroSejour = numeroSejour;
     }
 
-    public Date getDate() {
+    public DateSimple getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSimple date) {
         this.date = date;
     }
 
@@ -61,14 +53,6 @@ public class Sejour {
         this.PHResponsable = PHResponsable;
     }
 
-    public ArrayList<LettresDeSortie> getLettresDeSorties() {
-        return lettresDeSorties;
-    }
-
-    public void setLettresDeSorties(ArrayList<LettresDeSortie> lettresDeSorties) {
-        this.lettresDeSorties = lettresDeSorties;
-    }
-
     public Localisation getLocalisation() {
         return localisation;
     }
@@ -77,5 +61,14 @@ public class Sejour {
         this.localisation = localisation;
     }
     
+    public String toString(){
+        return  "----- Sejour -----"
+                + "\nnumeroSejour : " + this.numeroSejour
+                + "\ndate : " + this.date.toString()
+                + "\nPH responsable : " + this.PHResponsable.toString()
+                + "\nlocalisation : " + this.localisation.toString()
+                + "\n";
+
+    }
     
 }

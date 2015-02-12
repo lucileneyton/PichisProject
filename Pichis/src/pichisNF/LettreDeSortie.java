@@ -5,29 +5,30 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
  * @author molit_000
  */
-public class LettresDeSortie {
-    private Date date;
+public class LettreDeSortie {
+    private DateSimple date;
     private String contenu;
     
-    public LettresDeSortie(){
+    public LettreDeSortie(){
     }
     
-    public LettresDeSortie(Date date, String contenu){
+    public LettreDeSortie(DateSimple date, String contenu){
         this.date = date;
         this.contenu = contenu;
     }
 
-    public Date getDate() {
+    public DateSimple getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSimple date) {
         this.date = date;
     }
 

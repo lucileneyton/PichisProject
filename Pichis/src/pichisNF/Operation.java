@@ -5,26 +5,26 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author molit_000
  */
-public class Operations {
-    Date date;
+public class Operation {
+    DateSimple date;
     String operation;
     
-    public Operations(Date date, String operation){
+    public Operation(DateSimple date, String operation){
         this.date = date;
         this.operation = operation;
     }
 
-    public Date getDate() {
+    public DateSimple getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSimple date) {
         this.date = date;
     }
 

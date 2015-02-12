@@ -5,32 +5,38 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
  * @author molit_000
  */
 public class DPI {
-    private DMA dma;
-    private DM dm;
     private String ipp;
     private String nom;
-    private String prenom;
-    private Date dateNaissance;
+    private String prenom; 
     private String sexe;
+    private DateSimple dateNaissance;
     private String adresse;
+    private DMA dma;
+    private DM dm;
+    private ArrayList<LettreDeSortie> lettresDeSortie;
+    private ArrayList<Operation> operations;
     private boolean estOuvert;
     
-    public DPI(String ipp, String nom, String prenom, Date DateNaissance, String sexe, String adresse){
+    public DPI(String ipp, String nom, String prenom, DateSimple dateNaissance, String sexe, String adresse){
         this.dma = new DMA();
         this.dm = new DM();
         this.ipp = ipp;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateNaissance = DateNaissance;
+        this.dateNaissance = dateNaissance;
         this.sexe = sexe;
         this.adresse = adresse;
+        this.lettresDeSortie = new ArrayList<LettreDeSortie>();
+        this.operations = new ArrayList<Operation>();
         estOuvert = true; // le DPI est ouvert à l'ouverture
     }
 
@@ -74,11 +80,11 @@ public class DPI {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
+    public DateSimple getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(DateSimple dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -104,6 +110,51 @@ public class DPI {
 
     public void setEstOuvert(boolean estOuvert) {
         this.estOuvert = estOuvert;
+    }
+
+    public ArrayList<LettreDeSortie> getLettresDeSortie() {
+        return lettresDeSortie;
+    }
+
+    public void setLettresDeSortie(ArrayList<LettreDeSortie> lettresDeSortie) {
+        this.lettresDeSortie = lettresDeSortie;
+    }
+
+    public ArrayList<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(ArrayList<Operation> operations) {
+        this.operations = operations;
+    }
+    
+    
+    
+    public void ajouterLettreDeSortie(LettreDeSortie l){
+        this.lettresDeSortie.add(l);
+    }
+    
+    public void ajouterOperation(Operation op){
+        this.operations.add(op);
+    }
+    
+    public String toString(){
+        if(this.estOuvert == true){
+           return "----- dpi -----"
+             + "\nipp : " + this.ipp
+             + "\nnom : " + this.nom 
+             + "\nprenom : "+this.prenom
+             + "\nDate de Naissance : "+this.dateNaissance.toString()
+             + "\nSexe : "+this.sexe
+             + "\nAdresse : "+this.adresse
+             + "\nNombre operations : " +this.operations.size()
+             + "\nNombre lettre de sorties : " +this.lettresDeSortie.size();
+        }
+        else{
+            return "----- dpi -----"
+                   + "\nCe DPI n'est pas ouvert \n";
+        }
+        
     }
     
 }

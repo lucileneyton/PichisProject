@@ -5,31 +5,31 @@
  */
 package pichisNF;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author molit_000
  */
-public class Prescriptions {
-    Date date;
+public class Prescription {
+    DateSimple date;
     String prescriptions;
     Medecin medecin;
     
-    public Prescriptions(){
+    public Prescription(){
     }
     
-    public Prescriptions(Date date, String prescriptions, Medecin medecin){
+    public Prescription(DateSimple date, String prescriptions, Medecin medecin){
         this.date = date;
         this.prescriptions = prescriptions;
         this.medecin = medecin;
     }
 
-    public Date getDate() {
+    public DateSimple getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateSimple date) {
         this.date = date;
     }
 
@@ -41,5 +41,11 @@ public class Prescriptions {
         this.prescriptions = prescriptions;
     }
     
+    public String toString(){
+        return "----- Prescription -----"
+                + "\ndate : " + this.date.toString()
+                +"\nprescription : " + this.prescriptions
+                +"\nmedecin : " +this.medecin.toString();
+    }
     
 }
