@@ -43,7 +43,7 @@ public class test {
        dpi1.getDma().ajouterSejour(sejour2);
        
        Operation op1 = new Operation(date2, "Pansement");
-       dpi1.getDm().ajouterOperation(op1);
+       dpi1.ajouterOperation(op1);
        
        dpi2.setEstOuvert(false);
          
@@ -52,12 +52,7 @@ public class test {
        System.out.println(dpi2.toString());
        System.out.println(dpi1.getDma().getSejour(0).toString());
        System.out.println(dpi1.getDma().getSejour(1).toString());
-       
 
-       System.out.println(dpi1.toString());
-       System.out.println(dpi2.toString());
-       System.out.println(dpi1.getDma().getListeSejours().toString());
-       System.out.println(dpi1.getDm().getPrescriptions().toString());
     
     }
     

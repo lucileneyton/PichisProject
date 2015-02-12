@@ -6,6 +6,7 @@
 package pichisNF;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -21,6 +22,8 @@ public class DPI {
     private String adresse;
     private DMA dma;
     private DM dm;
+    private ArrayList<LettreDeSortie> lettresDeSortie;
+    private ArrayList<Operation> operations;
     private boolean estOuvert;
     
     public DPI(String ipp, String nom, String prenom, DateSimple dateNaissance, String sexe, String adresse){
@@ -32,6 +35,8 @@ public class DPI {
         this.dateNaissance = dateNaissance;
         this.sexe = sexe;
         this.adresse = adresse;
+        this.lettresDeSortie = new ArrayList<LettreDeSortie>();
+        this.operations = new ArrayList<Operation>();
         estOuvert = true; // le DPI est ouvert à l'ouverture
     }
 
@@ -106,6 +111,32 @@ public class DPI {
     public void setEstOuvert(boolean estOuvert) {
         this.estOuvert = estOuvert;
     }
+
+    public ArrayList<LettreDeSortie> getLettresDeSortie() {
+        return lettresDeSortie;
+    }
+
+    public void setLettresDeSortie(ArrayList<LettreDeSortie> lettresDeSortie) {
+        this.lettresDeSortie = lettresDeSortie;
+    }
+
+    public ArrayList<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(ArrayList<Operation> operations) {
+        this.operations = operations;
+    }
+    
+    
+    
+    public void ajouterLettreDeSortie(LettreDeSortie l){
+        this.lettresDeSortie.add(l);
+    }
+    
+    public void ajouterOperation(Operation op){
+        this.operations.add(op);
+    }
     
     public String toString(){
         if(this.estOuvert == true){
@@ -116,7 +147,8 @@ public class DPI {
              + "\nDate de Naissance : "+this.dateNaissance.toString()
              + "\nSexe : "+this.sexe
              + "\nAdresse : "+this.adresse
-             + "\n";
+             + "\nNombre operations : " +this.operations.size()
+             + "\nNombre lettre de sorties : " +this.lettresDeSortie.size();
         }
         else{
             return "----- dpi -----"

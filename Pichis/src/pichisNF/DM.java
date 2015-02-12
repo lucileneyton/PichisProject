@@ -14,17 +14,13 @@ import java.util.ArrayList;
 public class DM {
     ArrayList<Prescription> prescriptions;
     ArrayList<Observation> observations;
-    ArrayList<LettreDeSortie> lettresDeSortie;
-    ArrayList<Operation> operations;
     ArrayList<Resultat> resultats;
 
 
     public DM(){
         this.prescriptions = new ArrayList<Prescription>();
         this.observations = new ArrayList<Observation>();
-        this.lettresDeSortie = new ArrayList<LettreDeSortie>();
         this.resultats = new ArrayList<Resultat>();
-        this.operations = new ArrayList<Operation>();
     }
 
     public ArrayList<Prescription> getPrescriptions() {
@@ -43,22 +39,6 @@ public class DM {
         this.observations = observations;
     }
 
-    public ArrayList<LettreDeSortie> getLettresDeSortie() {
-        return lettresDeSortie;
-    }
-
-    public void setLettresDeSortie(ArrayList<LettreDeSortie> lettresDeSortie) {
-        this.lettresDeSortie = lettresDeSortie;
-    }
-    
-    public ArrayList<Operation> getOperations() {
-        return operations;
-    }
-
-    public void setOperations(ArrayList<Operation> operations) {
-        this.operations = operations;
-    }
-
     public ArrayList<Resultat> getResultats() {
         return resultats;
     }
@@ -73,14 +53,6 @@ public class DM {
     
     public void ajouterObservation(Observation obs){
         this.observations.add(obs);
-    }
-    
-    public void ajouterLettreDeSortie(LettreDeSortie l){
-        this.lettresDeSortie.add(l);
-    }
-    
-    public void ajouterOperation(Operation op){
-        this.operations.add(op);
     }
     
     public void ajouteResultat(Resultat res){
