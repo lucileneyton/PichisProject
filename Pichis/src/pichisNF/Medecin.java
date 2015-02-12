@@ -12,27 +12,36 @@ import java.sql.Statement;
  *
  * @author molit_000
  */
-public class Medecin extends Personnel{
-    
+public class Medecin extends Personnel {
+
     private Services specialite;
-    
-    public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite){
+
+    public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite) {
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
-        
+
         bd = new ConnectionBD();
-        
+
         Statement ins;
         try {
             ins = bd.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('"+id+"','"+nom+"','"+prenom+"','"+motDePasse+"','"+specialite+"')");
-            
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + specialite + "')");
+
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du medecin"+ex);
+            System.out.println("Erreur lors de la création du medecin" + ex);
+        } finally {
+            try {
+                
+                bd.connexion.close(); // Fermeture de la connexion avec la BD
+                
+            } catch (SQLException e) {
+
+            }
         }
     }
 
-    public Services getSpecialite() {
+
+public Services getSpecialite() {
         return specialite;
     }
 
@@ -45,3 +54,4 @@ public class Medecin extends Personnel{
     }
     
 }
+
