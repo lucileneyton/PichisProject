@@ -9,6 +9,7 @@
 package pichisUI;
 import javax.swing.JOptionPane;
 import pichisNF.Personnel;
+import pichisNF.ConnectionBD;
 
 
 
@@ -23,6 +24,7 @@ public class TestIdentification extends javax.swing.JFrame {
      */
     public TestIdentification() {
         initComponents();
+        ConnectionBD bd = new ConnectionBD();
     }
 
     /**

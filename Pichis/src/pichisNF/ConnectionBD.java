@@ -36,6 +36,7 @@ ResultSet resultat;
 Statement instruction;
 Connection connexion;
 
+
     
     public ConnectionBD(){
         String pilote = "com.mysql.jdbc.Driver";
@@ -51,7 +52,7 @@ Connection connexion;
             Class.forName(pilote);
 
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe !
-            instruction = connexion.createStatement();
+            
 
             
 
@@ -59,6 +60,8 @@ Connection connexion;
 
             System.out.println("echec pilote : " + e);
         }
+        
+        
 
     }
 

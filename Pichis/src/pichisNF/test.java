@@ -17,6 +17,9 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+       
+        
        DateSimple date1 = new DateSimple("24", "04", "1993");
        DateSimple date2 = new DateSimple("12", "01", "2015");
        DateSimple date3 = new DateSimple("15", "01", "2015");
