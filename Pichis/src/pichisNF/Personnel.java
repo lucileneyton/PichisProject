@@ -22,21 +22,14 @@ public class Personnel {
     
     static ConnectionBD bd = new ConnectionBD();
     
-  
-    
     public Personnel(String id, String nom, String prenom, String motDePasse){
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.motDePasse = motDePasse;
-        
-        
-        
+        this.motDePasse = motDePasse;   
         
     }
-
-    
-    
+  
     public String getId() {
         return id;
     }

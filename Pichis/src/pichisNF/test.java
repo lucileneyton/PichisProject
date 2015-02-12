@@ -18,7 +18,7 @@ public class test {
      */
     public static void main(String[] args) {
         
-       
+       Administratif adm = new Administratif("456", "Test", "Test", "def");
         
        DateSimple date1 = new DateSimple("24", "04", "1993");
        DateSimple date2 = new DateSimple("12", "01", "2015");
@@ -41,10 +41,10 @@ public class test {
        
        dpi2.setEstOuvert(false);
          
-       System.out.println(dpi1.toString());
-       System.out.println(dpi2.toString());
-       System.out.println(dpi1.getDma().getSejour().get(0).toString());
-       System.out.println(dpi1.getDma().getSejour().get(1).toString());
+      // System.out.println(dpi1.toString());
+       //System.out.println(dpi2.toString());
+       //System.out.println(dpi1.getDma().getSejour().get(0).toString());
+       //System.out.println(dpi1.getDma().getSejour().get(1).toString());
        
     }
     
