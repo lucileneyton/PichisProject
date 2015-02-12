@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author Matilas
  */
-public class FenetreIdentification extends JPanel {
+public class BoutonRechercher extends JPanel {
 
   
 
@@ -27,7 +27,7 @@ public class FenetreIdentification extends JPanel {
 
 
 
-            Image img = toolkit.getImage("src/data/Images/Princeton_Plainsboro_Wallpaper_by_Pencilshade.png");
+            Image img = toolkit.getImage("src/data/Images/iconmonstr-magnifier-5-icon-48.png");
 
             g.drawImage(img, 0, 0, this);
        
