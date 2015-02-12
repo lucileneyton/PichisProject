@@ -30,10 +30,6 @@ public class DMA {
         this.sejour.add(sejour);
     }
 
-    public ArrayList<Sejour> getSejour() {
-        return sejour;
-    }
-
     public void setSejour(ArrayList<Sejour> sejour) {
         this.sejour = sejour;
     }

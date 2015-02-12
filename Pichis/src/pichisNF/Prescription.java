@@ -41,5 +41,11 @@ public class Prescription {
         this.prescriptions = prescriptions;
     }
     
+    public String toString(){
+        return "----- Prescription -----"
+                + "\ndate : " + this.date.toString()
+                +"\nprescription : " + this.prescriptions
+                +"\nmedecin : " +this.medecin.toString();
+    }
     
 }
