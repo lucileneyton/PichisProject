@@ -21,6 +21,8 @@ public class test {
        Administratif adm = new Administratif("456", "Test", "Test", "def");
        Services s = new Services(TypeServices.CLINIQUE,"Ortho");
        Medecin med = new Medecin("789","Essai","Essai","ghi",s);
+       Medecin med1 = new Medecin("788","Essai","Essai","ghi",s);
+       
         
        DateSimple date1 = new DateSimple("24", "04", "1993");
        DateSimple date2 = new DateSimple("12", "01", "2015");

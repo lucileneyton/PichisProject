@@ -7,7 +7,10 @@
 package pichisBD;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pichisUI.*;
 
 /**
@@ -51,6 +54,32 @@ public class ConsultationBD {
         else{
             return false;
         }
+        
+    }
+    
+    public static boolean typePersonnel(){
+        
+        ResultSet typ;
+        Statement ins;
+        boolean b = false;
+        
+        try {
+            ins = PICHIS_Manager.bd.connexion.createStatement();
+            typ = ins.executeQuery("SELECT service FROM personnel WHERE service='NULL'");
+            
+            if (typ.getRow()==0){
+            b= false;
+        }
+            
+            else{
+                b= true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultationBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return b;
         
     }
 }

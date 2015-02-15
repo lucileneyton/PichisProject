@@ -7,8 +7,9 @@ package pichisNF;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import pichisBD.AjoutBD;
 import pichisBD.ConnectionBD;
-
+import pichisUI.PICHIS_Manager;
 /**
  *
  * @author molit_000
@@ -20,25 +21,8 @@ public class Medecin extends Personnel {
     public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite) {
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
-
-        ConnectionBD bd = new ConnectionBD();
-       
-        Statement ins;
-        try {
-            ins = bd.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + specialite + "')");
-
-        } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du medecin" + ex);
-        } finally {
-            try {
-                
-                bd.connexion.close(); // Fermeture de la connexion avec la BD
-                
-            } catch (SQLException e) {
-
-            }
-        }
+        AjoutBD.ajoutMedecin(id, nom, prenom, motDePasse, specialite);
+        
     }
 
 
