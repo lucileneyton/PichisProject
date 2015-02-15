@@ -7,6 +7,7 @@ package pichisNF;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import pichisBD.ConnectionBD;
 
 /**
  *
@@ -20,8 +21,8 @@ public class Medecin extends Personnel {
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
 
-        bd = new ConnectionBD();
-
+        ConnectionBD bd = new ConnectionBD();
+       
         Statement ins;
         try {
             ins = bd.connexion.createStatement();

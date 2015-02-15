@@ -9,7 +9,7 @@
 package pichisUI;
 import javax.swing.JOptionPane;
 import pichisNF.Personnel;
-import pichisNF.ConnectionBD;
+import pichisBD.*;
 
 
 
@@ -92,7 +92,7 @@ public class TestIdentification extends javax.swing.JFrame {
     private void validationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validationActionPerformed
         // TODO add your handling code here:
         
-        boolean b = Personnel.identification(this.identif.getText(),this.mdp.getText());
+        boolean b = ConsultationBD.identification(this.identif.getText(),this.mdp.getText());
         if (b==false){
             JOptionPane.showMessageDialog(rootPane, "Erreur"); 
             

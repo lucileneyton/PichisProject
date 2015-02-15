@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pichisBD.ConnectionBD;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +18,8 @@ import java.util.logging.Logger;
 public class Administratif extends Personnel{
     
     ConnectionBD bd = new ConnectionBD();
+    
+    
     
     public Administratif(String id, String nom, String prenom, String motDePasse){
         super(id, nom, prenom, motDePasse);

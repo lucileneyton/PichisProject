@@ -199,13 +199,16 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="BoutonDeConnexion">
                       <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="BoutonDeConnexion.addMouseListener(new MouseListener() {&#xa;&#xa;&#xa;            @Override&#xa;            public void mouseClicked(MouseEvent e) {&#xa;boolean b = Personnel.identification(identifiant.getText(),mdp.getText());&#xa;        if (b==false){&#xa;            MessageErreur.setVisible(true);&#xa;            MessageErreur.setText(&quot;Informations de connexion inconnues. Les v&#xe9;rifier.&quot;);&#xa;            &#xa;        }&#xa;        else{&#xa;           CardLayout c = (CardLayout) (jPanel2.getLayout());&#xa;            c.show(jPanel2, &quot;card3&quot;);&#xa;        }&#xa;            }&#xa;&#xa;            @Override&#xa;            public void mousePressed(MouseEvent e) {&#xa;           &#xa;&#xa;&#xa;            }&#xa;&#xa;@Override&#xa;            public void mouseReleased(MouseEvent e) {&#xa;         &#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseEntered(MouseEvent e) {&#xa;           setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));&#xa;&#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseExited(MouseEvent e) {&#xa;&#xa;setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));&#xa;}  &#xa;}&#xa;        );">
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="BoutonDeConnexion.addMouseListener(new MouseListener() {&#xa;&#xa;&#xa;            @Override&#xa;            public void mouseClicked(MouseEvent e) {&#xa;boolean b = ConsultationBD.identification(identifiant.getText(),mdp.getText());&#xa;        if (b==false){&#xa;            MessageErreur.setVisible(true);&#xa;            MessageErreur.setText(&quot;Informations de connexion inconnues. Les v&#xe9;rifier.&quot;);&#xa;            &#xa;        }&#xa;        else{&#xa;&#xa;           CardLayout c = (CardLayout) (jPanel2.getLayout());&#xa;            c.show(jPanel2, &quot;card3&quot;);&#xa;        }&#xa;            }&#xa;&#xa;            @Override&#xa;            public void mousePressed(MouseEvent e) {&#xa;           &#xa;&#xa;&#xa;            }&#xa;&#xa;@Override&#xa;            public void mouseReleased(MouseEvent e) {&#xa;         &#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseEntered(MouseEvent e) {&#xa;           setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));&#xa;&#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseExited(MouseEvent e) {&#xa;&#xa;setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));&#xa;}  &#xa;}&#xa;        );">
                           <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/data/Images/Connaxion.png&quot;))" type="code"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="&quot;&quot;" type="code"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BoutonDeConnexionMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
@@ -333,7 +336,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel8" min="-2" pref="163" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -931,7 +934,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel33" min="-2" pref="49" max="-2" attributes="0"/>

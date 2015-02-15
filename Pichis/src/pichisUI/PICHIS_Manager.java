@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import pichisNF.ConnectionBD;
+import pichisBD.*;
 import pichisNF.Personnel;
 
 /**
@@ -24,10 +24,15 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     /**
      * Creates new form PICHIS_Manager
      */
+    
+    public static ConnectionBD bd = new ConnectionBD();
+    
+    
     public PICHIS_Manager() {
         initComponents();
 
-        ConnectionBD bd = new ConnectionBD();
+        
+        
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
@@ -173,13 +178,14 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                boolean b = Personnel.identification(identifiant.getText(),mdp.getText());
+                boolean b = ConsultationBD.identification(identifiant.getText(),mdp.getText());
                 if (b==false){
                     MessageErreur.setVisible(true);
                     MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
 
                 }
                 else{
+
                     CardLayout c = (CardLayout) (jPanel2.getLayout());
                     c.show(jPanel2, "card3");
                 }
@@ -209,6 +215,11 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         }
     );
     BoutonDeConnexion.setText("");
+    BoutonDeConnexion.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            BoutonDeConnexionMouseClicked(evt);
+        }
+    });
 
     jLabel4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel4.setText("Identifiant");
@@ -368,7 +379,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
         .addGroup(jPanel5Layout.createSequentialGroup()
-            .addGap(0, 2, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGroup(jPanel5Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -672,7 +683,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     jPanel13Layout.setVerticalGroup(
         jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-            .addContainerGap(16, Short.MAX_VALUE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel13Layout.createSequentialGroup()
                     .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -904,6 +915,10 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void BoutonDeConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoutonDeConnexionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoutonDeConnexionMouseClicked
 
     /**
      * @param args the command line arguments
