@@ -146,12 +146,17 @@ public class DPI {
     
 public String afficherDMA(){
     String texteDMA;
-    Sejour sejourEnCours = this.getDma().getListeSejours().get(this.getDma().getListeSejours().size() - 1);
+    Sejour sejourEnCours = this.getDma().getListeSejours().get(this.getDma().getListeSejours().size() - 1); // on affiche le dernier sejour de la liste, on suppose que c'est le sejour en cours
     texteDMA = "----- DMA -----\nPatient : " + this.nom + this.prenom;
     
-    texteDMA = texteDMA + "\n" + sejourEnCours.toString(); // on affiche le dernier sejour de la liste, on suppose que c'est le sejour en cours
+    texteDMA = texteDMA + "\n" + sejourEnCours.toString();
   
-    texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
+    if(this.getDma().getListeSejours().size() <= 0){
+        System.out.println("Aucune lettre de sortie disponible");
+    }
+    else{
+        texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
+    }     
     
     return texteDMA;
     
@@ -178,13 +183,10 @@ public String afficherDMA(){
     
     public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour){
         int i = 0;
-        while( (this.getLettresDeSortie().get(i).getNumeroSejour().equals(sejour.getNumeroSejour())==false) && 
-                (i<this.getLettresDeSortie().size())
-             ){
+        while(i<this.getLettresDeSortie().size() && (this.getLettresDeSortie().get(i).getNumeroSejour().equals(sejour.getNumeroSejour())==false)){
             i++;
         }
         if(i == this.getLettresDeSortie().size()){
-            System.out.println("\nAucune lettre de sortie trouvée");
             return null;
         }
         else{

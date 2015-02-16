@@ -53,7 +53,7 @@ public class LettreDeSortie {
     public String toString(){
         return "    ----- Lettre de sortie -----"
         + "\n     date : " + this.date  
-        + "\n      contenu : " + this.contenu;
+        + "\n     contenu : " + this.contenu;
         
     }
     
