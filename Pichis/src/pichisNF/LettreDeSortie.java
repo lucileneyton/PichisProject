@@ -51,9 +51,16 @@ public class LettreDeSortie {
     }
     
     public String toString(){
-        return "    ----- Lettre de sortie -----"
-        + "\n     date : " + this.date  
-        + "\n     contenu : " + this.contenu;
+        String texte = "    ----- Lettre de sortie -----";
+                if(date == null || contenu == null){
+                    texte = texte + "";
+                }
+                else{
+                    texte = texte + "\n     date : " + this.date  
+                                  + "\n     contenu : " + this.contenu;
+                }
+                
+                return texte;
         
     }
     
