@@ -1,10 +1,7 @@
 package pichisNF;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pichisBD.ConnectionBD;
+import pichisBD.DAOAdministratif;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,29 +12,33 @@ import pichisBD.ConnectionBD;
  *
  * @author molit_000
  */
-public class Administratif extends Personnel{
-    
-    ConnectionBD bd = new ConnectionBD();
-    
-    
-    
-    public Administratif(String id, String nom, String prenom, String motDePasse){
+public class Administratif extends Personnel {
+
+    public Administratif(String id, String nom, String prenom, String motDePasse) {
         super(id, nom, prenom, motDePasse);
-        
-        Statement ins;
-        try {
-            ins = bd.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('"+id+"','"+nom+"','"+prenom+"','"+motDePasse+"','"+"NULL"+"')");
-            
-        } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création de l'administratif"+ex);
-        }
-        
-       
 
-
-       
     }
-    
-    
+
+    @SuppressWarnings("null")
+    public boolean identification(String id, String mdp) {
+
+        DAOAdministratif daoAdministratif;
+        daoAdministratif = new DAOAdministratif();
+        Administratif administratif;
+
+        administratif = daoAdministratif.administratifParID(id);
+        String motDePasse = administratif.getMotDePasse();
+
+        if (administratif != null) {
+
+            if (mdp.equals(motDePasse)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
 }
