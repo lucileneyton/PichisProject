@@ -19,6 +19,38 @@ public class DAOAdministratif {
 
     ConnectionBD c = new ConnectionBD();
 
+    public boolean identification(String id, String motDePasse) {
+
+        String identif;
+        String mdp ;
+        boolean b = false;
+        ResultSet resul;
+        Statement ins;
+
+        try {
+
+            ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id);
+
+            while (resul.next()) {
+
+                identif = resul.getString("id");
+                mdp = resul.getString("mdp");
+
+                if (mdp.equals(motDePasse)) {
+                    b = true;
+                } else {
+                    b = false;
+                }
+            }
+            return b;
+        } catch (SQLException e) {
+            System.out.println("erreur : " + e);
+            return false;
+        }
+
+    }
+
     public ArrayList<Administratif> consulterListeAdministratif() {
 
         ArrayList<Administratif> listeAdministratif = new ArrayList();
@@ -58,7 +90,7 @@ public class DAOAdministratif {
             if (resul.getRow() == 0) {
 
                 admin = null;
-                
+
             } else {
 
                 while (resul.next()) {
