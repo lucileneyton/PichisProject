@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,9 @@ public class AjoutPatient extends javax.swing.JFrame {
      */
     public AjoutPatient() {
         initComponents();
+        int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
+        int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
+        this.setLocation(x, y);
         
     }
 
