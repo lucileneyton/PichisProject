@@ -3,7 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="alwaysOnTop" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -25,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="428" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -86,44 +85,44 @@
                                   <Component id="labelDateNaissance" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="boutonFemme" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="comboBoxJour" min="-2" max="-2" attributes="0"/>
+                              <Component id="boutonFemme" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelIPP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="champIPP" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="labelNom" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="comboBoxMois" min="-2" max="-2" attributes="0"/>
+                                      <Component id="champNom" min="-2" pref="145" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="champJour" min="-2" pref="47" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                              <Component id="jLabel6" min="-2" pref="12" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="comboBoxAnnee" min="-2" pref="80" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labelPrenom" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="champPrenom" min="-2" pref="150" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="labelPrenom" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="champPrenom" min="-2" pref="142" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="champMois" min="-2" pref="47" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="champAnnee" min="-2" pref="61" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelNom" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelIPP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="champNom" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="champIPP" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -145,11 +144,11 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxMois" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxAnnee" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxJour" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelDateNaissance" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="champJour" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="champMois" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="champAnnee" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -236,7 +235,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="boutonHomme">
               <Properties>
-                <Property name="text" type="java.lang.String" value="M"/>
+                <Property name="text" type="java.lang.String" value="H"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonHommeActionPerformed"/>
@@ -264,6 +263,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="champIPP">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="123456789"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="champIPPActionPerformed"/>
               </Events>
@@ -284,26 +287,29 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonAnnulerActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboBoxMois">
+            <Component class="javax.swing.JTextField" name="champJour">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot; })" type="code"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Jour"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="champJourActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboBoxAnnee">
+            <Component class="javax.swing.JTextField" name="champMois">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;1900&quot; })" type="code"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Mois"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="champMoisActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboBoxJour">
+            <Component class="javax.swing.JTextField" name="champAnnee">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot; })" type="code"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Annee"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="champAnneeActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

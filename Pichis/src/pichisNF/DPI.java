@@ -5,9 +5,11 @@
  */
 package pichisNF;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -192,6 +194,23 @@ public String afficherDMA(){
         else{
             return this.getLettresDeSortie().get(i);
         }
+    }
+    
+    public String CreerIpp(){
+        String ipp;
+          
+        //Pour les deux premiers chiffres de l'ipp
+        DateFormat df3 = new SimpleDateFormat("yy");
+        Date today = Calendar.getInstance().getTime();
+        Calendar.getInstance(); 
+        ipp = df3.format(today).toString();
+
+        //pour le reste 
+        for(int i=0; i<7; i++){
+            ipp = ipp + (int)(Math.random()*10);
+        }
+        
+        return ipp;
     }
     
 }
