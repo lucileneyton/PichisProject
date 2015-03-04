@@ -26,8 +26,6 @@ public class ConsultationBD {
         String identif;
         String mdp="null";
         
-        
-        
         try{
         
      

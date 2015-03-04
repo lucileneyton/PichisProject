@@ -24,7 +24,8 @@ public class TestIdentification extends javax.swing.JFrame {
      */
     public TestIdentification() {
         initComponents();
-        ConnectionBD bd = new ConnectionBD();
+        
+        //ConnectionBD bd = new ConnectionBD();
     }
 
     /**
@@ -91,15 +92,34 @@ public class TestIdentification extends javax.swing.JFrame {
 
     private void validationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validationActionPerformed
         // TODO add your handling code here:
+        DAOMedecin daom = new DAOMedecin();
+        DAOAdministratif daoa = new DAOAdministratif();
         
-        boolean b = ConsultationBD.identification(this.identif.getText(),this.mdp.getText());
-        if (b==false){
-            JOptionPane.showMessageDialog(rootPane, "Erreur"); 
+        
+        
+        
+        if (daom.estMedecin(identif.getText(),mdp.getText())){
+           
+            if(daom.identification(identif.getText(), mdp.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Ok");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erreur");
+            }
+        }
+            else{
+            if(daoa.identification(identif.getText(), mdp.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Ok");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erreur");
+            }
+                    
+                    }
+        
+        
             
-        }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Ok");
-        }
+    
     }//GEN-LAST:event_validationActionPerformed
 
     /**
