@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import pichisBD.AjoutBD;
 import pichisBD.ConnectionBD;
-import pichisUI.PICHIS_Manager;
+import pichisUI.Identification;
 /**
  *
  * @author molit_000

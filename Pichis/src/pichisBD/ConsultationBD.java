@@ -26,14 +26,12 @@ public class ConsultationBD {
         String identif;
         String mdp="null";
         
-        
-        
         try{
         
      
         ResultSet resul;
         
-        Statement ins = PICHIS_Manager.bd.connexion.createStatement();
+        Statement ins = Identification.bd.connexion.createStatement();
         resul = ins.executeQuery("SELECT * FROM personnel WHERE id= "+id);
         while (resul.next()) {
 
@@ -64,7 +62,7 @@ public class ConsultationBD {
         boolean b = false;
         
         try {
-            ins = PICHIS_Manager.bd.connexion.createStatement();
+            ins = Identification.bd.connexion.createStatement();
             typ = ins.executeQuery("SELECT service FROM personnel WHERE service='NULL'");
             
             if (typ.getRow()==0){

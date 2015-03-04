@@ -52,7 +52,9 @@ public class test {
        dpi2.setEstOuvert(false);
        
         System.out.println(dpi1.toString());
-        System.out.println(dpi1.afficherDMA());
+        //.out.println(dpi1.afficherDMA());
+        
+        System.out.println(dpi1.CreerIpp());
     }
     
 }
