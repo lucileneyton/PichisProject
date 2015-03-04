@@ -19,7 +19,7 @@ import pichisNF.Personnel;
  *
  * @author Matilas
  */
-public class PICHIS_Manager extends javax.swing.JFrame {
+public class PICHIS_Manager1 extends javax.swing.JFrame {
 
     /**
      * Creates new form PICHIS_Manager
@@ -28,7 +28,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     public static ConnectionBD bd = new ConnectionBD();
     
     
-    public PICHIS_Manager() {
+    public PICHIS_Manager1() {
         initComponents();
 
         
@@ -36,7 +36,6 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
-        
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
         //setSize(1365, 765);
         this.setResizable(false);
@@ -59,7 +58,9 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fond = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         FenetreIdentification = new javax.swing.JPanel();
         ComposantPrincipal = new pichisUI.FenetreIdentification();
         PanneauEntreeDesChamps = new pichisUI.FenetreIdentification();
@@ -71,7 +72,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         MessageErreur = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        InterfaceAdministrative = new javax.swing.JPanel();
+        InterfaceMedicale = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -106,7 +107,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jToggleButton1 = new javax.swing.JToggleButton();
-        InterfaceMedicale = new javax.swing.JPanel();
+        InterfaceAdministratif = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -143,13 +144,38 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Fond.setBackground(new java.awt.Color(153, 153, 153));
-        Fond.setForeground(new java.awt.Color(255, 255, 255));
-        Fond.setPreferredSize(new java.awt.Dimension(908, 17));
-        Fond.setLayout(new java.awt.CardLayout());
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(908, 17));
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        jPanel1.setBackground(new java.awt.Color(187, 195, 187));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/Princeton_Plainsboro_Wallpaper_by_PencilshadeTest.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(142, 142, 142))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel3)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel1, "card5");
 
         FenetreIdentification.setLayout(new java.awt.BorderLayout());
 
+        ComposantPrincipal.setBackground(new java.awt.Color(187, 195, 187));
         ComposantPrincipal.setPreferredSize(new java.awt.Dimension(1559, 100));
 
         PanneauEntreeDesChamps.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -187,8 +213,8 @@ public class PICHIS_Manager extends javax.swing.JFrame {
                 }
                 else{
 
-                    CardLayout c = (CardLayout) (Fond.getLayout());
-                    c.show(Fond, "card3");
+                    CardLayout c = (CardLayout) (jPanel2.getLayout());
+                    c.show(jPanel2, "card3");
                 }
             }
 
@@ -308,10 +334,10 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     FenetreIdentification.add(ComposantPrincipal, java.awt.BorderLayout.CENTER);
 
-    Fond.add(FenetreIdentification, "card2");
+    jPanel2.add(FenetreIdentification, "card2");
 
-    InterfaceAdministrative.setBackground(new java.awt.Color(229, 229, 229));
-    InterfaceAdministrative.setLayout(new java.awt.BorderLayout());
+    InterfaceMedicale.setBackground(new java.awt.Color(229, 229, 229));
+    InterfaceMedicale.setLayout(new java.awt.BorderLayout());
 
     jPanel3.setPreferredSize(new java.awt.Dimension(1550, 200));
     jPanel3.setLayout(new java.awt.BorderLayout());
@@ -420,7 +446,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
-    InterfaceAdministrative.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+    InterfaceMedicale.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
     jPanel8.setBackground(new java.awt.Color(204, 204, 204));
     jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Renseignements supplémentaires"));
@@ -447,9 +473,8 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel24.setText("Adresse :");
 
-    jLabel23.setBackground(new java.awt.Color(0, 51, 51));
     jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel23.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel23.setForeground(new java.awt.Color(255, 255, 255));
     jLabel23.setText("04/02/1942");
 
     jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -506,7 +531,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
                                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addContainerGap(88, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel8Layout.createSequentialGroup()
@@ -579,7 +604,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     );
 
     jToggleButton1.setFont(new java.awt.Font("Garamond", 0, 36)); // NOI18N
-    jToggleButton1.setText("Modifier");
+    jToggleButton1.setText("Mise à jour");
     jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jToggleButton1ActionPerformed(evt);
@@ -597,7 +622,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(183, Short.MAX_VALUE))
+            .addContainerGap(261, Short.MAX_VALUE))
     );
     jPanel7Layout.setVerticalGroup(
         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,12 +637,12 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addContainerGap(203, Short.MAX_VALUE))
     );
 
-    InterfaceAdministrative.add(jPanel7, java.awt.BorderLayout.CENTER);
+    InterfaceMedicale.add(jPanel7, java.awt.BorderLayout.CENTER);
 
-    Fond.add(InterfaceAdministrative, "card3");
+    jPanel2.add(InterfaceMedicale, "card3");
 
-    InterfaceMedicale.setBackground(new java.awt.Color(229, 229, 229));
-    InterfaceMedicale.setLayout(new java.awt.BorderLayout());
+    InterfaceAdministratif.setBackground(new java.awt.Color(229, 229, 229));
+    InterfaceAdministratif.setLayout(new java.awt.BorderLayout());
 
     jPanel12.setLayout(new java.awt.BorderLayout());
 
@@ -723,7 +748,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
     jPanel12.add(jPanel14, java.awt.BorderLayout.PAGE_END);
 
-    InterfaceMedicale.add(jPanel12, java.awt.BorderLayout.PAGE_START);
+    InterfaceAdministratif.add(jPanel12, java.awt.BorderLayout.PAGE_START);
 
     jPanel17.setBackground(new java.awt.Color(204, 204, 204));
     jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients pris en charge"));
@@ -901,11 +926,11 @@ public class PICHIS_Manager extends javax.swing.JFrame {
             .addContainerGap(106, Short.MAX_VALUE))
     );
 
-    InterfaceMedicale.add(jPanel15, java.awt.BorderLayout.CENTER);
+    InterfaceAdministratif.add(jPanel15, java.awt.BorderLayout.CENTER);
 
-    Fond.add(InterfaceMedicale, "card3");
+    jPanel2.add(InterfaceAdministratif, "card3");
 
-    getContentPane().add(Fond, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1559, 910));
+    getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1559, 910));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -939,20 +964,21 @@ public class PICHIS_Manager extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PICHIS_Manager1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PICHIS_Manager1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PICHIS_Manager1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PICHIS_Manager1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PICHIS_Manager().setVisible(true);
+                new PICHIS_Manager1().setVisible(true);
             }
         });
     }
@@ -961,8 +987,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JLabel BoutonDeConnexion;
     private pichisUI.FenetreIdentification ComposantPrincipal;
     private javax.swing.JPanel FenetreIdentification;
-    private javax.swing.JPanel Fond;
-    private javax.swing.JPanel InterfaceAdministrative;
+    private javax.swing.JPanel InterfaceAdministratif;
     private javax.swing.JPanel InterfaceMedicale;
     private javax.swing.JLabel MessageErreur;
     private pichisUI.FenetreIdentification PanneauEntreeDesChamps;
@@ -993,6 +1018,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1015,6 +1041,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
     private javax.swing.JList jList5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1022,6 +1049,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;

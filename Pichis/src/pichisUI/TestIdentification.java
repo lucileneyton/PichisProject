@@ -23,6 +23,11 @@ public class TestIdentification extends javax.swing.JFrame {
      * Creates new form TestIdentification
      */
     public TestIdentification() {
+        this.pack();
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+
+        
         initComponents();
         ConnectionBD bd = new ConnectionBD();
     }

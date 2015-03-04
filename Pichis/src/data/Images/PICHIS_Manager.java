@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pichisUI;
+package data.Images;
 
+import pichisUI.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -947,6 +948,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
