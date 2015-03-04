@@ -57,7 +57,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listeDePatients = new javax.swing.JList();
+        listeDePrestations = new javax.swing.JList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -72,9 +72,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -176,15 +173,15 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        listeDePatients.setBackground(new java.awt.Color(204, 204, 204));
-        listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients"));
-        listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listeDePatients.setModel(new javax.swing.AbstractListModel() {
+        listeDePrestations.setBackground(new java.awt.Color(204, 204, 204));
+        listeDePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
+        listeDePrestations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeDePrestations.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sophie Stiquet", "Leo Pars", "Jean Foupasune", "Jean Neymar", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listeDePatients);
+        jScrollPane1.setViewportView(listeDePrestations);
 
         jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -282,28 +279,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Fiche du patient", jPanel1);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1257, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        jTabbedPane1.addTab("Prestations demandées", jPanel2);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -328,7 +303,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             .addGap(0, 652, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Résultats", jPanel4);
+        jTabbedPane1.addTab("Résultats de la prestation demandée", jPanel4);
 
         InterfaceServiceMedicoTechnique.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -359,6 +334,8 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+                        
 
     /**
      * @param args the command line arguments
@@ -411,17 +388,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -430,6 +404,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JList listeDePatients;
+    private javax.swing.JList listeDePrestations;
     // End of variables declaration//GEN-END:variables
 }
