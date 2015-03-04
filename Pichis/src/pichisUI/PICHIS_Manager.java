@@ -150,6 +150,7 @@ public class PICHIS_Manager extends javax.swing.JFrame {
 
         FenetreIdentification.setLayout(new java.awt.BorderLayout());
 
+        ComposantPrincipal.setBackground(new java.awt.Color(187, 195, 187));
         ComposantPrincipal.setPreferredSize(new java.awt.Dimension(1559, 100));
 
         PanneauEntreeDesChamps.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -297,13 +298,12 @@ public class PICHIS_Manager extends javax.swing.JFrame {
     ComposantPrincipalLayout.setVerticalGroup(
         ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(ComposantPrincipalLayout.createSequentialGroup()
-            .addGap(135, 135, 135)
+            .addContainerGap(135, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(48, 48, 48)
             .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(133, 133, 133)
-            .addComponent(jLabel6)
-            .addContainerGap(179, Short.MAX_VALUE))
+            .addComponent(jLabel6))
     );
 
     FenetreIdentification.add(ComposantPrincipal, java.awt.BorderLayout.CENTER);
@@ -947,6 +947,9 @@ public class PICHIS_Manager extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PICHIS_Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
