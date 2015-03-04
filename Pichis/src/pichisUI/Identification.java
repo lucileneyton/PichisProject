@@ -25,14 +25,12 @@ public class Identification extends javax.swing.JFrame {
      * Creates new form PICHIS_Manager
      */
     
-    public static ConnectionBD bd = new ConnectionBD();
+    
     
     
     public Identification() {
         initComponents();
 
-        
-        
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
@@ -110,17 +108,33 @@ public class Identification extends javax.swing.JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                boolean b = ConsultationBD.identification(identifiant.getText(),mdp.getText());
-                if (b==false){
-                    MessageErreur.setVisible(true);
-                    MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
 
+                DAOMedecin daom = new DAOMedecin();
+                DAOAdministratif daoa = new DAOAdministratif();
+
+                if (daom.estMedecin(identifiant.getText(),mdp.getText())){
+
+                    if(daom.identification(identifiant.getText(), mdp.getText())){
+                        CardLayout c = (CardLayout) (jPanel2.getLayout());
+                        c.show(jPanel2, "card3");
+                    }
+                    else{
+                        MessageErreur.setVisible(true);
+                        MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+                    }
                 }
                 else{
+                    if(daoa.identification(identifiant.getText(), mdp.getText())){
+                        CardLayout c = (CardLayout) (jPanel2.getLayout());
+                        c.show(jPanel2, "card3");
+                    }
+                    else{
+                        MessageErreur.setVisible(true);
+                        MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+                    }
 
-                    CardLayout c = (CardLayout) (jPanel2.getLayout());
-                    c.show(jPanel2, "card3");
                 }
+
             }
 
             @Override
