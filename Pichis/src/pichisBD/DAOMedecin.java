@@ -42,7 +42,7 @@ public class DAOMedecin {
         
       
         String identif;
-        String mdp="null";
+        String mdp;
         boolean b=false;
         
         

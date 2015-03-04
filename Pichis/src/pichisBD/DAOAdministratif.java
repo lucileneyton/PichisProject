@@ -18,45 +18,38 @@ import pichisNF.Administratif;
 public class DAOAdministratif {
 
     ConnectionBD c = new ConnectionBD();
-    
-    public boolean identification(String id, String motDePasse){
-        
-      
+
+    public boolean identification(String id, String motDePasse) {
+
         String identif;
-        String mdp="null";
-        boolean b=false;
+        String mdp ;
+        boolean b = false;
         ResultSet resul;
         Statement ins;
-        
-        try{
-       
-        ins = c.connexion.createStatement();
-        resul = ins.executeQuery("SELECT * FROM personnel WHERE id= "+id);
-        
-        while(resul.next()){
+
+        try {
+
+            ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id);
+
+            while (resul.next()) {
 
                 identif = resul.getString("id");
                 mdp = resul.getString("mdp");
-                
-                if(mdp.equals(motDePasse)){
-                b= true;
+
+                if (mdp.equals(motDePasse)) {
+                    b = true;
+                } else {
+                    b = false;
                 }
-        else{
-            b= false;
-        }
-        }
-        return b;
-        }
-        
-        catch(SQLException e){
+            }
+            return b;
+        } catch (SQLException e) {
             System.out.println("erreur : " + e);
             return false;
         }
-        
-        
-                
-            
-        }
+
+    }
 
     public ArrayList<Administratif> consulterListeAdministratif() {
 
@@ -97,7 +90,7 @@ public class DAOAdministratif {
             if (resul.getRow() == 0) {
 
                 admin = null;
-                
+
             } else {
 
                 while (resul.next()) {
