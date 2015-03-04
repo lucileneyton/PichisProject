@@ -43,34 +43,44 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private void initComponents() {
 
         InterfaceAdministratif = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        panelTitre = new javax.swing.JPanel();
+        PanelBarreTitre = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         boutonDeconnection = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        panelBarreRecherche = new javax.swing.JPanel();
+        labelRecherche = new javax.swing.JLabel();
+        jTextFieldRecherche = new javax.swing.JTextField();
+        LabelBoutonRecherche = new javax.swing.JLabel();
+        panelListe = new javax.swing.JPanel();
+        scrollPaneListePatient = new javax.swing.JScrollPane();
         listeDePatients = new javax.swing.JList();
+        boutonAjouter = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
+        ongletFichePatient = new javax.swing.JTabbedPane();
+        panelFichePatient = new javax.swing.JPanel();
+        ongletSejour = new javax.swing.JPanel();
+        jScrollSejours = new javax.swing.JScrollPane();
+        listeSejours = new javax.swing.JList();
+        panelSejour = new javax.swing.JPanel();
+        ongletLocalisation = new javax.swing.JPanel();
+        ongletLettreSortie = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusTraversalPolicyProvider(true);
 
         InterfaceAdministratif.setBackground(new java.awt.Color(229, 229, 229));
         InterfaceAdministratif.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        panelTitre.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setPreferredSize(new java.awt.Dimension(1550, 165));
+        PanelBarreTitre.setBackground(new java.awt.Color(255, 255, 255));
+        PanelBarreTitre.setPreferredSize(new java.awt.Dimension(1550, 165));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_43356_cc1.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_43356_cc1.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
         jLabel9.setText("Pat");
@@ -93,19 +103,19 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         boutonDeconnection.setIconTextGap(0);
         boutonDeconnection.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelBarreTitreLayout = new javax.swing.GroupLayout(PanelBarreTitre);
+        PanelBarreTitre.setLayout(PanelBarreTitreLayout);
+        PanelBarreTitreLayout.setHorizontalGroup(
+            PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelBarreTitreLayout.createSequentialGroup()
+                .addComponent(image)
+                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(325, 325, 325)
@@ -114,55 +124,56 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addComponent(boutonDeconnection)
                 .addContainerGap(260, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        PanelBarreTitreLayout.setVerticalGroup(
+            PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel9)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel11))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(boutonDeconnection)
                             .addComponent(jLabel14))))
                 .addGap(34, 34, 34))
         );
 
-        jPanel3.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+        panelTitre.add(PanelBarreTitre, java.awt.BorderLayout.PAGE_START);
 
-        jPanel6.setBackground(new java.awt.Color(230, 230, 230));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel6.setPreferredSize(new java.awt.Dimension(1550, 60));
-        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
+        panelBarreRecherche.setBackground(new java.awt.Color(230, 230, 230));
+        panelBarreRecherche.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelBarreRecherche.setPreferredSize(new java.awt.Dimension(1550, 60));
+        panelBarreRecherche.setLayout(new javax.swing.BoxLayout(panelBarreRecherche, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel1.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
-        jLabel1.setText("Rechercher un patient :");
-        jPanel6.add(jLabel1);
+        labelRecherche.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
+        labelRecherche.setText("Rechercher un patient :");
+        panelBarreRecherche.add(labelRecherche);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldRecherche.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        jTextFieldRecherche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldRechercheActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField1);
+        panelBarreRecherche.add(jTextFieldRecherche);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
-        jPanel6.add(jLabel7);
+        LabelBoutonRecherche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
+        panelBarreRecherche.add(LabelBoutonRecherche);
 
-        jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
+        panelTitre.add(panelBarreRecherche, java.awt.BorderLayout.PAGE_END);
 
-        InterfaceAdministratif.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        InterfaceAdministratif.add(panelTitre, java.awt.BorderLayout.PAGE_START);
 
-        jPanel7.setLayout(new java.awt.BorderLayout());
+        panelListe.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients"));
+        panelListe.setLayout(new java.awt.BorderLayout());
 
         listeDePatients.setBackground(new java.awt.Color(204, 204, 204));
         listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -172,22 +183,94 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listeDePatients);
+        scrollPaneListePatient.setViewportView(listeDePatients);
 
-        jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        panelListe.add(scrollPaneListePatient, java.awt.BorderLayout.CENTER);
 
-        InterfaceAdministratif.add(jPanel7, java.awt.BorderLayout.WEST);
+        boutonAjouter.setText("Ajouter un patient");
+        boutonAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonAjouterActionPerformed(evt);
+            }
+        });
+        panelListe.add(boutonAjouter, java.awt.BorderLayout.PAGE_END);
+
+        InterfaceAdministratif.add(panelListe, java.awt.BorderLayout.WEST);
+        panelListe.getAccessibleContext().setAccessibleName("");
+
+        panelFichePatient.setLayout(new java.awt.BorderLayout());
+        ongletFichePatient.addTab("Fiche du patient", panelFichePatient);
+
+        ongletSejour.setLayout(new java.awt.BorderLayout());
+
+        listeSejours.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Sejour1" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollSejours.setViewportView(listeSejours);
+
+        ongletSejour.add(jScrollSejours, java.awt.BorderLayout.LINE_START);
+
+        javax.swing.GroupLayout panelSejourLayout = new javax.swing.GroupLayout(panelSejour);
+        panelSejour.setLayout(panelSejourLayout);
+        panelSejourLayout.setHorizontalGroup(
+            panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 844, Short.MAX_VALUE)
+        );
+        panelSejourLayout.setVerticalGroup(
+            panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        ongletSejour.add(panelSejour, java.awt.BorderLayout.CENTER);
+
+        ongletFichePatient.addTab("Séjours", ongletSejour);
+
+        javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
+        ongletLocalisation.setLayout(ongletLocalisationLayout);
+        ongletLocalisationLayout.setHorizontalGroup(
+            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1102, Short.MAX_VALUE)
+        );
+        ongletLocalisationLayout.setVerticalGroup(
+            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        ongletFichePatient.addTab("Localisation", ongletLocalisation);
+
+        javax.swing.GroupLayout ongletLettreSortieLayout = new javax.swing.GroupLayout(ongletLettreSortie);
+        ongletLettreSortie.setLayout(ongletLettreSortieLayout);
+        ongletLettreSortieLayout.setHorizontalGroup(
+            ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1102, Short.MAX_VALUE)
+        );
+        ongletLettreSortieLayout.setVerticalGroup(
+            ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        ongletFichePatient.addTab("Lettre de sortie", ongletLettreSortie);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1425, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ongletFichePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ongletFichePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        ongletFichePatient.getAccessibleContext().setAccessibleName("Fiche du patient");
 
         InterfaceAdministratif.add(panelPrincipal, java.awt.BorderLayout.CENTER);
 
@@ -195,29 +278,30 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1559, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(InterfaceAdministratif, javax.swing.GroupLayout.PREFERRED_SIZE, 1559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(InterfaceAdministratif, javax.swing.GroupLayout.PREFERRED_SIZE, 1559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(InterfaceAdministratif, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(InterfaceAdministratif, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRechercheActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldRechercheActionPerformed
+
+    private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
+        AjoutPatient ajout = new AjoutPatient();
+        ajout.setVisible(true);
+    }//GEN-LAST:event_boutonAjouterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,21 +340,30 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel InterfaceAdministratif;
+    private javax.swing.JLabel LabelBoutonRecherche;
+    private javax.swing.JPanel PanelBarreTitre;
+    private javax.swing.JButton boutonAjouter;
     private javax.swing.JLabel boutonDeconnection;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollSejours;
+    private javax.swing.JTextField jTextFieldRecherche;
+    private javax.swing.JLabel labelRecherche;
     private javax.swing.JList listeDePatients;
+    private javax.swing.JList listeSejours;
+    private javax.swing.JTabbedPane ongletFichePatient;
+    private javax.swing.JPanel ongletLettreSortie;
+    private javax.swing.JPanel ongletLocalisation;
+    private javax.swing.JPanel ongletSejour;
+    private javax.swing.JPanel panelBarreRecherche;
+    private javax.swing.JPanel panelFichePatient;
+    private javax.swing.JPanel panelListe;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSejour;
+    private javax.swing.JPanel panelTitre;
+    private javax.swing.JScrollPane scrollPaneListePatient;
     // End of variables declaration//GEN-END:variables
 }
