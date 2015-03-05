@@ -123,15 +123,22 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
         jLabel37.setText("Préférences");
+        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel38.setText("Déconnexion");
         jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel38.setIconTextGap(0);
         jLabel38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel38MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -148,9 +155,9 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(390, 390, 390)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 625, Short.MAX_VALUE)
                 .addComponent(jLabel37)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addGap(86, 86, 86)
                 .addComponent(jLabel38)
                 .addGap(38, 38, 38))
         );
@@ -166,8 +173,8 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel34))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel38)
                             .addComponent(jLabel37))))
                 .addGap(34, 34, 34))
@@ -269,14 +276,15 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
-                .addContainerGap(930, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(643, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +385,12 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jLabel13)
                             .addComponent(jLabel14))
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextField11)
+                            .addComponent(jTextField12)
+                            .addComponent(jTextField13)
+                            .addComponent(jTextField14))))
                 .addContainerGap(763, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -564,6 +572,11 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
+       this.dispose();
+        new Identification();
+    }//GEN-LAST:event_jLabel38MouseClicked
 
     /**
      * @param args the command line arguments
