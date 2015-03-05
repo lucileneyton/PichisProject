@@ -5,6 +5,8 @@
  */
 package pichisUI;
 
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import javax.swing.JFrame;
 
 /**
@@ -16,21 +18,30 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceClinique
      */
+    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
+    int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
+    int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+
     public InterfaceServiceClinique() {
         initComponents();
+
         
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Clinique");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        //setSize(1365, 765);
-        this.setResizable(false);
+
+        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.pack();
-        this.setDefaultLookAndFeelDecorated(true);
-        this.setExtendedState(this.MAXIMIZED_BOTH);
+//        this.pack();
+//        this.setDefaultLookAndFeelDecorated(true);
+//        this.setExtendedState(this.MAXIMIZED_BOTH);
+
+        setSize(maximumWindowBounds.width, maximumWindowBounds.height);
     }
 
     /**
@@ -49,7 +60,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
@@ -79,12 +89,14 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         InterfaceServiceClinique.setBackground(new java.awt.Color(229, 229, 229));
+        InterfaceServiceClinique.setPreferredSize(new java.awt.Dimension(width, height));
         InterfaceServiceClinique.setLayout(new java.awt.BorderLayout());
 
+        jPanel12.setPreferredSize(new java.awt.Dimension(1400, 213));
         jPanel12.setLayout(new java.awt.BorderLayout());
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setPreferredSize(new java.awt.Dimension(1550, 165));
+        jPanel13.setPreferredSize(new java.awt.Dimension(1550, 158));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_59269_cc.png"))); // NOI18N
 
@@ -97,13 +109,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel34.setText("Praticien hospitalier");
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/NouvelleAdmission.png"))); // NOI18N
-        jLabel35.setText("Nouvelle prescription");
-        jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel35.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/FermetureDPI.png"))); // NOI18N
-        jLabel36.setText("Edition d'une lettre de sortie");
+        jLabel36.setText("Ouverture du DPI");
         jLabel36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -134,15 +141,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel35)
-                .addGap(70, 70, 70)
+                .addGap(192, 192, 192)
                 .addComponent(jLabel36)
                 .addGap(79, 79, 79)
                 .addComponent(jLabel37)
                 .addGap(88, 88, 88)
                 .addComponent(jLabel38)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +165,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel36)
                             .addComponent(jLabel38)
-                            .addComponent(jLabel35)
                             .addComponent(jLabel37))))
                 .addGap(34, 34, 34))
             .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -170,7 +174,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel14.setBackground(new java.awt.Color(230, 230, 230));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel14.setPreferredSize(new java.awt.Dimension(1550, 35));
+        jPanel14.setPreferredSize(new java.awt.Dimension(1400, 55));
         jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel39.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
@@ -186,6 +190,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel12.add(jPanel14, java.awt.BorderLayout.PAGE_END);
 
         InterfaceServiceClinique.add(jPanel12, java.awt.BorderLayout.PAGE_START);
+
+        jPanel15.setPreferredSize(new java.awt.Dimension(1290, 200));
 
         jPanel17.setBackground(new java.awt.Color(204, 204, 204));
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients pris en charge"));
@@ -336,7 +342,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +379,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(InterfaceServiceClinique, javax.swing.GroupLayout.PREFERRED_SIZE, 1559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InterfaceServiceClinique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -435,7 +441,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
