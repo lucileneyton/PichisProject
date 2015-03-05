@@ -46,7 +46,7 @@ public class test {
        Sejour sejour2 = new Sejour(dpi1.getDma(), date2, date3, medecin2, localisation1);
        dpi1.getDma().ajouterSejour(sejour2);
        
-       Operation op1 = new Operation(sejour1.getNumeroSejour(),date2, "Pansement");
+       Operation op1 = new Operation(sejour1.getNumeroSejour(),date2, "Pansement",medecin1);
        dpi1.ajouterOperation(op1);
        
        dpi2.setEstOuvert(false);

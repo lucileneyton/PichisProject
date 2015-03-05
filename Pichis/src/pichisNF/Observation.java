@@ -14,11 +14,16 @@ import java.text.SimpleDateFormat;
 public class Observation {
     DateSimple date;
     String description;
+    Medecin medecin;
     
-    
-    public Observation(DateSimple date, String description){
+    public Observation(DateSimple date, String description,Medecin medecin){
         this.date = date;
         this.description = description;
+        this.medecin=medecin;
+    }
+
+    public Medecin getMedecin() {
+        return medecin;
     }
 
     public DateSimple getDate() {

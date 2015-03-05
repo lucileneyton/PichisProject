@@ -15,11 +15,17 @@ public class Operation {
     DateSimple date;
     String operation;
     String numeroSejour;
+    Medecin medecin;
     
-    public Operation(String numeroSejour, DateSimple date, String operation){
+    public Operation(String numeroSejour, DateSimple date, String operation, Medecin medecin){
         this.date = date;
         this.operation = operation;
         this.numeroSejour = numeroSejour;
+        this.medecin=medecin;
+    }
+
+    public Medecin getMedecin() {
+        return medecin;
     }
 
     public String getNumeroSejour() {

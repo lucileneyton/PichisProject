@@ -14,14 +14,14 @@ import java.util.Calendar;
  */
 public class Prestations {
     private String naturePrestation;
-    private Medecin prestataire;
+    private Medecin demandeur;
     private DPI patient;
     private Resultat resultat;
     private Calendar date;
 
-    public Prestations(String naturePrestation, Medecin prestataire, DPI patient, Resultat resultat, Calendar date) {
+    public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, Calendar date) {
         this.naturePrestation = naturePrestation;
-        this.prestataire = prestataire;
+        this.demandeur = demandeur;
         this.patient = patient;
         this.resultat = resultat;
         this.date = date;
@@ -36,8 +36,8 @@ public class Prestations {
         return naturePrestation;
     }
 
-    public Medecin getPrestataire() {
-        return prestataire;
+    public Medecin getDemandeur() {
+        return demandeur;
     }
 
     public Resultat getResultat() {

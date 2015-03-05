@@ -14,10 +14,16 @@ import java.text.SimpleDateFormat;
 public class Resultat {
     DateSimple date;
     String descriptions;
+    Medecin medecin;
     
-    public Resultat(DateSimple date, String descriptions){
+    public Resultat(DateSimple date, String descriptions,Medecin medecin){
         this.date = date;
         this.descriptions = descriptions;
+        this.medecin=medecin;
+    }
+
+    public Medecin getMedecin() {
+        return medecin;
     }
 
     public DateSimple getDate() {
