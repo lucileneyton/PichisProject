@@ -157,7 +157,7 @@ public String afficherDMA(){
         System.out.println("Aucune lettre de sortie disponible");
     }
     else{
-        texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
+        //texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
     }     
     
     return texteDMA;
@@ -196,14 +196,14 @@ public String afficherDMA(){
         }
     }
     
-    public String CreerIpp(){
+    public static String CreerIpp(){
         String ipp;
           
         //Pour les deux premiers chiffres de l'ipp
         DateFormat df3 = new SimpleDateFormat("yy");
         Date today = Calendar.getInstance().getTime();
         Calendar.getInstance(); 
-        ipp = df3.format(today).toString();
+        ipp = df3.format(today);
 
         //pour le reste 
         for(int i=0; i<7; i++){

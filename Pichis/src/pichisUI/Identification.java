@@ -30,6 +30,7 @@ public class Identification extends javax.swing.JFrame {
     
     public Identification() {
         initComponents();
+        this.setVisible(true);
 
 
         //Définit un titre pour notre fenêtre

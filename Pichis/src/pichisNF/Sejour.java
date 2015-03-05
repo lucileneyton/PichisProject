@@ -16,17 +16,35 @@ import java.util.Date;
  */
 public class Sejour {
     private String numeroSejour;
-    private DateSimple date;
+    private DateSimple dateEntree;
+    private DateSimple dateSortie;
     private Medecin PHResponsable;
     private Localisation localisation;
     
     
-    public Sejour(DMA dma, DateSimple date, Medecin PHResponsable, Localisation localisation){
+    public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
         int compteurSejour = 10000 + dma.getListeSejours().size();
-        this.numeroSejour = date.get2derniersChiffresAnnee() + date.getMois() + compteurSejour;
-        this.date = date;
+        this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+        this.dateEntree = dateEntree;
+        this.dateSortie = dateSortie;
         this.PHResponsable = PHResponsable;
         this.localisation = localisation;
+    }
+
+    public DateSimple getDateEntree() {
+        return dateEntree;
+    }
+
+    public void setDateEntree(DateSimple dateEntree) {
+        this.dateEntree = dateEntree;
+    }
+
+    public DateSimple getDateSortie() {
+        return dateSortie;
+    }
+
+    public void setDateSortie(DateSimple dateSortie) {
+        this.dateSortie = dateSortie;
     }
 
     public String getNumeroSejour() {
@@ -35,14 +53,6 @@ public class Sejour {
 
     public void setNumeroSejour(String numeroSejour) {
         this.numeroSejour = numeroSejour;
-    }
-
-    public DateSimple getDate() {
-        return date;
-    }
-
-    public void setDate(DateSimple date) {
-        this.date = date;
     }
 
     public Medecin getPHResponsable() {
@@ -64,7 +74,8 @@ public class Sejour {
     public String toString(){
         return  "   ----- Sejour -----"
                 + "\n   numeroSejour : " + this.numeroSejour
-                + "\n   date : " + this.date.toString()
+                + "\n   dateEntree : " + this.dateEntree.toString()
+                +"\n    dateSortie : " + this.dateSortie.toString()
                 + "\n   PH responsable : " + this.PHResponsable.toString()
                 + "\n   localisation : " + this.localisation.toString()
                 + "\n";

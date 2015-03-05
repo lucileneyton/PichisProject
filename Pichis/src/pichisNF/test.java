@@ -41,9 +41,9 @@ public class test {
        Prescription prescription1 = new Prescription(date3, "Aspirine 10 fois/jour", medecin1);
        dpi1.getDm().ajouterPrescription(prescription1);
        
-       Sejour sejour1 = new Sejour(dpi1.getDma(), date2, medecin1, localisation1);
+       Sejour sejour1 = new Sejour(dpi1.getDma(), date1, date2, medecin1, localisation1);
        dpi1.getDma().ajouterSejour(sejour1);
-       Sejour sejour2 = new Sejour(dpi1.getDma(), date3, medecin2, localisation1);
+       Sejour sejour2 = new Sejour(dpi1.getDma(), date2, date3, medecin2, localisation1);
        dpi1.getDma().ajouterSejour(sejour2);
        
        Operation op1 = new Operation(sejour1.getNumeroSejour(),date2, "Pansement");
@@ -52,7 +52,7 @@ public class test {
        dpi2.setEstOuvert(false);
        
         System.out.println(dpi1.toString());
-        //.out.println(dpi1.afficherDMA());
+        System.out.println(dpi1.afficherDMA());
         
         System.out.println(dpi1.CreerIpp());
     }

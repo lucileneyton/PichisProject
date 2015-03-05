@@ -66,4 +66,18 @@ public class DateSimple {
     public String get2derniersChiffresAnnee(){
         return annee.substring(2);
     }
+    
+    public boolean estAvant(DateSimple date){
+        boolean rep = true;
+        if(Integer.valueOf(annee) > Integer.valueOf(date.getAnnee())){
+            rep = false;
+        }
+        if(Integer.valueOf(mois) > Integer.valueOf(date.getMois())){
+            rep = false;
+        }
+        if(Integer.valueOf(jour) > Integer.valueOf(date.getJour())){
+            rep = false;
+        }
+        return rep;
+    }
 }

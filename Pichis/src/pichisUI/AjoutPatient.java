@@ -7,6 +7,7 @@ package pichisUI;
 
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import pichisNF.DPI;
 
 /**
  *
@@ -22,6 +23,8 @@ public class AjoutPatient extends javax.swing.JFrame {
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
         this.setLocation(x, y);
+        
+        champIPP.setText(DPI.CreerIpp());
         
     }
 
@@ -112,7 +115,6 @@ public class AjoutPatient extends javax.swing.JFrame {
         labelIPP.setText("IPP");
 
         champIPP.setEditable(false);
-        champIPP.setText("123456789");
         champIPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champIPPActionPerformed(evt);
@@ -134,6 +136,11 @@ public class AjoutPatient extends javax.swing.JFrame {
         });
 
         champJour.setText("Jour");
+        champJour.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                champJourFocusGained(evt);
+            }
+        });
         champJour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champJourActionPerformed(evt);
@@ -141,6 +148,11 @@ public class AjoutPatient extends javax.swing.JFrame {
         });
 
         champMois.setText("Mois");
+        champMois.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                champMoisFocusGained(evt);
+            }
+        });
         champMois.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champMoisActionPerformed(evt);
@@ -148,6 +160,11 @@ public class AjoutPatient extends javax.swing.JFrame {
         });
 
         champAnnee.setText("Annee");
+        champAnnee.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                champAnneeFocusGained(evt);
+            }
+        });
         champAnnee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champAnneeActionPerformed(evt);
@@ -195,7 +212,7 @@ public class AjoutPatient extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(boutonAnnuler)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
                                         .addComponent(boutonValider))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(labelAdresse)
@@ -305,7 +322,15 @@ public class AjoutPatient extends javax.swing.JFrame {
                     if(boutonHomme.isSelected() || boutonFemme.isSelected()){
                         //ADRESSE
                         if(champAdresse.getText().isEmpty() == false){
-                            //fenetre de confirmation + envoie de données
+                            pichisNF.DateSimple date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
+                                if(boutonHomme.isSelected()){
+                                    pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "M", champAdresse.getText());
+                                }
+                                else{
+                                    pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "F", champAdresse.getText());
+                                }
+                                
+                                this.dispose();
                         }
                         else{
                             fenetre.showMessageDialog(null, "Veuillez entrer l'adresse du patient");
@@ -345,6 +370,18 @@ public class AjoutPatient extends javax.swing.JFrame {
     private void champAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champAnneeActionPerformed
+
+    private void champJourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourFocusGained
+        champJour.setText("");
+    }//GEN-LAST:event_champJourFocusGained
+
+    private void champMoisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisFocusGained
+        champMois.setText("");
+    }//GEN-LAST:event_champMoisFocusGained
+
+    private void champAnneeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeFocusGained
+        champAnnee.setText("");
+    }//GEN-LAST:event_champAnneeFocusGained
 
     /**
      * @param args the command line arguments
