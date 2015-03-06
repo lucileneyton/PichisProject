@@ -250,15 +250,15 @@ public class Identification extends javax.swing.JFrame {
     ComposantPrincipalLayout.setHorizontalGroup(
         ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(ComposantPrincipalLayout.createSequentialGroup()
-            .addGap(117, 117, 117)
+            .addGap(38, 38, 38)
             .addGroup(ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
-            .addContainerGap(803, Short.MAX_VALUE))
+            .addContainerGap(882, Short.MAX_VALUE))
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComposantPrincipalLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(204, 204, 204))
+            .addComponent(jLabel6)
+            .addGap(348, 348, 348))
     );
     ComposantPrincipalLayout.setVerticalGroup(
         ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,9 +267,9 @@ public class Identification extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(48, 48, 48)
             .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(133, 133, 133)
+            .addGap(137, 137, 137)
             .addComponent(jLabel6)
-            .addContainerGap(179, Short.MAX_VALUE))
+            .addContainerGap(183, Short.MAX_VALUE))
     );
 
     FenetreIdentification.add(ComposantPrincipal, java.awt.BorderLayout.CENTER);
