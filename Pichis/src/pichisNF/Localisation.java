@@ -11,9 +11,30 @@ package pichisNF;
  */
 public class Localisation {
     Services localisation;
+    String placement;
+    String numeroChambre;
+
     
-    public Localisation(Services localisation){
+     public Localisation(Services localisation, String numeroChambre, String placement){
         this.localisation = localisation;
+        this.placement = placement;
+        this.numeroChambre = numeroChambre;
+     }
+    
+    public String getPlacement() {
+        return placement;
+    }
+
+    public void setPlacement(String placement) {
+        this.placement = placement;
+    }
+
+    public String getNumeroChambre() {
+        return numeroChambre;
+    }
+
+    public void setNumeroChambre(String numeroChambre) {
+        this.numeroChambre = numeroChambre;
     }
 
     public Services getLocalisation() {

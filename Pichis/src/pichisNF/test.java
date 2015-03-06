@@ -19,7 +19,7 @@ public class test {
     public static void main(String[] args) {
         
        Administratif adm = new Administratif("456", "Test", "Test", "def");
-       Services s = new Services(TypeServices.CLINIQUE,"Ortho");
+       Services s = new Services(TypeServices.CLINIQUE, Specialite.NEUROLOGIE);
        Medecin med = new Medecin("789","Essai","Essai","ghi",s);
        Medecin med1 = new Medecin("788","Essai","Essai","ghi",s);
        
@@ -28,12 +28,12 @@ public class test {
        DateSimple date2 = new DateSimple("12", "01", "2015");
        DateSimple date3 = new DateSimple("01", "05", "2014");
        
-       Services service1 = new Services(TypeServices.CLINIQUE, "cardiologie");
+       Services service1 = new Services(TypeServices.CLINIQUE, Specialite.CARDIOLOGIE);
        
        Medecin medecin1 = new Medecin("1", "House", "Gregory", "123", service1);
        Medecin medecin2 = new Medecin("2", "Marie", "Curie", "345", service1);
        
-       Localisation localisation1 = new Localisation(service1);          
+       Localisation localisation1 = new Localisation(service1, "23", "F");          
        
        DPI dpi1 = new DPI("1", "Me", "Henry", date1, "M", "21, rue des agagous");
        DPI dpi2 = new DPI("2", "Vousmalade", "Josette", date1, "F", "22, rue des agagous");

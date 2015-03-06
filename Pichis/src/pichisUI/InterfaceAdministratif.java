@@ -5,7 +5,11 @@
  */
 package pichisUI;
 
+import java.awt.Color;
+import java.util.Calendar;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import pichisNF.Specialite;
 
 /**
  *
@@ -34,7 +38,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
+        comboBoxService.setEnabled(false);
+        comboBoxPlacement.setEnabled(false);
         
+        //champJourEntree.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString());
     }
 
     /**
@@ -64,8 +72,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients = new javax.swing.JList();
         boutonAjouter = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
-        ongletFichePatient = new javax.swing.JTabbedPane();
-        panelFichePatient = new javax.swing.JPanel();
+        panelOnglets = new javax.swing.JTabbedPane();
+        ongletFichePatient = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
         ongletSejour = new javax.swing.JPanel();
         jScrollSejours = new javax.swing.JScrollPane();
         listeSejours = new javax.swing.JList();
@@ -87,6 +107,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         labelPhResponsable = new javax.swing.JLabel();
         champPhResponsable = new javax.swing.JTextField();
         ongletLocalisation = new javax.swing.JPanel();
+        labelService = new javax.swing.JLabel();
+        labelNumeroChambre = new javax.swing.JLabel();
+        champNumeroChambre = new javax.swing.JTextField();
+        labelPlacement = new javax.swing.JLabel();
+        boutonModifier = new javax.swing.JButton();
+        boutonEnregistrer = new javax.swing.JButton();
+        comboBoxPlacement = new javax.swing.JComboBox();
+        comboBoxService = new javax.swing.JComboBox();
         ongletLettreSortie = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -215,8 +243,102 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         InterfaceAdministratif.add(panelListe, java.awt.BorderLayout.WEST);
         panelListe.getAccessibleContext().setAccessibleName("");
 
-        panelFichePatient.setLayout(new java.awt.BorderLayout());
-        ongletFichePatient.addTab("Fiche du patient", panelFichePatient);
+        jLabel5.setText("Nom");
+
+        jLabel6.setText("Prénom");
+
+        jLabel7.setText("IPP");
+
+        jLabel8.setText("Date de naissance");
+
+        jLabel12.setText("Sexe");
+
+        jLabel13.setText("Adresse");
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("non edit");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setEditable(false);
+        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField2.setText("non edit");
+
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField4.setText("non edit");
+
+        jTextField5.setEditable(false);
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField5.setText("non edit");
+
+        jTextField6.setEditable(false);
+        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField6.setText("non edit");
+
+        jTextField7.setEditable(false);
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField7.setText("non edit");
+
+        javax.swing.GroupLayout ongletFichePatientLayout = new javax.swing.GroupLayout(ongletFichePatient);
+        ongletFichePatient.setLayout(ongletFichePatientLayout);
+        ongletFichePatientLayout.setHorizontalGroup(
+            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletFichePatientLayout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel13))
+                .addGap(33, 33, 33)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(337, Short.MAX_VALUE))
+        );
+        ongletFichePatientLayout.setVerticalGroup(
+            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletFichePatientLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(198, Short.MAX_VALUE))
+        );
+
+        panelOnglets.addTab("Fiche du patient", ongletFichePatient);
 
         ongletSejour.setLayout(new java.awt.BorderLayout());
 
@@ -232,6 +354,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         labelDateEntree.setText("Date d'entrée");
 
         champJourEntree.setEditable(false);
+        champJourEntree.setBackground(new java.awt.Color(204, 204, 204));
         champJourEntree.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champJourEntreeActionPerformed(evt);
@@ -241,30 +364,32 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel1.setText("/");
 
         champMoisEntree.setEditable(false);
+        champMoisEntree.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setText("/");
 
         champAnneeEntree.setEditable(false);
+        champAnneeEntree.setBackground(new java.awt.Color(204, 204, 204));
 
         labelDateSortie.setText("Date de Sortie");
 
-        champJourSortie.setEditable(false);
-
         jLabel3.setText("/");
 
-        champMoisSortie.setEditable(false);
-
         jLabel4.setText("/");
-
-        champAnneeSortie.setEditable(false);
 
         labelNumeroSejour.setText("Numéro de séjour");
 
         champNumeroSejour.setEditable(false);
+        champNumeroSejour.setBackground(new java.awt.Color(204, 204, 204));
 
         labelPhResponsable.setText("Nom du PH responsable");
 
         champPhResponsable.setEditable(false);
+        champPhResponsable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                champPhResponsableActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSejourLayout = new javax.swing.GroupLayout(panelSejour);
         panelSejour.setLayout(panelSejourLayout);
@@ -349,20 +474,97 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         ongletSejour.add(panelSejour, java.awt.BorderLayout.CENTER);
 
-        ongletFichePatient.addTab("Séjours", ongletSejour);
+        panelOnglets.addTab("Séjours", ongletSejour);
+
+        labelService.setText("Service");
+
+        labelNumeroChambre.setText("Numéro de chambre");
+
+        champNumeroChambre.setEditable(false);
+        champNumeroChambre.setBackground(new java.awt.Color(204, 204, 204));
+        champNumeroChambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                champNumeroChambreActionPerformed(evt);
+            }
+        });
+
+        labelPlacement.setText("Placement");
+
+        boutonModifier.setText("Modifier");
+        boutonModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonModifierActionPerformed(evt);
+            }
+        });
+
+        boutonEnregistrer.setText("Enregistrer les modifications");
+        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonEnregistrerActionPerformed(evt);
+            }
+        });
+
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPlacementActionPerformed(evt);
+            }
+        });
+
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 
         javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
+            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                        .addComponent(boutonModifier)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boutonEnregistrer))
+                    .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelService)
+                                    .addComponent(labelPlacement))
+                                .addGap(65, 65, 65))
+                            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                                .addComponent(labelNumeroChambre)
+                                .addGap(18, 18, 18)))
+                        .addGap(14, 14, 14)
+                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(91, 91, 91)))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelService)
+                    .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNumeroChambre)
+                    .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPlacement)
+                    .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boutonEnregistrer)
+                    .addComponent(boutonModifier))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
-        ongletFichePatient.addTab("Localisation", ongletLocalisation);
+        panelOnglets.addTab("Localisation", ongletLocalisation);
 
         javax.swing.GroupLayout ongletLettreSortieLayout = new javax.swing.GroupLayout(ongletLettreSortie);
         ongletLettreSortie.setLayout(ongletLettreSortieLayout);
@@ -375,7 +577,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             .addGap(0, 541, Short.MAX_VALUE)
         );
 
-        ongletFichePatient.addTab("Lettre de sortie", ongletLettreSortie);
+        panelOnglets.addTab("Lettre de sortie", ongletLettreSortie);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -383,18 +585,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ongletFichePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelOnglets, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(296, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ongletFichePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelOnglets, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ongletFichePatient.getAccessibleContext().setAccessibleName("Fiche du patient");
+        panelOnglets.getAccessibleContext().setAccessibleName("Fiche du patient");
 
         InterfaceAdministratif.add(panelPrincipal, java.awt.BorderLayout.CENTER);
 
@@ -435,6 +637,52 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourEntreeActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void champPhResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champPhResponsableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champPhResponsableActionPerformed
+
+    private void champNumeroChambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champNumeroChambreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champNumeroChambreActionPerformed
+
+    private void boutonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonModifierActionPerformed
+        
+        comboBoxService.setEnabled(true);
+        comboBoxService.setBackground(Color.white);
+        champNumeroChambre.setEditable(true);
+        champNumeroChambre.setBackground(Color.white);
+        comboBoxPlacement.setEnabled(true);
+        comboBoxPlacement.setBackground(Color.white);
+        
+    }//GEN-LAST:event_boutonModifierActionPerformed
+
+    private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPlacementActionPerformed
+
+    private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
+
+            if(champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())){
+                //patientSelectionne.mettre a jour donnees
+                              
+                comboBoxService.setEnabled(false);
+                comboBoxService.setBackground(Color.LIGHT_GRAY);
+                champNumeroChambre.setEditable(false);
+                champNumeroChambre.setBackground(Color.LIGHT_GRAY);
+                comboBoxPlacement.setEnabled(false);
+                comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
+            }
+
+    }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,6 +725,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel PanelBarreTitre;
     private javax.swing.JButton boutonAjouter;
     private javax.swing.JButton boutonDeconnection;
+    private javax.swing.JButton boutonEnregistrer;
+    private javax.swing.JButton boutonModifier;
     private javax.swing.JButton boutonPreferences;
     private javax.swing.JTextField champAnneeEntree;
     private javax.swing.JTextField champAnneeSortie;
@@ -484,32 +734,50 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JTextField champJourSortie;
     private javax.swing.JTextField champMoisEntree;
     private javax.swing.JTextField champMoisSortie;
+    private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JTextField champNumeroSejour;
     private javax.swing.JTextField champPhResponsable;
+    private javax.swing.JComboBox comboBoxPlacement;
+    private javax.swing.JComboBox comboBoxService;
     private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollSejours;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JLabel labelDateEntree;
     private javax.swing.JLabel labelDateSortie;
+    private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelNumeroSejour;
     private javax.swing.JLabel labelPhResponsable;
+    private javax.swing.JLabel labelPlacement;
     private javax.swing.JLabel labelRecherche;
+    private javax.swing.JLabel labelService;
     private javax.swing.JList listeDePatients;
     private javax.swing.JList listeSejours;
-    private javax.swing.JTabbedPane ongletFichePatient;
+    private javax.swing.JPanel ongletFichePatient;
     private javax.swing.JPanel ongletLettreSortie;
     private javax.swing.JPanel ongletLocalisation;
     private javax.swing.JPanel ongletSejour;
     private javax.swing.JPanel panelBarreRecherche;
-    private javax.swing.JPanel panelFichePatient;
     private javax.swing.JPanel panelListe;
+    private javax.swing.JTabbedPane panelOnglets;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSejour;
     private javax.swing.JPanel panelTitre;

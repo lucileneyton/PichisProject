@@ -11,9 +11,9 @@ package pichisNF;
  */
 public class Services {
     TypeServices type;
-    String specialite;
+    Specialite specialite;
     
-    public Services(TypeServices type, String specialite){
+    public Services(TypeServices type, Specialite specialite){
         this.type = type;
         this.specialite = specialite;
     }
@@ -26,15 +26,15 @@ public class Services {
         this.type = type;
     }
 
-    public String getSpecialite() {
+    public Specialite getSpecialite() {
         return specialite;
     }
 
-    public void setSpecialite(String specialite) {
+    public void setSpecialite(Specialite specialite) {
         this.specialite = specialite;
     }
     
     public String toString(){
-        return specialite;
+        return specialite.toString();
     }
 }
