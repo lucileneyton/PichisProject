@@ -112,6 +112,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         champPhResponsable = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         listePrestations = new javax.swing.JList();
+        boutonAjouterSejour = new javax.swing.JButton();
         ongletLocalisation = new javax.swing.JPanel();
         labelService = new javax.swing.JLabel();
         labelNumeroChambre = new javax.swing.JLabel();
@@ -349,18 +350,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Fiche du patient", ongletFichePatient);
 
-        ongletSejour.setLayout(new java.awt.BorderLayout());
-
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sejour1" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        listeSejours.setPreferredSize(new java.awt.Dimension(350, 0));
+        listeSejours.setMinimumSize(new java.awt.Dimension(300, 0));
         jScrollSejours.setViewportView(listeSejours);
-
-        ongletSejour.add(jScrollSejours, java.awt.BorderLayout.LINE_START);
 
         labelDateEntree.setText("Date d'entrée");
 
@@ -489,11 +486,31 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addComponent(labelPhResponsable)
                     .addComponent(champPhResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        ongletSejour.add(panelSejour, java.awt.BorderLayout.CENTER);
+        boutonAjouterSejour.setText("Ajouter un Séjour");
+
+        javax.swing.GroupLayout ongletSejourLayout = new javax.swing.GroupLayout(ongletSejour);
+        ongletSejour.setLayout(ongletSejourLayout);
+        ongletSejourLayout.setHorizontalGroup(
+            ongletSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletSejourLayout.createSequentialGroup()
+                .addGroup(ongletSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollSejours, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(boutonAjouterSejour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelSejour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        ongletSejourLayout.setVerticalGroup(
+            ongletSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletSejourLayout.createSequentialGroup()
+                .addComponent(jScrollSejours, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boutonAjouterSejour))
+            .addComponent(panelSejour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         panelOnglets.addTab("Séjours", ongletSejour);
 
@@ -762,6 +779,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel LabelBoutonRecherche;
     private javax.swing.JPanel PanelBarreTitre;
     private javax.swing.JButton boutonAjouter;
+    private javax.swing.JButton boutonAjouterSejour;
     private javax.swing.JButton boutonDeconnection;
     private javax.swing.JButton boutonEnregistrer;
     private javax.swing.JButton boutonFermerDPI;
