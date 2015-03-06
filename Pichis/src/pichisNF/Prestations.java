@@ -17,9 +17,9 @@ public class Prestations {
     private Medecin demandeur;
     private DPI patient;
     private Resultat resultat;
-    private Calendar date;
+    private DateSimple date;
 
-    public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, Calendar date) {
+    public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, DateSimple date) {
         this.naturePrestation = naturePrestation;
         this.demandeur = demandeur;
         this.patient = patient;
@@ -48,7 +48,7 @@ public class Prestations {
         this.resultat = resultat;
     }
 
-    public Calendar getDate() {
+    public DateSimple getDate() {
         return date;
     }
     
