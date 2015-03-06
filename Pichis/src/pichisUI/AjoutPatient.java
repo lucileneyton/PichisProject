@@ -60,7 +60,7 @@ public class AjoutPatient extends javax.swing.JFrame {
         champMois = new javax.swing.JTextField();
         champAnnee = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());

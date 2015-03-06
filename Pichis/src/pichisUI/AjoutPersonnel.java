@@ -6,6 +6,9 @@
 package pichisUI;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import pichisNF.DPI;
+import pichisNF.Specialite;
 
 /**
  *
@@ -18,9 +21,10 @@ public class AjoutPersonnel extends javax.swing.JFrame {
      */
     public AjoutPersonnel() {
         initComponents();
-         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
-        int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
+        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
+        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
         this.setLocation(x, y);
+
     }
 
     /**
@@ -39,21 +43,17 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         champNom = new javax.swing.JTextField();
         labelPrenom = new javax.swing.JLabel();
         champPrenom = new javax.swing.JTextField();
-        labelDateNaissance = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        labelSexe = new javax.swing.JLabel();
-        labelAdresse = new javax.swing.JLabel();
-        boutonHomme = new javax.swing.JRadioButton();
-        boutonFemme = new javax.swing.JRadioButton();
-        champAdresse = new javax.swing.JTextField();
-        boutonValider = new javax.swing.JButton();
-        boutonAnnuler = new javax.swing.JButton();
-        champJour = new javax.swing.JTextField();
-        champMois = new javax.swing.JTextField();
-        champAnnee = new javax.swing.JTextField();
+        labelIdentifiant = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        champIdentifiant = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -70,86 +70,52 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         labelPrenom.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelPrenom.setText("Prénom");
 
-        labelDateNaissance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelDateNaissance.setText("Date de naissance");
+        labelIdentifiant.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelIdentifiant.setText("Identifiant");
 
-        jLabel4.setText("/");
-
-        jLabel6.setText("/");
-
-        labelSexe.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelSexe.setText("Sexe");
-
-        labelAdresse.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelAdresse.setText("Adresse");
-
-        boutonHomme.setText("H");
-        boutonHomme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonHommeActionPerformed(evt);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Administratif","Maintenance","Practicien Hospitalier"}));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
         });
-
-        boutonFemme.setText("F");
-        boutonFemme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonFemmeActionPerformed(evt);
-            }
-        });
-
-        champAdresse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                champAdresseActionPerformed(evt);
-            }
-        });
-
-        boutonValider.setText("Valider");
-        boutonValider.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonValiderActionPerformed(evt);
-            }
-        });
-
-        boutonAnnuler.setText("Annuler");
-        boutonAnnuler.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonAnnulerActionPerformed(evt);
-            }
-        });
-
-        champJour.setText("Jour");
-        champJour.addFocusListener(new java.awt.event.FocusAdapter() {
+        jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                champJourFocusGained(evt);
+                jComboBox1FocusGained(evt);
             }
         });
-        champJour.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                champJourActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
 
-        champMois.setText("Mois");
-        champMois.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                champMoisFocusGained(evt);
-            }
-        });
-        champMois.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Type");
+
+        champIdentifiant.setEditable(false);
+        champIdentifiant.setBackground(new java.awt.Color(204, 204, 204));
+        champIdentifiant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                champMoisActionPerformed(evt);
+                champIdentifiantActionPerformed(evt);
             }
         });
 
-        champAnnee.setText("Annee");
-        champAnnee.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                champAnneeFocusGained(evt);
+        jLabel2.setText("Spécialité");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
+        jComboBox2.setEnabled(false);
+
+        jButton1.setText("Annuler");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        champAnnee.addActionListener(new java.awt.event.ActionListener() {
+
+        jButton2.setText("Ajouter un membre");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                champAnneeActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -161,46 +127,31 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelSexe)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boutonHomme)
-                        .addGap(35, 35, 35)
-                        .addComponent(boutonFemme)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelNom)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelPrenom)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(champPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(boutonAnnuler)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
-                                    .addComponent(boutonValider))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(labelAdresse)
-                                    .addGap(82, 82, 82)
-                                    .addComponent(champAdresse)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(labelDateNaissance)
-                                .addGap(26, 26, 26)
-                                .addComponent(champJour, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(champMois, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(champAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(labelNom)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                                .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(labelPrenom)
+                                        .addComponent(labelIdentifiant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(champPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                    .addComponent(champIdentifiant)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 196, Short.MAX_VALUE)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(22, 22, 22))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,31 +164,22 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPrenom)
                     .addComponent(champPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(champJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(champMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(champAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(labelSexe))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(boutonHomme)
-                            .addComponent(boutonFemme))))
+                    .addComponent(labelIdentifiant)
+                    .addComponent(champIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAdresse)
-                    .addComponent(champAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutonValider)
-                    .addComponent(boutonAnnuler))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -257,96 +199,48 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boutonHommeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonHommeActionPerformed
-        if(boutonFemme.isSelected()){
-            boutonFemme.setSelected(false);
-        }
-    }//GEN-LAST:event_boutonHommeActionPerformed
-
-    private void boutonFemmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFemmeActionPerformed
-        if(boutonHomme.isSelected()){
-            boutonHomme.setSelected(false);
-        }
-    }//GEN-LAST:event_boutonFemmeActionPerformed
-
-    private void champAdresseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAdresseActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_champAdresseActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
+    private void champIdentifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champIdentifiantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champIdentifiantActionPerformed
+
+    private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
+        if (jComboBox1.getSelectedIndex() == 3) {
+            jComboBox2.setEditable(true);
+        } else {
+            jComboBox2.setEditable(false);
+        }
+    }//GEN-LAST:event_jComboBox1FocusGained
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JOptionPane fenetre = new JOptionPane();
-        // IPP
-        if(champIPP.getText().length() == 9){
-            // NOM
-            if(champNom.getText().isEmpty() == false){
-                //PRENOM
-                if(champPrenom.getText().isEmpty() == false){
-                    //SEXE
-                    if(boutonHomme.isSelected() || boutonFemme.isSelected()){
-                        //ADRESSE
-                        if(champAdresse.getText().isEmpty() == false){
-                            pichisNF.DateSimple date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
-                            if(boutonHomme.isSelected()){
-                                pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "M", champAdresse.getText());
-                            }
-                            else{
-                                pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "F", champAdresse.getText());
-                            }
-
-                            this.dispose();
-                        }
-                        else{
-                            fenetre.showMessageDialog(null, "Veuillez entrer l'adresse du patient");
-                        }
-                    }
-                    else{
-                        fenetre.showMessageDialog(null, "Veuillez déterminer le sexe du patient");
-                    }
-
-                }
-                else{
-                    fenetre.showMessageDialog(null, "Veuillez entrer un prénom");
-                }
+        // NOM
+        if (champNom.getText().isEmpty() == false) {
+            //PRENOM
+            if (champPrenom.getText().isEmpty() == false) {
+                this.dispose();
+            } else {
+                fenetre.showMessageDialog(null, "Veuillez entrer un prénom");
             }
-            else{
-                fenetre.showMessageDialog(null, "Veuillez entrer un nom");
-            }
+        } else {
+            fenetre.showMessageDialog(null, "Veuillez entrer un nom");
         }
-        else{
-            fenetre.showMessageDialog(null, "Veuillez entrer un IPP correct");
-        }
-    }//GEN-LAST:event_boutonValiderActionPerformed
 
-    private void boutonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAnnulerActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir annuler ?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             this.dispose();
         }
-    }//GEN-LAST:event_boutonAnnulerActionPerformed
-
-    private void champJourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourFocusGained
-        champJour.setText("");
-    }//GEN-LAST:event_champJourFocusGained
-
-    private void champJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_champJourActionPerformed
-
-    private void champMoisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisFocusGained
-        champMois.setText("");
-    }//GEN-LAST:event_champMoisFocusGained
-
-    private void champMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champMoisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_champMoisActionPerformed
-
-    private void champAnneeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeFocusGained
-        champAnnee.setText("");
-    }//GEN-LAST:event_champAnneeFocusGained
-
-    private void champAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_champAnneeActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,25 +278,20 @@ public class AjoutPersonnel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boutonAnnuler;
-    private javax.swing.JRadioButton boutonFemme;
-    private javax.swing.JRadioButton boutonHomme;
-    private javax.swing.JButton boutonValider;
-    private javax.swing.JTextField champAdresse;
-    private javax.swing.JTextField champAnnee;
-    private javax.swing.JTextField champJour;
-    private javax.swing.JTextField champMois;
+    private javax.swing.JTextField champIdentifiant;
     private javax.swing.JTextField champNom;
     private javax.swing.JTextField champPrenom;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelAdresse;
-    private javax.swing.JLabel labelDateNaissance;
+    private javax.swing.JLabel labelIdentifiant;
     private javax.swing.JLabel labelNom;
     private javax.swing.JLabel labelPrenom;
-    private javax.swing.JLabel labelSexe;
     private javax.swing.JLabel labelTitre;
     // End of variables declaration//GEN-END:variables
 }

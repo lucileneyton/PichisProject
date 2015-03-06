@@ -28,8 +28,8 @@ public class Personnel {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.motDePasse = motDePasse;   
-        
+        this.motDePasse = motDePasse;  
+         
     }
   
     public String getId() {

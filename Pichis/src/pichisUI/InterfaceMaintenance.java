@@ -18,7 +18,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
      */
     public InterfaceMaintenance() {
         initComponents();
-        
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Maintenance");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -28,7 +28,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.pack();
+        this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
     }
@@ -90,15 +90,22 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
         jLabel14.setText("Préférences");
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel15.setText("Déconnexion");
         jLabel15.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel15.setIconTextGap(0);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -165,7 +172,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         InterfaceMaintenance.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Médecins"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Practiciens Hospitaliers"));
 
         jList1.setBackground(new java.awt.Color(204, 204, 204));
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -243,6 +250,11 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         );
 
         jButton1.setText("Ajouter un membre du personnel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -275,8 +287,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        jPanel9.getAccessibleContext().setAccessibleName("Médecins");
-
         InterfaceMaintenance.add(jPanel7, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,6 +312,16 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AjoutPersonnel ajout = new AjoutPersonnel();
+        ajout.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        this.dispose();
+        new Identification();
+    }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
      * @param args the command line arguments
