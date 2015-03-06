@@ -134,6 +134,53 @@ public class DAOMedecin {
         
         
         return listeMedecin;
+        
+      
+    }
+    
+    public Medecin medecinResponsable(String numSejour){
+        Medecin med = null;
+        String id;
+        String nom;
+        String prenom;
+        String mdp;
+        String type;
+        TypeServices types;
+
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT sejour.responsable, personnel.nom, personnel.prenom, personnel.mdp, personnel.service FROM sejour,personnel WHERE sejour.id="+numSejour+" AND personnel.id=sejour.responsable;");
+
+            if (resul.getRow() == 0) {
+
+                med = null;
+                
+            } else {
+
+                while (resul.next()) {
+
+                    id = resul.getString("id");
+                    nom = resul.getString("nom");
+                    prenom = resul.getString("prenom");
+                    mdp = resul.getString("mdp");
+                    
+                    type = resul.getString("service");
+                    types = TypeServices.valueOf(type);
+                    Services service = new Services(types,type);
+                
+                    med = new Medecin(id, nom, prenom,mdp, service);
+
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur DAOAdministratif: " + e);
+        }
+
+        return med;
+    
     }
 
     public Medecin medecinParID(String id) {
