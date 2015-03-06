@@ -6,6 +6,7 @@
 package pichisUI;
 
 import java.awt.Toolkit;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import pichisNF.DPI;
 
@@ -24,6 +25,9 @@ public class AjoutSejour extends javax.swing.JFrame {
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
         this.setLocation(x, y);
         
+        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
+        champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
     }
 
     /**
@@ -58,7 +62,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         champAnneeSortie = new javax.swing.JTextField();
         champNomPH = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -74,6 +78,9 @@ public class AjoutSejour extends javax.swing.JFrame {
 
         labelNumeroSejour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNumeroSejour.setText("Numéro de séjour");
+
+        champNumeroSejour.setEditable(false);
+        champNumeroSejour.setBackground(new java.awt.Color(204, 204, 204));
 
         labelNomPh.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNomPh.setText("Nom du PH");
@@ -101,7 +108,8 @@ public class AjoutSejour extends javax.swing.JFrame {
             }
         });
 
-        champJourEntree.setText("Jour");
+        champJourEntree.setEditable(false);
+        champJourEntree.setBackground(new java.awt.Color(204, 204, 204));
         champJourEntree.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 champJourEntreeFocusGained(evt);
@@ -113,7 +121,8 @@ public class AjoutSejour extends javax.swing.JFrame {
             }
         });
 
-        champMoisEntree.setText("Mois");
+        champMoisEntree.setEditable(false);
+        champMoisEntree.setBackground(new java.awt.Color(204, 204, 204));
         champMoisEntree.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 champMoisEntreeFocusGained(evt);
@@ -125,7 +134,8 @@ public class AjoutSejour extends javax.swing.JFrame {
             }
         });
 
-        champAnneeEntree.setText("Annee");
+        champAnneeEntree.setEditable(false);
+        champAnneeEntree.setBackground(new java.awt.Color(204, 204, 204));
         champAnneeEntree.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 champAnneeEntreeFocusGained(evt);
@@ -176,8 +186,6 @@ public class AjoutSejour extends javax.swing.JFrame {
                 champAnneeSortieActionPerformed(evt);
             }
         });
-
-        champNomPH.setText("Mr Pingu ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -305,7 +313,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_champAnneeEntreeActionPerformed
 
     private void champAnneeEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeEntreeFocusGained
-        champAnneeEntree.setText("");
+        
     }//GEN-LAST:event_champAnneeEntreeFocusGained
 
     private void champMoisEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champMoisEntreeActionPerformed
@@ -313,7 +321,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_champMoisEntreeActionPerformed
 
     private void champMoisEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisEntreeFocusGained
-        champMoisEntree.setText("");
+        
     }//GEN-LAST:event_champMoisEntreeFocusGained
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
@@ -321,7 +329,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_champJourEntreeActionPerformed
 
     private void champJourEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourEntreeFocusGained
-        champJourEntree.setText("");
+      
     }//GEN-LAST:event_champJourEntreeFocusGained
 
     private void boutonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAnnulerActionPerformed

@@ -42,7 +42,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
         
-        //champJourEntree.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString());
+        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
+        champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
+        
+        //listePrestations.setModel();
     }
 
     /**
@@ -106,6 +110,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         champNumeroSejour = new javax.swing.JTextField();
         labelPhResponsable = new javax.swing.JLabel();
         champPhResponsable = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listePrestations = new javax.swing.JList();
         ongletLocalisation = new javax.swing.JPanel();
         labelService = new javax.swing.JLabel();
         labelNumeroChambre = new javax.swing.JLabel();
@@ -116,6 +122,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxPlacement = new javax.swing.JComboBox();
         comboBoxService = new javax.swing.JComboBox();
         ongletLettreSortie = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        texteLettreSortie = new javax.swing.JTextArea();
+        boutonFermerDPI = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
@@ -342,11 +351,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         ongletSejour.setLayout(new java.awt.BorderLayout());
 
+        listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sejour1" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listeSejours.setPreferredSize(new java.awt.Dimension(350, 0));
         jScrollSejours.setViewportView(listeSejours);
 
         ongletSejour.add(jScrollSejours, java.awt.BorderLayout.LINE_START);
@@ -391,6 +402,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
         });
 
+        listePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations"));
+        jScrollPane1.setViewportView(listePrestations);
+
         javax.swing.GroupLayout panelSejourLayout = new javax.swing.GroupLayout(panelSejour);
         panelSejour.setLayout(panelSejourLayout);
         panelSejourLayout.setHorizontalGroup(
@@ -398,49 +412,54 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             .addGroup(panelSejourLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelSejourLayout.createSequentialGroup()
-                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelDateEntree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelDateSortie, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(panelSejourLayout.createSequentialGroup()
-                            .addComponent(labelNumeroSejour)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelSejourLayout.createSequentialGroup()
-                        .addComponent(labelPhResponsable)
-                        .addGap(21, 21, 21)))
-                .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelSejourLayout.createSequentialGroup()
-                        .addComponent(champPhResponsable)
-                        .addGap(565, 565, 565))
-                    .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSejourLayout.createSequentialGroup()
-                                .addComponent(champJourSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(champMoisSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(champAnneeSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(466, 466, 466))
+                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelSejourLayout.createSequentialGroup()
+                                    .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(labelDateEntree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labelDateSortie, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(panelSejourLayout.createSequentialGroup()
+                                    .addComponent(labelNumeroSejour)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panelSejourLayout.createSequentialGroup()
-                                .addComponent(champNumeroSejour, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(480, 480, 480)))
-                        .addGroup(panelSejourLayout.createSequentialGroup()
-                            .addComponent(champJourEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(champMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(champAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(466, 466, 466)))))
+                                .addComponent(labelPhResponsable)
+                                .addGap(21, 21, 21)))
+                        .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelSejourLayout.createSequentialGroup()
+                                .addComponent(champPhResponsable)
+                                .addGap(565, 565, 565))
+                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSejourLayout.createSequentialGroup()
+                                        .addComponent(champJourSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(champMoisSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(champAnneeSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(466, 466, 466))
+                                    .addGroup(panelSejourLayout.createSequentialGroup()
+                                        .addComponent(champNumeroSejour, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(480, 480, 480)))
+                                .addGroup(panelSejourLayout.createSequentialGroup()
+                                    .addComponent(champJourEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(champMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(champAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(466, 466, 466)))))))
         );
         panelSejourLayout.setVerticalGroup(
             panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +488,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhResponsable)
                     .addComponent(champPhResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         ongletSejour.add(panelSejour, java.awt.BorderLayout.CENTER);
@@ -566,15 +587,32 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
+        texteLettreSortie.setColumns(20);
+        texteLettreSortie.setRows(5);
+        texteLettreSortie.setBorder(javax.swing.BorderFactory.createTitledBorder("Lettre de sortie"));
+        jScrollPane2.setViewportView(texteLettreSortie);
+
+        boutonFermerDPI.setText("Fermer DPI");
+
         javax.swing.GroupLayout ongletLettreSortieLayout = new javax.swing.GroupLayout(ongletLettreSortie);
         ongletLettreSortie.setLayout(ongletLettreSortieLayout);
         ongletLettreSortieLayout.setHorizontalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1102, Short.MAX_VALUE)
+            .addGroup(ongletLettreSortieLayout.createSequentialGroup()
+                .addContainerGap(276, Short.MAX_VALUE)
+                .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                    .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
         ongletLettreSortieLayout.setVerticalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGroup(ongletLettreSortieLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         panelOnglets.addTab("Lettre de sortie", ongletLettreSortie);
@@ -726,6 +764,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JButton boutonAjouter;
     private javax.swing.JButton boutonDeconnection;
     private javax.swing.JButton boutonEnregistrer;
+    private javax.swing.JButton boutonFermerDPI;
     private javax.swing.JButton boutonModifier;
     private javax.swing.JButton boutonPreferences;
     private javax.swing.JTextField champAnneeEntree;
@@ -753,6 +792,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollSejours;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -770,6 +811,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel labelRecherche;
     private javax.swing.JLabel labelService;
     private javax.swing.JList listeDePatients;
+    private javax.swing.JList listePrestations;
     private javax.swing.JList listeSejours;
     private javax.swing.JPanel ongletFichePatient;
     private javax.swing.JPanel ongletLettreSortie;
@@ -782,5 +824,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel panelSejour;
     private javax.swing.JPanel panelTitre;
     private javax.swing.JScrollPane scrollPaneListePatient;
+    private javax.swing.JTextArea texteLettreSortie;
     // End of variables declaration//GEN-END:variables
 }
