@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import pichisNF.Localisation;
 import pichisNF.Services;
+import pichisNF.Specialite;
 import pichisNF.TypeServices;
 
 /**
@@ -31,7 +32,7 @@ public class DAOLocalisation {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM sejour WHERE id= " + num);
+            resul = ins.executeQuery("SELECT * FROM sejour WHERE id.sejour= " + num);
 
             if (resul.getRow() == 0) {
 
@@ -40,14 +41,17 @@ public class DAOLocalisation {
             } else {
 
                 while (resul.next()) {
-
-                    String id = resul.getString("id");
-                    String type = resul.getString("type");  
-                    String spec = resul.getString("specialite");              
+                    
+                    String localisation = resul.getString("loc");
+                    String numChambre = resul.getString("numerochambre");
+                    String placement = resul.getString("placement");
+                    
+                    
                     
                     TypeServices t = TypeServices.valueOf(type);
-                    Services s = new Services(t,spec);
-                    loc = new Localisation(s);
+                    Specialite sp = Specialite.valueOf(specialite);
+                    Services s = new Services(t,sp); //Services(TypeServices type, Specialite specialite)
+                    loc = new Localisation(s,numChambre,placement);
 
                 }
             }

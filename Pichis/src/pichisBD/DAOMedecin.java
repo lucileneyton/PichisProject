@@ -20,6 +20,7 @@ import pichisNF.Medecin;
  */
 import pichisNF.Administratif;
 import pichisNF.Services;
+import pichisNF.Specialite;
 import pichisNF.TypeServices;
 public class DAOMedecin {
     /*
@@ -102,6 +103,7 @@ public class DAOMedecin {
         String prenom; 
         String mdp; 
         String type;
+        Specialite s;
         TypeServices types;
             
        
@@ -121,8 +123,13 @@ public class DAOMedecin {
                 mdp = resul.getString("mdp");
                 
                 type = resul.getString("type");
+                String spec = resul.getString("specialite");
                 types = TypeServices.valueOf(type);
-                Services service = new Services(types,type);
+                s = Specialite.valueOf(spec);
+                
+                
+                
+                Services service = new Services(types,s);
                 listeMedecin.add(new Medecin(id, nom, prenom, mdp,service));
               
             }
@@ -167,9 +174,12 @@ public class DAOMedecin {
                     prenom = resul.getString("prenom");
                     mdp = resul.getString("mdp");
                     
+                    String spec = resul.getString("specialite");
+                    Specialite sp = Specialite.valueOf("spec");
+                    
                     type = resul.getString("service");
                     types = TypeServices.valueOf(type);
-                    Services service = new Services(types,type);
+                    Services service = new Services(types,sp);
                 
                     med = new Medecin(id, nom, prenom,mdp, service);
 
@@ -212,7 +222,9 @@ public class DAOMedecin {
                     mdp = resul.getString("mdp");
                     type = resul.getString("type");
                     types = TypeServices.valueOf(type);
-                    Services service = new Services(types,type);
+                    String spec = resul.getString("specialite");
+                    Specialite sp = Specialite.valueOf("spec");
+                    Services service = new Services(types,sp);
                 
                     med = new Medecin(id, nom, prenom,mdp, service);
 
