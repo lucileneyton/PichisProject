@@ -8,6 +8,8 @@ package pichisUI;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
@@ -24,7 +26,6 @@ public class Identification extends javax.swing.JFrame {
     /**
      * Creates new form PICHIS_Manager
      */
-    
     
     
     
@@ -75,7 +76,7 @@ public class Identification extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(908, 17));
+        jPanel2.setPreferredSize(new java.awt.Dimension(908, 900));
         jPanel2.setLayout(new java.awt.CardLayout());
 
         FenetreIdentification.setLayout(new java.awt.BorderLayout());
@@ -103,6 +104,26 @@ public class Identification extends javax.swing.JFrame {
                 mdpActionPerformed(evt);
             }
         });
+        KeyListener  k = new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                System.out.println(e.getKeyLocation()
+                );
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+
+        mdp.addKeyListener(k);
 
         BoutonDeConnexion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/Connaxion.png")));
         BoutonDeConnexion.addMouseListener(new MouseListener() {
@@ -116,8 +137,7 @@ public class Identification extends javax.swing.JFrame {
                 if (daom.estMedecin(identifiant.getText(),mdp.getText())){
 
                     if(daom.identification(identifiant.getText(), mdp.getText())){
-                        CardLayout c = (CardLayout) (jPanel2.getLayout());
-                        c.show(jPanel2, "card3");
+                        MessageErreur.setText("OK !");
                     }
                     else{
                         MessageErreur.setVisible(true);
@@ -262,7 +282,8 @@ public class Identification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
-        // TODO add your handling code here:    
+        
+        
     }//GEN-LAST:event_mdpActionPerformed
 
     private void BoutonDeConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoutonDeConnexionMouseClicked
