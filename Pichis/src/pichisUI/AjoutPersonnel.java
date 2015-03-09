@@ -7,8 +7,13 @@ package pichisUI;
 
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import pichisNF.Administratif;
 import pichisNF.DPI;
+import pichisNF.Maintenance;
+import pichisNF.Medecin;
+import pichisNF.Services;
 import pichisNF.Specialite;
+import pichisNF.TypeServices;
 
 /**
  *
@@ -51,6 +56,9 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        champMdp = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -84,6 +92,11 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                 jComboBox1FocusGained(evt);
             }
         });
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -104,6 +117,11 @@ public class AjoutPersonnel extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
         jComboBox2.setEnabled(false);
+        jComboBox2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox2FocusGained(evt);
+            }
+        });
 
         jButton1.setText("Annuler");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +137,15 @@ public class AjoutPersonnel extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Mot de passe");
+
+        jButton3.setText("Générer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -127,56 +154,70 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(labelNom)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                                .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labelPrenom)
-                                        .addComponent(labelIdentifiant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(champPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                                    .addComponent(champIdentifiant)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 196, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(22, 22, 22))))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(champMdp, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelPrenom)
+                                    .addComponent(labelIdentifiant))
+                                .addGap(38, 38, 38)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(champIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(champPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(labelNom)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNom)
-                    .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPrenom)
-                    .addComponent(champPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIdentifiant)
-                    .addComponent(champIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(24, 24, 24)
+                    .addComponent(champNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNom))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(champPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrenom))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(champIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelIdentifiant)
+                    .addComponent(jButton3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(champMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
@@ -200,7 +241,11 @@ public class AjoutPersonnel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        if (jComboBox1.getSelectedIndex() == 2) {
+            jComboBox2.setEnabled(true);
+        } else {
+            jComboBox2.setEnabled(false);
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void champIdentifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champIdentifiantActionPerformed
@@ -208,11 +253,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_champIdentifiantActionPerformed
 
     private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
-        if (jComboBox1.getSelectedIndex() == 3) {
-            jComboBox2.setEditable(true);
-        } else {
-            jComboBox2.setEditable(false);
-        }
+
     }//GEN-LAST:event_jComboBox1FocusGained
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -225,13 +266,62 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         if (champNom.getText().isEmpty() == false) {
             //PRENOM
             if (champPrenom.getText().isEmpty() == false) {
-                this.dispose();
+                //IDENTIFIANT
+                if (champIdentifiant.getText().isEmpty() == false && champIdentifiant.getText().equals(champNom.getText().toLowerCase() + champPrenom.getText().toLowerCase().charAt(0))) {
+                    //MOT DE PASSE
+                    if (champMdp.getText().isEmpty() == false) {
+
+                        JOptionPane jop = new JOptionPane();
+                        String[] buttons = {"Oui", "Non"};
+                        int reply = JOptionPane.showOptionDialog(null, "Voulez-vous confirmer l'ajout du membre du personnel " + champPrenom.getText() + " " + champNom.getText() + " ? ", "Confirmation", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
+
+                        if (reply == 0) {
+
+                            // Ajout personnel administratif
+                            if (jComboBox1.getSelectedIndex() == 0) {
+                                Administratif a = new Administratif(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
+                            }
+
+                            // Ajout personnel de maintenance
+                            if (jComboBox1.getSelectedIndex() == 1) {
+                                Maintenance ma = new Maintenance(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
+                            }
+
+                            // Ajout practicien hospitalier
+                            if (jComboBox1.getSelectedIndex() == 0) {
+                                Specialite sp = (Specialite) jComboBox2.getSelectedItem();
+                                TypeServices ts = TypeServices.CLINIQUE;
+
+                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGUE)) {
+                                    ts = TypeServices.MEDICO_TECHNIQUE;
+                                }
+
+                                Services service = new Services(ts, sp);
+                                Medecin me = new Medecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), service);
+
+                            }
+                            jop.hide();
+                            this.dispose();
+                        }
+
+                    } else {
+                        fenetre.showMessageDialog(null, "Veuillez entrer un mot de passe");
+                    }
+                } else {
+                    if (champIdentifiant.getText().isEmpty() == true) {
+                        fenetre.showMessageDialog(null, "Veuillez générer un identifiant");
+                    } else {
+                        fenetre.showMessageDialog(null, "Cet identifiant ne correspond pas au nom et au prénom renseigné. Veuillez regénérer un identifiant");
+                    }
+
+                }
             } else {
                 fenetre.showMessageDialog(null, "Veuillez entrer un prénom");
             }
         } else {
             fenetre.showMessageDialog(null, "Veuillez entrer un nom");
         }
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -241,6 +331,36 @@ public class AjoutPersonnel extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox2FocusGained
+
+    }//GEN-LAST:event_jComboBox2FocusGained
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        //Génération de l'identifiant (Nom + première lettre du prénom)
+        String id;
+        if (champNom.getText().isEmpty() == false && champPrenom.getText().isEmpty() == false) {
+            id = champNom.getText().toLowerCase().replace(" ", "") + champPrenom.getText().toLowerCase().replace(" ", "").charAt(0);
+            champIdentifiant.setText(id);
+        } else {
+            JOptionPane fenetre = new JOptionPane();
+            champIdentifiant.setText("");
+            if (champNom.getText().isEmpty() == false) {
+                fenetre.showMessageDialog(null, "Veuillez remplir le champs nom");
+            }
+            if (champPrenom.getText().isEmpty() == false) {
+                fenetre.showMessageDialog(null, "Veuillez remplir le champs prénom");
+            }
+
+        }
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,14 +399,17 @@ public class AjoutPersonnel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField champIdentifiant;
+    private javax.swing.JTextField champMdp;
     private javax.swing.JTextField champNom;
     private javax.swing.JTextField champPrenom;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelIdentifiant;

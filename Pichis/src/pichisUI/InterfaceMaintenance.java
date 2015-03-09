@@ -196,9 +196,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         );
 
         jPanel18.setBackground(new java.awt.Color(51, 255, 51));
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel administratif"));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel Administratif"));
 
-        jList3.setBackground(new java.awt.Color(102, 255, 51));
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList3.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList3.setModel(new javax.swing.AbstractListModel() {
@@ -224,9 +223,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         );
 
         jPanel19.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel du service de maintenance"));
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel du service de Maintenance"));
 
-        jList4.setBackground(new java.awt.Color(255, 0, 0));
         jList4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList4.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList4.setModel(new javax.swing.AbstractListModel() {
