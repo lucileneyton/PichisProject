@@ -357,6 +357,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         listeSejours.setMinimumSize(new java.awt.Dimension(300, 0));
+        listeSejours.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeSejoursValueChanged(evt);
+            }
+        });
         jScrollSejours.setViewportView(listeSejours);
 
         labelDateEntree.setText("Date d'entrée");
@@ -563,16 +568,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boutonEnregistrer))
                     .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelService)
-                                    .addComponent(labelPlacement))
-                                .addGap(65, 65, 65))
-                            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                                .addComponent(labelNumeroChambre)
-                                .addGap(18, 18, 18)))
-                        .addGap(14, 14, 14)
+                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelService)
+                            .addComponent(labelPlacement)
+                            .addComponent(labelNumeroChambre))
+                        .addGap(32, 32, 32)
                         .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -738,6 +738,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
 
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
+
+    private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
+        
+    }//GEN-LAST:event_listeSejoursValueChanged
 
     /**
      * @param args the command line arguments

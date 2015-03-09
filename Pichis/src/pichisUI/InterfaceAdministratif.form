@@ -563,6 +563,9 @@
                               <Dimension value="[300, 0]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listeSejoursValueChanged"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -820,20 +823,12 @@
                                       <Component id="boutonEnregistrer" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="labelService" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="labelPlacement" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="labelNumeroChambre" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelService" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelPlacement" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNumeroChambre" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="comboBoxPlacement" min="-2" max="-2" attributes="0"/>
                                           <Component id="champNumeroChambre" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>

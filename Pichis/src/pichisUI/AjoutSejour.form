@@ -74,7 +74,6 @@
                           <Component id="labelNumeroSejour" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labelDateSortie" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelNomPh" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="boutonAnnuler" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
@@ -82,10 +81,18 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelAdresse" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelDateEntree" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="labelAdresse" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelDateEntree" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelNomPh" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="champJourSortie" min="-2" pref="37" max="-2" attributes="0"/>
@@ -109,8 +116,10 @@
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="champAnneeEntree" min="-2" pref="61" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="champNumeroSejour" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <Component id="champNomPH" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="comboBoxNomPh" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="champNumeroSejour" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -148,7 +157,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelNomPh" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="champNomPH" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxNomPh" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Component id="labelAdresse" min="-2" max="-2" attributes="0"/>
@@ -309,7 +318,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="champAnneeSortieActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="champNomPH">
+            <Component class="javax.swing.JComboBox" name="comboBoxNomPh">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { })" type="code"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
