@@ -9,6 +9,7 @@ package pichisBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static org.omg.CORBA.AnySeqHelper.type;
 import pichisNF.Localisation;
 import pichisNF.Services;
 import pichisNF.Specialite;
@@ -45,10 +46,12 @@ public class DAOLocalisation {
                     String localisation = resul.getString("loc");
                     String numChambre = resul.getString("numerochambre");
                     String placement = resul.getString("placement");
+                    String type = null;
                     
                     
                     
                     TypeServices t = TypeServices.valueOf(type);
+                    String specialite = null;
                     Specialite sp = Specialite.valueOf(specialite);
                     Services s = new Services(t,sp); //Services(TypeServices type, Specialite specialite)
                     loc = new Localisation(s,numChambre,placement);

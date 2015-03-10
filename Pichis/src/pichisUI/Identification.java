@@ -5,7 +5,6 @@
  */
 package pichisUI;
 
-import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -15,7 +14,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import pichisBD.*;
-import pichisNF.Personnel;
 
 /**
  *
@@ -135,14 +133,14 @@ public class Identification extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
+                DAOMedecin daom = new DAOMedecin();
+                DAOAdministratif daoa = new DAOAdministratif();
+
                 if (identifiant.getText().isEmpty()||mdp.getText().isEmpty()){
                     messageErreur.setVisible(true);
                     messageErreur.setText("Remplir tous les champs.");
                 }
                 else{
-
-                    DAOMedecin daom = new DAOMedecin();
-                    DAOAdministratif daoa = new DAOAdministratif();
 
                     if (daom.estMedecin(identifiant.getText(),mdp.getText())){
 
@@ -304,10 +302,7 @@ public class Identification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
-        //System.out.println(""+ mdp.getText());
-      
-//        if(mdp.getText().length()==1){
-//    messageErreur.setVisible(false);
+  
 
     }//GEN-LAST:event_mdpActionPerformed
 
@@ -378,4 +373,6 @@ public class Identification extends javax.swing.JFrame {
     private javax.swing.JPasswordField mdp;
     private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
+
+   
 }
