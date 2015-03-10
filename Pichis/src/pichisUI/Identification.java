@@ -67,9 +67,10 @@ public class Identification extends javax.swing.JFrame {
         BoutonDeConnexion = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        MessageErreur = new javax.swing.JLabel();
+        messageErreur = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,8 +109,11 @@ public class Identification extends javax.swing.JFrame {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println(e.getKeyLocation()
-                );
+
+                if(mdp.getText().length()==0){
+                    messageErreur.setVisible(false);
+                }
+
             }
 
             @Override
@@ -131,29 +135,37 @@ public class Identification extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                DAOMedecin daom = new DAOMedecin();
-                DAOAdministratif daoa = new DAOAdministratif();
-
-                if (daom.estMedecin(identifiant.getText(),mdp.getText())){
-
-                    if(daom.identification(identifiant.getText(), mdp.getText())){
-                        MessageErreur.setText("OK !");
-                    }
-                    else{
-                        MessageErreur.setVisible(true);
-                        MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
-                    }
+                if (identifiant.getText().isEmpty()||mdp.getText().isEmpty()){
+                    messageErreur.setVisible(true);
+                    messageErreur.setText("Remplir tous les champs.");
                 }
                 else{
-                    if(daoa.identification(identifiant.getText(), mdp.getText())){
-                        CardLayout c = (CardLayout) (jPanel2.getLayout());
-                        c.show(jPanel2, "card3");
+
+                    DAOMedecin daom = new DAOMedecin();
+                    DAOAdministratif daoa = new DAOAdministratif();
+
+                    if (daom.estMedecin(identifiant.getText(),mdp.getText())){
+
+                        if(daom.identification(identifiant.getText(), mdp.getText())){
+                            ouvrirInterfaceMedecin();
+                        }
+                        else{
+                            messageErreur.setVisible(true);
+                            messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+
+                        }
                     }
                     else{
-                        MessageErreur.setVisible(true);
-                        MessageErreur.setText("Informations de connexion inconnues. Les vérifier.");
-                    }
+                        if(daoa.identification(identifiant.getText(), mdp.getText())){
+                            ouvrirInterfaceAdministratif();
 
+                        }
+                        else{
+                            messageErreur.setVisible(true);
+                            messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+                        }
+
+                    }
                 }
 
             }
@@ -188,17 +200,18 @@ public class Identification extends javax.swing.JFrame {
         }
     });
 
-    jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+    jLabel4.setForeground(new java.awt.Color(143, 138, 255));
     jLabel4.setText("Identifiant");
 
-    jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel5.setForeground(new java.awt.Color(143, 138, 255));
     jLabel5.setText("Mot de passe ");
 
-    MessageErreur.setForeground(new java.awt.Color(255, 51, 0));
-    MessageErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    MessageErreur.setText("jLabel16");
-    MessageErreur.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    MessageErreur.setVisible(false);
+    messageErreur.setForeground(new java.awt.Color(255, 51, 0));
+    messageErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    messageErreur.setText("jLabel16");
+    messageErreur.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    messageErreur.setVisible(false);
 
     javax.swing.GroupLayout PanneauEntreeDesChampsLayout = new javax.swing.GroupLayout(PanneauEntreeDesChamps);
     PanneauEntreeDesChamps.setLayout(PanneauEntreeDesChampsLayout);
@@ -206,19 +219,15 @@ public class Identification extends javax.swing.JFrame {
         PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(PanneauEntreeDesChampsLayout.createSequentialGroup()
             .addGap(104, 104, 104)
-            .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                    .addComponent(identifiant))
+            .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(messageErreur, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                .addComponent(identifiant)
                 .addGroup(PanneauEntreeDesChampsLayout.createSequentialGroup()
                     .addGap(8, 8, 8)
                     .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5))))
-            .addContainerGap(208, Short.MAX_VALUE))
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanneauEntreeDesChampsLayout.createSequentialGroup()
-            .addGap(33, 33, 33)
-            .addComponent(MessageErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BoutonDeConnexion)
             .addContainerGap())
@@ -237,7 +246,7 @@ public class Identification extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
             .addGroup(PanneauEntreeDesChampsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(BoutonDeConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(MessageErreur)))
+                .addComponent(messageErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
     );
 
     jLabel2.setFont(new java.awt.Font("Garamond", 0, 85)); // NOI18N
@@ -258,7 +267,7 @@ public class Identification extends javax.swing.JFrame {
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComposantPrincipalLayout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6)
-            .addGap(348, 348, 348))
+            .addGap(253, 253, 253))
     );
     ComposantPrincipalLayout.setVerticalGroup(
         ComposantPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,12 +276,25 @@ public class Identification extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(48, 48, 48)
             .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(137, 137, 137)
+            .addGap(136, 136, 136)
             .addComponent(jLabel6)
-            .addContainerGap(183, Short.MAX_VALUE))
+            .addContainerGap(84, Short.MAX_VALUE))
     );
 
     FenetreIdentification.add(ComposantPrincipal, java.awt.BorderLayout.CENTER);
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 1559, Short.MAX_VALUE)
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 100, Short.MAX_VALUE)
+    );
+
+    FenetreIdentification.add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
     jPanel2.add(FenetreIdentification, "card2");
 
@@ -282,14 +304,27 @@ public class Identification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
-        
-        
+        //System.out.println(""+ mdp.getText());
+      
+//        if(mdp.getText().length()==1){
+//    messageErreur.setVisible(false);
+
     }//GEN-LAST:event_mdpActionPerformed
 
     private void BoutonDeConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoutonDeConnexionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonDeConnexionMouseClicked
 
+    public void ouvrirInterfaceMedecin(){
+        InterfaceServiceClinique i = new InterfaceServiceClinique();
+        i.setVisible(true);
+    }
+    
+    public void ouvrirInterfaceAdministratif(){
+        InterfaceAdministratif i = new InterfaceAdministratif();
+        i.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -332,14 +367,15 @@ public class Identification extends javax.swing.JFrame {
     private javax.swing.JLabel BoutonDeConnexion;
     private pichisUI.FenetreIdentification ComposantPrincipal;
     private javax.swing.JPanel FenetreIdentification;
-    private javax.swing.JLabel MessageErreur;
     private pichisUI.FenetreIdentification PanneauEntreeDesChamps;
     private javax.swing.JTextField identifiant;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField mdp;
+    private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
 }
