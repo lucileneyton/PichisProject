@@ -42,9 +42,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
         
-        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
-        champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
+        
+//        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+//        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
+//        champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
         
         //listePrestations.setModel();
     }
@@ -496,6 +497,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         );
 
         boutonAjouterSejour.setText("Ajouter un Séjour");
+        boutonAjouterSejour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonAjouterSejourActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ongletSejourLayout = new javax.swing.GroupLayout(ongletSejour);
         ongletSejour.setLayout(ongletSejourLayout);
@@ -742,6 +748,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
         
     }//GEN-LAST:event_listeSejoursValueChanged
+
+    private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
+        AjoutSejour ajoutSejour = new AjoutSejour();
+        ajoutSejour.setVisible(true);
+    }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
     /**
      * @param args the command line arguments
