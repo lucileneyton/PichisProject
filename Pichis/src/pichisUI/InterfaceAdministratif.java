@@ -235,7 +235,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeDePatients.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sophie Stiquet", "Leo Pars", "Jean Foupasune", "Jean Neymar", " " };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -647,7 +647,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelOnglets, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
