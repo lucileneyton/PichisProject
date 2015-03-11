@@ -312,6 +312,7 @@ public class AjoutPatient extends javax.swing.JFrame {
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         JOptionPane fenetre = new JOptionPane();
+        String sexe = "";
         // IPP
         if(champIPP.getText().length() == 9){
             // NOM
@@ -324,12 +325,15 @@ public class AjoutPatient extends javax.swing.JFrame {
                         if(champAdresse.getText().isEmpty() == false){
                             pichisNF.DateSimple date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
                                 if(boutonHomme.isSelected()){
-                                    pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "M", champAdresse.getText());
+                                    //pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "M", champAdresse.getText());
+                                     sexe = "M";
                                 }
                                 else{
-                                    pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "F", champAdresse.getText());
+                                     sexe = "F";
                                 }
-                                
+                                pichisBD.DAODPI dpi = new pichisBD.DAODPI();
+                                dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, sexe, champAdresse.getText());
+                                //Ajouter message de confirmation
                                 this.dispose();
                         }
                         else{

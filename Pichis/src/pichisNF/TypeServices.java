@@ -10,7 +10,18 @@ package pichisNF;
  * @author molit_000
  */
 public enum TypeServices {
-    CLINIQUE,
-    MEDICO_TECHNIQUE,
-    MAINTENANCE;
+    CLINIQUE("clinique"),
+    MEDICO_TECHNIQUE("medicoTechnique"),
+    MAINTENANCE("Maintenance");
+    
+    private String typeServices;
+    
+    private TypeServices(String typeServices){
+        this.typeServices = typeServices;
+    }
+    
+    public String toString(){
+        return this.typeServices;
+    }
+    
 }

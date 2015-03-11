@@ -27,7 +27,7 @@ public class Identification extends javax.swing.JFrame {
      * Creates new form PICHIS_Manager
      */
     
-    
+    //
     
     public Identification() {
         initComponents();
