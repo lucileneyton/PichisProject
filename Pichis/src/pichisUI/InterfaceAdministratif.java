@@ -72,8 +72,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        boutonDeconnection = new javax.swing.JButton();
-        boutonPreferences = new javax.swing.JButton();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
         panelBarreRecherche = new javax.swing.JPanel();
         labelRecherche = new javax.swing.JLabel();
         jTextFieldRecherche = new javax.swing.JTextField();
@@ -156,15 +156,24 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel11.setText("Personnel administratif");
 
-        boutonDeconnection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
-        boutonDeconnection.setToolTipText("");
-        boutonDeconnection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonDeconnectionActionPerformed(evt);
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
+        jLabel37.setText("Préférences");
+        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
+        jLabel38.setText("Déconnexion");
+        jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel38.setIconTextGap(0);
+        jLabel38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel38MouseClicked(evt);
             }
         });
-
-        boutonPreferences.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelBarreTitreLayout = new javax.swing.GroupLayout(PanelBarreTitre);
         PanelBarreTitre.setLayout(PanelBarreTitreLayout);
@@ -181,10 +190,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
-                .addComponent(boutonPreferences)
-                .addGap(52, 52, 52)
-                .addComponent(boutonDeconnection)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 543, Short.MAX_VALUE)
+                .addComponent(jLabel37)
+                .addGap(86, 86, 86)
+                .addComponent(jLabel38)
                 .addGap(44, 44, 44))
         );
         PanelBarreTitreLayout.setVerticalGroup(
@@ -201,10 +210,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(34, 34, 34))
             .addGroup(PanelBarreTitreLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(boutonPreferences)
-                    .addComponent(boutonDeconnection))
+                .addGap(41, 41, 41)
+                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel38)
+                    .addComponent(jLabel37))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -696,11 +705,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ajout.setVisible(true);
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
-    private void boutonDeconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonDeconnectionActionPerformed
-        this.dispose();
-        new Identification();
-    }//GEN-LAST:event_boutonDeconnectionActionPerformed
-
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourEntreeActionPerformed
@@ -760,6 +764,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ajoutSejour.setVisible(true);
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
+    private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
+        this.dispose();
+        new Identification1();
+    }//GEN-LAST:event_jLabel38MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -801,11 +810,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel PanelBarreTitre;
     private javax.swing.JButton boutonAjouter;
     private javax.swing.JButton boutonAjouterSejour;
-    private javax.swing.JButton boutonDeconnection;
     private javax.swing.JButton boutonEnregistrer;
     private javax.swing.JButton boutonFermerDPI;
     private javax.swing.JButton boutonModifier;
-    private javax.swing.JButton boutonPreferences;
     private javax.swing.JTextField champAnneeEntree;
     private javax.swing.JTextField champAnneeSortie;
     private javax.swing.JTextField champJourEntree;
@@ -825,6 +832,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
