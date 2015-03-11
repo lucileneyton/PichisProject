@@ -5,6 +5,8 @@
  */
 package pichisNF;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author molit_000
@@ -22,5 +24,16 @@ public class fonctions {
         return false;  
       }  
       return true;  
+    }
+    
+    public static ArrayList<Object> recherche(ArrayList<Object> liste, String nomElement){
+        ArrayList<Object> listeFin = new ArrayList<Object>();
+        
+        for(int i=0; i<liste.size();i++){
+            if(liste.get(i).toString() == nomElement){
+                listeFin.add(liste.get(i));
+            }
+        }
+        return listeFin;
     }
 }
