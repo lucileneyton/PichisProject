@@ -32,12 +32,10 @@ public class Identification1 extends javax.swing.JFrame {
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-    
-    
+
     public Identification1() {
         initComponents();
         this.setVisible(true);
-
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
@@ -48,7 +46,7 @@ public class Identification1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.pack();
+        this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
 
@@ -105,14 +103,15 @@ public class Identification1 extends javax.swing.JFrame {
                 mdpActionPerformed(evt);
             }
         });
+        mdp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mdpKeyPressed(evt);
+            }
+        });
         KeyListener  k = new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
-
-                if(mdp.getText().length()==0){
-                    messageErreur.setVisible(false);
-                }
 
             }
 
@@ -136,38 +135,7 @@ public class Identification1 extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                DAOMedecin daom = new DAOMedecin();
-                DAOAdministratif daoa = new DAOAdministratif();
-
-                if (identifiant.getText().isEmpty()||mdp.getText().isEmpty()){
-                    messageErreur.setVisible(true);
-                    messageErreur.setText("Remplir tous les champs.");
-                }
-                else{
-
-                    if (daom.estMedecin(identifiant.getText(),mdp.getText())){
-
-                        if(daom.identification(identifiant.getText(), mdp.getText())){
-                            ouvrirInterfaceMedecin();
-                        }
-                        else{
-                            messageErreur.setVisible(true);
-                            messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
-
-                        }
-                    }
-                    else{
-                        if(daoa.identification(identifiant.getText(), mdp.getText())){
-                            ouvrirInterfaceAdministratif();
-
-                        }
-                        else{
-                            messageErreur.setVisible(true);
-                            messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
-                        }
-
-                    }
-                }
+                tentativeDeConnexion();
 
             }
 
@@ -307,16 +275,28 @@ public class Identification1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonDeConnexionMouseClicked
 
-    public void ouvrirInterfaceMedecin(){
+    private void mdpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mdpKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            tentativeDeConnexion();
+        } else {
+            if (mdp.getText().length() == 0) {
+                messageErreur.setVisible(false);
+            }
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_mdpKeyPressed
+
+    public void ouvrirInterfaceMedecin() {
         InterfaceServiceClinique i = new InterfaceServiceClinique();
         i.setVisible(true);
     }
-    
-    public void ouvrirInterfaceAdministratif(){
+
+    public void ouvrirInterfaceAdministratif() {
         InterfaceAdministratif i = new InterfaceAdministratif();
         i.setVisible(true);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -372,4 +352,36 @@ public class Identification1 extends javax.swing.JFrame {
     private javax.swing.JPasswordField mdp;
     private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
+
+    private void tentativeDeConnexion() {
+        DAOMedecin daom = new DAOMedecin();
+        DAOAdministratif daoa = new DAOAdministratif();
+
+        if (identifiant.getText().isEmpty() || mdp.getText().isEmpty()) {
+            messageErreur.setVisible(true);
+            messageErreur.setText("Remplir tous les champs.");
+        } else {
+
+            if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
+
+                if (daom.identification(identifiant.getText(), mdp.getText())) {
+                    ouvrirInterfaceMedecin();
+                } else {
+                    messageErreur.setVisible(true);
+                    messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+
+                }
+            } else {
+                if (daoa.identification(identifiant.getText(), mdp.getText())) {
+                    ouvrirInterfaceAdministratif();
+
+                } else {
+                    messageErreur.setVisible(true);
+                    messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
+                }
+
+            }
+        }
+
+    }
 }
