@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -691,7 +692,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void boutonDeconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonDeconnectionActionPerformed
         this.dispose();
-        new Identification();
+        new Identification1();
     }//GEN-LAST:event_boutonDeconnectionActionPerformed
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
