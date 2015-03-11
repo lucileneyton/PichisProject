@@ -109,6 +109,40 @@ public class DAODPI {
             System.out.println("Erreur lors de la création du patient" + ex);
         } 
     }
+    
+    public ArrayList<DPI> consulterListeDPI() {
+
+        ArrayList<DPI> listeDPI = new ArrayList();
+        String ipp = "";
+        String nom = "";
+        String prenom = "";
+        String sexe = "";
+        String date = "";
+        String adresse = "";
+
+        try {
+
+            ResultSet resul;
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT * FROM dpi");
+            while (resul.next()) {
+
+                ipp = resul.getString("ipp");
+                nom = resul.getString("nom");
+                prenom = resul.getString("prenom");
+                sexe = resul.getString("sexe");
+                date = resul.getString("dateNaissance");
+                dateNaissance = new DateSimple(date.substring(0, 3), date.substring(4, 5), date.substring(6, 7));
+                adresse = resul.getString("adresse");
+                listeDPI.add(new DPI(ipp, nom, prenom, sexe, dateNaissance, adresse));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur DAODPI: " + e);
+        }
+
+        return listeDPI;
+    }
         
     }
     

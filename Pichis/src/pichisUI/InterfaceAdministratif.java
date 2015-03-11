@@ -6,7 +6,7 @@
 package pichisUI;
 
 import java.awt.Color;
-import java.util.Calendar;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisNF.Specialite;
@@ -24,6 +24,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         initComponents();
         
         pichisNF.DPI patientActuel;
+        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
         
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
@@ -34,7 +35,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.pack();
+        this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         
@@ -42,6 +43,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
         
+        DefaultListModel<String> model = new DefaultListModel<String>();
+        for(int i=0; i<daoDpi.consulterListeDPI().size(); i++){
+            model.addElement(daoDpi.consulterListeDPI().get(i).toStringNomPrenom());
+        }    
+        listeDePatients.setModel(model);
         
 //        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 //        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
@@ -686,7 +692,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldRechercheActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
-        AjoutPatient ajout = new AjoutPatient();
+        AjoutPatient ajout = new AjoutPatient(this);
         ajout.setVisible(true);
     }//GEN-LAST:event_boutonAjouterActionPerformed
 

@@ -14,18 +14,18 @@ import pichisNF.DPI;
  * @author molit_000
  */
 public class AjoutPatient extends javax.swing.JFrame {
-
+    InterfaceAdministratif interfaceAdmin;
     /**
      * Creates new form AjoutPatient
      */
-    public AjoutPatient() {
+    public AjoutPatient(InterfaceAdministratif interfaceAdmin) {
         initComponents();
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
         this.setLocation(x, y);
         
         champIPP.setText(DPI.CreerIpp());
-        
+        this.interfaceAdmin = interfaceAdmin;
     }
 
     /**
@@ -326,7 +326,7 @@ public class AjoutPatient extends javax.swing.JFrame {
                         if(champAdresse.getText().isEmpty() == false){
                             date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
                                 if(boutonHomme.isSelected()){
-                                    //pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(), date, "M", champAdresse.getText());
+                                    //pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(),"M", date, champAdresse.getText());
                                      sexe = "H";
                                 }
                                 else{
@@ -336,6 +336,9 @@ public class AjoutPatient extends javax.swing.JFrame {
                                 dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
                                 //Ajouter message de confirmation
                                 this.dispose();
+                                interfaceAdmin.dispose();
+                                interfaceAdmin = new InterfaceAdministratif();
+                                interfaceAdmin.setVisible(true);
                         }
                         else{
                             fenetre.showMessageDialog(null, "Veuillez entrer l'adresse du patient");
@@ -418,7 +421,7 @@ public class AjoutPatient extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjoutPatient().setVisible(true);
+                
             }
         });
     }

@@ -35,8 +35,8 @@ public class test {
        
        Localisation localisation1 = new Localisation(service1, "23", "F");          
        
-       DPI dpi1 = new DPI("1", "Me", "Henry", date1, "M", "21, rue des agagous");
-       DPI dpi2 = new DPI("2", "Vousmalade", "Josette", date1, "F", "22, rue des agagous");
+       DPI dpi1 = new DPI("1", "Me", "Henry", "H", date1, "21, rue des agagous");
+       DPI dpi2 = new DPI("2", "Vousmalade", "Josette", "F", date1, "22, rue des agagous");
        
        Prescription prescription1 = new Prescription(date3, "Aspirine 10 fois/jour", medecin1);
        dpi1.getDm().ajouterPrescription(prescription1);

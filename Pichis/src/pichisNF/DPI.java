@@ -28,7 +28,7 @@ public class DPI {
     private ArrayList<Operation> operations;
     private boolean estOuvert;
     
-    public DPI(String ipp, String nom, String prenom, DateSimple dateNaissance, String sexe, String adresse){
+    public DPI(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){
         this.dma = new DMA();
         this.dm = new DM();
         this.ipp = ipp;
@@ -181,6 +181,10 @@ public String afficherDMA(){
                    + "\nCe DPI n'est pas ouvert \n";
         }
         
+    }
+    
+    public String toStringNomPrenom(){
+        return this.nom + " " + this.prenom;
     }
     
     public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour){
