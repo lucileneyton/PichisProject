@@ -29,7 +29,7 @@ public class AjoutBD {
             verif = bd.connexion.createStatement();
             
             res = verif.executeQuery("SELECT nom, prenom FROM personnel WHERE nom='"+nom+"' AND prenom='"+prenom+"'");
-            if (res.getRow()==0){
+            if (res.getRow()!=0){
                 System.out.println("Le personnel existe déjà dans la base");
             }
             

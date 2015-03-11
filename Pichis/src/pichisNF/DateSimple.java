@@ -60,7 +60,7 @@ public class DateSimple {
     
     
     public String toString(){
-        return this.jour + "/" + this.mois + "/" + this.annee;
+        return this.annee + "-" + this.mois + "-" + this.jour;
     }
     
     public String get2derniersChiffresAnnee(){

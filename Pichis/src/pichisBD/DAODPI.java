@@ -82,6 +82,33 @@ public class DAODPI {
 
         return dpi;
     }
+    
+    public void ajout(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){
+        //ConnectionBD bd = new ConnectionBD(); // à enlever quand interface ready !
+       
+        Statement ins;
+        Statement verif;
+        ResultSet res;
+        String ouvert = "T";
+        
+        try {
+            ins = c.connexion.createStatement();
+            verif = c.connexion.createStatement();
+            
+            res = verif.executeQuery("SELECT nom, prenom, dateNaissance FROM dpi WHERE nom='"+nom+"' AND prenom='"+prenom+"' AND dateNaissance='"+dateNaissance.toString()+"'");
+            if (res.getRow()!=0){
+                System.out.println("Le patient existe déjà dans la base");
+            }
+            
+            
+            else{
+                ins.executeUpdate("INSERT INTO dpi(ipp, nom, prenom, sexe, dateNaissance, adresse, ouvert)" + "VALUES ('" + ipp + "','" + nom + "','" + prenom + "','" + sexe + "','" + dateNaissance.toString() + "','" + adresse + "','" + ouvert + "')");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création du patient" + ex);
+        } 
+    }
         
     }
     
