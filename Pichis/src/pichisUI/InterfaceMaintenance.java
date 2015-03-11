@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+
 import javax.swing.JFrame;
 
 /**
@@ -318,7 +319,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         this.dispose();
-        new Identification();
+        new Identification1();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
