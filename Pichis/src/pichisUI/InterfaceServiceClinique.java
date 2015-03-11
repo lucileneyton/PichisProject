@@ -62,7 +62,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -177,11 +176,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel41.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-refresh-3-icon-48.png"))); // NOI18N
-        jLabel42.setText("Actualiser");
-        jLabel42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -198,9 +192,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addComponent(jLabel42)
-                .addGap(84, 84, 84)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                 .addComponent(jLabel41)
                 .addGap(88, 88, 88)
                 .addComponent(jLabel38)
@@ -225,8 +217,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel38)
-                                    .addComponent(jLabel41)
-                                    .addComponent(jLabel42))))))
+                                    .addComponent(jLabel41))))))
                 .addGap(31, 31, 31))
         );
 
@@ -388,7 +379,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
@@ -473,7 +464,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -606,7 +597,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Observations", jPanel4);
@@ -736,7 +727,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Prescriptions", jPanel3);
@@ -868,7 +859,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -888,7 +879,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Prestations", jPanel7);
@@ -901,7 +892,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lettre de sortie", jPanel8);
@@ -991,7 +982,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
