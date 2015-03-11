@@ -70,7 +70,7 @@ public class DAODPI {
             
              
              
-            dpi = new DPI(ipp, nom, prenom, dateNaissance, sexe, adresse);
+            dpi = new DPI(ipp, nom, prenom, sexe, dateNaissance, adresse);
             
              
 
