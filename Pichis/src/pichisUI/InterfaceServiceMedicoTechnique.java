@@ -576,7 +576,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
        this.dispose();
-        new Identification();
+        new Identification1();
     }//GEN-LAST:event_jLabel38MouseClicked
 
     /**
