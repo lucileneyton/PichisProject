@@ -6,6 +6,7 @@
 package pichisUI;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import pichisNF.Specialite;
  * @author Johann
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
-
+    DefaultListModel<pichisNF.DPI> modeleListeDPI;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -43,17 +44,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
         
-        DefaultListModel<String> model = new DefaultListModel<String>();
+        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
         for(int i=0; i<daoDpi.consulterListeDPI().size(); i++){
-            model.addElement(daoDpi.consulterListeDPI().get(i).toStringNomPrenom());
+            modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
         }    
-        listeDePatients.setModel(model);
+        listeDePatients.setModel(modeleListeDPI);
         
-//        champJourEntree.setText("" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-//        champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
-//        champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
-        
-        //listePrestations.setModel();
     }
 
     /**
@@ -91,12 +87,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        textFieldNom = new javax.swing.JTextField();
+        textFieldPrenom = new javax.swing.JTextField();
+        textFieldSexe = new javax.swing.JTextField();
+        textFieldIPP = new javax.swing.JTextField();
+        textFieldDateNaissance = new javax.swing.JTextField();
+        textFieldAdresse = new javax.swing.JTextField();
         ongletSejour = new javax.swing.JPanel();
         jScrollSejours = new javax.swing.JScrollPane();
         listeSejours = new javax.swing.JList();
@@ -250,9 +246,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeDePatients.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            ArrayList<pichisNF.DPI> listeDpi = new ArrayList<pichisNF.DPI>();
+            public int getSize() { return listeDpi.size(); }
+            public Object getElementAt(int i) { return listeDpi.get(i); }
+        });
+        listeDePatients.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeDePatientsValueChanged(evt);
+            }
         });
         scrollPaneListePatient.setViewportView(listeDePatients);
 
@@ -281,34 +282,34 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         jLabel13.setText("Adresse");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("non edit");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textFieldNom.setEditable(false);
+        textFieldNom.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldNom.setText("non edit");
+        textFieldNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textFieldNomActionPerformed(evt);
             }
         });
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("non edit");
+        textFieldPrenom.setEditable(false);
+        textFieldPrenom.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldPrenom.setText("non edit");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setText("non edit");
+        textFieldSexe.setEditable(false);
+        textFieldSexe.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldSexe.setText("non edit");
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setText("non edit");
+        textFieldIPP.setEditable(false);
+        textFieldIPP.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldIPP.setText("non edit");
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setText("non edit");
+        textFieldDateNaissance.setEditable(false);
+        textFieldDateNaissance.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldDateNaissance.setText("non edit");
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setText("non edit");
+        textFieldAdresse.setEditable(false);
+        textFieldAdresse.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldAdresse.setText("non edit");
 
         javax.swing.GroupLayout ongletFichePatientLayout = new javax.swing.GroupLayout(ongletFichePatient);
         ongletFichePatient.setLayout(ongletFichePatientLayout);
@@ -325,13 +326,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addGap(33, 33, 33)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldPrenom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(337, Short.MAX_VALUE))
         );
         ongletFichePatientLayout.setVerticalGroup(
@@ -340,27 +341,27 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGap(120, 120, 120)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldSexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldIPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
 
@@ -402,9 +403,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         labelDateSortie.setText("Date de Sortie");
 
+        champJourSortie.setEditable(false);
+        champJourSortie.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel3.setText("/");
 
+        champMoisSortie.setEditable(false);
+        champMoisSortie.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel4.setText("/");
+
+        champAnneeSortie.setEditable(false);
+        champAnneeSortie.setBackground(new java.awt.Color(204, 204, 204));
 
         labelNumeroSejour.setText("Numéro de séjour");
 
@@ -414,6 +424,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         labelPhResponsable.setText("Nom du PH responsable");
 
         champPhResponsable.setEditable(false);
+        champPhResponsable.setBackground(new java.awt.Color(204, 204, 204));
         champPhResponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champPhResponsableActionPerformed(evt);
@@ -709,9 +720,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourEntreeActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textFieldNomActionPerformed
 
     private void champPhResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champPhResponsableActionPerformed
         // TODO add your handling code here:
@@ -768,6 +779,16 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         this.dispose();
         new Identification1();
     }//GEN-LAST:event_jLabel38MouseClicked
+
+    private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
+        int indice = listeDePatients.getSelectedIndex();
+        textFieldNom.setText(modeleListeDPI.get(indice).getNom());
+        textFieldPrenom.setText(modeleListeDPI.get(indice).getPrenom());
+        textFieldSexe.setText(modeleListeDPI.get(indice).getSexe());
+        textFieldIPP.setText(modeleListeDPI.get(indice).getIpp());
+        textFieldDateNaissance.setText(modeleListeDPI.get(indice).getDateNaissance().toString());
+        textFieldAdresse.setText(modeleListeDPI.get(indice).getAdresse());
+    }//GEN-LAST:event_listeDePatientsValueChanged
 
     /**
      * @param args the command line arguments
@@ -843,12 +864,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollSejours;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JLabel labelDateEntree;
     private javax.swing.JLabel labelDateSortie;
@@ -872,6 +887,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel panelSejour;
     private javax.swing.JPanel panelTitre;
     private javax.swing.JScrollPane scrollPaneListePatient;
+    private javax.swing.JTextField textFieldAdresse;
+    private javax.swing.JTextField textFieldDateNaissance;
+    private javax.swing.JTextField textFieldIPP;
+    private javax.swing.JTextField textFieldNom;
+    private javax.swing.JTextField textFieldPrenom;
+    private javax.swing.JTextField textFieldSexe;
     private javax.swing.JTextArea texteLettreSortie;
     // End of variables declaration//GEN-END:variables
 }

@@ -165,6 +165,11 @@ public String afficherDMA(){
 }
     
     public String toString(){
+//        
+        return nom + " " + prenom;
+    }
+    
+    public String afficherDPI(){
         if(this.estOuvert == true){
            return "----- DPI -----"
              + "\nipp : " + this.ipp
@@ -180,11 +185,6 @@ public String afficherDMA(){
             return "----- dpi -----"
                    + "\nCe DPI n'est pas ouvert \n";
         }
-        
-    }
-    
-    public String toStringNomPrenom(){
-        return this.nom + " " + this.prenom;
     }
     
     public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour){
