@@ -30,7 +30,7 @@ public class fonctions {
         ArrayList<Object> listeFin = new ArrayList<Object>();
         
         for(int i=0; i<liste.size();i++){
-            if(liste.get(i).toString() == nomElement){
+            if(liste.get(i).toString().substring(0, nomElement.length()-1).equals(nomElement)){
                 listeFin.add(liste.get(i));
             }
         }
