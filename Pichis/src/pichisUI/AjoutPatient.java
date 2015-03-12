@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+import java.awt.Frame;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pichisNF.DPI;
@@ -21,7 +22,14 @@ public class AjoutPatient extends javax.swing.JFrame {
     public AjoutPatient(InterfaceAdministratif interfaceAdmin) {
         initComponents();
         
-        this.setAlwaysOnTop(true);
+     
+        //setLocationRelativeTo(null);
+        //this.setResizable(false);
+        this.toFront();
+        //this.setAlwaysOnTop(true);
+        //this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //this.setFocusable(true);
+        //this.setState(Frame.ICONIFIED);
         
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
