@@ -20,6 +20,9 @@ public class AjoutPatient extends javax.swing.JFrame {
      */
     public AjoutPatient(InterfaceAdministratif interfaceAdmin) {
         initComponents();
+        
+        this.setAlwaysOnTop(true);
+        
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
         this.setLocation(x, y);

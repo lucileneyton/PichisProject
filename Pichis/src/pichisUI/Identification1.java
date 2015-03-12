@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -365,6 +366,7 @@ public class Identification1 extends javax.swing.JFrame {
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
+                    this.dispose();
                     ouvrirInterfaceMedecin();
                 } else {
                     messageErreur.setVisible(true);
@@ -373,6 +375,7 @@ public class Identification1 extends javax.swing.JFrame {
                 }
             } else {
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
+                    this.dispose();
                     ouvrirInterfaceAdministratif();
 
                 } else {

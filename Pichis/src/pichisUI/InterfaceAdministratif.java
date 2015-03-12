@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -90,6 +91,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients = new javax.swing.JList();
         boutonAjouter = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
+        DMA = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         panelOnglets = new javax.swing.JTabbedPane();
         ongletLocalisation = new javax.swing.JPanel();
         labelService = new javax.swing.JLabel();
@@ -199,7 +203,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 563, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(jLabel37)
                 .addGap(86, 86, 86)
                 .addComponent(jLabel38)
@@ -208,7 +212,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         PanelBarreTitreLayout.setVerticalGroup(
             PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -285,7 +289,33 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelPrincipal.setLayout(new java.awt.BorderLayout());
 
-        ongletLocalisation.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        DMA.setPreferredSize(new java.awt.Dimension(width, height));
+        DMA.setLayout(new java.awt.CardLayout());
+
+        jLabel14.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Sélectionner un patient");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        DMA.add(jPanel1, "card3");
+
+        panelOnglets.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         labelService.setText("Service");
 
@@ -346,7 +376,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                             .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(91, 91, 91)))
-                .addContainerGap(774, Short.MAX_VALUE))
+                .addContainerGap(443, Short.MAX_VALUE))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +397,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutonEnregistrer)
                     .addComponent(boutonModifier))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
@@ -435,7 +465,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                         .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(539, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         ongletFichePatientLayout.setVerticalGroup(
             ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,7 +494,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Fiche du patient", ongletFichePatient);
@@ -620,8 +650,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addComponent(labelPhResponsable)
                     .addComponent(champPhResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         boutonAjouterSejour.setText("Ajouter un Séjour");
@@ -647,8 +677,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             .addGroup(ongletSejourLayout.createSequentialGroup()
                 .addGroup(ongletSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ongletSejourLayout.createSequentialGroup()
-                        .addComponent(jScrollSejours, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollSejours, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(boutonAjouterSejour))
                     .addComponent(panelSejour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
@@ -669,26 +699,28 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ongletLettreSortieLayout.setHorizontalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ongletLettreSortieLayout.createSequentialGroup()
-                .addGap(373, 373, 373)
-                .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutonFermerDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                    .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         ongletLettreSortieLayout.setVerticalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ongletLettreSortieLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(boutonFermerDPI)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Lettre de sortie", ongletLettreSortie);
 
-        panelPrincipal.add(panelOnglets, java.awt.BorderLayout.CENTER);
+        DMA.add(panelOnglets, "card2");
         panelOnglets.getAccessibleContext().setAccessibleName("Fiche du patient");
+
+        panelPrincipal.add(DMA, java.awt.BorderLayout.CENTER);
 
         InterfaceAdministratif.add(panelPrincipal, java.awt.BorderLayout.CENTER);
 
@@ -778,6 +810,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         textFieldIPP.setText(modeleListeDPI.get(indice).getIpp());
         textFieldDateNaissance.setText(modeleListeDPI.get(indice).getDateNaissance().toString());
         textFieldAdresse.setText(modeleListeDPI.get(indice).getAdresse());
+        
+       
+        CardLayout c = (CardLayout) (DMA.getLayout());
+            c.show(DMA, "card2");
+        
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     /**
@@ -816,6 +853,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DMA;
     private javax.swing.JPanel InterfaceAdministratif;
     private javax.swing.JLabel LabelBoutonRecherche;
     private javax.swing.JPanel PanelBarreTitre;
@@ -841,6 +879,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel37;
@@ -851,6 +890,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollSejours;
