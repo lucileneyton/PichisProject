@@ -25,7 +25,7 @@ public class AjoutPatient extends javax.swing.JFrame {
      
         //setLocationRelativeTo(null);
         //this.setResizable(false);
-        this.toFront();
+        //this.toFront();
         //this.setAlwaysOnTop(true);
         //this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //this.setFocusable(true);
