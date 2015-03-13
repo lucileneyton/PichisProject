@@ -21,14 +21,15 @@ import pichisNF.TypeServices;
  */
 public class AjoutPersonnel extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AjoutPersonnel
-     */
-    public AjoutPersonnel() {
+    private InterfaceMaintenance interfaceMaintenance;
+
+    public AjoutPersonnel(InterfaceMaintenance interfaceMaintenance) {
         initComponents();
         int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
         int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
         this.setLocation(x, y);
+
+        this.interfaceMaintenance = interfaceMaintenance;
 
     }
 
@@ -279,11 +280,16 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             // Ajout personnel administratif
                             if (jComboBox1.getSelectedIndex() == 0) {
                                 Administratif a = new Administratif(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
+                                pichisBD.DAOAdministratif daoAdministratif = new pichisBD.DAOAdministratif();
+                                daoAdministratif.ajoutAdministratif(a.getId(), a.getNom(), a.getPrenom(), a.getMotDePasse());
                             }
 
                             // Ajout personnel de maintenance
                             if (jComboBox1.getSelectedIndex() == 1) {
                                 Maintenance ma = new Maintenance(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
+                            
+                                pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
+                                daoMaintenance.ajoutMaintenance(ma.getId(), ma.getNom(), ma.getPrenom(), ma.getMotDePasse());
                             }
 
                             // Ajout practicien hospitalier
@@ -302,6 +308,9 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             }
                             jop.hide();
                             this.dispose();
+                            interfaceMaintenance.dispose();
+                            interfaceMaintenance = new InterfaceMaintenance();
+                            interfaceMaintenance.setVisible(true);
                         }
 
                     } else {
@@ -392,7 +401,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjoutPersonnel().setVisible(true);
+
             }
         });
     }

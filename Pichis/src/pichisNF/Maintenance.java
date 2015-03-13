@@ -40,4 +40,8 @@ public class Maintenance extends Personnel {
             return false;
         }
     }
+    
+     public String toString(){
+        return super.getPrenom() + " "+ super.getNom().toUpperCase();
+    }
 }

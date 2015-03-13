@@ -11,8 +11,7 @@ package pichisNF;
  */
 public enum TypeServices {
     CLINIQUE("clinique"),
-    MEDICO_TECHNIQUE("medicoTechnique"),
-    MAINTENANCE("Maintenance");
+    MEDICO_TECHNIQUE("medicoTechnique");
     
     private String typeServices;
     

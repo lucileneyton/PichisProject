@@ -6,6 +6,8 @@
 package pichisUI;
 
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 /**
@@ -14,12 +16,16 @@ import javax.swing.JFrame;
  */
 public class InterfaceMaintenance extends javax.swing.JFrame {
 
+    DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
+     DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
     /**
      * Creates new form InterfaceMaintenance
      */
     public InterfaceMaintenance() {
         initComponents();
 
+        pichisBD.DAOAdministratif daoAdministratif = new pichisBD.DAOAdministratif();
+        pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Maintenance");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -32,6 +38,20 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        //Remplissage de la liste du personnel administratif
+        modeleListeAdministratif = new DefaultListModel<pichisNF.Administratif>();
+        for(int i=0; i<daoAdministratif.consulterListeAdministratif().size(); i++){
+            modeleListeAdministratif.addElement(daoAdministratif.consulterListeAdministratif().get(i));
+        }    
+        listeAdministratif.setModel(modeleListeAdministratif);
+        
+                //Remplissage de la liste du personnel de maintenance
+        modeleListeMaintenance = new DefaultListModel<pichisNF.Maintenance>();
+        for(int i=0; i<daoMaintenance.consulterListeMaintenance().size(); i++){
+            modeleListeMaintenance.addElement(daoMaintenance.consulterListeMaintenance().get(i));
+        }    
+        listeMaintenance.setModel(modeleListeMaintenance);
     }
 
     /**
@@ -62,10 +82,10 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
+        listeAdministratif = new javax.swing.JList();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList();
+        listeMaintenance = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,7 +199,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList1.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sophie Stiquet", "Leo Pars", "Jean Foupasune", "Jean Neymar", " " };
+            String[] strings = { "Odile Deraie", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -196,17 +216,18 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jPanel18.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel18.setBackground(new java.awt.Color(204, 204, 204));
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel Administratif"));
 
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList3.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Odile Deraie", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        listeAdministratif.setBackground(new java.awt.Color(204, 204, 204));
+        listeAdministratif.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeAdministratif.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeAdministratif.setModel(new javax.swing.AbstractListModel() {
+            ArrayList<pichisNF.Administratif> listeAdministratif = new ArrayList<pichisNF.Administratif>();
+            public int getSize() { return listeAdministratif.size(); }
+            public Object getElementAt(int i) { return listeAdministratif.get(i); }
         });
-        jScrollPane3.setViewportView(jList3);
+        jScrollPane3.setViewportView(listeAdministratif);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -223,17 +244,18 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel19.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel19.setBackground(new java.awt.Color(204, 204, 204));
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel du service de Maintenance"));
 
-        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList4.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList4.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Odile Deraie", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        listeMaintenance.setBackground(new java.awt.Color(204, 204, 204));
+        listeMaintenance.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeMaintenance.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeMaintenance.setModel(new javax.swing.AbstractListModel() {
+            ArrayList<pichisNF.Maintenance> listeMaintenance = new ArrayList<pichisNF.Maintenance>();
+            public int getSize() { return listeMaintenance.size(); }
+            public Object getElementAt(int i) { return listeMaintenance.get(i); }
         });
-        jScrollPane4.setViewportView(jList4);
+        jScrollPane4.setViewportView(listeMaintenance);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -313,7 +335,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AjoutPersonnel ajout = new AjoutPersonnel();
+        AjoutPersonnel ajout = new AjoutPersonnel(this);
         ajout.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -369,8 +391,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList3;
-    private javax.swing.JList jList4;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel3;
@@ -382,5 +402,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JList listeAdministratif;
+    private javax.swing.JList listeMaintenance;
     // End of variables declaration//GEN-END:variables
 }
