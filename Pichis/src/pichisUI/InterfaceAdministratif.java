@@ -11,6 +11,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
@@ -40,16 +41,15 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
-        //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        //setSize(1365, 765);
+
         //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Termine le processus lorsqu'on clique sur la croix rouge
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        
-//        this.setDefaultLookAndFeelDecorated(true);
-//        this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        this.setDefaultLookAndFeelDecorated(true);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         this.pack();
@@ -99,13 +99,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         panelOnglets = new javax.swing.JTabbedPane();
         ongletLocalisation = new javax.swing.JPanel();
-        labelService = new javax.swing.JLabel();
-        labelNumeroChambre = new javax.swing.JLabel();
-        champNumeroChambre = new javax.swing.JTextField();
-        labelPlacement = new javax.swing.JLabel();
-        boutonModifier = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         boutonEnregistrer = new javax.swing.JButton();
+        boutonModifier = new javax.swing.JButton();
+        labelPlacement = new javax.swing.JLabel();
         comboBoxPlacement = new javax.swing.JComboBox();
+        champNumeroChambre = new javax.swing.JTextField();
+        labelNumeroChambre = new javax.swing.JLabel();
+        labelService = new javax.swing.JLabel();
         comboBoxService = new javax.swing.JComboBox();
         ongletFichePatient = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -227,9 +228,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
             .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel37))
+                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel38))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -298,7 +299,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelListe.add(scrollPaneListePatient, java.awt.BorderLayout.WEST);
 
-        boutonAjouter.setText("Ajouter un patient");
+        boutonAjouter.setText("Nouveau patient");
         boutonAjouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutonAjouterActionPerformed(evt);
@@ -339,9 +340,30 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        labelService.setText("Service");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        labelNumeroChambre.setText("Numéro de chambre");
+        boutonEnregistrer.setText("Enregistrer les modifications");
+        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonEnregistrerActionPerformed(evt);
+            }
+        });
+
+        boutonModifier.setText("Modifier");
+        boutonModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonModifierActionPerformed(evt);
+            }
+        });
+
+        labelPlacement.setText("Placement");
+
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPlacementActionPerformed(evt);
+            }
+        });
 
         champNumeroChambre.setEditable(false);
         champNumeroChambre.setBackground(new java.awt.Color(204, 204, 204));
@@ -351,28 +373,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
         });
 
-        labelPlacement.setText("Placement");
+        labelNumeroChambre.setText("Numéro de chambre");
 
-        boutonModifier.setText("Modifier");
-        boutonModifier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonModifierActionPerformed(evt);
-            }
-        });
-
-        boutonEnregistrer.setText("Enregistrer les modifications");
-        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonEnregistrerActionPerformed(evt);
-            }
-        });
-
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
-        comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxPlacementActionPerformed(evt);
-            }
-        });
+        labelService.setText("Service");
 
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
         comboBoxService.addActionListener(new java.awt.event.ActionListener() {
@@ -381,50 +384,75 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(labelNumeroChambre)
+                .addGap(32, 32, 32)
+                .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(boutonEnregistrer))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(boutonModifier, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelService)
+                                .addComponent(labelPlacement))
+                            .addGap(79, 79, 79)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(213, 213, 213)))
+                    .addContainerGap(27, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNumeroChambre)
+                    .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(boutonEnregistrer)
+                .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelService)
+                        .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(105, 105, 105)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelPlacement)
+                        .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(54, 54, 54)
+                    .addComponent(boutonModifier)
+                    .addContainerGap(25, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                        .addComponent(boutonModifier)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boutonEnregistrer))
-                    .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelService)
-                            .addComponent(labelPlacement)
-                            .addComponent(labelNumeroChambre))
-                        .addGap(32, 32, 32)
-                        .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(91, 91, 91)))
-                .addContainerGap(576, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
+                .addContainerGap(414, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(258, 258, 258))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelService)
-                    .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumeroChambre)
-                    .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPlacement)
-                    .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutonEnregistrer)
-                    .addComponent(boutonModifier))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
@@ -998,6 +1026,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollSejours;

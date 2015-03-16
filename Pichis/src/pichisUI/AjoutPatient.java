@@ -25,9 +25,11 @@ public class AjoutPatient extends javax.swing.JDialog {
         super(parent, modal);
         this.setTitle("Formulaire d'ajout");
         initComponents();
-        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
-        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
-        this.setLocation(x, y);
+        setLocationRelativeTo(null);
+        
+//        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
+//        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
+//        this.setLocation(x, y);
 
         champIPP.setText(DPI.CreerIpp());
         this.interfaceAdmin = interfaceAdmin;
@@ -71,7 +73,7 @@ public class AjoutPatient extends javax.swing.JDialog {
 
         labelTitre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitre.setText("Ajout d'un Patient");
+        labelTitre.setText("Nouveau Patient");
         jPanel1.add(labelTitre, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -290,7 +292,7 @@ public class AjoutPatient extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

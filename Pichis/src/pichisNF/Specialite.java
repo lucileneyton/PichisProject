@@ -10,10 +10,10 @@ package pichisNF;
  * @author molit_000
  */
 public enum Specialite {
-    ANESTHESISTE ("Anesthésiste"),
+    ANESTHESIE ("Anesthésie générale"),
     CARDIOLOGIE ("Cardiologie"),
     NEUROLOGIE ("Neurologie"),
-    RADIOLOGUE("Radiologue"),
+    RADIOLOGIE("Radiologie"),
     UROLOGIE ("Urologie");
    
     private String specialite;

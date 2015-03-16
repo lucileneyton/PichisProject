@@ -5,9 +5,11 @@
  */
 package pichisUI;
 
+import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,6 +100,14 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        labelService = new javax.swing.JLabel();
+        comboBoxService = new javax.swing.JComboBox();
+        labelNumeroChambre = new javax.swing.JLabel();
+        champNumeroChambre = new javax.swing.JTextField();
+        labelPlacement = new javax.swing.JLabel();
+        comboBoxPlacement = new javax.swing.JComboBox();
+        boutonModifier = new javax.swing.JButton();
+        boutonEnregistrer = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -173,12 +183,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
-        jLabel41.setText("Préférences");
+        jLabel41.setText("Paramètres");
         jLabel41.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-refresh-3-icon-48.png"))); // NOI18N
-        jLabel42.setText("Actualiser");
+        jLabel42.setText("Actualisation");
         jLabel42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -198,7 +208,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jLabel42)
                 .addGap(84, 84, 84)
                 .addComponent(jLabel41)
@@ -258,8 +268,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel17.setPreferredSize(new java.awt.Dimension(200, 573));
         jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList2.setBackground(new java.awt.Color(47, 187, 237));
-        jList2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jList2.setBackground(new java.awt.Color(204, 204, 204));
+        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList2.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sophie Stiquet", "Jean Foupasune", "Jean Neymar", " " };
@@ -333,7 +343,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jTextArea6.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
-        jTextArea6.setText("125 rue Volga-Plage 80560 Vladivostok, Empire de Russie//////////");
+        jTextArea6.setText("125 rue Volga-Plage 80560 Vladivostok, Empire de Russie");
         jTextArea6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane14.setViewportView(jTextArea6);
 
@@ -387,7 +397,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
@@ -425,6 +435,48 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("Administratives");
 
+        labelService.setText("Service");
+
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
+        comboBoxService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxServiceActionPerformed(evt);
+            }
+        });
+
+        labelNumeroChambre.setText("Numéro de chambre");
+
+        champNumeroChambre.setEditable(false);
+        champNumeroChambre.setBackground(new java.awt.Color(204, 204, 204));
+        champNumeroChambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                champNumeroChambreActionPerformed(evt);
+            }
+        });
+
+        labelPlacement.setText("Placement");
+
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPlacementActionPerformed(evt);
+            }
+        });
+
+        boutonModifier.setText("Modifier");
+        boutonModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonModifierActionPerformed(evt);
+            }
+        });
+
+        boutonEnregistrer.setText("Enregistrer les modifications");
+        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonEnregistrerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -432,6 +484,26 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelNumeroChambre)
+                                        .addComponent(boutonModifier))
+                                    .addGap(32, 32, 32))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(labelService)
+                                    .addGap(93, 93, 93)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(labelPlacement)
+                                .addGap(79, 79, 79)))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boutonEnregistrer)))
                     .addComponent(jLabel20)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
@@ -468,11 +540,27 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelService)
+                    .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNumeroChambre)
+                    .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPlacement)
+                    .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boutonModifier)
+                    .addComponent(boutonEnregistrer))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -482,7 +570,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Observations"));
         jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList3.setBackground(new java.awt.Color(255, 153, 51));
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList3.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList3.setModel(new javax.swing.AbstractListModel() {
@@ -496,6 +583,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle observation"));
 
+        jTextPaneAjoutResultat.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane4.setViewportView(jTextPaneAjoutResultat);
 
         jButton1.setText("Soumettre l'observation");
@@ -525,11 +613,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de l'observation"));
 
         jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(255, 153, 51));
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jTextArea3.setText("Etat comateux...");
-        jTextArea3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextArea3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane7.setViewportView(jTextArea3);
 
         jLabel10.setText("Signature");
@@ -574,7 +661,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -586,7 +673,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Observations", jPanel4);
@@ -594,7 +681,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Prescriptions"));
         jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList4.setBackground(new java.awt.Color(153, 153, 0));
         jList4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList4.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList4.setModel(new javax.swing.AbstractListModel() {
@@ -609,7 +695,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de la prescription"));
 
         jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(153, 153, 0));
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jTextArea4.setText("Effectuer une prise de sang.");
@@ -649,6 +734,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle prescription"));
 
+        jTextPaneAjoutResultat1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane10.setViewportView(jTextPaneAjoutResultat1);
 
         jButton2.setText("Prescrire");
@@ -687,7 +773,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, Short.MAX_VALUE))
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addGap(0, 91, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -699,7 +785,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Prescriptions", jPanel3);
@@ -707,7 +793,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des opérations"));
         jPanel24.setLayout(new javax.swing.BoxLayout(jPanel24, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList5.setBackground(new java.awt.Color(153, 153, 0));
         jList5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jList5.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         jList5.setModel(new javax.swing.AbstractListModel() {
@@ -722,7 +807,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de l'opération"));
 
         jTextArea5.setEditable(false);
-        jTextArea5.setBackground(new java.awt.Color(153, 153, 0));
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jTextArea5.setText("Prise de sang effectuée");
@@ -742,11 +826,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                     .addGroup(jPanel25Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField14))
-                    .addComponent(jScrollPane12))
+                        .addComponent(jTextField14)))
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
@@ -761,7 +845,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         );
 
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle opération"));
+        jPanel26.setMaximumSize(new java.awt.Dimension(375, 197));
 
+        jTextPaneAjoutResultat2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane13.setViewportView(jTextPaneAjoutResultat2);
 
         jButton3.setText("Enregistrer");
@@ -774,17 +860,15 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel26Layout.createSequentialGroup()
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane13)
                     .addGroup(jPanel26Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -804,25 +888,24 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(166, 166, 166)
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(90, 90, 90)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         jTabbedPane1.addTab("Opérations réalisées", jPanel6);
@@ -831,11 +914,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
+            .addGap(0, 921, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Prestations", jPanel7);
@@ -844,11 +927,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
+            .addGap(0, 921, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lettre de sortie", jPanel8);
@@ -877,6 +960,45 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField19ActionPerformed
+
+    private void comboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxServiceActionPerformed
+
+    private void champNumeroChambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champNumeroChambreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champNumeroChambreActionPerformed
+
+    private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPlacementActionPerformed
+
+    private void boutonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonModifierActionPerformed
+
+        comboBoxService.setEnabled(true);
+        comboBoxService.setBackground(Color.white);
+        champNumeroChambre.setEditable(true);
+        champNumeroChambre.setBackground(Color.white);
+        comboBoxPlacement.setEnabled(true);
+        comboBoxPlacement.setBackground(Color.white);
+    }//GEN-LAST:event_boutonModifierActionPerformed
+
+    private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
+
+        if (champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
+            //patientSelectionne.mettre a jour donnees
+
+            comboBoxService.setEnabled(false);
+            comboBoxService.setBackground(Color.LIGHT_GRAY);
+            champNumeroChambre.setEditable(false);
+            champNumeroChambre.setBackground(Color.LIGHT_GRAY);
+            comboBoxPlacement.setEnabled(false);
+            comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
+        }
+    }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -915,6 +1037,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel InterfaceServiceClinique;
+    private javax.swing.JButton boutonEnregistrer;
+    private javax.swing.JButton boutonModifier;
+    private javax.swing.JTextField champNumeroChambre;
+    private javax.swing.JComboBox comboBoxPlacement;
+    private javax.swing.JComboBox comboBoxService;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1002,5 +1129,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPaneAjoutResultat;
     private javax.swing.JTextPane jTextPaneAjoutResultat1;
     private javax.swing.JTextPane jTextPaneAjoutResultat2;
+    private javax.swing.JLabel labelNumeroChambre;
+    private javax.swing.JLabel labelPlacement;
+    private javax.swing.JLabel labelService;
     // End of variables declaration//GEN-END:variables
 }
