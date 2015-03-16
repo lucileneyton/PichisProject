@@ -13,30 +13,33 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisNF.DPI;
 import pichisNF.Specialite;
+import pichisNF.fonctions;
 
 /**
  *
  * @author Johann
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
+
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
+    DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
     /**
      * Creates new form InterfaceAdministratif
      */
-    
+
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-    
-    
+
     public InterfaceAdministratif() {
         initComponents();
-        
+
         pichisNF.DPI patientActuel;
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-        
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -49,19 +52,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 //        this.pack();
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
-        
+
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
-        
+
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
-        
+
         modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
-        for(int i=0; i<daoDpi.consulterListeDPI().size(); i++){
+
+        for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
             modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
-        }    
+        }
         listeDePatients.setModel(modeleListeDPI);
-        
+
     }
 
     /**
@@ -245,6 +249,21 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jTextFieldRecherche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldRechercheActionPerformed(evt);
+            }
+        });
+        jTextFieldRecherche.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTextFieldRechercheInputMethodTextChanged(evt);
+            }
+        });
+        jTextFieldRecherche.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldRechercheKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldRechercheKeyTyped(evt);
             }
         });
         panelBarreRecherche.add(jTextFieldRecherche);
@@ -755,14 +774,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_champNumeroChambreActionPerformed
 
     private void boutonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonModifierActionPerformed
-        
+
         comboBoxService.setEnabled(true);
         comboBoxService.setBackground(Color.white);
         champNumeroChambre.setEditable(true);
         champNumeroChambre.setBackground(Color.white);
         comboBoxPlacement.setEnabled(true);
         comboBoxPlacement.setBackground(Color.white);
-        
+
     }//GEN-LAST:event_boutonModifierActionPerformed
 
     private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed
@@ -771,25 +790,24 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
 
-            if(champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())){
-                //patientSelectionne.mettre a jour donnees
-                              
-                comboBoxService.setEnabled(false);
-                comboBoxService.setBackground(Color.LIGHT_GRAY);
-                champNumeroChambre.setEditable(false);
-                champNumeroChambre.setBackground(Color.LIGHT_GRAY);
-                comboBoxPlacement.setEnabled(false);
-                comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
-                
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
-            }
+        if (champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
+            //patientSelectionne.mettre a jour donnees
+
+            comboBoxService.setEnabled(false);
+            comboBoxService.setBackground(Color.LIGHT_GRAY);
+            champNumeroChambre.setEditable(false);
+            champNumeroChambre.setBackground(Color.LIGHT_GRAY);
+            comboBoxPlacement.setEnabled(false);
+            comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
+        }
 
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
-        
+
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
@@ -803,19 +821,65 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
+        if(listeDePatients.getModel().getSize()!=0 && listeDePatients.getSelectedIndex() >=0){
+        
+        DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
+                
+                
         int indice = listeDePatients.getSelectedIndex();
-        textFieldNom.setText(modeleListeDPI.get(indice).getNom());
-        textFieldPrenom.setText(modeleListeDPI.get(indice).getPrenom());
-        textFieldSexe.setText(modeleListeDPI.get(indice).getSexe());
-        textFieldIPP.setText(modeleListeDPI.get(indice).getIpp());
-        textFieldDateNaissance.setText(modeleListeDPI.get(indice).getDateNaissance().toString());
-        textFieldAdresse.setText(modeleListeDPI.get(indice).getAdresse());
-        
-       
+           
+        textFieldNom.setText(modele.get(indice).getNom());
+        textFieldPrenom.setText(modele.get(indice).getPrenom());
+        textFieldSexe.setText(modele.get(indice).getSexe());
+        textFieldIPP.setText(modele.get(indice).getIpp());
+        textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
+        textFieldAdresse.setText(modele.get(indice).getAdresse());
+
         CardLayout c = (CardLayout) (DMA.getLayout());
-            c.show(DMA, "card2");
-        
+        c.show(DMA, "card2");
+        }
     }//GEN-LAST:event_listeDePatientsValueChanged
+
+    private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
+
+
+    }//GEN-LAST:event_jTextFieldRechercheKeyTyped
+
+    private void jTextFieldRechercheInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextFieldRechercheInputMethodTextChanged
+
+    }//GEN-LAST:event_jTextFieldRechercheInputMethodTextChanged
+
+    private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
+      
+        if(!jTextFieldRecherche.getText().isEmpty()){
+        ArrayList listeDesPatients = new ArrayList();
+
+        for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+
+            listeDesPatients.add(modeleListeDPI.get(i).getNom());
+
+        }
+
+        ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
+          
+        
+        modeleListeDPIRecherche = new DefaultListModel<pichisNF.DPI>();
+        for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+
+            for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
+                if (listeDesPatientsRecherchee.get(j).equals(modeleListeDPI.get(i).getNom())&& !modeleListeDPIRecherche.contains(modeleListeDPI.elementAt(i))) {
+                    modeleListeDPIRecherche.addElement(modeleListeDPI.elementAt(i));
+                }
+
+            }
+        }
+
+        listeDePatients.setModel(modeleListeDPIRecherche); 
+        }
+        else{
+            listeDePatients.setModel(modeleListeDPI); 
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
     /**
      * @param args the command line arguments

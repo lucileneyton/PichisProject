@@ -30,8 +30,20 @@ public class fonctions {
         ArrayList<Object> listeFin = new ArrayList<Object>();
         
         for(int i=0; i<liste.size();i++){
-            if(liste.get(i).toString().substring(0, nomElement.length()-1).equals(nomElement)){
+            
+            if (nomElement.length()<= liste.get(i).toString().length()){
+          
+           
+            if(liste.get(i).toString().substring(0, nomElement.length()).toLowerCase().equals(nomElement.toLowerCase())){
+                
                 listeFin.add(liste.get(i));
+            }
+            }
+            else{
+                if(liste.get(i).toString().toLowerCase().equals(nomElement.substring(0, liste.get(i).toString().length()).toLowerCase())){
+                
+                listeFin.add(liste.get(i));
+            }
             }
         }
         return listeFin;

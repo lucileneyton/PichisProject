@@ -42,7 +42,7 @@ public class Identification1 extends javax.swing.JFrame {
         setTitle("PICHISManager");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
         //setSize(1365, 765);
-        this.setResizable(false);
+        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
