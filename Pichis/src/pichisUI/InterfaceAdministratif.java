@@ -33,6 +33,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    boolean fenêtreAjoutPatientOuverte = false;
 
     public InterfaceAdministratif() {
         initComponents();
@@ -44,16 +45,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         setTitle("PICHIS Administratif");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
         //setSize(1365, 765);
-        this.setResizable(false);
+        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.pack();
+//        
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
+        this.pack();
 
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
         comboBoxService.setEnabled(false);
@@ -96,7 +98,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         boutonAjouter = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
         DMA = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        panelDouverture = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         panelOnglets = new javax.swing.JTabbedPane();
         ongletLocalisation = new javax.swing.JPanel();
@@ -279,6 +281,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         panelListe.setMinimumSize(new java.awt.Dimension(270, 69));
         panelListe.setLayout(new java.awt.BorderLayout());
 
+        scrollPaneListePatient.setMinimumSize(new java.awt.Dimension(258, 23));
+
         listeDePatients.setBackground(new java.awt.Color(204, 204, 204));
         listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
@@ -295,7 +299,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         });
         scrollPaneListePatient.setViewportView(listeDePatients);
 
-        panelListe.add(scrollPaneListePatient, java.awt.BorderLayout.CENTER);
+        panelListe.add(scrollPaneListePatient, java.awt.BorderLayout.WEST);
 
         boutonAjouter.setText("Ajouter un patient");
         boutonAjouter.addActionListener(new java.awt.event.ActionListener() {
@@ -317,24 +321,24 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Sélectionner un patient");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelDouvertureLayout = new javax.swing.GroupLayout(panelDouverture);
+        panelDouverture.setLayout(panelDouvertureLayout);
+        panelDouvertureLayout.setHorizontalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(215, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelDouvertureLayout.setVerticalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
                 .addGap(196, 196, 196)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        DMA.add(jPanel1, "card3");
+        DMA.add(panelDouverture, "card3");
 
         panelOnglets.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -374,6 +378,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         });
 
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
+        comboBoxService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxServiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
         ongletLocalisation.setLayout(ongletLocalisationLayout);
@@ -755,8 +764,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldRechercheActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
-        AjoutPatient ajout = new AjoutPatient(this);
-        ajout.setVisible(true);
+        if (!fenêtreAjoutPatientOuverte) {
+            AjoutPatient ajout = new AjoutPatient(this);
+            ajout.setVisible(true);
+            fenêtreAjoutPatientOuverte =true;
+        }
+        else{
+             JOptionPane.showMessageDialog(this, "Fenêtre en cours d'exécution");
+        }
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
@@ -823,24 +838,21 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
-        if(listeDePatients.getModel().getSize()!=0 && listeDePatients.getSelectedIndex() >=0){
-            
-           
-        
-        DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
-                
-                
-        int indice = listeDePatients.getSelectedIndex();
-           
-        textFieldNom.setText(modele.get(indice).getNom());
-        textFieldPrenom.setText(modele.get(indice).getPrenom());
-        textFieldSexe.setText(modele.get(indice).getSexe());
-        textFieldIPP.setText(modele.get(indice).getIpp());
-        textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
-        textFieldAdresse.setText(modele.get(indice).getAdresse());
+        if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
 
-        CardLayout c = (CardLayout) (DMA.getLayout());
-        c.show(DMA, "card2");
+            DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
+
+            int indice = listeDePatients.getSelectedIndex();
+
+            textFieldNom.setText(modele.get(indice).getNom());
+            textFieldPrenom.setText(modele.get(indice).getPrenom());
+            textFieldSexe.setText(modele.get(indice).getSexe());
+            textFieldIPP.setText(modele.get(indice).getIpp());
+            textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
+            textFieldAdresse.setText(modele.get(indice).getAdresse());
+
+            CardLayout c = (CardLayout) (DMA.getLayout());
+            c.show(DMA, "card2");
         }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -854,36 +866,54 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldRechercheInputMethodTextChanged
 
     private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
-      
-        if(!jTextFieldRecherche.getText().isEmpty()){
-        ArrayList listeDesPatients = new ArrayList();
 
-        for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+        if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listeDesPatients = new ArrayList();
 
-            listeDesPatients.add(modeleListeDPI.get(i).getNom());
+            for (int i = 0; i < modeleListeDPI.getSize(); i++) {
 
-        }
-
-        ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
-          
-        
-        modeleListeDPIRecherche = new DefaultListModel<pichisNF.DPI>();
-        for (int i = 0; i < modeleListeDPI.getSize(); i++) {
-
-            for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
-                if (listeDesPatientsRecherchee.get(j).equals(modeleListeDPI.get(i).getNom())&& !modeleListeDPIRecherche.contains(modeleListeDPI.elementAt(i))) {
-                    modeleListeDPIRecherche.addElement(modeleListeDPI.elementAt(i));
-                }
+                listeDesPatients.add(modeleListeDPI.get(i).getNom());
 
             }
-        }
 
-        listeDePatients.setModel(modeleListeDPIRecherche); 
-        }
-        else{
-            listeDePatients.setModel(modeleListeDPI); 
+            ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
+
+            modeleListeDPIRecherche = new DefaultListModel<pichisNF.DPI>();
+            for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+
+                for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
+                    if (listeDesPatientsRecherchee.get(j).equals(modeleListeDPI.get(i).getNom()) && !modeleListeDPIRecherche.contains(modeleListeDPI.elementAt(i))) {
+                        modeleListeDPIRecherche.addElement(modeleListeDPI.elementAt(i));
+                    }
+
+                }
+            }
+
+            listeDePatients.setModel(modeleListeDPIRecherche);
+        } else {
+            listeDePatients.setModel(modeleListeDPI);
         }// TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
+
+    private void comboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxServiceActionPerformed
+
+    /**
+     * Méthode assurant la mise à jour de la liste des patients de
+     * l'établissement
+     */
+    public void miseAJour() {
+        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+
+        modeleListeDPI.clear();
+        for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
+
+            modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
+
+        }
+        listeDePatients.setModel(modeleListeDPI);
+    }
 
     /**
      * @param args the command line arguments
@@ -958,7 +988,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollSejours;
@@ -979,6 +1008,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel ongletLocalisation;
     private javax.swing.JPanel ongletSejour;
     private javax.swing.JPanel panelBarreRecherche;
+    private javax.swing.JPanel panelDouverture;
     private javax.swing.JPanel panelListe;
     private javax.swing.JTabbedPane panelOnglets;
     private javax.swing.JPanel panelPrincipal;

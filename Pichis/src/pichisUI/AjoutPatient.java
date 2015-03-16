@@ -23,13 +23,16 @@ public class AjoutPatient extends javax.swing.JFrame {
         initComponents();
         
      
-        //setLocationRelativeTo(null);
-        //this.setResizable(false);
-        //this.toFront();
-        //this.setAlwaysOnTop(true);
-        //this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        //this.setFocusable(true);
-        //this.setState(Frame.ICONIFIED);
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+       
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+      
+        
+        this.toFront();
+        this.setAlwaysOnTop(true);
+        this.setFocusable(true);
+        this.setState(Frame.NORMAL);
         
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
@@ -347,9 +350,9 @@ public class AjoutPatient extends javax.swing.JFrame {
                                 dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
                                 //Ajouter message de confirmation
                                 this.dispose();
-                                interfaceAdmin.dispose();
-                                interfaceAdmin = new InterfaceAdministratif();
-                                interfaceAdmin.setVisible(true);
+                                interfaceAdmin.fenêtreAjoutPatientOuverte =false;
+                                interfaceAdmin.miseAJour();
+                                
                         }
                         else{
                             fenetre.showMessageDialog(null, "Veuillez entrer l'adresse du patient");
