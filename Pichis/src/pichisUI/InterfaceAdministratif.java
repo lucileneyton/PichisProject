@@ -207,7 +207,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 365, Short.MAX_VALUE)
                 .addComponent(jLabel37)
                 .addGap(86, 86, 86)
                 .addComponent(jLabel38)
@@ -276,6 +276,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         InterfaceAdministratif.add(panelTitre, java.awt.BorderLayout.PAGE_START);
 
         panelListe.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients"));
+        panelListe.setMinimumSize(new java.awt.Dimension(270, 69));
         panelListe.setLayout(new java.awt.BorderLayout());
 
         listeDePatients.setBackground(new java.awt.Color(204, 204, 204));
@@ -286,6 +287,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             public int getSize() { return listeDpi.size(); }
             public Object getElementAt(int i) { return listeDpi.get(i); }
         });
+        listeDePatients.setMinimumSize(new java.awt.Dimension(2, 0));
         listeDePatients.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listeDePatientsValueChanged(evt);
@@ -322,7 +324,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +397,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                             .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(91, 91, 91)))
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,7 +486,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                         .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
         ongletFichePatientLayout.setVerticalGroup(
             ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -722,7 +724,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                     .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         ongletLettreSortieLayout.setVerticalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,6 +824,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         if(listeDePatients.getModel().getSize()!=0 && listeDePatients.getSelectedIndex() >=0){
+            
+           
         
         DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
                 
