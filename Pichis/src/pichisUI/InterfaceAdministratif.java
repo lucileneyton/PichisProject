@@ -11,9 +11,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import pichisNF.DPI;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
 
@@ -33,7 +31,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-    boolean fenêtreAjoutPatientOuverte = false;
 
     public InterfaceAdministratif() {
         initComponents();
@@ -764,14 +761,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldRechercheActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
-        if (!fenêtreAjoutPatientOuverte) {
-            AjoutPatient ajout = new AjoutPatient(this);
-            ajout.setVisible(true);
-            fenêtreAjoutPatientOuverte =true;
-        }
-        else{
-             JOptionPane.showMessageDialog(this, "Fenêtre en cours d'exécution");
-        }
+
+        AjoutPatient test = new AjoutPatient(this, true, this);
+        test.setVisible(true);
+//            AjoutPatient ajout = new AjoutPatient(this);
+//            ajout.setVisible(true);
+
+
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
@@ -833,27 +829,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
-        this.dispose();
-        new Identification1();
+        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir vous déconnecter" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            this.dispose();
+            new Identification1();
+        }
+
+
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
-        if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
-
-            DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
-
-            int indice = listeDePatients.getSelectedIndex();
-
-            textFieldNom.setText(modele.get(indice).getNom());
-            textFieldPrenom.setText(modele.get(indice).getPrenom());
-            textFieldSexe.setText(modele.get(indice).getSexe());
-            textFieldIPP.setText(modele.get(indice).getIpp());
-            textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
-            textFieldAdresse.setText(modele.get(indice).getAdresse());
-
-            CardLayout c = (CardLayout) (DMA.getLayout());
-            c.show(DMA, "card2");
-        }
+        affichageDonneesPatient();
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
@@ -899,11 +886,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxServiceActionPerformed
 
-    /**
-     * Méthode assurant la mise à jour de la liste des patients de
-     * l'établissement
-     */
     public void miseAJour() {
+        /**
+         * Méthode assurant la mise à jour de la liste des patients de
+         * l'établissement
+         */
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
 
         modeleListeDPI.clear();
@@ -913,6 +900,29 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         }
         listeDePatients.setModel(modeleListeDPI);
+    }
+
+    public void affichageDonneesPatient() {
+        /**
+         * Méthode actualisant l'affichant des données d'un patient sur
+         * l'interface
+         */
+        if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
+
+            DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
+
+            int indice = listeDePatients.getSelectedIndex();
+
+            textFieldNom.setText(modele.get(indice).getNom());
+            textFieldPrenom.setText(modele.get(indice).getPrenom());
+            textFieldSexe.setText(modele.get(indice).getSexe());
+            textFieldIPP.setText(modele.get(indice).getIpp());
+            textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
+            textFieldAdresse.setText(modele.get(indice).getAdresse());
+
+            CardLayout c = (CardLayout) (DMA.getLayout());
+            c.show(DMA, "card2");
+        }
     }
 
     /**

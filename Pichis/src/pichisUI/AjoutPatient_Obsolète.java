@@ -5,26 +5,37 @@
  */
 package pichisUI;
 
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import pichisNF.DPI;
 
 /**
  *
- * @author Matilas
+ * @author molit_000
  */
-public class AjoutPatient extends javax.swing.JDialog {
+public class AjoutPatient_Obsolète extends javax.swing.JFrame {
 
     InterfaceAdministratif interfaceAdmin;
 
     /**
-     * Creates new form Test
+     * Creates new form AjoutPatient
      */
-    public AjoutPatient(java.awt.Frame parent, boolean modal, InterfaceAdministratif interfaceAdmin) {
-        super(parent, modal);
-        this.setTitle("Formulaire d'ajout");
+    public AjoutPatient_Obsolète(InterfaceAdministratif interfaceAdmin) {
         initComponents();
+
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        this.toFront();
+        this.setAlwaysOnTop(true);
+        this.setFocusable(true);
+        this.setState(Frame.NORMAL);
+
         int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
         int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
         this.setLocation(x, y);
@@ -66,6 +77,7 @@ public class AjoutPatient extends javax.swing.JDialog {
         champAnnee = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -273,7 +285,7 @@ public class AjoutPatient extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdresse)
                     .addComponent(champAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutonValider)
                     .addComponent(boutonAnnuler))
@@ -290,7 +302,7 @@ public class AjoutPatient extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -312,15 +324,12 @@ public class AjoutPatient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_champAdresseActionPerformed
 
-    private void champAdresseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_champAdresseKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            boutonValiderActionPerformed(null);
-        }     // TODO add your handling code here:
-    }//GEN-LAST:event_champAdresseKeyPressed
-
-    private void champIPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champIPPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_champIPPActionPerformed
+    private void boutonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAnnulerActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir annuler ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_boutonAnnulerActionPerformed
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         JOptionPane fenetre = new JOptionPane();
@@ -343,17 +352,12 @@ public class AjoutPatient extends javax.swing.JDialog {
                             } else {
                                 sexe = "F";
                             }
-
-                            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le patient " + "'"+ champNom.getText() + " " + champPrenom.getText() + "'"+" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
-                            if (confirm == JOptionPane.YES_OPTION) {
-                                pichisBD.DAODPI dpi = new pichisBD.DAODPI();
-                                dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
-
-                                this.dispose();
-
-                                interfaceAdmin.miseAJour();
-                            }
+                            pichisBD.DAODPI dpi = new pichisBD.DAODPI();
+                            dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
+                            //Ajouter message de confirmation
+                            this.dispose();
+                           
+                            interfaceAdmin.miseAJour();
 
                         } else {
                             fenetre.showMessageDialog(null, "Veuillez entrer l'adresse du patient");
@@ -371,38 +375,42 @@ public class AjoutPatient extends javax.swing.JDialog {
         } else {
             fenetre.showMessageDialog(null, "Veuillez entrer un IPP correct");
         }
+
     }//GEN-LAST:event_boutonValiderActionPerformed
 
-    private void boutonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAnnulerActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir annuler ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_boutonAnnulerActionPerformed
-
-    private void champJourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourFocusGained
-        champJour.setText("");
-    }//GEN-LAST:event_champJourFocusGained
+    private void champIPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champIPPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champIPPActionPerformed
 
     private void champJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourActionPerformed
 
-    private void champMoisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisFocusGained
-        champMois.setText("");
-    }//GEN-LAST:event_champMoisFocusGained
-
     private void champMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champMoisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champMoisActionPerformed
+
+    private void champAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champAnneeActionPerformed
+
+    private void champJourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourFocusGained
+        champJour.setText("");
+    }//GEN-LAST:event_champJourFocusGained
+
+    private void champMoisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisFocusGained
+        champMois.setText("");
+    }//GEN-LAST:event_champMoisFocusGained
 
     private void champAnneeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeFocusGained
         champAnnee.setText("");
     }//GEN-LAST:event_champAnneeFocusGained
 
-    private void champAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_champAnneeActionPerformed
+    private void champAdresseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_champAdresseKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boutonValiderActionPerformed(null);
+        }     // TODO add your handling code here:
+    }//GEN-LAST:event_champAdresseKeyPressed
 
     /**
      * @param args the command line arguments
@@ -421,28 +429,21 @@ public class AjoutPatient extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AjoutPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjoutPatient_Obsolète.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AjoutPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjoutPatient_Obsolète.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AjoutPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjoutPatient_Obsolète.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AjoutPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjoutPatient_Obsolète.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                AjoutPatient dialog = new AjoutPatient(new javax.swing.JFrame(), true, );
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
+
             }
         });
     }

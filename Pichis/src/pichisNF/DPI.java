@@ -166,7 +166,7 @@ public String afficherDMA(){
     
     public String toString(){
 //        
-        return nom + " " + prenom;
+        return nom.toUpperCase() + " " + prenom;
     }
     
     public String afficherDPI(){
