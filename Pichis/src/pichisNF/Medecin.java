@@ -5,10 +5,6 @@
  */
 package pichisNF;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import pichisBD.ConnectionBD;
-
 /**
  *
  * @author molit_000
