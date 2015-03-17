@@ -61,7 +61,7 @@ public class DAOPrestations {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient.prestations= " + idPatient + ";");
+            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient='" + idPatient + "'");
 
             while (resul.next()) {
                 

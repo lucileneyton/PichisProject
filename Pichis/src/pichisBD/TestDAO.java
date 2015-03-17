@@ -6,6 +6,7 @@
 
 package pichisBD;
 
+import pichisNF.Prestations;
 import pichisNF.Resultat;
 
 /**
@@ -29,6 +30,9 @@ public class TestDAO {
         daor.ajoutResultat("2015-03-17", "taux de leucocytes anormal", "1", "1", "1");
         res = daor.resultatPrestation("1");
         System.out.println(res.getDescriptions().toString());
+        
+        Prestations p = daop.prestationsPatient("123");
+        System.out.println(p.getNaturePrestation().toString());
         
     }
     
