@@ -22,12 +22,23 @@ public class Sejour {
     private Localisation localisation;
     
     
+    public Sejour(DMA dma, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation){
+        //int compteurSejour = 10000 + dma.getListeSejours().size();
+        //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+        this.numeroSejour = dma.genererNumeroSejour(dateEntree);
+        this.dateEntree = dateEntree;
+        this.dateSortie = null;
+        this.PHResponsable = PHResponsable;
+        this.localisation = localisation;
+    }
+    
     public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
         //int compteurSejour = 10000 + dma.getListeSejours().size();
         //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
         this.numeroSejour = dma.genererNumeroSejour(dateEntree);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
+        this.dateSortie = null;
         this.PHResponsable = PHResponsable;
         this.localisation = localisation;
     }
