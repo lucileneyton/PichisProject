@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="412" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="362" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -69,67 +69,75 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelNumeroSejour" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="boutonAnnuler" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                                   <Component id="boutonValider" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelNomPh" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="comboBoxNomPh" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="champNumeroSejour" alignment="0" pref="160" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="labelAdresse" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labelNomPh" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="labelAdresse" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelService" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelNumeroChambre" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="labelNumeroChambre" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelPlacement" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="champNumeroChambre" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="comboBoxNomPh" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="champNumeroSejour" alignment="0" pref="160" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="comboBoxPlacement" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="comboBoxService" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxPlacement" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxService" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelDateEntree" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelPatient" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="champJourEntree" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="champMoisEntree" min="-2" pref="47" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="champAnneeEntree" min="-2" pref="61" max="-2" attributes="0"/>
+                                  <Component id="labelNumeroSejour" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelDateEntree" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelPatient" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="champJourEntree" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="champMoisEntree" min="-2" pref="47" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="champAnneeEntree" min="-2" pref="61" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jTextFieldPatient" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="jTextFieldPatient" max="32767" attributes="0"/>
+                                  <Component id="jLabelLocalisation" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="labelService" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelPlacement" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="446" max="32767" attributes="0"/>
                   </Group>
@@ -162,29 +170,38 @@
                           <Component id="labelNomPh" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="comboBoxNomPh" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelService" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxService" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="labelAdresse" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="25" max="32767" attributes="0"/>
+                              <Component id="jLabelLocalisation" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="comboBoxService" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelService" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="labelAdresse" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNumeroChambre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="champNumeroChambre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNumeroChambre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelPlacement" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxPlacement" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxPlacement" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="boutonValider" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="boutonAnnuler" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -337,7 +354,7 @@
             <Component class="javax.swing.JComboBox" name="comboBoxPlacement">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;porte&quot;, &quot;fen&#xea;tre&quot;, &quot;Chambre unique&quot; })" type="code"/>
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;porte&quot;, &quot;fenetre&quot;, &quot;Chambre unique&quot; })" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -353,6 +370,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxServiceActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelLocalisation">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Localisation"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

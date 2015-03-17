@@ -10,7 +10,7 @@ package pichisNF;
  * @author molit_000
  */
 public enum Specialite {
-    ANESTHESIE ("Anesthésie générale"),
+    ANESTHESIE ("Anesthesie"),
     CARDIOLOGIE ("Cardiologie"),
     NEUROLOGIE ("Neurologie"),
     RADIOLOGIE("Radiologie"),
@@ -25,4 +25,5 @@ public enum Specialite {
     public String toString(){
         return this.specialite;
     }
+    
 }

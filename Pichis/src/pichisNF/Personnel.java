@@ -33,7 +33,12 @@ public class Personnel {
     }
   
     public String getId() {
-        return id;
+        if(this.equals(null)){
+            return "NULL";
+        }
+        else{
+            return id;
+        }
     }
 
     public void setId(String id) {

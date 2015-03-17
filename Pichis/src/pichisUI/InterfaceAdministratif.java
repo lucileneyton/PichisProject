@@ -455,7 +455,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         labelPlacement.setText("Placement");
 
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Chambre unique" }));
         comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPlacementActionPerformed(evt);
@@ -539,24 +539,24 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
-                .addContainerGap(414, Short.MAX_VALUE)
+            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                .addGap(302, 302, 302)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(120, 120, 120))
         );
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sejour1" };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

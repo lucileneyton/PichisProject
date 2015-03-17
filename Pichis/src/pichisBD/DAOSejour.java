@@ -77,7 +77,29 @@ public class DAOSejour {
         return dma;
     }
      
-    
+    public void ajout(Sejour sejour, DPI dpi){
+        Statement ins;
+        Statement verif;
+        ResultSet res;
+        
+        try {
+            ins = c.connexion.createStatement();
+            verif = c.connexion.createStatement();
+            
+            res = verif.executeQuery("SELECT id FROM sejour WHERE id='"+sejour.getNumeroSejour()+"'");
+            if (res.getRow()!=0){
+                System.out.println("Le sejour existe déjà dans la base");
+            }
+            
+            
+            else{
+                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre()+ "')");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création du patient" + ex);
+        } 
+    }
 
 }
 
