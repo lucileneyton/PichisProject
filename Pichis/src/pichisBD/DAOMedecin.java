@@ -84,7 +84,7 @@ public class DAOMedecin {
         try {
             
            Statement ins = c.connexion.createStatement();
-            res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id= "+id+";");
+            res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id= '"+id+"'");
             if (res.getRow()==0){
             b= false;
             return b;
