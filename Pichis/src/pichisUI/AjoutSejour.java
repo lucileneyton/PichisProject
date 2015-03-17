@@ -7,11 +7,12 @@ package pichisUI;
 
 import java.awt.Toolkit;
 import java.util.Calendar;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import pichisBD.DAOMedecin;
 import pichisNF.DPI;
 import pichisNF.DateSimple;
+import pichisNF.Localisation;
+import pichisNF.Specialite;
 
 /**
  *
@@ -21,6 +22,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     
     private DPI patient;
     private DAOMedecin daoMedecin;
+    DateSimple dateEntree;
     /**
      * Creates new form AjoutSejour
      */
@@ -36,7 +38,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
         champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
         
-        DateSimple dateEntree = new DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
+        dateEntree = new DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
         
         jTextFieldPatient.setText(patient.getIpp());
         champNumeroSejour.setText(patient.getDma().genererNumeroSejour(dateEntree));
@@ -48,6 +50,10 @@ public class AjoutSejour extends javax.swing.JFrame {
         for(int i =0; i<tab.length;i++){
             comboBoxNomPh.setModel(new javax.swing.DefaultComboBoxModel(tab));
         }
+        
+        
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
+        
         
     }
 
@@ -78,6 +84,12 @@ public class AjoutSejour extends javax.swing.JFrame {
         comboBoxNomPh = new javax.swing.JComboBox();
         jLabelPatient = new javax.swing.JLabel();
         jTextFieldPatient = new javax.swing.JTextField();
+        labelService = new javax.swing.JLabel();
+        labelNumeroChambre = new javax.swing.JLabel();
+        labelPlacement = new javax.swing.JLabel();
+        champNumeroChambre = new javax.swing.JTextField();
+        comboBoxPlacement = new javax.swing.JComboBox();
+        comboBoxService = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -169,6 +181,32 @@ public class AjoutSejour extends javax.swing.JFrame {
         jTextFieldPatient.setEditable(false);
         jTextFieldPatient.setBackground(new java.awt.Color(204, 204, 204));
 
+        labelService.setText("Service");
+
+        labelNumeroChambre.setText("Numéro de chambre");
+
+        labelPlacement.setText("Placement");
+
+        champNumeroChambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                champNumeroChambreActionPerformed(evt);
+            }
+        });
+
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPlacementActionPerformed(evt);
+            }
+        });
+
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
+        comboBoxService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxServiceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -184,15 +222,23 @@ public class AjoutSejour extends javax.swing.JFrame {
                             .addComponent(boutonValider))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(labelAdresse)
-                                    .addGap(143, 143, 143))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(labelAdresse)
+                                        .addGap(143, 143, 143))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(labelNomPh)
+                                        .addGap(81, 81, 81)))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(labelNomPh)
-                                    .addGap(81, 81, 81)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comboBoxNomPh, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(champNumeroSejour, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                    .addComponent(labelNumeroChambre)
+                                    .addGap(47, 47, 47)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(comboBoxNomPh, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(champNumeroSejour, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(33, 33, 33)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,8 +256,10 @@ public class AjoutSejour extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(champAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldPatient))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextFieldPatient)))
+                    .addComponent(labelService)
+                    .addComponent(labelPlacement))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,9 +284,21 @@ public class AjoutSejour extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNomPh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxNomPh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelService)
+                    .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(labelAdresse)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNumeroChambre)
+                    .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPlacement)
+                    .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutonValider)
                     .addComponent(boutonAnnuler))
@@ -251,7 +311,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,8 +353,22 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonAnnulerActionPerformed
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
-        
+//        Localisation loc = new Localisation(, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem());
+//        Sejour sejour = new Sejour(patient.getDma(), dateEntree, , loc);
+//        patient.getDma().ajouterSejour(sejour);
     }//GEN-LAST:event_boutonValiderActionPerformed
+
+    private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPlacementActionPerformed
+
+    private void champNumeroChambreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champNumeroChambreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champNumeroChambreActionPerformed
+
+    private void comboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxServiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,8 +411,11 @@ public class AjoutSejour extends javax.swing.JFrame {
     private javax.swing.JTextField champAnneeEntree;
     private javax.swing.JTextField champJourEntree;
     private javax.swing.JTextField champMoisEntree;
+    private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JTextField champNumeroSejour;
     private javax.swing.JComboBox comboBoxNomPh;
+    private javax.swing.JComboBox comboBoxPlacement;
+    private javax.swing.JComboBox comboBoxService;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelPatient;
@@ -348,7 +425,10 @@ public class AjoutSejour extends javax.swing.JFrame {
     private javax.swing.JLabel labelAdresse;
     private javax.swing.JLabel labelDateEntree;
     private javax.swing.JLabel labelNomPh;
+    private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelNumeroSejour;
+    private javax.swing.JLabel labelPlacement;
+    private javax.swing.JLabel labelService;
     private javax.swing.JLabel labelTitre;
     // End of variables declaration//GEN-END:variables
 }

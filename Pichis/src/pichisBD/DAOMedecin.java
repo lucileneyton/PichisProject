@@ -62,14 +62,19 @@ public class DAOMedecin {
         } catch (SQLException e) {
             System.out.println("erreur : " + e);
 <<<<<<< HEAD
+<<<<<<< HEAD
             return b;
 =======
             return false;
 >>>>>>> A annuler
+=======
+            return b;
+>>>>>>> origin/master
         }
 
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public boolean estMedecin(String id, String mdp) {
         ResultSet res;
@@ -77,12 +82,19 @@ public class DAOMedecin {
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
 >>>>>>> A annuler
+=======
+    public boolean estMedecin(String id, String mdp) {
+        ResultSet res;
+>>>>>>> origin/master
         boolean b = false;
 
         try {
 
             Statement ins = c.connexion.createStatement();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
             res = ins.executeQuery("SELECT * FROM personnel");
             
@@ -231,6 +243,9 @@ public class DAOMedecin {
 
             Statement ins = c.connexion.createStatement();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
             resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service IS NOT NULL AND personnel.id='" + id + "'");
 
             if (resul.getRow() == 0) {

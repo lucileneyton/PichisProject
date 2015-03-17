@@ -9,6 +9,8 @@ package pichisBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import pichisNF.Administratif;
 import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Medecin;
@@ -83,6 +85,35 @@ public class DAOPrestations {
         }
 
         return p;
+    }
+    
+    public ArrayList<Prestations> consulterListePrestations() {
+
+        ArrayList<Prestations> listePrestations = new ArrayList();
+
+        try {
+
+            ResultSet resul;
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT * FROM prestations");
+            while (resul.next()) {
+
+            naturePrestation = resul.getString("nature");
+            demandeur = daom.medecinParID("demandeur");
+            patient = daod.dpiParIPP("patient");
+            resultat = daor.resultatPrestation("resultat");
+            String d = resul.getString("date");
+            date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+             
+             
+            p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
+
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur DAOPrestations: " + e);
+        }
+
+        return listePrestations;
     }
 
 }
