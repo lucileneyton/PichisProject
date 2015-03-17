@@ -20,7 +20,6 @@ public class Medecin extends Personnel {
     public Medecin(String id, String nom, String prenom, String motDePasse, Services specialite) {
         super(id, nom, prenom, motDePasse);
         this.specialite = specialite;
-        AjoutBD.ajoutMedecin(id, nom, prenom, motDePasse, specialite);
         
     }
 
