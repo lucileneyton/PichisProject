@@ -23,12 +23,7 @@ import pichisNF.fonctions;
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
-    DefaultListModel<pichisNF.Sejour> modeleListeSejour;
-    
     DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
-    
-    pichisBD.DAODPI daoDpi;
-    pichisBD.DAOSejour daoSejour;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -37,14 +32,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-    
-    
 
     public InterfaceAdministratif() {
         initComponents();
 
-        daoDpi = new pichisBD.DAODPI();
-        daoSejour = new pichisBD.DAOSejour();
+        pichisNF.DPI patientActuel;
+        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -70,8 +64,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
         }
         listeDePatients.setModel(modeleListeDPI);
-        
-        modeleListeSejour = new DefaultListModel<pichisNF.Sejour>();
 
     }
 
@@ -323,20 +315,30 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         DMA.setPreferredSize(new java.awt.Dimension(width, height));
         DMA.setLayout(new java.awt.CardLayout());
 
-        panelDouverture.setLayout(new java.awt.GridLayout());
-
         jLabel14.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Sélectionner un patient");
-        panelDouverture.add(jLabel14);
+
+        javax.swing.GroupLayout panelDouvertureLayout = new javax.swing.GroupLayout(panelDouverture);
+        panelDouverture.setLayout(panelDouvertureLayout);
+        panelDouvertureLayout.setHorizontalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
+        );
+        panelDouvertureLayout.setVerticalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         DMA.add(panelDouverture, "card3");
 
         panelOnglets.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        panelOnglets.setMaximumSize(new java.awt.Dimension(1111, 32767));
-        panelOnglets.setPreferredSize(new java.awt.Dimension(900, 585));
-
-        ongletLocalisation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Nom");
 
@@ -533,115 +535,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addContainerGap(25, Short.MAX_VALUE)))
         );
 
-<<<<<<< HEAD
-        ongletLocalisation.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 87, -1, -1));
-
-        panelOnglets.addTab("Localisation", ongletLocalisation);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Nom");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setText("Prénom");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("IPP");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setText("Date de naissance");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setText("Sexe");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("Adresse");
-
-        textFieldNom.setEditable(false);
-        textFieldNom.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldNom.setText("non edit");
-        textFieldNom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNomActionPerformed(evt);
-            }
-        });
-
-        textFieldPrenom.setEditable(false);
-        textFieldPrenom.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldPrenom.setText("non edit");
-
-        textFieldSexe.setEditable(false);
-        textFieldSexe.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldSexe.setText("non edit");
-
-        textFieldIPP.setEditable(false);
-        textFieldIPP.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldIPP.setText("non edit");
-
-        textFieldDateNaissance.setEditable(false);
-        textFieldDateNaissance.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldDateNaissance.setText("non edit");
-
-        textFieldAdresse.setEditable(false);
-        textFieldAdresse.setBackground(new java.awt.Color(204, 204, 204));
-        textFieldAdresse.setText("non edit");
-
-        javax.swing.GroupLayout ongletFichePatientLayout = new javax.swing.GroupLayout(ongletFichePatient);
-        ongletFichePatient.setLayout(ongletFichePatientLayout);
-        ongletFichePatientLayout.setHorizontalGroup(
-            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletFichePatientLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel13))
-                .addGap(33, 33, 33)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(textFieldPrenom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                        .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        ongletFichePatientLayout.setVerticalGroup(
-            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletFichePatientLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldSexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(textFieldIPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(189, Short.MAX_VALUE))
-        );
-
-        panelOnglets.addTab("Fiche du patient", ongletFichePatient);
-
-=======
         javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
@@ -661,10 +554,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
->>>>>>> f5fef982c87d823a0ba0987b132ed39df6014ef4
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { };
+            String[] strings = { "Sejour1" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -866,7 +758,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                     .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         ongletLettreSortieLayout.setVerticalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -875,7 +767,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(boutonFermerDPI)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Lettre de sortie", ongletLettreSortie);
@@ -977,11 +869,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         affichageDonneesPatient();
-        
-        for (int i = 0; i < daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp()).getListeSejours().size(); i++) {
-            modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp()).getListeSejours().get(i));        
-        }
-        listeSejours.setModel(modeleListeSejour);
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
