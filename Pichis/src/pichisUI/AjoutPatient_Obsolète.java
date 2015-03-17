@@ -8,7 +8,6 @@ package pichisUI;
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import pichisNF.DPI;
 
