@@ -226,11 +226,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeMedecin.setBackground(new java.awt.Color(204, 204, 204));
         listeMedecin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMedecin.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listeMedecin.setModel(new javax.swing.AbstractListModel() {
-            ArrayList<pichisNF.Medecin> listeMedecin = new ArrayList<pichisNF.Medecin>();
-            public int getSize() { return listeMedecin.size(); }
-            public Object getElementAt(int i) { return listeMedecin.get(i); }
-        });
         jScrollPane1.setViewportView(listeMedecin);
 
         jPanel9.add(jScrollPane1);
@@ -244,11 +239,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeAdministratif.setBackground(new java.awt.Color(204, 204, 204));
         listeAdministratif.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeAdministratif.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listeAdministratif.setModel(new javax.swing.AbstractListModel() {
-            ArrayList<pichisNF.Administratif> listeAdministratif = new ArrayList<pichisNF.Administratif>();
-            public int getSize() { return listeAdministratif.size(); }
-            public Object getElementAt(int i) { return listeAdministratif.get(i); }
-        });
         jScrollPane3.setViewportView(listeAdministratif);
 
         jPanel18.add(jScrollPane3);
@@ -262,11 +252,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeMaintenance.setBackground(new java.awt.Color(204, 204, 204));
         listeMaintenance.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMaintenance.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listeMaintenance.setModel(new javax.swing.AbstractListModel() {
-            ArrayList<pichisNF.Maintenance> listeMaintenance = new ArrayList<pichisNF.Maintenance>();
-            public int getSize() { return listeMaintenance.size(); }
-            public Object getElementAt(int i) { return listeMaintenance.get(i); }
-        });
         jScrollPane4.setViewportView(listeMaintenance);
 
         jPanel19.add(jScrollPane4);
