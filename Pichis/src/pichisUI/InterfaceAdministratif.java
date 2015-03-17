@@ -533,7 +533,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addContainerGap(25, Short.MAX_VALUE)))
         );
 
-<<<<<<< HEAD
         ongletLocalisation.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 87, -1, -1));
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
@@ -641,7 +640,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Fiche du patient", ongletFichePatient);
 
-=======
         javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
@@ -661,7 +659,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
->>>>>>> f5fef982c87d823a0ba0987b132ed39df6014ef4
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { };
