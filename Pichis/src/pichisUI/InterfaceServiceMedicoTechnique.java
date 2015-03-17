@@ -7,8 +7,10 @@ package pichisUI;
 
 
 import java.awt.Color;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisBD.DAOPrestations;
 
 /**
  *
@@ -19,9 +21,12 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceMedicoTechnique
      */
+    DefaultListModel<pichisNF.Prestations> modeleListePrestations;
+    
     public InterfaceServiceMedicoTechnique() {
         initComponents();
 
+        DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Médico-Technique");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -34,6 +39,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        //Remplissage de la liste des prestations demandées
+        modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
+        
+        for (int i = 0; i < daoPrestations.consulterListePrestations().size(); i++) {
+            modeleListePrestations.addElement(daoPrestations.consulterListePrestations().get(i));
+        }
+        listePrestations.setModel(modeleListePrestations);
     }
 
     /**
@@ -60,7 +73,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listeDePrestations = new javax.swing.JList();
+        listePrestations = new javax.swing.JList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -206,15 +219,15 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        listeDePrestations.setBackground(new java.awt.Color(204, 204, 204));
-        listeDePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
-        listeDePrestations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listeDePrestations.setModel(new javax.swing.AbstractListModel() {
+        listePrestations.setBackground(new java.awt.Color(204, 204, 204));
+        listePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
+        listePrestations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listePrestations.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sophie Stiquet", "Leo Pars", "Jean Foupasune", "Jean Neymar", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listeDePrestations);
+        jScrollPane1.setViewportView(listePrestations);
 
         jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -669,6 +682,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPaneAjoutResultat;
-    private javax.swing.JList listeDePrestations;
+    private javax.swing.JList listePrestations;
     // End of variables declaration//GEN-END:variables
 }
