@@ -98,16 +98,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         panelDouverture = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         panelOnglets = new javax.swing.JTabbedPane();
-        ongletLocalisation = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        boutonEnregistrer = new javax.swing.JButton();
-        boutonModifier = new javax.swing.JButton();
-        labelPlacement = new javax.swing.JLabel();
-        comboBoxPlacement = new javax.swing.JComboBox();
-        champNumeroChambre = new javax.swing.JTextField();
-        labelNumeroChambre = new javax.swing.JLabel();
-        labelService = new javax.swing.JLabel();
-        comboBoxService = new javax.swing.JComboBox();
         ongletFichePatient = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -121,6 +111,16 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         textFieldIPP = new javax.swing.JTextField();
         textFieldDateNaissance = new javax.swing.JTextField();
         textFieldAdresse = new javax.swing.JTextField();
+        ongletLocalisation = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        boutonEnregistrer = new javax.swing.JButton();
+        boutonModifier = new javax.swing.JButton();
+        labelPlacement = new javax.swing.JLabel();
+        comboBoxPlacement = new javax.swing.JComboBox();
+        champNumeroChambre = new javax.swing.JTextField();
+        labelNumeroChambre = new javax.swing.JLabel();
+        labelService = new javax.swing.JLabel();
+        comboBoxService = new javax.swing.JComboBox();
         ongletSejour = new javax.swing.JPanel();
         jScrollSejours = new javax.swing.JScrollPane();
         listeSejours = new javax.swing.JList();
@@ -216,7 +216,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         PanelBarreTitreLayout.setVerticalGroup(
             PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -330,6 +330,103 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         ongletLocalisation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setText("Nom");
+
+        jLabel6.setText("Prénom");
+
+        jLabel7.setText("IPP");
+
+        jLabel8.setText("Date de naissance");
+
+        jLabel12.setText("Sexe");
+
+        jLabel13.setText("Adresse");
+
+        textFieldNom.setEditable(false);
+        textFieldNom.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldNom.setText("non edit");
+        textFieldNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNomActionPerformed(evt);
+            }
+        });
+
+        textFieldPrenom.setEditable(false);
+        textFieldPrenom.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldPrenom.setText("non edit");
+
+        textFieldSexe.setEditable(false);
+        textFieldSexe.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldSexe.setText("non edit");
+
+        textFieldIPP.setEditable(false);
+        textFieldIPP.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldIPP.setText("non edit");
+
+        textFieldDateNaissance.setEditable(false);
+        textFieldDateNaissance.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldDateNaissance.setText("non edit");
+
+        textFieldAdresse.setEditable(false);
+        textFieldAdresse.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldAdresse.setText("non edit");
+
+        javax.swing.GroupLayout ongletFichePatientLayout = new javax.swing.GroupLayout(ongletFichePatient);
+        ongletFichePatient.setLayout(ongletFichePatientLayout);
+        ongletFichePatientLayout.setHorizontalGroup(
+            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletFichePatientLayout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel13))
+                .addGap(33, 33, 33)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldPrenom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(337, Short.MAX_VALUE))
+        );
+        ongletFichePatientLayout.setVerticalGroup(
+            ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletFichePatientLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldSexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(textFieldIPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelOnglets.addTab("Fiche du patient", ongletFichePatient);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         boutonEnregistrer.setText("Enregistrer les modifications");
@@ -428,6 +525,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addContainerGap(25, Short.MAX_VALUE)))
         );
 
+<<<<<<< HEAD
         ongletLocalisation.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 87, -1, -1));
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
@@ -535,6 +633,27 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         panelOnglets.addTab("Fiche du patient", ongletFichePatient);
 
+=======
+        javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
+        ongletLocalisation.setLayout(ongletLocalisationLayout);
+        ongletLocalisationLayout.setHorizontalGroup(
+            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
+                .addContainerGap(414, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(258, 258, 258))
+        );
+        ongletLocalisationLayout.setVerticalGroup(
+            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
+        );
+
+        panelOnglets.addTab("Localisation", ongletLocalisation);
+
+>>>>>>> f5fef982c87d823a0ba0987b132ed39df6014ef4
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sejour1" };

@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pichisNF.Maintenance;
 
 /**
@@ -18,6 +20,24 @@ import pichisNF.Maintenance;
 public class DAOMaintenance {
 
     ConnectionBD c = new ConnectionBD();
+    
+    public boolean estMaintenance(String id, String mdp ){
+        ResultSet res ;
+       
+        try {
+            boolean b;
+            Statement ins = c.connexion.createStatement();
+            res = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenant = 'true' AND id= "+id+";");
+            if (res.getRow()==0){
+            b= false;
+            return b;
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOMedecin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return true;
+    }
 
     public boolean identification(String id, String motDePasse) {
 
@@ -115,7 +135,7 @@ public class DAOMaintenance {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "')");
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL"+"','" +"true"+ "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du personnel de maintenance" + ex);

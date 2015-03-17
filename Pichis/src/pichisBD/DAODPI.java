@@ -84,7 +84,7 @@ public class DAODPI {
     }
     
     public void ajout(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){
-        //ConnectionBD bd = new ConnectionBD(); // à enlever quand interface ready !
+        
        
         Statement ins;
         Statement verif;
