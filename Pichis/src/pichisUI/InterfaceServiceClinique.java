@@ -5,11 +5,13 @@
  */
 package pichisUI;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisNF.Specialite;
 
 /**
  *
@@ -34,7 +36,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         setTitle("PICHIS Service Clinique");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
 
-        this.setResizable(false);
+        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
@@ -42,6 +44,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //        this.pack();
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
+        comboBoxService.setEnabled(false);
+        comboBoxPlacement.setEnabled(false);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
     }
@@ -70,9 +76,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        DM = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -151,6 +156,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,7 +216,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(jLabel42)
                 .addGap(84, 84, 84)
                 .addComponent(jLabel41)
@@ -264,28 +272,16 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel15.setPreferredSize(new java.awt.Dimension(1290, 200));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel17.setPreferredSize(new java.awt.Dimension(200, 573));
-        jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
+        DM.setLayout(new java.awt.CardLayout());
 
-        jList2.setBackground(new java.awt.Color(204, 204, 204));
-        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList2.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sophie Stiquet", "Jean Foupasune", "Jean Neymar", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList2.setPreferredSize(new java.awt.Dimension(150, 97));
-        jScrollPane2.setViewportView(jList2);
-
-        jPanel17.add(jScrollPane2);
-
-        jPanel15.add(jPanel17, java.awt.BorderLayout.WEST);
+        jLabel15.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Sélectionner un patient");
+        DM.add(jLabel15, "card2");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Informations personnelles"));
 
@@ -397,10 +393,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
+        jPanel1.add(jPanel2);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Informations de séjour"));
 
@@ -560,10 +556,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutonModifier)
                     .addComponent(boutonEnregistrer))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel5);
 
         jTabbedPane1.addTab("Fiche du patient", jPanel1);
 
@@ -661,7 +657,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -673,7 +669,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Observations", jPanel4);
@@ -773,7 +769,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, Short.MAX_VALUE))
-                .addGap(0, 91, Short.MAX_VALUE))
+                .addGap(0, 177, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -785,7 +781,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Prescriptions", jPanel3);
@@ -888,13 +884,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -914,11 +910,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 921, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Prestations", jPanel7);
@@ -927,16 +923,41 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 921, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lettre de sortie", jPanel8);
 
-        jPanel15.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        DM.add(jTabbedPane1, "card2");
+
+        jPanel15.add(DM, java.awt.BorderLayout.CENTER);
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel17.setPreferredSize(new java.awt.Dimension(200, 573));
+        jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
+
+        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jList2.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Sophie Stiquet", "Jean Foupasune", "Jean Neymar", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList2.setPreferredSize(new java.awt.Dimension(150, 97));
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        jPanel17.add(jScrollPane2);
+
+        jPanel15.add(jPanel17, java.awt.BorderLayout.WEST);
 
         InterfaceServiceClinique.add(jPanel15, java.awt.BorderLayout.CENTER);
 
@@ -1000,6 +1021,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        CardLayout c = (CardLayout) (DM.getLayout());
+            c.show(DM, "card2");
+    }//GEN-LAST:event_jList2ValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1036,6 +1062,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DM;
     private javax.swing.JPanel InterfaceServiceClinique;
     private javax.swing.JButton boutonEnregistrer;
     private javax.swing.JButton boutonModifier;
@@ -1049,6 +1076,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

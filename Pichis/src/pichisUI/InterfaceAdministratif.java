@@ -315,30 +315,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         DMA.setPreferredSize(new java.awt.Dimension(width, height));
         DMA.setLayout(new java.awt.CardLayout());
 
+        panelDouverture.setLayout(new java.awt.GridLayout());
+
         jLabel14.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Sélectionner un patient");
-
-        javax.swing.GroupLayout panelDouvertureLayout = new javax.swing.GroupLayout(panelDouverture);
-        panelDouverture.setLayout(panelDouvertureLayout);
-        panelDouvertureLayout.setHorizontalGroup(
-            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDouvertureLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
-        );
-        panelDouvertureLayout.setVerticalGroup(
-            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDouvertureLayout.createSequentialGroup()
-                .addGap(196, 196, 196)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        panelDouverture.add(jLabel14);
 
         DMA.add(panelDouverture, "card3");
 
         panelOnglets.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panelOnglets.setMaximumSize(new java.awt.Dimension(1111, 32767));
+        panelOnglets.setPreferredSize(new java.awt.Dimension(900, 585));
+
+        ongletLocalisation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -438,35 +428,26 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addContainerGap(25, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout ongletLocalisationLayout = new javax.swing.GroupLayout(ongletLocalisation);
-        ongletLocalisation.setLayout(ongletLocalisationLayout);
-        ongletLocalisationLayout.setHorizontalGroup(
-            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
-                .addContainerGap(414, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
-        );
-        ongletLocalisationLayout.setVerticalGroup(
-            ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
-        );
+        ongletLocalisation.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 87, -1, -1));
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Nom");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Prénom");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("IPP");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Date de naissance");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("Sexe");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Adresse");
 
         textFieldNom.setEditable(false);
@@ -520,7 +501,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                         .addComponent(textFieldSexe, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldIPP, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textFieldNom, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ongletFichePatientLayout.setVerticalGroup(
             ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,7 +530,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletFichePatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Fiche du patient", ongletFichePatient);
@@ -758,7 +739,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                     .addComponent(boutonFermerDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ongletLettreSortieLayout.setVerticalGroup(
             ongletLettreSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -767,7 +748,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(boutonFermerDPI)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         panelOnglets.addTab("Lettre de sortie", ongletLettreSortie);
@@ -861,7 +842,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
             this.dispose();
-            new Identification1();
+            new Identification();
         }
 
 

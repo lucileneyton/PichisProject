@@ -25,9 +25,10 @@ public class AjoutPersonnel extends javax.swing.JFrame {
 
     public AjoutPersonnel(InterfaceMaintenance interfaceMaintenance) {
         initComponents();
-        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
-        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
-        this.setLocation(x, y);
+//        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
+//        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
+//        this.setLocation(x, y);
+        setLocationRelativeTo(null);
 
         this.interfaceMaintenance = interfaceMaintenance;
 
@@ -297,7 +298,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                                 Specialite sp = (Specialite) jComboBox2.getSelectedItem();
                                 TypeServices ts = TypeServices.CLINIQUE;
 
-                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGUE)) {
+                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGIE)) {
                                     ts = TypeServices.MEDICO_TECHNIQUE;
                                 }
 

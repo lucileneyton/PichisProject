@@ -289,7 +289,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         this.dispose();
-        new Identification1();
+        new Identification();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
