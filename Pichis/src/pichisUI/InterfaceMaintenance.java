@@ -5,7 +5,6 @@
  */
 package pichisUI;
 
-
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -16,17 +15,17 @@ import javax.swing.JFrame;
  *
  * @author Johann
  */
-
-
 public class InterfaceMaintenance extends javax.swing.JFrame {
 
     DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
-     DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
-     
-     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
+    DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
+
+    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+
     /**
      * Creates new form InterfaceMaintenance
      */
@@ -35,6 +34,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
         pichisBD.DAOAdministratif daoAdministratif = new pichisBD.DAOAdministratif();
         pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
+        pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
+        
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Maintenance");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -47,23 +48,30 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 //        this.pack();
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
-        
+
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         this.pack();
-        
+
         //Remplissage de la liste du personnel administratif
         modeleListeAdministratif = new DefaultListModel<pichisNF.Administratif>();
-        for(int i=0; i<daoAdministratif.consulterListeAdministratif().size(); i++){
+        for (int i = 0; i < daoAdministratif.consulterListeAdministratif().size(); i++) {
             modeleListeAdministratif.addElement(daoAdministratif.consulterListeAdministratif().get(i));
-        }    
+        }
         listeAdministratif.setModel(modeleListeAdministratif);
-        
-                //Remplissage de la liste du personnel de maintenance
+
+        //Remplissage de la liste du personnel de maintenance
         modeleListeMaintenance = new DefaultListModel<pichisNF.Maintenance>();
-        for(int i=0; i<daoMaintenance.consulterListeMaintenance().size(); i++){
+        for (int i = 0; i < daoMaintenance.consulterListeMaintenance().size(); i++) {
             modeleListeMaintenance.addElement(daoMaintenance.consulterListeMaintenance().get(i));
-        }    
+        }
         listeMaintenance.setModel(modeleListeMaintenance);
+        
+         //Remplissage de la liste des practiciens hospitaliers
+        modeleListeMedecin = new DefaultListModel<pichisNF.Medecin>();
+        for (int i = 0; i < daoMedecin.consulterListeMedecin().size(); i++) {
+            modeleListeMedecin.addElement(daoMedecin.consulterListeMedecin().get(i));
+        }
+        listeMedecin.setModel(modeleListeMedecin);
     }
 
     /**
@@ -92,7 +100,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listeMedecin = new javax.swing.JList();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listeAdministratif = new javax.swing.JList();
@@ -158,7 +166,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addGap(81, 81, 81)
                 .addComponent(jLabel15)
@@ -215,15 +223,15 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Practiciens Hospitaliers"));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList1.setBackground(new java.awt.Color(204, 204, 204));
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList1.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Odile Deraie", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        listeMedecin.setBackground(new java.awt.Color(204, 204, 204));
+        listeMedecin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeMedecin.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeMedecin.setModel(new javax.swing.AbstractListModel() {
+            ArrayList<pichisNF.Medecin> listeMedecin = new ArrayList<pichisNF.Medecin>();
+            public int getSize() { return listeMedecin.size(); }
+            public Object getElementAt(int i) { return listeMedecin.get(i); }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listeMedecin);
 
         jPanel9.add(jScrollPane1);
 
@@ -338,7 +346,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
@@ -353,5 +360,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JList listeAdministratif;
     private javax.swing.JList listeMaintenance;
+    private javax.swing.JList listeMedecin;
     // End of variables declaration//GEN-END:variables
 }

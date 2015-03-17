@@ -18,6 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-29,0,0,4,77"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
@@ -76,7 +77,7 @@
                                   <Component id="jLabel11" min="-2" pref="646" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="464" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
@@ -271,7 +272,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JList" name="jList1">
+                        <Component class="javax.swing.JList" name="listeMedecin">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -285,7 +286,7 @@
                               <Font name="SimHei" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="new javax.swing.AbstractListModel() {&#xa;String[] strings = { &quot;Odile Deraie&quot;, &quot; &quot; };&#xa;    public int getSize() { return strings.length; }&#xa;    public Object getElementAt(int i) { return strings[i]; }&#xa;}" type="code"/>
+                              <Connection code="new javax.swing.AbstractListModel() {&#xa; ArrayList&lt;pichisNF.Medecin&gt; listeMedecin = new ArrayList&lt;pichisNF.Medecin&gt;();&#xa;    public int getSize() { return listeMedecin.size(); }&#xa;    public Object getElementAt(int i) { return listeMedecin.get(i); }&#xa;}" type="code"/>
                             </Property>
                           </Properties>
                         </Component>

@@ -287,7 +287,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
 
                             // Ajout personnel de maintenance
                             if (jComboBox1.getSelectedIndex() == 1) {
-                                Maintenance ma = new Maintenance(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
+                                Maintenance ma = new Maintenance(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(),true);
                             
                                 pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
                                 daoMaintenance.ajoutMaintenance(ma.getId(), ma.getNom(), ma.getPrenom(), ma.getMotDePasse());

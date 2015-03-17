@@ -13,9 +13,9 @@ import pichisBD.DAOAdministratif;
  */
 public class Maintenance extends Personnel {
 
+
     public Maintenance(String id, String nom, String prenom, String motDePasse) {
         super(id, nom, prenom, motDePasse);
-
     }
 
     @SuppressWarnings("null")
@@ -40,8 +40,8 @@ public class Maintenance extends Personnel {
             return false;
         }
     }
-    
-     public String toString(){
-        return super.getPrenom() + " "+ super.getNom().toUpperCase();
+
+    public String toString() {
+        return super.getPrenom() + " " + super.getNom().toUpperCase();
     }
 }
