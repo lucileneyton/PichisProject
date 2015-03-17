@@ -369,7 +369,7 @@ public class Identification extends javax.swing.JFrame {
             messageErreur.setVisible(true);
             messageErreur.setText("Remplir tous les champs.");
         } else {
-
+            System.out.println("" + daom.estMedecin(identifiant.getText(), mdp.getText()));
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
