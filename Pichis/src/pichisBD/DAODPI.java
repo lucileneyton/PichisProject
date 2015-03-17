@@ -47,7 +47,7 @@ public class DAODPI {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM dpi WHERE ipp.dpi= " + ipp + ";");
+            resul = ins.executeQuery("SELECT * FROM dpi WHERE dpi.ipp='" + ipp +"'");
 
             while (resul.next()) {
                 

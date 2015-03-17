@@ -27,6 +27,18 @@ public class DAOResultat {
     String numPrestation;
     DAOMedecin daom = new DAOMedecin();
     
+    public void ajoutResultat(String date, String description, String medecin, String prestation, String id){
+        Statement ins;
+
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO resultat(date, description, medecin,prestation, id)" + "VALUES ('" +date +"','" + description + "','" + medecin + "','" + prestation + "','" + id + "')");
+            
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création du résultat" + ex);
+        }
+    } 
+    
 
     Resultat resultatPrestation(String idPrestation) {
 
@@ -36,10 +48,11 @@ public class DAOResultat {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM resultat WHERE id.resultat= " + idPrestation + ";");
+            resul = ins.executeQuery("SELECT * FROM resultat WHERE resultat.id='" + idPrestation +"'");
 
             while (resul.next()) {
                 
+             if (resul.getRow()!=0){   
              String d = resul.getString("date");   
              date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
              descriptions = resul.getString("description");
@@ -48,11 +61,14 @@ public class DAOResultat {
              
              res = new Resultat(date,descriptions, medecin);
              
-
+             }
+             else{
+                 System.out.println("Il n'y a pas de résultat associé à la prestation");
+             }
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOSejour: " + e);
+            System.out.println("erreur DAOResultat: " + e);
         }
 
         return res;

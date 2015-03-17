@@ -21,6 +21,10 @@ public class Resultat {
         this.descriptions = descriptions;
         this.medecin=medecin;
     }
+    
+    public void toSring(){
+        System.out.println(descriptions);
+    }
 
     public Medecin getMedecin() {
         return medecin;

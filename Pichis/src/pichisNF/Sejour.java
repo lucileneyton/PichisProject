@@ -23,8 +23,9 @@ public class Sejour {
     
     
     public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
-        int compteurSejour = 10000 + dma.getListeSejours().size();
-        this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+        //int compteurSejour = 10000 + dma.getListeSejours().size();
+        //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+        this.numeroSejour = dma.genererNumeroSejour(dateEntree);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.PHResponsable = PHResponsable;
@@ -34,6 +35,7 @@ public class Sejour {
     public DateSimple getDateEntree() {
         return dateEntree;
     }
+    
 
     public void setDateEntree(DateSimple dateEntree) {
         this.dateEntree = dateEntree;

@@ -6,7 +6,6 @@
 package pichisUI;
 
 
-import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -18,7 +17,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import pichisBD.*;
-import pichisNF.Personnel;
+import pichisNF.*;
 
 /**
  *
@@ -240,7 +239,7 @@ public class Identification extends javax.swing.JFrame {
                 .addGroup(PanelPrincipalLayout.createSequentialGroup()
                     .addGap(51, 51, 51)
                     .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                        .addComponent(PanneauEntreeDesChamps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -288,8 +287,8 @@ public class Identification extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_mdpKeyPressed
 
-    public void ouvrirInterfaceMedecin() {
-        InterfaceServiceClinique i = new InterfaceServiceClinique();
+    public void ouvrirInterfaceMedecin(Medecin medecin) {
+        InterfaceServiceClinique i = new InterfaceServiceClinique(medecin);
         i.setVisible(true);
     }
 
@@ -370,12 +369,14 @@ public class Identification extends javax.swing.JFrame {
             messageErreur.setVisible(true);
             messageErreur.setText("Remplir tous les champs.");
         } else {
-
+            System.out.println("" + daom.estMedecin(identifiant.getText(), mdp.getText()));
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
-                    ouvrirInterfaceMedecin();
+                    DAOMedecin d = new DAOMedecin();
+                    
+                    ouvrirInterfaceMedecin(d.medecinParID(identifiant.getText()));
                 } else {
                     messageErreur.setVisible(true);
                     messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
@@ -384,6 +385,7 @@ public class Identification extends javax.swing.JFrame {
             } else {
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
+                    
                     ouvrirInterfaceAdministratif();
 
                 } else {
