@@ -28,10 +28,13 @@ public class DAOMaintenance {
             boolean b;
             Statement ins = c.connexion.createStatement();
             res = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenant = 'true' AND id= "+id+";");
+            
+            while (res.next()){
             if (res.getRow()==0){
             b= false;
             return b;
         }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DAOMedecin.class.getName()).log(Level.SEVERE, null, ex);
         }
