@@ -94,7 +94,7 @@ public class DAOMedecin {
                 return b;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAOMedecin.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erreur DAOMedecin (estMedecin)");
         }
         
         return b;
@@ -236,7 +236,7 @@ public class DAOMedecin {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOMedecin (medecin par ID: " + e);
+            System.out.println("erreur DAOMedecin (medecin par ID): " + e);
         }
 
         return med;
