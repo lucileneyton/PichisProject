@@ -305,5 +305,49 @@ public class DAOMedecin {
             System.out.println("Erreur lors de la création du médecin" + ex);
         }
     }
+    
+     public ArrayList<Medecin> consulterListeMedecin2() {
+
+        ArrayList<Medecin> listeMedecin = new ArrayList();
+        String id;
+        String nom;
+        String prenom;
+        String mdp;
+        String type;
+        Specialite s;
+        TypeServices types;
+
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+
+            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.id=service.id AND personnel.service IS NOT NULL;");
+
+            while (resul.next()) {
+
+                id = resul.getString("id");
+                nom = resul.getString("nom");
+                prenom = resul.getString("prenom");
+                mdp = resul.getString("mdp");
+
+                type = resul.getString("type");
+                String spec = resul.getString("specialite");
+                types = TypeServices.valueOf(type);
+                s = Specialite.valueOf(spec.toUpperCase());
+
+                Services service = new Services(types, s);
+                listeMedecin.add(new Medecin(id, nom, prenom, mdp, service));
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOAdministratif: " + e);
+        }
+
+        return listeMedecin;
+
+    }
 
 }

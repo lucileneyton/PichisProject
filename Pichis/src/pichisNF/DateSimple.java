@@ -61,12 +61,13 @@ public class DateSimple {
     
     public String toString(){
         String texte;
-        if(this.equals(null)){
-            texte = "NULL";
-        }
-        else{
+        if(jour.length()==1){
+                jour = "0"+jour;
+            }
+            if(mois.length()==1){
+                mois = "0"+mois;
+            }
             texte = this.annee + "-" + this.mois + "-" + this.jour;
-        }
         return texte;
     }
     

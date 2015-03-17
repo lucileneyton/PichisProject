@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisBD.DAODPI;
+import pichisBD.DAOSejour;
+import pichisNF.DPI;
+import pichisNF.Sejour;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
 
@@ -22,8 +26,9 @@ import pichisNF.fonctions;
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
-    DefaultListModel<pichisNF.DPI> modeleListeDPI;
-    DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
+    DefaultListModel<DPI> modeleListeDPI;
+    DefaultListModel<Sejour> modeleListeSejour;
+    DefaultListModel<DPI> modeleListeDPIRecherche;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -36,8 +41,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     public InterfaceAdministratif() {
         initComponents();
 
-        pichisNF.DPI patientActuel;
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+        DAODPI daoDpi = new DAODPI();
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
@@ -58,13 +62,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
-        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
-
+        modeleListeDPI = new DefaultListModel<DPI>();
+        
         for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
             modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
         }
         listeDePatients.setModel(modeleListeDPI);
-
+        
+        modeleListeSejour = new DefaultListModel<Sejour>();
     }
 
     /**
@@ -560,6 +565,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listeSejours.setAutoscrolls(false);
         listeSejours.setMinimumSize(new java.awt.Dimension(300, 0));
         listeSejours.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -869,6 +875,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         affichageDonneesPatient();
+        
+        DAOSejour daoSejour = new DAOSejour();
+        
+        if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty()){
+          
+            for (int i=0; i < (daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().size()); i++) {
+                modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().get(i));
+            }
+            listeSejours.setModel(modeleListeSejour); 
+        }
+        
+        
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped

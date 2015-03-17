@@ -48,8 +48,8 @@ public class AjoutSejour extends javax.swing.JFrame {
         champNumeroSejour.setText(patient.getDma().genererNumeroSejour(dateEntree));
         
         
-        for(int i =0; i<daoMedecin.consulterListeMedecin().size();i++){
-            modelePh.addElement(daoMedecin.consulterListeMedecin().get(i));
+        for(int i =0; i<daoMedecin.consulterListeMedecin2().size();i++){
+            modelePh.addElement(daoMedecin.consulterListeMedecin2().get(i));
         }  
         comboBoxNomPh.setModel(modelePh);
      
@@ -105,9 +105,6 @@ public class AjoutSejour extends javax.swing.JFrame {
 
         labelNumeroSejour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNumeroSejour.setText("Numéro de séjour");
-
-        champNumeroSejour.setEditable(false);
-        champNumeroSejour.setBackground(new java.awt.Color(204, 204, 204));
 
         labelNomPh.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNomPh.setText("Nom du PH");
