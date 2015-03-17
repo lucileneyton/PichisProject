@@ -36,6 +36,10 @@ public class DAOPrestations {
      DAOResultat daor = new DAOResultat();
     
 
+ /**
+ * Permet d'ajouter un patient dans la base de données, prend en paramètre la nature de la prestation, l'id du médecin demandeur, l'ipp du patient, l'id du résultat associé si il existe, la date et l'id de la prestation
+ * 
+ */
     public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id){
         Statement ins;
 
@@ -56,7 +60,7 @@ public class DAOPrestations {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM prestations WHERE ipp.dpi= " + idPatient + ";");
+            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient.prestations= " + idPatient + ";");
 
             while (resul.next()) {
                 
@@ -74,7 +78,7 @@ public class DAOPrestations {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOSejour: " + e);
+            System.out.println("erreur DAOPrestations: " + e);
         }
 
         return p;
