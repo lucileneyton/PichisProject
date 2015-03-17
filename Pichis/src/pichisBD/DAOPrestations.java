@@ -36,6 +36,18 @@ public class DAOPrestations {
      DAOResultat daor = new DAOResultat();
     
 
+    public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id){
+        Statement ins;
+
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO prestations(id, demandeur, patient,resultat, date,nature)" + "VALUES ('" +id +"','" + demandeur + "','" + patient + "','" + resultat + "','" + date + "','" + naturePrestation  + "')");
+            
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création de la prestation" + ex);
+        }
+    } 
+     
     Prestations prestationsPatient(String idPatient) {
 
         try {
