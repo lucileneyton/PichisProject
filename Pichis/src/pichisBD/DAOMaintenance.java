@@ -115,7 +115,7 @@ public class DAOMaintenance {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "')");
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL"+"','" +"true"+ "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du personnel de maintenance" + ex);

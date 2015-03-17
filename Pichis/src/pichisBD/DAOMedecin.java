@@ -201,7 +201,7 @@ public class DAOMedecin {
         String mdp;
         String type;
         TypeServices types;
-
+        
         try {
 
             ResultSet resul;
@@ -243,7 +243,7 @@ public class DAOMedecin {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + specialite + "')");
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + specialite + "','" +"false"+ "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);
