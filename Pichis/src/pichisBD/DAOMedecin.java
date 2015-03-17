@@ -79,20 +79,25 @@ public class DAOMedecin {
     
     public boolean estMedecin(String id, String mdp ){
         ResultSet res ;
-       
+       boolean b = false;
+        
         try {
-            boolean b;
-            Statement ins = c.connexion.createStatement();
+            
+           Statement ins = c.connexion.createStatement();
             res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id= "+id+";");
             if (res.getRow()==0){
             b= false;
             return b;
         }
+            else{
+                b = true;
+                return b;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DAOMedecin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return true;
+        return b;
     }
 
     public ArrayList<Medecin> consulterListeMedecin() {
@@ -207,7 +212,7 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service IS NOT NULL AND id="+id+";");
+            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service IS NOT NULL AND personnel.id="+id+";");
 
             if (resul.getRow() == 0) {
 
@@ -231,7 +236,7 @@ public class DAOMedecin {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOMedecin (medecin par ID: " + e);
         }
 
         return med;

@@ -37,8 +37,7 @@ public class DAOPrestations {
     
 
  /**
- * Permet d'ajouter un patient dans la base de données, prend en paramètre la nature de la prestation, l'id du médecin demandeur, l'ipp du patient, l'id du résultat associé si il existe, la date et l'id de la prestation
- * 
+ * Permet d'ajouter un patient dans la base de données, prend en paramètre la nature de la prestation, l'id du médecin demandeur, l'ipp du patient, l'id du résultat associé si il existe, la date et l'id de la prestation 
  */
     public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id){
         Statement ins;
@@ -51,6 +50,8 @@ public class DAOPrestations {
             System.out.println("Erreur lors de la création de la prestation" + ex);
         }
     } 
+    
+    
      
     Prestations prestationsPatient(String idPatient) {
 
