@@ -6,6 +6,7 @@
 package pichisNF;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -34,4 +35,10 @@ public class DMA {
         this.sejour = sejour;
     }
     
+     public String genererNumeroSejour(DateSimple dateEntree){
+        String numSejour = "";
+        int compteurSejour = 10000 + this.getListeSejours().size();
+        numSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+        return numSejour;
+    }
 }

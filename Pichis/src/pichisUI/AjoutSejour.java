@@ -7,19 +7,26 @@ package pichisUI;
 
 import java.awt.Toolkit;
 import java.util.Calendar;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import pichisBD.DAOMedecin;
 import pichisNF.DPI;
+import pichisNF.DateSimple;
 
 /**
  *
  * @author molit_000
  */
 public class AjoutSejour extends javax.swing.JFrame {
-
+    
+    private DPI patient;
+    private DAOMedecin daoMedecin;
     /**
      * Creates new form AjoutSejour
      */
-    public AjoutSejour(pichisNF.DPI patientActuel) {
+    public AjoutSejour(pichisNF.DPI patientActuel) {       
+        patient = patientActuel;
+        daoMedecin = new DAOMedecin();
         initComponents();
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
@@ -29,7 +36,19 @@ public class AjoutSejour extends javax.swing.JFrame {
         champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
         champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
         
-        jTextFieldPatient.setText(patientActuel.getIpp());
+        DateSimple dateEntree = new DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
+        
+        jTextFieldPatient.setText(patient.getIpp());
+        champNumeroSejour.setText(patient.getDma().genererNumeroSejour(dateEntree));
+        
+        String[] tab = new String[daoMedecin.consulterListeMedecin().size()];
+        for(int i=0; i<tab.length; i++){
+           tab[i] = "" + i; //daoMedecin.consulterListeMedecin().get(i).toString();
+        }
+        for(int i =0; i<tab.length;i++){
+            comboBoxNomPh.setModel(new javax.swing.DefaultComboBoxModel(tab));
+        }
+        
     }
 
     /**
