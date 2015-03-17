@@ -7,6 +7,9 @@
 // Classe pour tester la vérificationd de l'identification
 
 package pichisUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pichisNF.Personnel;
 import pichisBD.*;
@@ -103,24 +106,28 @@ public class TestIdentification extends javax.swing.JFrame {
         
         
         
-        if (daom.estMedecin(identif.getText(),mdp.getText())){
-           
-            if(daom.identification(identif.getText(), mdp.getText())){
-                JOptionPane.showMessageDialog(rootPane, "Ok");
+        try {
+            if (daom.estMedecin(identif.getText(),mdp.getText())){
+                
+                if(daom.identification(identif.getText(), mdp.getText())){
+                    JOptionPane.showMessageDialog(rootPane, "Ok");
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Erreur");
+                }
             }
             else{
-                JOptionPane.showMessageDialog(rootPane, "Erreur");
+                if(daoa.identification(identif.getText(), mdp.getText())){
+                    JOptionPane.showMessageDialog(rootPane, "Ok");
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Erreur");
+                }
+                
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(TestIdentification.class.getName()).log(Level.SEVERE, null, ex);
         }
-            else{
-            if(daoa.identification(identif.getText(), mdp.getText())){
-                JOptionPane.showMessageDialog(rootPane, "Ok");
-            }
-            else{
-                JOptionPane.showMessageDialog(rootPane, "Erreur");
-            }
-                    
-                    }
         
         
             

@@ -31,10 +31,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceServiceClinique(Medecin medecin) {
-        initComponents();
+        
 
         this.medecin = medecin;
-
+        initComponents();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Clinique");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -197,13 +197,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_59269_cc.png"))); // NOI18N
 
         jLabel32.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
-        jLabel32.setText("Agathe");
+        jLabel32.setText(medecin.getPrenom());
 
         jLabel33.setFont(new java.awt.Font("Garamond", 0, 36)); // NOI18N
-        jLabel33.setText("Deblouze");
+        jLabel33.setText(medecin.getNom());
 
         jLabel34.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
-        jLabel34.setText("Praticien hospitalier");
+        jLabel34.setText(medecin.getSpecialite().toString());
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel38.setText("Déconnexion");
@@ -1046,8 +1046,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
-
-        jPanel29.getAccessibleContext().setAccessibleName("Demande de prestation");
 
         jTabbedPane1.addTab("Prestations", jPanel7);
 

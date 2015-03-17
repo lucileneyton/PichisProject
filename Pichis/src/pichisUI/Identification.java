@@ -14,6 +14,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import pichisBD.*;
@@ -135,7 +138,11 @@ public class Identification extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                tentativeDeConnexion();
+                try {
+                    tentativeDeConnexion();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Identification.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
 
@@ -277,7 +284,11 @@ public class Identification extends javax.swing.JFrame {
 
     private void mdpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mdpKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            tentativeDeConnexion();
+            try {
+                tentativeDeConnexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(Identification.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             if (mdp.getText().length() == 0) {
                 messageErreur.setVisible(false);
@@ -361,7 +372,12 @@ public class Identification extends javax.swing.JFrame {
     private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
 
-    private void tentativeDeConnexion() {
+    
+    private void tentativeDeConnexion() throws SQLException {
+        /**
+         * Méthode de vérification des informations de connexion
+         */
+        
         DAOMedecin daom = new DAOMedecin();
         DAOAdministratif daoa = new DAOAdministratif();
 
@@ -369,7 +385,7 @@ public class Identification extends javax.swing.JFrame {
             messageErreur.setVisible(true);
             messageErreur.setText("Remplir tous les champs.");
         } else {
-            System.out.println("" + daom.estMedecin(identifiant.getText(), mdp.getText()));
+          
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
@@ -377,6 +393,7 @@ public class Identification extends javax.swing.JFrame {
                     DAOMedecin d = new DAOMedecin();
                     
                     ouvrirInterfaceMedecin(d.medecinParID(identifiant.getText()));
+                    
                 } else {
                     messageErreur.setVisible(true);
                     messageErreur.setText("Informations de connexion inconnues. Les vérifier.");

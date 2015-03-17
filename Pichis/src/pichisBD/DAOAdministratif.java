@@ -30,20 +30,20 @@ public class DAOAdministratif {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id);
-
-            while (resul.next()) {
-
-                identif = resul.getString("id");
-                mdp = resul.getString("mdp");
-
-                if (mdp.equals(motDePasse)) {
-                    b = true;
-                } else {
-                    b = false;
-                }
-            }
-            return b;
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= "+id +" AND service IS NULL");
+          
+//            while (resul.next()) {
+//
+//                identif = resul.getString("id");
+//                mdp = resul.getString("mdp");
+//
+//                if (mdp.equals(motDePasse)) {
+//                    b = true;
+//                } else {
+//                    b = false;
+//                }
+//            }
+            return resul.first();
         } catch (SQLException e) {
             System.out.println("erreur : " + e);
             return false;
