@@ -126,6 +126,7 @@ public class AjoutPatient extends javax.swing.JDialog {
         labelIPP.setText("IPP");
 
         champIPP.setEditable(false);
+        champIPP.setBackground(new java.awt.Color(204, 204, 204));
         champIPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 champIPPActionPerformed(evt);

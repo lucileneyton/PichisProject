@@ -23,7 +23,12 @@ import pichisNF.fonctions;
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
+    DefaultListModel<pichisNF.Sejour> modeleListeSejour;
+    
     DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
+    
+    pichisBD.DAODPI daoDpi;
+    pichisBD.DAOSejour daoSejour;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -32,13 +37,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    
+    
 
     public InterfaceAdministratif() {
         initComponents();
 
-        pichisNF.DPI patientActuel;
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-
+        daoDpi = new pichisBD.DAODPI();
+        daoSejour = new pichisBD.DAOSejour();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -64,6 +70,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
         }
         listeDePatients.setModel(modeleListeDPI);
+        
+        modeleListeSejour = new DefaultListModel<pichisNF.Sejour>();
 
     }
 
@@ -656,7 +664,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 >>>>>>> f5fef982c87d823a0ba0987b132ed39df6014ef4
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sejour1" };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -952,7 +960,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
-        AjoutSejour ajoutSejour = new AjoutSejour();
+        AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
         ajoutSejour.setVisible(true);
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
@@ -969,6 +977,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         affichageDonneesPatient();
+        
+        for (int i = 0; i < daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp()).getListeSejours().size(); i++) {
+            modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp()).getListeSejours().get(i));        
+        }
+        listeSejours.setModel(modeleListeSejour);
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped

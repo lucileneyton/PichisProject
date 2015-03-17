@@ -11,12 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import pichisNF.DMA;
+import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Localisation;
 import pichisNF.Medecin;
 import pichisNF.Sejour;
-import pichisNF.Services;
-import pichisNF.TypeServices;
 
 /**
  *
@@ -53,7 +52,7 @@ public class DAOSejour {
             while (resul.next()) {
 
                 num = resul.getString("id");
-                String de = resul.getString("datenetree");
+                String de = resul.getString("dateentree");
                 String ds = resul.getString("datesortie");
                 dateE = new DateSimple(de.substring(0, 1),de.substring(2, 3),de.substring(4, 7));
                 dateS = new DateSimple(ds.substring(0, 1),ds.substring(2, 3),ds.substring(4, 7));
@@ -77,6 +76,7 @@ public class DAOSejour {
         
         return dma;
     }
+     
     
 
 }
