@@ -48,7 +48,7 @@ public class DAOMedecin {
             resul = ins.executeQuery("SELECT * FROM personnel WHERE id= " + id);
 
             while (resul.next()) {
-                identif = resul.getString("id");
+//                identif = resul.getString("id");
                 mdp = resul.getString("mdp");
 
                 if (mdp.equals(motDePasse)) {
@@ -61,40 +61,27 @@ public class DAOMedecin {
             return b;
         } catch (SQLException e) {
             System.out.println("erreur : " + e);
-<<<<<<< HEAD
-<<<<<<< HEAD
+//
+//            return b;
+//
+//            return false;
+
             return b;
-=======
-            return false;
->>>>>>> A annuler
-=======
-            return b;
->>>>>>> origin/master
+
         }
 
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public boolean estMedecin(String id, String mdp) {
-        ResultSet res;
-=======
+
+   
     public boolean estMedecin(String id, String mdp) throws SQLException {
-        ResultSet res = null;
->>>>>>> A annuler
-=======
-    public boolean estMedecin(String id, String mdp) {
         ResultSet res;
->>>>>>> origin/master
-        boolean b = false;
+      boolean b = false;
 
         try {
 
             Statement ins = c.connexion.createStatement();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
+
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
             res = ins.executeQuery("SELECT * FROM personnel");
             
@@ -112,8 +99,8 @@ public class DAOMedecin {
         }
 
         return b;
-=======
-            res = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
+
+//            res = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
 
 //            System.out.println("" + res.first());
 //            if (res.getRow()==0){
@@ -125,15 +112,14 @@ public class DAOMedecin {
 //                b = true;
 //                return b;
 //            }
-        } catch (SQLException ex) {
-            System.out.println("Erreur DAOMedecin (estMedecin)");
-        }
-        if (res != null) {
-            return res.first();
-        } else {
-            return false;
-        }
->>>>>>> A annuler
+    
+//       
+//        if (res != null) {
+//            return res.first();
+//        } else {
+//            return false;
+//        }
+
     }
 
     public ArrayList<Medecin> consulterListeMedecin() {
@@ -242,34 +228,31 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
-            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service IS NOT NULL AND personnel.id='" + id + "'");
 
-            if (resul.getRow() == 0) {
+           resul = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
+//            System.out.println(!resul.first());
+//            if (!resul.first()) {
+//
+//                med = null;
+//
+//            } else {
+//                System.out.println(resul.next());
+//                while (resul.next()) {
+//
+//                    nom = resul.getString("nom");
+//                    prenom = resul.getString("prenom");
+//                    mdp = resul.getString("mdp");
+//                    type = resul.getString("type");
+//                    types = TypeServices.valueOf(type);
+//                    String spec = resul.getString("specialite");
+//                    Specialite sp = Specialite.valueOf("spec");
+//                    Services service = new Services(types, sp);
+//
+//                    med = new Medecin(id, nom, prenom, mdp, service);
+//
+//                }
 
-                med = null;
-
-            } else {
-
-                while (resul.next()) {
-
-                    nom = resul.getString("nom");
-                    prenom = resul.getString("prenom");
-                    mdp = resul.getString("mdp");
-                    type = resul.getString("type");
-                    types = TypeServices.valueOf(type);
-                    String spec = resul.getString("specialite");
-                    Specialite sp = Specialite.valueOf("spec");
-                    Services service = new Services(types, sp);
-
-                    med = new Medecin(id, nom, prenom, mdp, service);
-
-                }
-=======
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
+//            
 //
 //            if (resul.getRow() == 0) {
 //
@@ -279,7 +262,7 @@ public class DAOMedecin {
 
 //                while (resul.next()) {
             
-     
+                
             if (resul.first()) {
                 
                 nom = resul.getString("nom");
@@ -293,14 +276,18 @@ public class DAOMedecin {
                 
                 med = new Medecin(id, nom, prenom, mdp, service);
                 System.out.println(med.toString());
->>>>>>> A annuler
+
             }
 //                }
 //            }
-        } catch (SQLException e) {
+        
+
+        
+    
+    
+            } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (medecin par ID): " + e);
         }
-
         return med;
     }
 
