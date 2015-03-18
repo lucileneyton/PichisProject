@@ -43,6 +43,9 @@ public class TestDAO {
         Administratif a = daoa.administratifParID("123");
         System.out.println(a.getNom().toString());
         
+        daom.ajoutMedecin("1234","X","Jean" ,"abcd" ,"CARDIOLOGIE" );
+        
+        
     }
     
 }

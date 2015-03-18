@@ -278,9 +278,10 @@ public class DAOMedecin {
             ins = c.connexion.createStatement();
             res = ins.executeQuery("SELECT * FROM service WHERE specialite='"+specialite+"'");
             
+            while(res.next()){
            num = res.getString("id");
             
-
+            }
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);
         }
@@ -297,7 +298,7 @@ public class DAOMedecin {
         
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + s + "','" + "false" + "')");
+            ins.executeUpdate("INSERT INTO personnel(id,nom,prenom,mdp,service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + s + "','" + "NULL" + "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);
