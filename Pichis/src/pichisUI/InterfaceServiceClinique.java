@@ -68,7 +68,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         for (int i = 0; i < listeDeDPI.size(); i++) {
 
-            ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i).getIpp()).getListeSejours();
+            ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i)).getListeSejours();
 //            if(listeDeSejours != null){
 //            System.out.println("" + listeDeSejours);
 //            }

@@ -46,14 +46,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         this.administratif = administratif;
         initComponents();
 
-<<<<<<< HEAD
+
         
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
 
-=======
-        DAODPI daoDpi = new DAODPI();
+
+       
         daoSejour = new DAOSejour();
->>>>>>> origin/master
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 

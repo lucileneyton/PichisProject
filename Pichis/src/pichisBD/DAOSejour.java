@@ -34,11 +34,9 @@ public class DAOSejour {
         DateSimple dateS;
         Medecin resp;
         Localisation loc;
-<<<<<<< HEAD
+
         DMA dma= new DMA();
-=======
-        DMA dma = new DMA();
->>>>>>> origin/master
+
         
         DAOMedecin daom = new DAOMedecin();
         DAOLocalisation daol = new DAOLocalisation();
