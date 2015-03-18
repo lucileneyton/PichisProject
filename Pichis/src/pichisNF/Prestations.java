@@ -7,12 +7,12 @@ package pichisNF;
 
 import java.util.Calendar;
 
-
 /**
  *
  * @author Johann
  */
 public class Prestations {
+
     private String naturePrestation;
     private Medecin demandeur;
     private DPI patient;
@@ -30,7 +30,6 @@ public class Prestations {
     public DPI getPatient() {
         return patient;
     }
-
 
     public String getNaturePrestation() {
         return naturePrestation;
@@ -51,9 +50,13 @@ public class Prestations {
     public DateSimple getDate() {
         return date;
     }
-    
-    public String toString1(){
-        return "Nom :" + patient.getNom().toUpperCase()+ "      Prestation : " + this.naturePrestation + "      Date : " + date; 
+
+    public String toString2() {
+        return "Nom :" + patient.getNom().toUpperCase() + "      Prestation : " + this.naturePrestation + "      Date : " + date.toString();
     }
-    
+
+    public String toString() {
+        return "Prestation : " + this.naturePrestation + "      Date : " + date.toString();
+    }
+
 }

@@ -43,8 +43,8 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
         
-        for (int i = 0; i < daoPrestations.consulterListePrestations().size(); i++) {
-            modeleListePrestations.addElement(daoPrestations.consulterListePrestations().get(i));
+        for (int i = 0; i < daoPrestations.consulterListePrestationsNonRealisee().size(); i++) {
+            modeleListePrestations.addElement(daoPrestations.consulterListePrestationsNonRealisee().get(i));
         }
         listePrestations.setModel(modeleListePrestations);
     }
@@ -222,11 +222,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         listePrestations.setBackground(new java.awt.Color(204, 204, 204));
         listePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
         listePrestations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        listePrestations.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sophie Stiquet", "Leo Pars", "Jean Foupasune", "Jean Neymar", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listePrestations);
 
         jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -298,7 +293,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(643, Short.MAX_VALUE))
+                .addContainerGap(527, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +400,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jTextField12)
                             .addComponent(jTextField13)
                             .addComponent(jTextField14))))
-                .addContainerGap(763, Short.MAX_VALUE))
+                .addContainerGap(647, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +496,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jTextField8)
                             .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 606, Short.MAX_VALUE))
+                .addGap(0, 490, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
