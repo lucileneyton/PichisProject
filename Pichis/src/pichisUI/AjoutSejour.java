@@ -25,14 +25,16 @@ public class AjoutSejour extends javax.swing.JFrame {
     private DAOSejour daoSejour;
     private DateSimple dateEntree;
     private DefaultComboBoxModel<Medecin> modelePh;
+    InterfaceAdministratif interAdmin;
     /**
      * Creates new form AjoutSejour
      */
-    public AjoutSejour(DPI patientActuel) {       
+    public AjoutSejour(DPI patientActuel, InterfaceAdministratif interAdmin) {       
         patient = patientActuel;
         daoMedecin = new DAOMedecin();
         daoSejour = new DAOSejour();
         modelePh = new DefaultComboBoxModel<Medecin>();
+        this.interAdmin = interAdmin;
         initComponents();
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
@@ -360,11 +362,12 @@ public class AjoutSejour extends javax.swing.JFrame {
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
         Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
         Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
-        Sejour sejour = new Sejour(patient.getDma(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
+        Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
         patient.getDma().ajouterSejour(sejour);
         
         daoSejour.ajout(sejour, patient);
         this.dispose();
+        interAdmin.affichageDonneesSejour();
     }//GEN-LAST:event_boutonValiderActionPerformed
 
     private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed

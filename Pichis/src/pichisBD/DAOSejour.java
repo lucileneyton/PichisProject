@@ -28,14 +28,13 @@ public class DAOSejour {
 
    
      public DMA consulterListeSejourParPatient(DPI patient) {
-
         
         String num;
         DateSimple dateE;
         DateSimple dateS;
         Medecin resp;
         Localisation loc;
-        DMA dma = patient.getDma();
+        DMA dma = new DMA();
         
         DAOMedecin daom = new DAOMedecin();
         DAOLocalisation daol = new DAOLocalisation();
@@ -66,7 +65,7 @@ public class DAOSejour {
                 //    s = new Sejour(dma,dateE,dateS,resp,loc);
                // }
                // else{
-                    s = new Sejour(dma,dateE,resp,loc);
+                    s = new Sejour(dma, num, dateE,resp,loc);
                 //}
                 
                 
@@ -104,7 +103,7 @@ public class DAOSejour {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du patient" + ex);
+            System.out.println("Erreur lors de la création du sejour" + ex);
         } 
     }
 

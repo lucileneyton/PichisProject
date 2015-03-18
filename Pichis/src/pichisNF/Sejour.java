@@ -32,6 +32,15 @@ public class Sejour {
         this.localisation = localisation;
     }
     
+    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation){
+        
+        this.numeroSejour = numeroSejour;
+        this.dateEntree = dateEntree;
+        this.dateSortie = null;
+        this.PHResponsable = PHResponsable;
+        this.localisation = localisation;
+    }
+    
     public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
         //int compteurSejour = 10000 + dma.getListeSejours().size();
         //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
@@ -85,13 +94,7 @@ public class Sejour {
     }
     
     public String toString(){
-        return  "   ----- Sejour -----"
-                + "\n   numeroSejour : " + this.numeroSejour
-                + "\n   dateEntree : " + this.dateEntree.toString()
-                +"\n    dateSortie : " + this.dateSortie.toString()
-                + "\n   PH responsable : " + this.PHResponsable.toString()
-                + "\n   localisation : " + this.localisation.toString()
-                + "\n";
+        return  this.numeroSejour;
 
     }
     
