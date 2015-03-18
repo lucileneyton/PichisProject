@@ -29,7 +29,7 @@ public Services getSpecialite() {
     }
     
     public String toString(){
-        return super.getNom() + " " + super.getPrenom() + " ";
+        return super.getNom().toUpperCase() + " " + super.getPrenom();
     }
     
 }

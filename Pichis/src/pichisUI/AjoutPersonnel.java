@@ -294,18 +294,18 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             }
 
                             // Ajout practicien hospitalier
-                            if (jComboBox1.getSelectedIndex() == 0) {
-                                Specialite sp = (Specialite) jComboBox2.getSelectedItem();
-                                TypeServices ts = TypeServices.CLINIQUE;
+                            if (jComboBox1.getSelectedIndex() == 2) {
+//                                Specialite sp = (Specialite) jComboBox2.getSelectedItem();
+//                                TypeServices ts = TypeServices.CLINIQUE;
 
-                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGIE)) {
-                                    ts = TypeServices.MEDICO_TECHNIQUE;
-                                }
-
-                                Services service = new Services(ts, sp);
-                                Medecin me = new Medecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), service);
+//                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGIE)) {
+//                                    ts = TypeServices.MEDICO_TECHNIQUE;
+//                                }
+//
+//                                Services service = new Services(ts, sp);
+//                                Medecin me = new Medecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), service);
                                 pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
-                                daoMedecin.ajoutMedecin(me.getId(), me.getNom(), me.getPrenom(), me.getMotDePasse(), me.getSpecialite().toString());
+                                daoMedecin.ajoutMedecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(),jComboBox2.getSelectedItem().toString());
                             }
                             jop.hide();
                             this.dispose();

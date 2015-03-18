@@ -42,6 +42,6 @@ public class Administratif extends Personnel {
         }
     }
     public String toString(){
-        return super.getPrenom() + " "+ super.getNom().toUpperCase();
+        return super.getNom().toUpperCase()+" "+super.getPrenom();
     }
 }
