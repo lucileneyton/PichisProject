@@ -403,6 +403,8 @@ public class Identification extends javax.swing.JFrame {
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     
+                    
+                    
                     ouvrirInterfaceAdministratif();
 
                 } else {

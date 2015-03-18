@@ -10,13 +10,13 @@ package pichisNF;
  * @author molit_000
  */
 public class Localisation {
-    Services localisation;
+    Services service;
     String placement;
     String numeroChambre;
 
     
-     public Localisation(Services localisation, String numeroChambre, String placement){
-        this.localisation = localisation;
+     public Localisation(Services service, String numeroChambre, String placement){
+        this.service = service;
         this.placement = placement;
         this.numeroChambre = numeroChambre;
      }
@@ -37,15 +37,15 @@ public class Localisation {
         this.numeroChambre = numeroChambre;
     }
 
-    public Services getLocalisation() {
-        return localisation;
+    public Services getService() {
+        return service;
     }
 
-    public void setLocalisation(Services localisation) {
-        this.localisation = localisation;
+    public void setService(Services service) {
+        this.service = service;
     }
     
     public String toString(){
-        return localisation.toString();
+        return service.toString();
     }
 }

@@ -60,7 +60,15 @@ public class DateSimple {
     
     
     public String toString(){
-        return this.annee + "-" + this.mois + "-" + this.jour;
+        String texte;
+        if(jour.length()==1){
+                jour = "0"+jour;
+            }
+            if(mois.length()==1){
+                mois = "0"+mois;
+            }
+            texte = this.annee + "-" + this.mois + "-" + this.jour;
+        return texte;
     }
     
     public String get2derniersChiffresAnnee(){

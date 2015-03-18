@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisBD.DAODPI;
+import pichisBD.DAOSejour;
+import pichisNF.Administratif;
+import pichisNF.DPI;
+import pichisNF.Sejour;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
 
@@ -22,8 +27,12 @@ import pichisNF.fonctions;
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
-    DefaultListModel<pichisNF.DPI> modeleListeDPI;
-    DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
+    Administratif administratif;
+    DefaultListModel<DPI> modeleListeDPI;
+    DefaultListModel<Sejour> modeleListeSejour;
+    DefaultListModel<DPI> modeleListeDPIRecherche;
+    
+    DAOSejour daoSejour; 
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -34,11 +43,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceAdministratif() {
+        this.administratif = administratif;
         initComponents();
 
+<<<<<<< HEAD
         
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
 
+=======
+        DAODPI daoDpi = new DAODPI();
+        daoSejour = new DAOSejour();
+>>>>>>> origin/master
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -58,13 +73,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
-        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
-
+        modeleListeDPI = new DefaultListModel<DPI>();
+        
         for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
             modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
         }
         listeDePatients.setModel(modeleListeDPI);
-
+        
     }
 
     /**
@@ -455,7 +470,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         labelPlacement.setText("Placement");
 
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Chambre unique" }));
         comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPlacementActionPerformed(evt);
@@ -539,27 +554,28 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ongletLocalisation.setLayout(ongletLocalisationLayout);
         ongletLocalisationLayout.setHorizontalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
-                .addContainerGap(414, Short.MAX_VALUE)
+            .addGroup(ongletLocalisationLayout.createSequentialGroup()
+                .addGap(302, 302, 302)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(258, 258, 258))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
         ongletLocalisationLayout.setVerticalGroup(
             ongletLocalisationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ongletLocalisationLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ongletLocalisationLayout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(120, 120, 120))
         );
 
         panelOnglets.addTab("Localisation", ongletLocalisation);
 
         listeSejours.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste de séjours"));
         listeSejours.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Sejour1" };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listeSejours.setAutoscrolls(false);
         listeSejours.setMinimumSize(new java.awt.Dimension(300, 0));
         listeSejours.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -852,7 +868,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
-        AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+        AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
         ajoutSejour.setVisible(true);
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
@@ -869,6 +885,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         affichageDonneesPatient();
+        
+        affichageDonneesSejour();
+        
+        
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
@@ -950,6 +970,16 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
             CardLayout c = (CardLayout) (DMA.getLayout());
             c.show(DMA, "card2");
+        }
+    }
+    
+    public void affichageDonneesSejour(){
+        modeleListeSejour = new DefaultListModel<Sejour>();
+        if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false){
+            for (int i=0; i < (daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().size()); i++) {
+                modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().get(i));
+            }
+            listeSejours.setModel(modeleListeSejour); 
         }
     }
 

@@ -5,14 +5,13 @@
  */
 package pichisNF;
 
-import pichisBD.DAOAdministratif;
+import pichisBD.DAOMaintenance;
 
 /**
  *
  * @author Johann
  */
 public class Maintenance extends Personnel {
-
 
     public Maintenance(String id, String nom, String prenom, String motDePasse) {
         super(id, nom, prenom, motDePasse);
@@ -21,14 +20,14 @@ public class Maintenance extends Personnel {
     @SuppressWarnings("null")
     public boolean identification(String id, String mdp) {
 
-        DAOAdministratif daoAdministratif;
-        daoAdministratif = new DAOAdministratif();
-        Administratif administratif;
+        DAOMaintenance daoMaintenance;
+        daoMaintenance = new DAOMaintenance();
+        Maintenance maintenance;
 
-        administratif = daoAdministratif.administratifParID(id);
-        String motDePasse = administratif.getMotDePasse();
+        maintenance = daoMaintenance.MaintenanceParID(id);
+        String motDePasse = maintenance.getMotDePasse();
 
-        if (administratif != null) {
+        if (maintenance != null) {
 
             if (mdp.equals(motDePasse)) {
                 return true;
@@ -42,6 +41,6 @@ public class Maintenance extends Personnel {
     }
 
     public String toString() {
-        return super.getPrenom() + " " + super.getNom().toUpperCase();
+        return super.getNom().toUpperCase() + " " + super.getPrenom();
     }
 }

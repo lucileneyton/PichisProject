@@ -10,10 +10,11 @@ package pichisNF;
  * @author molit_000
  */
 public enum Specialite {
-    ANESTHESIE ("Anesthésie générale"),
+    ANESTHESIE ("Anesthesie"),
     CARDIOLOGIE ("Cardiologie"),
     NEUROLOGIE ("Neurologie"),
     RADIOLOGIE("Radiologie"),
+    URGENCE("Urgence"),
     UROLOGIE ("Urologie");
    
     private String specialite;
@@ -23,6 +24,7 @@ public enum Specialite {
     }
     
     public String toString(){
-        return this.specialite;
+        return this.specialite.toUpperCase();
     }
+    
 }

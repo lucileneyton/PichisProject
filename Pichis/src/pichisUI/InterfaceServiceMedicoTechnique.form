@@ -288,15 +288,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SimHei" size="18" style="0"/>
                     </Property>
-                    <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                      <StringArray count="5">
-                        <StringItem index="0" value="Sophie Stiquet"/>
-                        <StringItem index="1" value="Leo Pars"/>
-                        <StringItem index="2" value="Jean Foupasune"/>
-                        <StringItem index="3" value="Jean Neymar"/>
-                        <StringItem index="4" value=" "/>
-                      </StringArray>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -352,7 +343,7 @@
                                   <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="643" max="32767" attributes="0"/>
+                          <EmptySpace pref="527" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -525,7 +516,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="763" max="32767" attributes="0"/>
+                          <EmptySpace pref="647" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -701,7 +692,7 @@
                               </Group>
                               <Component id="jScrollPane3" min="-2" pref="470" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="606" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="490" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
