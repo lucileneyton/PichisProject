@@ -27,7 +27,7 @@ public class DAOMaintenance {
         try {
             boolean b;
             Statement ins = c.connexion.createStatement();
-            res = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenant = 'true' AND id= "+id+";");
+            res = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenance = 'true' AND id= "+id+";");
             
             while (res.next()){
             if (res.getRow()==0){
@@ -82,7 +82,7 @@ public class DAOMaintenance {
 
             ResultSet resul;
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenance = 'true'");
             while (resul.next()) {
 
                 String id = resul.getString("id");

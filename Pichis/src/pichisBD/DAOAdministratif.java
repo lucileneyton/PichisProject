@@ -59,7 +59,7 @@ public class DAOAdministratif {
 
             ResultSet resul;
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE service='NULL'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE service='NULL' AND maintenance ='false'");
             while (resul.next()) {
 
                 String id = resul.getString("id");
@@ -109,7 +109,7 @@ public class DAOAdministratif {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "','" + "false" + "')");
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "','" + "false" + "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création de l'administratif" + ex);

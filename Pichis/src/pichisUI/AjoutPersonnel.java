@@ -288,24 +288,15 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             // Ajout personnel de maintenance
                             if (jComboBox1.getSelectedIndex() == 1) {
                                 Maintenance ma = new Maintenance(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText());
-                            
+
                                 pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
                                 daoMaintenance.ajoutMaintenance(ma.getId(), ma.getNom(), ma.getPrenom(), ma.getMotDePasse());
                             }
 
                             // Ajout practicien hospitalier
                             if (jComboBox1.getSelectedIndex() == 2) {
-//                                Specialite sp = (Specialite) jComboBox2.getSelectedItem();
-//                                TypeServices ts = TypeServices.CLINIQUE;
-
-//                                if (jComboBox2.getSelectedItem().equals(Specialite.RADIOLOGIE)) {
-//                                    ts = TypeServices.MEDICO_TECHNIQUE;
-//                                }
-//
-//                                Services service = new Services(ts, sp);
-//                                Medecin me = new Medecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), service);
                                 pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
-                                daoMedecin.ajoutMedecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(),jComboBox2.getSelectedItem().toString());
+                                daoMedecin.ajoutMedecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), jComboBox2.getSelectedItem().toString());
                             }
                             jop.hide();
                             this.dispose();
