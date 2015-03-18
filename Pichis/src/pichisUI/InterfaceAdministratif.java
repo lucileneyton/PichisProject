@@ -36,7 +36,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     public InterfaceAdministratif() {
         initComponents();
 
-        pichisNF.DPI patientActuel;
+        
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
 
         //Définit un titre pour notre fenêtre

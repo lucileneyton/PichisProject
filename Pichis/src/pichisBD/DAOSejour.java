@@ -35,7 +35,7 @@ public class DAOSejour {
         DateSimple dateS;
         Medecin resp;
         Localisation loc;
-        DMA dma=null;
+        DMA dma= new DMA();
         
         DAOMedecin daom = new DAOMedecin();
         DAOLocalisation daol = new DAOLocalisation();
@@ -53,7 +53,7 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datesortie");
+                String ds = resul.getString("datasortie");
                 dateE = new DateSimple(de.substring(0, 1),de.substring(2, 3),de.substring(4, 7));
                 dateS = new DateSimple(ds.substring(0, 1),ds.substring(2, 3),ds.substring(4, 7));
                 

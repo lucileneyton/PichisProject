@@ -1,1 +1,1 @@
-SELECT * FROM pichisdatabase.personnel;
+SELECT * FROM pichisdatabase.sejour;

@@ -9,8 +9,11 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pichisBD.DAOSejour;
 
 import pichisNF.*;
 
@@ -23,7 +26,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceClinique
      */
-    
+    DefaultListModel<pichisNF.DPI> modeleListeDPI;
+
     Medecin medecin;
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
@@ -31,10 +35,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceServiceClinique(Medecin medecin) {
-        
 
         this.medecin = medecin;
         initComponents();
+        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+        DAOSejour daoSejour = new pichisBD.DAOSejour();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Clinique");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -43,16 +48,41 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //        this.pack();
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
-        
+
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
+
+        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
+        ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
+        
+     
+//        System.out.println(""+ daoSejour.consulterListeSejourParPatient("123").getListeSejours());
+        
+
+        for (int i = 0; i < listeDeDPI.size(); i++) {
+
+            ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i).getIpp()).getListeSejours();
+//            if(listeDeSejours != null){
+//            System.out.println("" + listeDeSejours);
+//            }
+            if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
+                Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
+                if (servicePatient.equals(medecin.getSpecialite().getSpecialite())) {
+                    modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
+//                    .getPHResponsable().getSpecialite().getSpecialite().toString()
+                }
+            }
+
+        }
+        listeDePatients.setModel(modeleListeDPI);
+
     }
 
     /**
@@ -180,7 +210,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        listeDePatients = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1106,20 +1136,20 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel17.setPreferredSize(new java.awt.Dimension(200, 573));
         jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList2.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeDePatients.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Sophie Stiquet", "Jean Foupasune", "Jean Neymar", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList2.setPreferredSize(new java.awt.Dimension(150, 97));
-        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        listeDePatients.setPreferredSize(new java.awt.Dimension(150, 97));
+        listeDePatients.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList2ValueChanged(evt);
+                listeDePatientsValueChanged(evt);
             }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listeDePatients);
 
         jPanel17.add(jScrollPane2);
 
@@ -1187,10 +1217,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
-    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+    private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         CardLayout c = (CardLayout) (DM.getLayout());
-            c.show(DM, "card2");
-    }//GEN-LAST:event_jList2ValueChanged
+        c.show(DM, "card2");
+    }//GEN-LAST:event_listeDePatientsValueChanged
 
     /**
      * @param args the command line arguments
@@ -1267,7 +1297,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
     private javax.swing.JList jList5;
@@ -1344,5 +1373,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelPlacement;
     private javax.swing.JLabel labelService;
+    private javax.swing.JList listeDePatients;
     // End of variables declaration//GEN-END:variables
 }

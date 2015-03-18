@@ -15,7 +15,6 @@ import pichisNF.DMA;
 import pichisNF.DateSimple;
 import pichisNF.LettreDeSortie;
 import pichisNF.Operation;
-import pichisNF.Prestations;
 import pichisNF.DPI;
 
 /**
