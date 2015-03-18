@@ -106,27 +106,23 @@ public class TestIdentification extends javax.swing.JFrame {
         
         
         
-        try {
-            if (daom.estMedecin(identif.getText(),mdp.getText())){
-                
-                if(daom.identification(identif.getText(), mdp.getText())){
-                    JOptionPane.showMessageDialog(rootPane, "Ok");
-                }
-                else{
-                    JOptionPane.showMessageDialog(rootPane, "Erreur");
-                }
+        if (daom.estMedecin(identif.getText(),mdp.getText())){
+            
+            if(daom.identification(identif.getText(), mdp.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Ok");
             }
             else{
-                if(daoa.identification(identif.getText(), mdp.getText())){
-                    JOptionPane.showMessageDialog(rootPane, "Ok");
-                }
-                else{
-                    JOptionPane.showMessageDialog(rootPane, "Erreur");
-                }
-                
+                JOptionPane.showMessageDialog(rootPane, "Erreur");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(TestIdentification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        else{
+            if(daoa.identification(identif.getText(), mdp.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Ok");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erreur");
+            }
+            
         }
         
         
