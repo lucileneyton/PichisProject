@@ -34,8 +34,8 @@ public class DAOMedecin {
      * @author Lucile
      */
     ConnectionBD c = new ConnectionBD();
-    
-     public ArrayList<Medecin> consulterListeMedecin2() {
+
+    public ArrayList<Medecin> consulterListeMedecin2() {
 
         ArrayList<Medecin> listeMedecin = new ArrayList();
         String id;
@@ -119,7 +119,7 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
             res = ins.executeQuery("SELECT * FROM personnel");
-            
+
             while (res.next()) {
                 if (res.getRow() == 0) {
                     b = false;
@@ -242,15 +242,10 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type, service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service IS NOT NULL AND personnel.id='" + id + "'");
+            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
 
-            if (resul.getRow() == 0) {
-
-                med = null;
-
-            } else {
-
-                while (resul.next()) {
+            while (resul.next()) {
+                
 
                     nom = resul.getString("nom");
                     prenom = resul.getString("prenom");
@@ -258,13 +253,14 @@ public class DAOMedecin {
                     type = resul.getString("type");
                     types = TypeServices.valueOf(type);
                     String spec = resul.getString("specialite");
-                    Specialite sp = Specialite.valueOf("spec");
+                    Specialite sp = Specialite.valueOf(spec);
                     Services service = new Services(types, sp);
 
                     med = new Medecin(id, nom, prenom, mdp, service);
-
-                }
+                    System.out.println(med.getNom());
             }
+
+            
         } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (medecin par ID): " + e);
         }

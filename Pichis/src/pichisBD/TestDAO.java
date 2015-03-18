@@ -6,8 +6,7 @@
 
 package pichisBD;
 
-import pichisNF.Prestations;
-import pichisNF.Resultat;
+import pichisNF.Medecin;
 
 /**
  *
@@ -20,7 +19,7 @@ public class TestDAO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DAOPrestations daop = new DAOPrestations();
+        /*DAOPrestations daop = new DAOPrestations();
         //daop.ajoutPrestation("injection", "1", "123", "NULL", "2015-03-17", "1");
         
         DAOResultat daor = new DAOResultat();
@@ -33,6 +32,11 @@ public class TestDAO {
         
         Prestations p = daop.prestationsPatient("123");
         System.out.println(p.getNaturePrestation().toString());
+                */
+        
+        DAOMedecin daom = new DAOMedecin();
+        Medecin m = daom.medecinParID("1");
+        System.out.println(m.getNom().toString());
         
     }
     
