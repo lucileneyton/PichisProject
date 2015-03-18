@@ -267,14 +267,37 @@ public class DAOMedecin {
 
         return med;
     }
-
-    public void ajoutMedecin(String id, String nom, String prenom, String motDePasse, Services specialite) {
-
-        Statement ins;
-
+    
+    public String IdService(String specialite){
+       Statement ins;
+       ResultSet res;
+       Services service = null;
+       String num = null; 
+        
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + specialite + "','" + "false" + "')");
+            res = ins.executeQuery("SELECT * FROM service WHERE specialite='"+specialite+"'");
+            
+           num = res.getString("id");
+            
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création du médecin" + ex);
+        }
+        
+           return num;         
+        
+    }
+
+    public void ajoutMedecin(String id, String nom, String prenom, String motDePasse, String service) {
+
+        Statement ins;
+        
+        String s = IdService(service);
+        
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + s + "','" + "false" + "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);

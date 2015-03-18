@@ -305,7 +305,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                                 Services service = new Services(ts, sp);
                                 Medecin me = new Medecin(champIdentifiant.getText(), champNom.getText(), champPrenom.getText(), champMdp.getText(), service);
                                 pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
-                                daoMedecin.ajoutMedecin(me.getId(), me.getNom(), me.getPrenom(), me.getMotDePasse(), me.getSpecialite());
+                                daoMedecin.ajoutMedecin(me.getId(), me.getNom(), me.getPrenom(), me.getMotDePasse(), me.getSpecialite().toString());
                             }
                             jop.hide();
                             this.dispose();

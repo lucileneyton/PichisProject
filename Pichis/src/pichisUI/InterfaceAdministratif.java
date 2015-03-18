@@ -40,7 +40,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
-    public InterfaceAdministratif(Administratif administratif) {
+    public InterfaceAdministratif() {
         this.administratif = administratif;
         initComponents();
 
@@ -1004,7 +1004,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceAdministratif(null).setVisible(true);
+                new InterfaceAdministratif().setVisible(true);
             }
         });
     }
