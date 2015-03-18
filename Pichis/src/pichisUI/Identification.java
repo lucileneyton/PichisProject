@@ -303,8 +303,8 @@ public class Identification extends javax.swing.JFrame {
         i.setVisible(true);
     }
 
-    public void ouvrirInterfaceAdministratif() {
-        InterfaceAdministratif i = new InterfaceAdministratif();
+    public void ouvrirInterfaceAdministratif(Administratif administratif) {
+        InterfaceAdministratif i = new InterfaceAdministratif(administratif);
         i.setVisible(true);
     }
 
@@ -403,7 +403,9 @@ public class Identification extends javax.swing.JFrame {
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     
-                    ouvrirInterfaceAdministratif();
+                    DAOAdministratif d = new DAOAdministratif();
+                    
+                    ouvrirInterfaceAdministratif(d.administratifParID(identifiant.getText()));
 
                 } else {
                     messageErreur.setVisible(true);

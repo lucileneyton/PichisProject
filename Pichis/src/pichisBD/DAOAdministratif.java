@@ -22,7 +22,7 @@ public class DAOAdministratif {
     public boolean identification(String id, String motDePasse) {
 
         String identif;
-        String mdp ;
+        String mdp;
         boolean b = false;
         ResultSet resul;
         Statement ins;
@@ -30,25 +30,25 @@ public class DAOAdministratif {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= "+id +" AND service IS NULL");
-          
-//            while (resul.next()) {
-//
-//                identif = resul.getString("id");
-//                mdp = resul.getString("mdp");
-//
-//                if (mdp.equals(motDePasse)) {
-//                    b = true;
-//                } else {
-//                    b = false;
-//                }
-//            }
-            return resul.first();
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id + " AND maintenance!='NULL' AND service='NULL'");
+
+            while (resul.next()) {
+
+                identif = resul.getString("id");
+                mdp = resul.getString("mdp");
+
+                if (mdp.equals(motDePasse)) {
+                    b = true;
+                } else {
+                    b = false;
+                }
+            }
+
         } catch (SQLException e) {
             System.out.println("erreur : " + e);
             return false;
         }
-
+        return b;
     }
 
     public ArrayList<Administratif> consulterListeAdministratif() {
@@ -85,23 +85,17 @@ public class DAOAdministratif {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= " + id);
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id='" + id + "'");
 
-            if (resul.getRow() == 0) {
+            while (resul.next()) {
 
-                admin = null;
+                String nom = resul.getString("nom");
+                String prenom = resul.getString("prenom");
+                String mdp = resul.getString("mdp");
+                admin = new Administratif(id, nom, prenom, mdp);
 
-            } else {
-
-                while (resul.next()) {
-
-                    String nom = resul.getString("nom");
-                    String prenom = resul.getString("prenom");
-                    String mdp = resul.getString("mdp");
-                    admin = new Administratif(id, nom, prenom, mdp);
-
-                }
             }
+
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif: " + e);
         }
@@ -115,7 +109,7 @@ public class DAOAdministratif {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" +"','"+"false"+ "')");
+            ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "','" + "false" + "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création de l'administratif" + ex);

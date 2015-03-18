@@ -6,6 +6,7 @@
 
 package pichisBD;
 
+import pichisNF.Administratif;
 import pichisNF.Medecin;
 
 /**
@@ -37,6 +38,10 @@ public class TestDAO {
         DAOMedecin daom = new DAOMedecin();
         Medecin m = daom.medecinParID("1");
         System.out.println(m.getNom().toString());
+        
+        DAOAdministratif daoa = new DAOAdministratif();
+        Administratif a = daoa.administratifParID("123");
+        System.out.println(a.getNom().toString());
         
     }
     

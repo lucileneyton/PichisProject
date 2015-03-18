@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAODPI;
 import pichisBD.DAOSejour;
+import pichisNF.Administratif;
 import pichisNF.DPI;
 import pichisNF.Sejour;
 import pichisNF.Specialite;
@@ -26,6 +27,7 @@ import pichisNF.fonctions;
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
+    Administratif administratif;
     DefaultListModel<DPI> modeleListeDPI;
     DefaultListModel<Sejour> modeleListeSejour;
     DefaultListModel<DPI> modeleListeDPIRecherche;
@@ -38,7 +40,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
-    public InterfaceAdministratif() {
+    public InterfaceAdministratif(Administratif administratif) {
+        this.administratif = administratif;
         initComponents();
 
         DAODPI daoDpi = new DAODPI();
@@ -1001,7 +1004,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceAdministratif().setVisible(true);
+                new InterfaceAdministratif(null).setVisible(true);
             }
         });
     }
