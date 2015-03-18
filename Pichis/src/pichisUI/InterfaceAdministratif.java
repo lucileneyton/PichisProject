@@ -5,7 +5,7 @@
  */
 package pichisUI;
 
-import pichisNF.AjoutSejour;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
@@ -21,6 +21,7 @@ import pichisNF.DPI;
 import pichisNF.Sejour;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
+import pichisNF.*;
 
 /**
  *

@@ -287,7 +287,7 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
 
             while (resul.next()) {
                 
@@ -297,7 +297,7 @@ public class DAOMedecin {
                     mdp = resul.getString("mdp");
                     type = resul.getString("type");
                     types = TypeServices.valueOf(type);
-                    String spec = resul.getString("specialite");
+                    String spec = resul.getString("service");
                     Specialite sp = Specialite.valueOf(spec);
                     Services service = new Services(types, sp);
 

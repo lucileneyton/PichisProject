@@ -19,7 +19,7 @@ public class DAOAdministratif {
 
     ConnectionBD c = new ConnectionBD();
 
-    public boolean identification(String id, String motDePasse) {
+    public boolean identification(String id, String motDePasse) throws SQLException {
 
         String identif;
         String mdp;
@@ -30,25 +30,16 @@ public class DAOAdministratif {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id + " AND maintenance!='false' AND service='NULL'");
-
-            while (resul.next()) {
-
-                identif = resul.getString("id");
-                mdp = resul.getString("mdp");
-
-                if (mdp.equals(motDePasse)) {
-                    b = true;
-                } else {
-                    b = false;
-                }
-            }
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE maintenance IS NULL AND service IS NULL AND id =" +id);
+            
+            
 
         } catch (SQLException e) {
             System.out.println("erreur : " + e);
             return false;
         }
-        return b;
+        System.out.println("" +b);
+        return resul.first();
     }
 
     public ArrayList<Administratif> consulterListeAdministratif() {
