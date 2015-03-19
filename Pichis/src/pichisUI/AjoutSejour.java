@@ -10,7 +10,6 @@ import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import pichisBD.DAOMedecin;
-import pichisBD.DAODPI;
 import pichisBD.DAOSejour;
 import pichisNF.*;
 
@@ -47,7 +46,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         dateEntree = new DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
         
         jTextFieldPatient.setText(patient.getIpp());
-        champNumeroSejour.setText(patient.getDma().genererNumeroSejour(dateEntree));
+        champNumeroSejour.setText(fonctions.genererNumeroSejour(dateEntree));
         
         
         for(int i =0; i<daoMedecin.consulterListeMedecin2().size();i++){
@@ -107,6 +106,9 @@ public class AjoutSejour extends javax.swing.JFrame {
 
         labelNumeroSejour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNumeroSejour.setText("Numéro de séjour");
+
+        champNumeroSejour.setEditable(false);
+        champNumeroSejour.setBackground(new java.awt.Color(204, 204, 204));
 
         labelNomPh.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNomPh.setText("Nom du PH");

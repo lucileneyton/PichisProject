@@ -239,7 +239,9 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id, personnel.nom, personnel.prenom, personnel.mdp, personnel.service, service.specialite FROM sejour,personnel,service WHERE sejour.id=" + numSejour + " AND personnel.id = sejour.responsable AND service.id = personnel.service;");
+            resul = ins.executeQuery("SELECT personnel.id, personnel.nom, personnel.prenom, personnel.mdp, personnel.service, service.specialite "
+                                    + "FROM sejour,personnel,service "
+                                     + "WHERE sejour.id=" + numSejour + " AND personnel.id = sejour.responsable AND service.id = personnel.service;");
             
             while (resul.next()) {
                 
@@ -251,16 +253,18 @@ public class DAOMedecin {
 
                 
 
-                    id = resul.getString("personnel.id");
-                    nom = resul.getString("personnel.nom");
-                    prenom = resul.getString("personnel.prenom");
-                    mdp = resul.getString("personnel.mdp");
+                    id = resul.getString("id");
+                    nom = resul.getString("nom");
+                    prenom = resul.getString("prenom");
+                    mdp = resul.getString("mdp");
 
                     String spec = resul.getString("service.specialite");
-                    Specialite sp = Specialite.valueOf("spec");
+                    
+                    Specialite sp = Specialite.valueOf(spec);
 
-                    type = resul.getString("service");
-                    types = TypeServices.valueOf(type);
+                    //type = resul.getString("service");
+                    //types = TypeServices.valueOf(type);
+                    types = TypeServices.CLINIQUE;
                     Services service = new Services(types, sp);
 
                     med = new Medecin(id, nom, prenom, mdp, service);
@@ -272,8 +276,8 @@ public class DAOMedecin {
         }
 
         return med;
-
     }
+    
 
     public Medecin medecinParID(String id) {
 

@@ -26,5 +26,4 @@ public enum Specialite {
     public String toString(){
         return this.specialite.toUpperCase();
     }
-    
 }

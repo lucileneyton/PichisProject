@@ -105,6 +105,28 @@ public class DAOSejour {
             System.out.println("Erreur DAOSejour (ajout)" + ex);
         } 
     }
+    
+    public String getNombreSejoursTotal(){
+        String nbSejours="";
+        
+        try {
+
+            ResultSet resul;
+          
+            Statement ins = c.connexion.createStatement();
+            
+            resul = ins.executeQuery("SELECT COUNT(*) FROM sejour;");
+            
+            if (resul.next()){                       
+                nbSejours = resul.getString("COUNT(*)");
+            }           
+            
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour (getNombreSejoursTotal): " + e);
+        }
+        
+        return nbSejours;
+    }
 
 }
 

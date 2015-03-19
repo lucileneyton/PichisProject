@@ -6,6 +6,7 @@
 package pichisNF;
 
 import java.util.ArrayList;
+import pichisBD.DAOSejour;
 
 /**
  *
@@ -47,5 +48,14 @@ public class fonctions {
             }
         }
         return listeFin;
+    }
+    
+     public static String genererNumeroSejour(DateSimple dateEntree){
+        String numSejour = "";
+        DAOSejour daoSejour= new DAOSejour();
+        
+        String nbSejours = daoSejour.getNombreSejoursTotal();
+        numSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + nbSejours;
+        return numSejour;
     }
 }
