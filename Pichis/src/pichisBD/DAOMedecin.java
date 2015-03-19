@@ -72,7 +72,7 @@ public class DAOMedecin {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOMedecin (consulterListeMedecin2): " + e);
         }
 
         return listeMedecin;
@@ -104,7 +104,7 @@ public class DAOMedecin {
             }
             return b;
         } catch (SQLException e) {
-            System.out.println("erreur : " + e);
+            System.out.println("erreur DAOMedecin (identification): " + e);
             return b;
         }
 
@@ -218,7 +218,7 @@ public class DAOMedecin {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOMedecin (consulterListeMedecin): " + e);
         }
 
         return listeMedecin;
@@ -239,7 +239,7 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT sejour.responsable, personnel.nom, personnel.prenom, personnel.mdp, personnel.service FROM sejour,personnel WHERE sejour.id=" + numSejour + " AND personnel.id=sejour.responsable;");
+            resul = ins.executeQuery("SELECT personnel.id, personnel.nom, personnel.prenom, personnel.mdp, personnel.service, service.specialite FROM sejour,personnel,service WHERE sejour.id=" + numSejour + " AND personnel.id = sejour.responsable AND service.id = personnel.service;");
             
             while (resul.next()) {
                 
@@ -251,12 +251,12 @@ public class DAOMedecin {
 
                 
 
-                    id = resul.getString("id");
-                    nom = resul.getString("nom");
-                    prenom = resul.getString("prenom");
-                    mdp = resul.getString("mdp");
+                    id = resul.getString("personnel.id");
+                    nom = resul.getString("personnel.nom");
+                    prenom = resul.getString("personnel.prenom");
+                    mdp = resul.getString("personnel.mdp");
 
-                    String spec = resul.getString("specialite");
+                    String spec = resul.getString("service.specialite");
                     Specialite sp = Specialite.valueOf("spec");
 
                     type = resul.getString("service");
@@ -268,7 +268,7 @@ public class DAOMedecin {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOAMedecin medecinResponsable: " + e);
         }
 
         return med;
@@ -330,7 +330,7 @@ public class DAOMedecin {
             
             }
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du médecin" + ex);
+            System.out.println("Erreur DAOMedecin (IdService)" + ex);
         }
         
            return num;         

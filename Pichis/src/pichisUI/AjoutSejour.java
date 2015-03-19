@@ -360,14 +360,39 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonAnnulerActionPerformed
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
-        Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
-        Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
-        Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
-        patient.getDma().ajouterSejour(sejour);
+        JOptionPane fenetre = new JOptionPane();
         
-        daoSejour.ajout(sejour, patient);
-        this.dispose();
-        interfaceAdmin.affichageSejoursDuPatient(patient);
+        if(champNumeroSejour.getText().isEmpty() == false){
+            if(comboBoxNomPh.getSelectedIndex() >= 0 && comboBoxNomPh.getSelectedIndex() < comboBoxNomPh.getItemCount()){
+                if(champNumeroChambre.getText().isEmpty() == false){
+                
+               Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
+                Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
+                Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
+                patient.getDma().ajouterSejour(sejour);
+        
+                daoSejour.ajout(sejour, patient);
+                this.dispose();
+                interfaceAdmin.affichageSejoursDuPatient(patient); 
+                fenetre.showMessageDialog(null, "Sejour ajouté avec succes");
+                
+                }
+                else{
+                    fenetre.showMessageDialog(null, "Veuillez déterminer un numéro de chambre");
+                }
+            }
+            else{
+                fenetre.showMessageDialog(null, "Veuillez déterminer un Ph Responsable");
+            }
+        }
+        else{
+            fenetre.showMessageDialog(null, "Veuillez rentrer un numero de sejour");
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_boutonValiderActionPerformed
 
     private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed

@@ -76,7 +76,7 @@ public class DAOSejour {
        
             
         } catch (SQLException e) {
-            System.out.println("erreur DAOSejour: " + e);
+            System.out.println("erreur DAOSejour (consulterListeSejourParPatient): " + e);
         }
         
         return dma;
@@ -102,7 +102,7 @@ public class DAOSejour {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du sejour" + ex);
+            System.out.println("Erreur DAOSejour (ajout)" + ex);
         } 
     }
 

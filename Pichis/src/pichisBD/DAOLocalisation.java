@@ -59,7 +59,7 @@ public class DAOLocalisation {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOLocalisation: " + e);
+            System.out.println("erreur DAOLocalisation (localisationParNumeroDeSejour): " + e);
         }
 
         return loc;

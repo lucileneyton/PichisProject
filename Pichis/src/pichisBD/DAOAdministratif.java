@@ -45,7 +45,7 @@ public class DAOAdministratif {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur : " + e);
+            System.out.println("erreur DAOAdministratif (identification) : " + e);
             return false;
         }
         return b;
@@ -70,7 +70,7 @@ public class DAOAdministratif {
 
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOAdministratif (consulterListeAdinistratif): " + e);
         }
 
         return listeAdministratif;
@@ -97,7 +97,7 @@ public class DAOAdministratif {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOAdministratif: (administratifParID) " + e);
         }
 
         return admin;
@@ -112,7 +112,7 @@ public class DAOAdministratif {
             ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "','" + "false" + "')");
 
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création de l'administratif" + ex);
+            System.out.println("Erreur DAOAdministratif (ajoutAdministratif)" + ex);
         }
     }
 

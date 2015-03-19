@@ -76,7 +76,7 @@ public class DAODPI {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOSejour: " + e);
+            System.out.println("erreur DAOSejour (dpiParIPP): " + e);
         }
 
         return dpi;
@@ -137,7 +137,7 @@ public class DAODPI {
 
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAODPI: " + e);
+            System.out.println("erreur DAODPI (consulterListeDPI): " + e);
         }
 
         return listeDPI;

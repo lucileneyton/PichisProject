@@ -979,7 +979,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             
             champNumeroSejour.setText(sejourActuel.getNumeroSejour());
            
-            champPhResponsable.setText(sejourActuel.getPHResponsable().getId());
+            champPhResponsable.setText(sejourActuel.getPHResponsable().toString());
         }
     }
     
