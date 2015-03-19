@@ -53,7 +53,7 @@ public class DAOSejour {
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
                 String ds = resul.getString("datesortie");
-                dateE = new DateSimple(de.substring(0, 1),de.substring(2, 3),de.substring(4, 7));
+                dateE = new DateSimple(de.substring(8, 10), de.substring(5, 7), de.substring(0, 4));
                 
                              
                 resp = daom.medecinResponsable(num); 
