@@ -8,33 +8,34 @@ package pichisUI;
 import java.awt.Toolkit;
 import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import pichisBD.DAOMedecin;
-<<<<<<< HEAD
-import pichisBD.DAOSejour;
+import pichisBD.DAOMedecin;
+
 import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Medecin;
 import pichisNF.Specialite;
-=======
-import pichisBD.DAODPI;
+
 import pichisBD.DAOSejour;
-import pichisNF.*;
->>>>>>> origin/master
+import pichisBD.DAOSejour;
+import pichisUI.InterfaceAdministratif;
+import pichisUI.InterfaceAdministratif;
+import pichisUI.InterfaceAdministratif;
+
 
 /**
  *
  * @author molit_000
  */
 public class AjoutSejour extends javax.swing.JFrame {
-<<<<<<< HEAD
+
 
     /**
      * Creates new form AjoutSejour
      */
      public AjoutSejour(DPI patientActuel, InterfaceAdministratif interAdmin) {       
       
-=======
+
     
     private DPI patient;
     private DAOMedecin daoMedecin;
@@ -51,7 +52,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         daoSejour = new DAOSejour();
         modelePh = new DefaultComboBoxModel<Medecin>();
         this.interfaceAdmin = interAdmin;
->>>>>>> origin/master
+
         initComponents();
         int x = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - (int)this.getSize().getWidth()/2;
         int y = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - (int)this.getSize().getHeight()/2;
@@ -61,8 +62,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         champMoisEntree.setText("" + (Calendar.getInstance().get(Calendar.MONTH) + 1) );
         champAnneeEntree.setText("" + Calendar.getInstance().get(Calendar.YEAR));
         
-<<<<<<< HEAD
-=======
+
         dateEntree = new DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
         
         jTextFieldPatient.setText(patient.getIpp());
@@ -75,7 +75,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         comboBoxNomPh.setModel(modelePh);
      
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
->>>>>>> origin/master
+
         
     }
 
@@ -543,7 +543,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     private void champAnneeSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeSortieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_champAnneeSortieActionPerformed
@@ -568,20 +568,20 @@ public class AjoutSejour extends javax.swing.JFrame {
         champJourSortie.setText("");
     }//GEN-LAST:event_champJourSortieFocusGained
 
-    private void champAnneeEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeEntreeActionPerformed
+    private void champAnneeEntreeActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         
+    }                                                
+
+    private void champAnneeEntreeFocusGained(java.awt.event.FocusEvent evt) {                                             
+        
+
+    private void champAnneeEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeEntreeActionPerformed
+
     }//GEN-LAST:event_champAnneeEntreeActionPerformed
 
     private void champAnneeEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeEntreeFocusGained
-        
-=======
-    private void champAnneeEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champAnneeEntreeActionPerformed
 
-    }//GEN-LAST:event_champAnneeEntreeActionPerformed
 
-    private void champAnneeEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champAnneeEntreeFocusGained
-
->>>>>>> origin/master
     }//GEN-LAST:event_champAnneeEntreeFocusGained
 
     private void champMoisEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champMoisEntreeActionPerformed
@@ -589,21 +589,21 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_champMoisEntreeActionPerformed
 
     private void champMoisEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champMoisEntreeFocusGained
-<<<<<<< HEAD
+
         
     }//GEN-LAST:event_champMoisEntreeFocusGained
 
-    private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
+    private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-    }//GEN-LAST:event_champJourEntreeActionPerformed
+    }                                               
 
-    private void champJourEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourEntreeFocusGained
+    private void champJourEntreeFocusGained(java.awt.event.FocusEvent evt) {                                            
       
-    }//GEN-LAST:event_champJourEntreeFocusGained
-=======
+    }                                           
 
-    }//GEN-LAST:event_champMoisEntreeFocusGained
->>>>>>> origin/master
+
+    }                                           
+
 
     private void boutonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAnnulerActionPerformed
         int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir annuler ?", "Confirmation", JOptionPane.YES_NO_OPTION);
@@ -613,7 +613,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonAnnulerActionPerformed
 
     private void boutonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderActionPerformed
-<<<<<<< HEAD
+
 
        pichisNF.DateSimple dateEntree = new pichisNF.DateSimple(champJourEntree.getText(), champMoisEntree.getText(), champAnneeEntree.getText());
        pichisNF.DateSimple dateSortie = new pichisNF.DateSimple(champJourSortie.getText(), champMoisSortie.getText(), champAnneeSortie.getText());
@@ -629,7 +629,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     private void boutonValider1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValider1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boutonValider1ActionPerformed
-=======
+
         Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
         Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
         Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
@@ -638,7 +638,7 @@ public class AjoutSejour extends javax.swing.JFrame {
         daoSejour.ajout(sejour, patient);
         this.dispose();
         interfaceAdmin.affichageSejoursDuPatient(patient);
-    }//GEN-LAST:event_boutonValiderActionPerformed
+    }                                             
 
     private void comboBoxPlacementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlacementActionPerformed
         // TODO add your handling code here:
@@ -659,7 +659,7 @@ public class AjoutSejour extends javax.swing.JFrame {
     private void champJourEntreeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_champJourEntreeFocusGained
 
     }//GEN-LAST:event_champJourEntreeFocusGained
->>>>>>> origin/master
+
 
     /**
      * @param args the command line arguments
@@ -687,19 +687,14 @@ public class AjoutSejour extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AjoutSejour.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-<<<<<<< HEAD
+
         //</editor-fold>
-=======
->>>>>>> origin/master
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-<<<<<<< HEAD
-             
-=======
-                
->>>>>>> origin/master
+
             }
         });
     }
