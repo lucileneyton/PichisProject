@@ -30,8 +30,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     DefaultListModel<DPI> modeleListeDPI;
     DefaultListModel<Sejour> modeleListeSejour;
     DefaultListModel<DPI> modeleListeDPIRecherche;
+<<<<<<< HEAD
 
     DAOSejour daoSejour;
+=======
+    
+    DAOSejour daoSejour; 
+    DAODPI daoDpi;
+>>>>>>> origin/master
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -42,13 +48,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceAdministratif() {
+<<<<<<< HEAD
         this.administratif = administratif;
         initComponents();
 
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
 
+=======
+        
+        initComponents();
+        modeleListeDPI = new DefaultListModel<DPI>();
+        modeleListeSejour = new DefaultListModel<Sejour>();
+        daoDpi = new DAODPI();
+>>>>>>> origin/master
         daoSejour = new DAOSejour();
-
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -68,6 +81,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
+<<<<<<< HEAD
         modeleListeDPI = new DefaultListModel<DPI>();
 
         for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
@@ -75,6 +89,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         listeDePatients.setModel(modeleListeDPI);
 
+=======
+        this.affichageListeDePatients();
+>>>>>>> origin/master
     }
 
     /**
@@ -842,7 +859,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
 
-        if (champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
+        if ((champNumeroChambre.getText().equals("") == false) && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
             //patientSelectionne.mettre a jour donnees
 
             comboBoxService.setEnabled(false);
@@ -859,7 +876,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
-
+            if(listeSejours.getSelectedValue() != null) {
+                this.affichageDonneesSejour();
+            }
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
@@ -879,11 +898,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
+<<<<<<< HEAD
         affichageDonneesPatient();
 
         affichageDonneesSejour();
 
 
+=======
+        if(listeDePatients.getSelectedValue() != null) {
+            this.affichageDonneesPatient();
+            this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+            this.effaceDonneesSejour();
+        } 
+        
+>>>>>>> origin/master
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
@@ -908,7 +936,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
             ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
 
-            modeleListeDPIRecherche = new DefaultListModel<pichisNF.DPI>();
+            modeleListeDPIRecherche = new DefaultListModel<DPI>();
             for (int i = 0; i < modeleListeDPI.getSize(); i++) {
 
                 for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
@@ -934,7 +962,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
          * Méthode assurant la mise à jour de la liste des patients de
          * l'établissement
          */
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+        daoDpi = new pichisBD.DAODPI();
 
         modeleListeDPI.clear();
         for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
@@ -944,7 +972,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         listeDePatients.setModel(modeleListeDPI);
     }
-
+    
     public void affichageDonneesPatient() {
         /**
          * Méthode actualisant l'affichant des données d'un patient sur
@@ -967,6 +995,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             c.show(DMA, "card2");
         }
     }
+<<<<<<< HEAD
 
     public void affichageDonneesSejour() {
         modeleListeSejour = new DefaultListModel<Sejour>();
@@ -977,9 +1006,58 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 }
                 listeSejours.setModel(modeleListeSejour);
             }
+=======
+    
+    public void affichageDonneesSejour(){      
+        if (listeSejours.getModel().getSize() != 0 && listeSejours.getSelectedIndex() >= 0) {
+            DefaultListModel<Sejour> modele = (DefaultListModel<Sejour>) listeSejours.getModel();
+            
+            int indice = listeSejours.getSelectedIndex();
+            Sejour sejourActuel = modele.get(indice);
+            
+            champJourEntree.setText(sejourActuel.getDateEntree().getJour());
+            champMoisEntree.setText(sejourActuel.getDateEntree().getMois());
+            champAnneeEntree.setText(sejourActuel.getDateEntree().getAnnee());
+            
+            champNumeroSejour.setText(sejourActuel.getNumeroSejour());
+           
+            champPhResponsable.setText(sejourActuel.getPHResponsable().getId());
+>>>>>>> origin/master
         }
     }
+    
+    public void effaceDonneesSejour(){
+          champJourEntree.setText("");
+          champMoisEntree.setText("");
+          champAnneeEntree.setText("");  
+          champNumeroSejour.setText("");
+          champPhResponsable.setText("");
+          
+    }
+    
+    public void affichageSejoursDuPatient(DPI dpi){
+        ArrayList<Sejour> listeSejoursTemp = new ArrayList<Sejour>();
+        modeleListeSejour.clear();
 
+        listeSejoursTemp = daoSejour.consulterListeSejourParPatient(dpi).getListeSejours();
+        
+            for(int j=0; j<listeSejoursTemp.size(); j++){
+                modeleListeSejour.addElement(listeSejoursTemp.get(j));
+            }
+        listeSejours.setModel(modeleListeSejour);     
+    }
+    
+    public void affichageListeDePatients(){    
+        ArrayList<DPI> listeDPITemp = new ArrayList<DPI>();
+        listeDPITemp = daoDpi.consulterListeDPI();
+        
+        for (int i = 0; i < listeDPITemp.size(); i++) {  
+            modeleListeDPI.addElement(listeDPITemp.get(i));
+        }
+        listeDePatients.setModel(modeleListeDPI);
+        
+    }
+    
     /**
      * @param args the command line arguments
      */

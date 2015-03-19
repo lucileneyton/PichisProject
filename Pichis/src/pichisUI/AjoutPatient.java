@@ -350,12 +350,14 @@ public class AjoutPatient extends javax.swing.JDialog {
                             int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le patient " + "'"+ champNom.getText() + " " + champPrenom.getText() + "'"+" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
                             if (confirm == JOptionPane.YES_OPTION) {
-                                pichisBD.DAODPI dpi = new pichisBD.DAODPI();
-                                dpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
-
-                                this.dispose();
-
-                                interfaceAdmin.miseAJour();
+                                pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+                                
+                                daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
+                                this.dispose();   
+                                interfaceAdmin.affichageListeDePatients();
+                                
+                                                          
+                                
                             }
 
                         } else {

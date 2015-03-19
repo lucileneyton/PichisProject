@@ -240,14 +240,16 @@ public class DAOMedecin {
 
             Statement ins = c.connexion.createStatement();
             resul = ins.executeQuery("SELECT sejour.responsable, personnel.nom, personnel.prenom, personnel.mdp, personnel.service FROM sejour,personnel WHERE sejour.id=" + numSejour + " AND personnel.id=sejour.responsable;");
+            
+            while (resul.next()) {
+                
+                if (resul.getRow() == 0) {
 
-            if (resul.getRow() == 0) {
+                    med = null;
 
-                med = null;
+                } else {
 
-            } else {
-
-                while (resul.next()) {
+                
 
                     id = resul.getString("id");
                     nom = resul.getString("nom");

@@ -34,9 +34,7 @@ public class DAOSejour {
         DateSimple dateS;
         Medecin resp;
         Localisation loc;
-
-        DMA dma= new DMA();
-
+        DMA dma = new DMA();
         
         DAOMedecin daom = new DAOMedecin();
         DAOLocalisation daol = new DAOLocalisation();
@@ -54,8 +52,8 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datasortie");
-                dateE = new DateSimple(de.substring(0, 1),de.substring(2, 3),de.substring(4, 7));
+                String ds = resul.getString("datesortie");
+                dateE = new DateSimple(de.substring(8, 10), de.substring(5, 7), de.substring(0, 4));
                 
                              
                 resp = daom.medecinResponsable(num); 
@@ -81,9 +79,8 @@ public class DAOSejour {
             System.out.println("erreur DAOSejour: " + e);
         }
         
-        
         return dma;
-    }
+     }
      
     public void ajout(Sejour sejour, DPI dpi){
         Statement ins;
