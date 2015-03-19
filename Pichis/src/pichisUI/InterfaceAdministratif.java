@@ -5,7 +5,6 @@
  */
 package pichisUI;
 
-import pichisNF.AjoutSejour;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
@@ -34,6 +33,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     DefaultListModel<DPI> modeleListeDPIRecherche;
     
     DAOSejour daoSejour; 
+    DAODPI daoDpi;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -44,17 +44,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceAdministratif() {
-        this.administratif = administratif;
-        initComponents();
-
-
         
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-
-
-       
+        initComponents();
+        modeleListeDPI = new DefaultListModel<DPI>();
+        modeleListeSejour = new DefaultListModel<Sejour>();
+        daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
-
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -74,13 +69,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
-        modeleListeDPI = new DefaultListModel<DPI>();
-        
-        for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
-            modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
-        }
-        listeDePatients.setModel(modeleListeDPI);
-        
+        this.affichageListeDePatients();
     }
 
     /**
@@ -885,10 +874,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
-        affichageDonneesPatient();
-        
-        affichageDonneesSejour();
-        
+        if(listeDePatients.getSelectedValue() != null) {
+            this.affichageDonneesPatient();
+            this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+        } 
         
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -940,7 +929,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
          * Méthode assurant la mise à jour de la liste des patients de
          * l'établissement
          */
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+        daoDpi = new pichisBD.DAODPI();
 
         modeleListeDPI.clear();
         for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
@@ -950,7 +939,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         listeDePatients.setModel(modeleListeDPI);
     }
-
+    
     public void affichageDonneesPatient() {
         /**
          * Méthode actualisant l'affichant des données d'un patient sur
@@ -974,16 +963,29 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
     }
     
-    public void affichageDonneesSejour(){
-        modeleListeSejour = new DefaultListModel<Sejour>();
-        if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false){
-            for (int i=0; i < (daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().size()); i++) {
-                modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().get(i));
-            }
-            listeSejours.setModel(modeleListeSejour); 
-        }
-    }
+    public void affichageSejoursDuPatient(DPI dpi){
+        ArrayList<Sejour> listeSejoursTemp = new ArrayList<Sejour>();
+        modeleListeSejour.clear();
 
+        listeSejoursTemp = daoSejour.consulterListeSejourParPatient(dpi).getListeSejours();
+        
+            for(int j=0; j<listeSejoursTemp.size(); j++){
+                modeleListeSejour.addElement(listeSejoursTemp.get(j));
+            }
+        listeSejours.setModel(modeleListeSejour);     
+    }
+    
+    public void affichageListeDePatients(){    
+        ArrayList<DPI> listeDPITemp = new ArrayList<DPI>();
+        listeDPITemp = daoDpi.consulterListeDPI();
+        
+        for (int i = 0; i < listeDPITemp.size(); i++) {  
+            modeleListeDPI.addElement(listeDPITemp.get(i));
+        }
+        listeDePatients.setModel(modeleListeDPI);
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
