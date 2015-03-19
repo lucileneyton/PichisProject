@@ -48,7 +48,7 @@ public class DAOSejour {
           
             Statement ins = c.connexion.createStatement();
             
-            resul = ins.executeQuery("SELECT * FROM sejour WHERE sejour.ipp= "+patient.getIpp()+";");
+            resul = ins.executeQuery("SELECT * FROM sejour WHERE sejour.ipp= "+patient.getIpp());
             
             while (resul.next()) {
 
@@ -60,7 +60,7 @@ public class DAOSejour {
                              
                 resp = daom.medecinResponsable(num); 
                 loc = daol.localisationParNumeroDeSejour(num);
-                
+//                System.out.println("" +loc);
                 Sejour s;
                 //if(ds.equalsIgnoreCase("null") != true){
                //     dateS = new DateSimple(ds.substring(0, 1),ds.substring(2, 3),ds.substring(4, 7));
