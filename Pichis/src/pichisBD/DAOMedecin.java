@@ -125,17 +125,17 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
-             res = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
+             res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id=" + id);
             
-//            while (res.next()) {
-//                if (res.getRow() == 0) {
-//                    b = false;
-//
-//                } else {
-//                    b = true;
-//
-//                }
-//            }
+            while (res.next()) {
+                if (res.getRow() == 0) {
+                    b = false;
+
+                } else {
+                    b = true;
+
+                }
+            }
 
 //            res = ins.executeQuery("SELECT * FROM personnel");
 //

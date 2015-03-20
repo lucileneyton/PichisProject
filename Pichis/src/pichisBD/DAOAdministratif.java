@@ -25,7 +25,7 @@ public class DAOAdministratif {
         String mdp;
         boolean b = false;
         ResultSet resul;
-        Statement ins;
+        Statement ins = null;
 
         try {
 
@@ -43,11 +43,15 @@ public class DAOAdministratif {
                     b = false;
                 }
             }
+            ins.close();
+            
 
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif (identification) : " + e);
             return false;
         }
+        
+        
         return b;
     }
 
@@ -69,6 +73,8 @@ public class DAOAdministratif {
                 listeAdministratif.add(new Administratif(id, nom, prenom, mdp));
 
             }
+           
+            
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif (consulterListeAdinistratif): " + e);
         }
