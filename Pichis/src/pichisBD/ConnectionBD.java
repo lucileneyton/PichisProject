@@ -8,6 +8,7 @@ package pichisBD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -54,6 +55,7 @@ public Connection connexion;
             System.out.println("echec pilote : " + e);
         }
          
+
         
         
 

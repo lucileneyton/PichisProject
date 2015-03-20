@@ -17,10 +17,13 @@ import pichisNF.Administratif;
  */
 public class DAOAdministratif {
 
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
+    
+    
 
     public boolean identification(String id, String motDePasse) {
 
+        c = new ConnectionBD();
         String identif;
         String mdp;
         boolean b = false;
@@ -50,6 +53,19 @@ public class DAOAdministratif {
             System.out.println("erreur DAOAdministratif (identification) : " + e);
             return false;
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
+        
+        
         
         
         return b;
@@ -58,7 +74,8 @@ public class DAOAdministratif {
     public ArrayList<Administratif> consulterListeAdministratif() {
 
         ArrayList<Administratif> listeAdministratif = new ArrayList();
-
+        c=new ConnectionBD();
+        
         try {
 
             ResultSet resul;
@@ -78,6 +95,18 @@ public class DAOAdministratif {
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif (consulterListeAdinistratif): " + e);
         }
+        
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return listeAdministratif;
     }
@@ -85,6 +114,7 @@ public class DAOAdministratif {
     public Administratif administratifParID(String id) {
 
         Administratif admin = null;
+        c = new ConnectionBD();
 
         try {
 
@@ -105,6 +135,18 @@ public class DAOAdministratif {
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif: (administratifParID) " + e);
         }
+        
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return admin;
     }
@@ -112,6 +154,7 @@ public class DAOAdministratif {
     public void ajoutAdministratif(String id, String nom, String prenom, String motDePasse) {
 
         Statement ins;
+        c= new ConnectionBD();
 
         try {
             ins = c.connexion.createStatement();
@@ -119,6 +162,17 @@ public class DAOAdministratif {
 
         } catch (SQLException ex) {
             System.out.println("Erreur DAOAdministratif (ajoutAdministratif)" + ex);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
     }
 

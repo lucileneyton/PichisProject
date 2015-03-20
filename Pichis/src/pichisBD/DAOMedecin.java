@@ -127,15 +127,15 @@ public class DAOMedecin {
 
              res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id=" + id);
             
-            while (res.next()) {
-                if (res.getRow() == 0) {
-                    b = false;
+            //while (res.next()) {
+              //  if (res.getRow() == 0) {
+                //    b = false;
 
-                } else {
-                    b = true;
+                //} else {
+                  //  b = true;
 
-                }
-            }
+            //    }
+          //  }
 
 //            res = ins.executeQuery("SELECT * FROM personnel");
 //
