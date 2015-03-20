@@ -709,7 +709,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGap(94, 94, 94)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -821,7 +821,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, Short.MAX_VALUE))
                 .addGap(0, 179, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -833,7 +833,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -1247,7 +1247,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceServiceClinique.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

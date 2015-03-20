@@ -24,7 +24,7 @@ import pichisNF.Sejour;
 public class DAOSejour {
 
  
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
 
    
      public DMA consulterListeSejourParPatient(DPI patient) {
@@ -35,6 +35,7 @@ public class DAOSejour {
         Medecin resp;
         Localisation loc;
         DMA dma = new DMA();
+        c = new ConnectionBD();
         
         DAOMedecin daom = new DAOMedecin();
         DAOLocalisation daol = new DAOLocalisation();
@@ -78,6 +79,17 @@ public class DAOSejour {
         } catch (SQLException e) {
             System.out.println("erreur DAOSejour (consulterListeSejourParPatient): " + e);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
         
         return dma;
      }
@@ -86,6 +98,7 @@ public class DAOSejour {
         Statement ins;
         Statement verif;
         ResultSet res;
+        c = new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -98,16 +111,28 @@ public class DAOSejour {
             
             
             else{
-                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre()+ "')");         
+                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')");         
             }
 
         } catch (SQLException ex) {
             System.out.println("Erreur DAOSejour (ajout)" + ex);
         } 
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
     }
     
     public String getNombreSejoursTotal(){
         String nbSejours="";
+        c = new ConnectionBD();
         
         try {
 
@@ -123,6 +148,17 @@ public class DAOSejour {
             
         } catch (SQLException e) {
             System.out.println("erreur DAOSejour (getNombreSejoursTotal): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
         
         return nbSejours;

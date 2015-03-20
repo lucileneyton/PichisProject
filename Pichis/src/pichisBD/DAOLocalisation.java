@@ -20,11 +20,12 @@ import pichisNF.TypeServices;
  */
 public class DAOLocalisation {
  
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
 
    
     public Localisation localisationParNumeroDeSejour(String num) {
 
+        c=new ConnectionBD();
         Localisation loc = null;
         
         
@@ -34,11 +35,7 @@ public class DAOLocalisation {
 
             Statement ins = c.connexion.createStatement();
 
-//            resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type "
-//                                        + "FROM sejour,service "
-//                                        + "WHERE service.id = sejour.loc AND sejour.id= " + num);
-            
-            resul = ins.executeQuery("SELECT * FROM sejour WHERE id=" + num);
+            resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type FROM sejour,service WHERE service.id = sejour.loc AND sejour.id= " + num);
 
 
             if (resul.getRow() == 0) {
@@ -52,11 +49,11 @@ public class DAOLocalisation {
                     String localisation = resul.getString("loc");
                     String numChambre = resul.getString("numerochambre");
                     String placement = resul.getString("placement");
-//                    String typeService = resul.getString("service.type");
-//                    String specialite = resul.getString("service.specialite");
+                    String typeService = resul.getString("service.type");
+                    String specialite = resul.getString("service.specialite");
                     
-                    TypeServices t = TypeServices.CLINIQUE;
-                    Specialite sp = Specialite.valueOf(localisation);
+                    TypeServices t = TypeServices.valueOf(typeService);
+                    Specialite sp = Specialite.valueOf(specialite);
                     Services s = new Services(t,sp); 
                     loc = new Localisation(s,numChambre,placement);
 
@@ -64,6 +61,17 @@ public class DAOLocalisation {
             }
         } catch (SQLException e) {
             System.out.println("erreur DAOLocalisation (localisationParNumeroDeSejour): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
 
         return loc;

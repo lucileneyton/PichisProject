@@ -7,7 +7,12 @@
 package pichisBD;
 
 import pichisNF.Administratif;
+import pichisNF.DPI;
+import pichisNF.DateSimple;
 import pichisNF.Medecin;
+import pichisNF.Services;
+import pichisNF.Specialite;
+import pichisNF.TypeServices;
 
 /**
  *
@@ -45,6 +50,14 @@ public class TestDAO {
         
         daom.ajoutMedecin("1234","X","Jean" ,"abcd" ,"CARDIOLOGIE" );
         
+       
+       
+       DateSimple date1 = new DateSimple("24", "04", "1993");
+       DAODPI dpi = new DAODPI();
+       dpi.ajout("1546", "Me", "Henry", "H", date1, "21, rue des agagous");
+       
+       DAOPrestations prest = new DAOPrestations();
+       prest.ajoutPrestation("Radio genou", "1234", "1546", null, "20032015", null);
         
     }
     

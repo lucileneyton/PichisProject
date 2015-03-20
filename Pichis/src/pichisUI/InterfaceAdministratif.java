@@ -14,12 +14,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAODPI;
-import pichisBD.DAOLocalisation;
 import pichisBD.DAOSejour;
 import pichisNF.Administratif;
-import pichisNF.DMA;
 import pichisNF.DPI;
-import pichisNF.Localisation;
 import pichisNF.Sejour;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
@@ -37,7 +34,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     
     DAOSejour daoSejour; 
     DAODPI daoDpi;
-    DAOLocalisation daoLoc;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -54,7 +50,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         modeleListeSejour = new DefaultListModel<Sejour>();
         daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
-        daoLoc = new DAOLocalisation();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -887,8 +882,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             this.effaceDonneesSejour();
             this.effaceDonneesLocalisation();
-            this.affichageLocalisation();
-       
+            
+            if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false){  
+                System.out.println("testIf");
+                this.affichageLocalisation();
+            }          
         } 
         
     }//GEN-LAST:event_listeDePatientsValueChanged
@@ -1024,25 +1022,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }
     
     public void affichageLocalisation(){
-        DMA dma = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
-        Localisation loc;
-        if(dma.getListeSejours().isEmpty() == false){  
-            System.out.println("testIf");
-            
-            Sejour sejourRecent;
-            sejourRecent = dma.getDernierSejour();
-            
-            loc = daoLoc.localisationParNumeroDeSejour(sejourRecent.getNumeroSejour());
-            
-            if(loc != null){
-                    System.out.println("TESTLOCALISATION");
-                    
-                    comboBoxService.setSelectedItem(loc.getService());
-                    champNumeroChambre.setText(loc.getNumeroChambre());
-                    comboBoxPlacement.setSelectedItem(loc.getPlacement());
-                }
-            
-        }       
+        Sejour sejourRecent;
+        sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
+
+        comboBoxService.setSelectedItem(sejourRecent.getLocalisation().getService());
+        champNumeroChambre.setText(sejourRecent.getLocalisation().getNumeroChambre());
+        comboBoxPlacement.setSelectedItem(sejourRecent.getLocalisation().getPlacement());
     }
     
     public void effaceDonneesLocalisation(){

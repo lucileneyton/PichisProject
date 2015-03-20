@@ -6,15 +6,9 @@
 
 package pichisBD;
 
-import pichisNF.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.*;
 
 /**
  *
@@ -51,25 +45,23 @@ public Connection connexion;
         try {
             Class.forName(pilote);
 
-            connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");
+            connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe !
             
-            // connexion en local ->
-            // connexion = DriverManager.getConnection("jdbc:mysql://192.168.0.1/pichisdatabase", "user", "user"); 
-            // localhost : adresse du pc (Lucile)  (ip à définir lors de la connexion)
-            // root : user
-            // mdp :user
+
             
 
         } catch (Exception e) {
 
             System.out.println("echec pilote : " + e);
         }
+         
+
         
         
 
     }
 
-   
+  
 
         
         
