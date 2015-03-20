@@ -21,7 +21,7 @@ public class DAOAdministratif {
     
     
 
-    public boolean identification(String id, String motDePasse) {
+    public boolean identification(String id, String motDePasse) throws SQLException {
 
         c = new ConnectionBD();
         String identif;
@@ -45,13 +45,14 @@ public class DAOAdministratif {
                 } else {
                     b = false;
                 }
+                return b;
             }
-            ins.close();
+            
             
 
         } catch (SQLException e) {
             System.out.println("erreur DAOAdministratif (identification) : " + e);
-            return false;
+            return b;
         }
         finally{
             if(c!=null){
@@ -68,7 +69,7 @@ public class DAOAdministratif {
         
         
         
-        return b;
+        return resul.first();
     }
 
     public ArrayList<Administratif> consulterListeAdministratif() {
