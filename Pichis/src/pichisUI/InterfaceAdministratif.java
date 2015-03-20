@@ -14,9 +14,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAODPI;
+import pichisBD.DAOLocalisation;
 import pichisBD.DAOSejour;
 import pichisNF.Administratif;
 import pichisNF.DPI;
+import pichisNF.Localisation;
 import pichisNF.Sejour;
 import pichisNF.Specialite;
 import pichisNF.fonctions;
@@ -34,6 +36,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     
     DAOSejour daoSejour; 
     DAODPI daoDpi;
+    DAOLocalisation daoLoc;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -50,6 +53,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         modeleListeSejour = new DefaultListModel<Sejour>();
         daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
+        daoLoc = new DAOLocalisation();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -839,6 +843,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         if ((champNumeroChambre.getText().equals("") == false) && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
             //patientSelectionne.mettre a jour donnees
+            
 
             comboBoxService.setEnabled(false);
             comboBoxService.setBackground(Color.LIGHT_GRAY);
@@ -879,14 +884,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         if(listeDePatients.getSelectedValue() != null) {
             
             this.affichageDonneesPatient();
+            
             this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             this.effaceDonneesSejour();
-            this.effaceDonneesLocalisation();
             
-            if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false){  
-                System.out.println("testIf");
-                this.affichageLocalisation();
-            }          
+            this.effaceDonneesLocalisation();          
+            this.affichageLocalisation();
+                     
         } 
         
     }//GEN-LAST:event_listeDePatientsValueChanged
@@ -987,6 +991,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             champNumeroSejour.setText(sejourActuel.getNumeroSejour());
            
             champPhResponsable.setText(sejourActuel.getPHResponsable().toString());
+            
+            this.affichageLocalisation();
         }
     }
     
@@ -1015,6 +1021,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         ArrayList<DPI> listeDPITemp = new ArrayList<DPI>();
         listeDPITemp = daoDpi.consulterListeDPI();
         
+        modeleListeDPI.clear();
         for (int i = 0; i < listeDPITemp.size(); i++) {  
             modeleListeDPI.addElement(listeDPITemp.get(i));
         }
@@ -1023,11 +1030,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     
     public void affichageLocalisation(){
         Sejour sejourRecent;
+        Localisation loc;       
+        
         sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
-
-        comboBoxService.setSelectedItem(sejourRecent.getLocalisation().getService());
-        champNumeroChambre.setText(sejourRecent.getLocalisation().getNumeroChambre());
-        comboBoxPlacement.setSelectedItem(sejourRecent.getLocalisation().getPlacement());
+        
+        if(sejourRecent != null){        
+            loc = daoLoc.localisationParNumeroDeSejour(sejourRecent.getNumeroSejour());
+                      
+            comboBoxService.setSelectedItem(loc.getService().getSpecialite());
+            champNumeroChambre.setText(loc.getNumeroChambre());
+            comboBoxPlacement.setSelectedItem(loc.getPlacement());
+        }
     }
     
     public void effaceDonneesLocalisation(){

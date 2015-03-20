@@ -35,25 +35,23 @@ public class DAOLocalisation {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type FROM sejour,service WHERE service.id = sejour.loc AND sejour.id= " + num);
+           // resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type FROM sejour,service WHERE service.id = sejour.loc AND sejour.id= " + num);
+            resul = ins.executeQuery("SELECT id, loc, numerochambre, placement FROM sejour WHERE id='" + num + "';");
 
-
-            if (resul.getRow() == 0) {
-
+            if (resul.getRow() != 0) {
                 loc = null;
 
             } else {
 
                 while (resul.next()) {
+                      String localisation = resul.getString("loc");
+                      String numChambre = resul.getString("numerochambre");
+                      String placement = resul.getString("placement");
+//                    String typeService = resul.getString("service.type");
+//                    String specialite = resul.getString("service.specialite");
                     
-                    String localisation = resul.getString("loc");
-                    String numChambre = resul.getString("numerochambre");
-                    String placement = resul.getString("placement");
-                    String typeService = resul.getString("service.type");
-                    String specialite = resul.getString("service.specialite");
-                    
-                    TypeServices t = TypeServices.valueOf(typeService);
-                    Specialite sp = Specialite.valueOf(specialite);
+                    TypeServices t = TypeServices.CLINIQUE;//valueOf(typeService);
+                    Specialite sp = Specialite.valueOf(localisation);
                     Services s = new Services(t,sp); 
                     loc = new Localisation(s,numChambre,placement);
 

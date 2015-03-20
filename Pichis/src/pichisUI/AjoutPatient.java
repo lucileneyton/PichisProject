@@ -354,9 +354,7 @@ public class AjoutPatient extends javax.swing.JDialog {
                                 
                                 daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
                                 this.dispose();   
-                                interfaceAdmin.affichageListeDePatients();
-                                
-                                                          
+                                interfaceAdmin.affichageListeDePatients();                                     
                                 
                             }
 
