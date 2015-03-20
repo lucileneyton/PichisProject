@@ -39,7 +39,7 @@ public class DAODPI {
     
     ConnectionBD c = new ConnectionBD();
     
-    public DPI dpiParIPP(String ipp){
+    DPI dpiParIPP(String ipp){
          try {
 
             ResultSet resul;
