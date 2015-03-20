@@ -41,7 +41,7 @@ public class DAOPrestations {
      */
     public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id) {
         Statement ins;
-
+        //String patient : IPP du patient
         try {
             ins = c.connexion.createStatement();
             ins.executeUpdate("INSERT INTO prestations(id, demandeur, patient,resultat, date,nature)" + "VALUES ('" + id + "','" + demandeur + "','" + patient + "','" + resultat + "','" + date + "','" + naturePrestation + "')");
@@ -51,13 +51,15 @@ public class DAOPrestations {
         }
     }
 
-    Prestations prestationsPatient(String idPatient) {
+   public ArrayList<Prestations> prestationsPatient(String idPatient) {
 
+        ArrayList<Prestations> l = new ArrayList<Prestations>();
         try {
 
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
+            //idPatient est l'IPP du patient
 
             resul = ins.executeQuery("SELECT * FROM prestations WHERE patient='" + idPatient + "'");
 
@@ -71,16 +73,15 @@ public class DAOPrestations {
                 date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
 
                 p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
-
+                l.add(p);
             }
 
         } catch (SQLException e) {
             System.out.println("erreur DAOPrestations: " + e);
         }
 
-        return p;
+        return l;
     }
-
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
 
         ArrayList<Prestations> listePrestations = new ArrayList();
