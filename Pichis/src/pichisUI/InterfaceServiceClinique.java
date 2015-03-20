@@ -63,7 +63,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
         
      
-//        System.out.println(""+ daoSejour.consulterListeSejourParPatient("123").getListeSejours());
+        System.out.println(""+ daoSejour.consulterListeSejourParPatient(listeDeDPI.get(0)).getListeSejours().get(0).getLocalisation());
         
 
         for (int i = 0; i < listeDeDPI.size(); i++) {
@@ -73,8 +73,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            System.out.println("" + listeDeSejours);
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
-                Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (servicePatient.equals(medecin.getSpecialite().getSpecialite())) {
+                Sejour dernierSejour = listeDeSejours.get(listeDeSejours.size() - 1);
+                if (dernierSejour.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
                 }
@@ -709,7 +709,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGap(94, 94, 94)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -821,7 +821,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, Short.MAX_VALUE))
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                 .addGap(0, 179, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -833,7 +833,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
