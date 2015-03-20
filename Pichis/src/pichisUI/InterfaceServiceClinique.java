@@ -63,7 +63,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
         
      
-        System.out.println(""+ daoSejour.consulterListeSejourParPatient(listeDeDPI.get(0)).getListeSejours().get(0).getLocalisation());
+//        System.out.println(""+ daoSejour.consulterListeSejourParPatient("123").getListeSejours());
         
 
         for (int i = 0; i < listeDeDPI.size(); i++) {
@@ -73,8 +73,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            System.out.println("" + listeDeSejours);
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
-                Sejour dernierSejour = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (dernierSejour.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())) {
+                Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
+                if (servicePatient.equals(medecin.getSpecialite().getSpecialite())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
                 }
@@ -1247,6 +1247,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceServiceClinique.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
