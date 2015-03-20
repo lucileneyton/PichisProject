@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @author Lucile
  */
 public class DAOServices {
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
     
     public void ajoutService(String naturePrestation, String demandeur, String patient, String resultat, String date, String id){
         
