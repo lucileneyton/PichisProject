@@ -195,7 +195,7 @@ public class AjoutSejour extends javax.swing.JFrame {
             }
         });
 
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Chambre unique" }));
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Unique" }));
         comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPlacementActionPerformed(evt);

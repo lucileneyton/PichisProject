@@ -460,7 +460,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         labelPlacement.setText("Placement");
 
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Chambre unique" }));
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Unique" }));
         comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPlacementActionPerformed(evt);
@@ -881,8 +881,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             this.affichageDonneesPatient();
             this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             this.effaceDonneesSejour();
+            this.effaceDonneesLocalisation();
             
-            if(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getDma().getListeSejours().isEmpty() == false){               
+            if(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false){  
+                System.out.println("testIf");
                 this.affichageLocalisation();
             }          
         } 
@@ -1021,10 +1023,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     
     public void affichageLocalisation(){
         Sejour sejourRecent;
-        sejourRecent = modeleListeDPI.get(listeDePatients.getSelectedIndex()).getDma().getDernierSejour();
+        sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
+
         comboBoxService.setSelectedItem(sejourRecent.getLocalisation().getService());
         champNumeroChambre.setText(sejourRecent.getLocalisation().getNumeroChambre());
         comboBoxPlacement.setSelectedItem(sejourRecent.getLocalisation().getPlacement());
+    }
+    
+    public void effaceDonneesLocalisation(){
+        comboBoxPlacement.setSelectedIndex(-1);
+        champNumeroChambre.setText("");
+        comboBoxService.setSelectedIndex(-1);
     }
     
     /**
