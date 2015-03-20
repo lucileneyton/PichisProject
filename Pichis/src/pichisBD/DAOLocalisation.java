@@ -20,11 +20,12 @@ import pichisNF.TypeServices;
  */
 public class DAOLocalisation {
  
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
 
    
     public Localisation localisationParNumeroDeSejour(String num) {
 
+        c=new ConnectionBD();
         Localisation loc = null;
         
         
@@ -60,6 +61,17 @@ public class DAOLocalisation {
             }
         } catch (SQLException e) {
             System.out.println("erreur DAOLocalisation (localisationParNumeroDeSejour): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
 
         return loc;
