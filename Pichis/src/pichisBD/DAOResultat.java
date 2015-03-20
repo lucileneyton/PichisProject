@@ -40,7 +40,7 @@ public class DAOResultat {
     } 
     
 
-    public Resultat resultatPrestation(String idPrestation) {
+    Resultat resultatPrestation(String idPrestation) {
 
         try {
 
