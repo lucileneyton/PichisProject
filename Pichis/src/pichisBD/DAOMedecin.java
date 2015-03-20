@@ -150,8 +150,8 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
-             res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id=" + id);
-            
+             res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id=" + id);
+             b = res.first();
             //while (res.next()) {
               //  if (res.getRow() == 0) {
                 //    b = false;
@@ -190,7 +190,7 @@ public class DAOMedecin {
         }
 
 
-        return res.first();
+        return b;
 
 //           
 
