@@ -33,7 +33,7 @@ public class DAOMedecin {
      *
      * @author Lucile
      */
-    ConnectionBD c = new ConnectionBD();
+    ConnectionBD c ;
 
     public ArrayList<Medecin> consulterListeMedecin2() {
 
@@ -45,6 +45,7 @@ public class DAOMedecin {
         String type;
         Specialite s;
         TypeServices types;
+        c = new ConnectionBD();
 
         try {
 
@@ -74,6 +75,17 @@ public class DAOMedecin {
         } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (consulterListeMedecin2): " + e);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return listeMedecin;
 
@@ -84,6 +96,7 @@ public class DAOMedecin {
         String identif;
         String mdp;
         boolean b = false;
+        c = new ConnectionBD();
 
         try {
             ResultSet resul;
@@ -107,6 +120,17 @@ public class DAOMedecin {
             System.out.println("erreur DAOMedecin (identification): " + e);
             return b;
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
     }
 
@@ -118,6 +142,7 @@ public class DAOMedecin {
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
         boolean b = false;
+        c = new ConnectionBD();
 
 
         try {
@@ -151,6 +176,17 @@ public class DAOMedecin {
 
         } catch (SQLException ex) {
             System.out.println("Erreur DAOMedecin (estMedecin)");
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
 
 
@@ -191,6 +227,7 @@ public class DAOMedecin {
         String type;
         Specialite s;
         TypeServices types;
+        c= new ConnectionBD();
 
         try {
 
@@ -220,6 +257,17 @@ public class DAOMedecin {
         } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (consulterListeMedecin): " + e);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return listeMedecin;
 
@@ -233,6 +281,7 @@ public class DAOMedecin {
         String mdp;
         String type;
         TypeServices types;
+        c = new ConnectionBD();
 
         try {
 
@@ -274,6 +323,17 @@ public class DAOMedecin {
         } catch (SQLException e) {
             System.out.println("erreur DAOAMedecin medecinResponsable: " + e);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return med;
     }
@@ -287,6 +347,7 @@ public class DAOMedecin {
         String mdp;
         String type;
         TypeServices types;
+        c = new ConnectionBD();
 
         try {
 
@@ -315,6 +376,17 @@ public class DAOMedecin {
         } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (medecin par ID): " + e);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
 
         return med;
     }
@@ -324,6 +396,7 @@ public class DAOMedecin {
        ResultSet res;
        Services service = null;
        String num = null; 
+       c = new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -336,6 +409,17 @@ public class DAOMedecin {
         } catch (SQLException ex) {
             System.out.println("Erreur DAOMedecin (IdService)" + ex);
         }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
         
            return num;         
         
@@ -346,6 +430,7 @@ public class DAOMedecin {
         Statement ins;
         
         String s = IdService(service);
+        c = new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -353,6 +438,16 @@ public class DAOMedecin {
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);
+        }finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
         }
     }
 
