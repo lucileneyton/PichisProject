@@ -19,7 +19,7 @@ public class DAOAdministratif {
 
     ConnectionBD c = new ConnectionBD();
 
-    public boolean identification(String id, String motDePasse) throws SQLException {
+    public boolean identification(String id, String motDePasse) {
 
         String identif;
         String mdp;
@@ -30,16 +30,25 @@ public class DAOAdministratif {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE maintenance IS NULL AND service IS NULL AND id =" +id);
-            
-            
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id + " AND maintenance!='false' AND service='NULL'");
+
+            while (resul.next()) {
+
+                identif = resul.getString("id");
+                mdp = resul.getString("mdp");
+
+                if (mdp.equals(motDePasse)) {
+                    b = true;
+                } else {
+                    b = false;
+                }
+            }
 
         } catch (SQLException e) {
-            System.out.println("erreur : " + e);
+            System.out.println("erreur DAOAdministratif (identification) : " + e);
             return false;
         }
-        System.out.println("" +b);
-        return resul.first();
+        return b;
     }
 
     public ArrayList<Administratif> consulterListeAdministratif() {
@@ -61,7 +70,7 @@ public class DAOAdministratif {
 
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOAdministratif (consulterListeAdinistratif): " + e);
         }
 
         return listeAdministratif;
@@ -88,7 +97,7 @@ public class DAOAdministratif {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOAdministratif: " + e);
+            System.out.println("erreur DAOAdministratif: (administratifParID) " + e);
         }
 
         return admin;
@@ -103,7 +112,7 @@ public class DAOAdministratif {
             ins.executeUpdate("INSERT INTO personnel(id, nom, prenom,mdp, service,maintenance)" + "VALUES ('" + id + "','" + nom + "','" + prenom + "','" + motDePasse + "','" + "NULL" + "','" + "false" + "')");
 
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création de l'administratif" + ex);
+            System.out.println("Erreur DAOAdministratif (ajoutAdministratif)" + ex);
         }
     }
 

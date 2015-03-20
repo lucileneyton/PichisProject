@@ -37,6 +37,12 @@ public class DAOLocalisation {
             resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type FROM sejour,service WHERE service.id = sejour.loc AND sejour.id= " + num);
 
 
+            if (resul.getRow() == 0) {
+
+                loc = null;
+
+            } else {
+
                 while (resul.next()) {
                     
                     String localisation = resul.getString("loc");
@@ -51,9 +57,9 @@ public class DAOLocalisation {
                     loc = new Localisation(s,numChambre,placement);
 
                 }
-            
+            }
         } catch (SQLException e) {
-            System.out.println("erreur DAOLocalisation: " + e);
+            System.out.println("erreur DAOLocalisation (localisationParNumeroDeSejour): " + e);
         }
 
         return loc;

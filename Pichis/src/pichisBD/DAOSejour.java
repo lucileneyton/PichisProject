@@ -46,7 +46,7 @@ public class DAOSejour {
           
             Statement ins = c.connexion.createStatement();
             
-            resul = ins.executeQuery("SELECT * FROM sejour WHERE sejour.ipp= "+patient.getIpp());
+            resul = ins.executeQuery("SELECT * FROM sejour WHERE sejour.ipp= "+patient.getIpp()+";");
             
             while (resul.next()) {
 
@@ -58,7 +58,7 @@ public class DAOSejour {
                              
                 resp = daom.medecinResponsable(num); 
                 loc = daol.localisationParNumeroDeSejour(num);
-//                System.out.println("" +loc);
+                
                 Sejour s;
                 //if(ds.equalsIgnoreCase("null") != true){
                //     dateS = new DateSimple(ds.substring(0, 1),ds.substring(2, 3),ds.substring(4, 7));
@@ -76,7 +76,7 @@ public class DAOSejour {
        
             
         } catch (SQLException e) {
-            System.out.println("erreur DAOSejour: " + e);
+            System.out.println("erreur DAOSejour (consulterListeSejourParPatient): " + e);
         }
         
         return dma;
@@ -102,8 +102,30 @@ public class DAOSejour {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Erreur lors de la création du sejour" + ex);
+            System.out.println("Erreur DAOSejour (ajout)" + ex);
         } 
+    }
+    
+    public String getNombreSejoursTotal(){
+        String nbSejours="";
+        
+        try {
+
+            ResultSet resul;
+          
+            Statement ins = c.connexion.createStatement();
+            
+            resul = ins.executeQuery("SELECT COUNT(*) FROM sejour;");
+            
+            if (resul.next()){                       
+                nbSejours = resul.getString("COUNT(*)");
+            }           
+            
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour (getNombreSejoursTotal): " + e);
+        }
+        
+        return nbSejours;
     }
 
 }

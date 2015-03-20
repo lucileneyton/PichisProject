@@ -5,7 +5,6 @@
  */
 package pichisUI;
 
-import pichisUI.AjoutSejour;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
@@ -32,11 +31,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     DefaultListModel<DPI> modeleListeDPI;
     DefaultListModel<Sejour> modeleListeSejour;
     DefaultListModel<DPI> modeleListeDPIRecherche;
-
     
     DAOSejour daoSejour; 
     DAODPI daoDpi;
-
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -47,17 +44,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceAdministratif() {
-
-
-        pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-
-
         
         initComponents();
         modeleListeDPI = new DefaultListModel<DPI>();
         modeleListeSejour = new DefaultListModel<Sejour>();
-    
-
+        daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
@@ -68,7 +59,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Termine le processus lorsqu'on clique sur la croix rouge
-
+        
         this.setDefaultLookAndFeelDecorated(true);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
@@ -78,17 +69,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
 
-
-        modeleListeDPI = new DefaultListModel<DPI>();
-
-        for (int i = 0; i < daoDpi.consulterListeDPI().size(); i++) {
-            modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
-        }
-        listeDePatients.setModel(modeleListeDPI);
-
-
         this.affichageListeDePatients();
-
     }
 
     /**
@@ -895,20 +876,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
-
-        affichageDonneesPatient();
-
-        affichageDonneesSejour();
-
-
-
         if(listeDePatients.getSelectedValue() != null) {
             this.affichageDonneesPatient();
             this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             this.effaceDonneesSejour();
         } 
         
-
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
@@ -992,18 +965,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             c.show(DMA, "card2");
         }
     }
-
-
-//    public void affichageDonneesSejour() {
-//        modeleListeSejour = new DefaultListModel<Sejour>();
-//        if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
-//            if (daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().isEmpty() == false) {
-//                for (int i = 0; i < (daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().size()); i++) {
-//                    modeleListeSejour.addElement(daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getListeSejours().get(i));
-//                }
-//                listeSejours.setModel(modeleListeSejour);
-//            }
-
     
     public void affichageDonneesSejour(){      
         if (listeSejours.getModel().getSize() != 0 && listeSejours.getSelectedIndex() >= 0) {
@@ -1018,8 +979,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             
             champNumeroSejour.setText(sejourActuel.getNumeroSejour());
            
-            champPhResponsable.setText(sejourActuel.getPHResponsable().getId());
-
+            champPhResponsable.setText(sejourActuel.getPHResponsable().toString());
         }
     }
     
