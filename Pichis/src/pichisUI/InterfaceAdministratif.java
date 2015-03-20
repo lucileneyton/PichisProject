@@ -877,9 +877,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         if(listeDePatients.getSelectedValue() != null) {
+            
             this.affichageDonneesPatient();
             this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             this.effaceDonneesSejour();
+            
+            if(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getDma().getListeSejours().isEmpty() == false){               
+                this.affichageLocalisation();
+            }          
         } 
         
     }//GEN-LAST:event_listeDePatientsValueChanged
@@ -1011,8 +1016,15 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         for (int i = 0; i < listeDPITemp.size(); i++) {  
             modeleListeDPI.addElement(listeDPITemp.get(i));
         }
-        listeDePatients.setModel(modeleListeDPI);
-        
+        listeDePatients.setModel(modeleListeDPI);       
+    }
+    
+    public void affichageLocalisation(){
+        Sejour sejourRecent;
+        sejourRecent = modeleListeDPI.get(listeDePatients.getSelectedIndex()).getDma().getDernierSejour();
+        comboBoxService.setSelectedItem(sejourRecent.getLocalisation().getService());
+        champNumeroChambre.setText(sejourRecent.getLocalisation().getNumeroChambre());
+        comboBoxPlacement.setSelectedItem(sejourRecent.getLocalisation().getPlacement());
     }
     
     /**

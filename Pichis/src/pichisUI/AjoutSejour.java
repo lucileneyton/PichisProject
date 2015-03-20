@@ -370,7 +370,9 @@ public class AjoutSejour extends javax.swing.JFrame {
                 
                Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
                 Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
+                
                 Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
+                
                 patient.getDma().ajouterSejour(sejour);
         
                 daoSejour.ajout(sejour, patient);
