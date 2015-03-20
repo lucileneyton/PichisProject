@@ -19,7 +19,7 @@ import pichisNF.Resultat;
  */
 public class DAOResultat {
 
-    ConnectionBD c ;
+    ConnectionBD c = new ConnectionBD();
     DateSimple date;
     String descriptions;
     Medecin medecin;
@@ -29,7 +29,6 @@ public class DAOResultat {
     
     public void ajoutResultat(String date, String description, String medecin, String prestation, String id){
         Statement ins;
-        c = new ConnectionBD();
 
         try {
             ins = c.connexion.createStatement();
@@ -38,22 +37,11 @@ public class DAOResultat {
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du résultat" + ex);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
     } 
     
 
     Resultat resultatPrestation(String idPrestation) {
-        c = new ConnectionBD();
+
         try {
 
             ResultSet resul;
@@ -81,17 +69,6 @@ public class DAOResultat {
 
         } catch (SQLException e) {
             System.out.println("erreur DAOResultat: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
         return res;

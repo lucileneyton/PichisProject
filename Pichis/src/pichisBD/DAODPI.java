@@ -37,10 +37,9 @@ public class DAODPI {
     boolean estOuvert;
     DPI dpi;
     
-    ConnectionBD c ;
+    ConnectionBD c = new ConnectionBD();
     
     DPI dpiParIPP(String ipp){
-        c= new ConnectionBD();
          try {
 
             ResultSet resul;
@@ -79,17 +78,6 @@ public class DAODPI {
         } catch (SQLException e) {
             System.out.println("erreur DAOSejour (dpiParIPP): " + e);
         }
-         finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
 
         return dpi;
     }
@@ -101,7 +89,6 @@ public class DAODPI {
         Statement verif;
         ResultSet res;
         String ouvert = "T";
-        c= new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -119,18 +106,7 @@ public class DAODPI {
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du patient" + ex);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
+        } 
     }
     
     public ArrayList<DPI> consulterListeDPI() {
@@ -142,7 +118,6 @@ public class DAODPI {
         String sexe = "";
         String date = "";
         String adresse = "";
-        c= new ConnectionBD();
 
         try {
 
@@ -163,17 +138,6 @@ public class DAODPI {
             }
         } catch (SQLException e) {
             System.out.println("erreur DAODPI (consulterListeDPI): " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
         return listeDPI;

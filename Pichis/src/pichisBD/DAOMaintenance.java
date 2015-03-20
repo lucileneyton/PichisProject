@@ -19,11 +19,10 @@ import pichisNF.Maintenance;
  */
 public class DAOMaintenance {
 
-    ConnectionBD c ;
+    ConnectionBD c = new ConnectionBD();
     
     public boolean estMaintenance(String id, String mdp ){
         ResultSet res ;
-        c= new ConnectionBD();
        
         try {
             boolean b;
@@ -39,17 +38,6 @@ public class DAOMaintenance {
         } catch (SQLException ex) {
             Logger.getLogger(DAOMedecin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
         
         return true;
     }
@@ -61,7 +49,6 @@ public class DAOMaintenance {
         boolean b = false;
         ResultSet resul;
         Statement ins;
-        c = new ConnectionBD();
 
         try {
 
@@ -84,24 +71,12 @@ public class DAOMaintenance {
             System.out.println("erreur : " + e);
             return false;
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
 
     }
 
     public ArrayList<Maintenance> consulterListeMaintenance() {
 
         ArrayList<Maintenance> listeMaintenance = new ArrayList();
-        c = new ConnectionBD();
 
         try {
 
@@ -120,17 +95,6 @@ public class DAOMaintenance {
         } catch (SQLException e) {
             System.out.println("erreur DAOMaintenance: " + e);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
 
         return listeMaintenance;
     }
@@ -138,7 +102,6 @@ public class DAOMaintenance {
     public Maintenance MaintenanceParID(String id) {
 
         Maintenance maintenance = null;
-        c = new ConnectionBD();
 
         try {
 
@@ -165,17 +128,6 @@ public class DAOMaintenance {
         } catch (SQLException e) {
             System.out.println("erreur DAOMaintenance: " + e);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
 
         return maintenance;
     }
@@ -183,7 +135,6 @@ public class DAOMaintenance {
     public void ajoutMaintenance(String id, String nom, String prenom, String motDePasse) {
 
         Statement ins;
-        c = new ConnectionBD();
 
         try {
             ins = c.connexion.createStatement();
@@ -191,17 +142,6 @@ public class DAOMaintenance {
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du personnel de maintenance" + ex);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
     }
 

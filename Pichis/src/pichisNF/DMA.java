@@ -35,24 +35,5 @@ public class DMA {
         this.sejour = sejour;
     }
     
-    public Sejour getDernierSejour(){
-        int index=0;
-        DateSimple dateRecente;
-        
-        if(this.getListeSejours().isEmpty() == false){
-            dateRecente = this.getListeSejours().get(0).getDateEntree();
-                    
-            for(int i=1; i<this.getListeSejours().size(); i++){               
-                if(this.getListeSejours().get(i).getDateEntree().estAvant(dateRecente)){
-                    index = i;
-                    dateRecente = this.getListeSejours().get(i).getDateEntree();
-                }
-            }
-            return this.getSejour(index);
-        }
-        else{
-            return null;
-        }
-        
-    }
+    
 }

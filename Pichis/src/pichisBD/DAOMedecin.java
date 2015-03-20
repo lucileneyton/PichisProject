@@ -33,7 +33,7 @@ public class DAOMedecin {
      *
      * @author Lucile
      */
-    ConnectionBD c ;
+    ConnectionBD c = new ConnectionBD();
 
     public ArrayList<Medecin> consulterListeMedecin2() {
 
@@ -45,7 +45,6 @@ public class DAOMedecin {
         String type;
         Specialite s;
         TypeServices types;
-        c = new ConnectionBD();
 
         try {
 
@@ -73,18 +72,7 @@ public class DAOMedecin {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOMedecin (consulterListeMedecin2): " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
+            System.out.println("erreur DAOAdministratif: " + e);
         }
 
         return listeMedecin;
@@ -96,7 +84,6 @@ public class DAOMedecin {
         String identif;
         String mdp;
         boolean b = false;
-        c = new ConnectionBD();
 
         try {
             ResultSet resul;
@@ -117,19 +104,8 @@ public class DAOMedecin {
             }
             return b;
         } catch (SQLException e) {
-            System.out.println("erreur DAOMedecin (identification): " + e);
+            System.out.println("erreur : " + e);
             return b;
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
     }
@@ -142,7 +118,6 @@ public class DAOMedecin {
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
         boolean b = false;
-        c = new ConnectionBD();
 
 
         try {
@@ -150,17 +125,17 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
-             res = ins.executeQuery("SELECT * FROM personnel WHERE service !='NULL' AND id=" + id);
+             res = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
             
-            //while (res.next()) {
-              //  if (res.getRow() == 0) {
-                //    b = false;
-
-                //} else {
-                  //  b = true;
-
-            //    }
-          //  }
+//            while (res.next()) {
+//                if (res.getRow() == 0) {
+//                    b = false;
+//
+//                } else {
+//                    b = true;
+//
+//                }
+//            }
 
 //            res = ins.executeQuery("SELECT * FROM personnel");
 //
@@ -176,17 +151,6 @@ public class DAOMedecin {
 
         } catch (SQLException ex) {
             System.out.println("Erreur DAOMedecin (estMedecin)");
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
 
@@ -227,7 +191,6 @@ public class DAOMedecin {
         String type;
         Specialite s;
         TypeServices types;
-        c= new ConnectionBD();
 
         try {
 
@@ -255,18 +218,7 @@ public class DAOMedecin {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOMedecin (consulterListeMedecin): " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
+            System.out.println("erreur DAOAdministratif: " + e);
         }
 
         return listeMedecin;
@@ -281,63 +233,46 @@ public class DAOMedecin {
         String mdp;
         String type;
         TypeServices types;
-        c = new ConnectionBD();
 
         try {
 
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id, personnel.nom, personnel.prenom, personnel.mdp, personnel.service, service.specialite "
-                                    + "FROM sejour,personnel,service "
-                                     + "WHERE sejour.id=" + numSejour + " AND personnel.id = sejour.responsable AND service.id = personnel.service;");
-            
-            while (resul.next()) {
-                
-                if (resul.getRow() == 0) {
+            resul = ins.executeQuery("SELECT sejour.responsable, personnel.nom, personnel.prenom, personnel.mdp, personnel.service FROM sejour,personnel WHERE sejour.id=" + numSejour + " AND personnel.id=sejour.responsable;");
 
-                    med = null;
+            if (resul.getRow() == 0) {
 
-                } else {
+                med = null;
 
-                
+            } else {
+
+                while (resul.next()) {
 
                     id = resul.getString("id");
                     nom = resul.getString("nom");
                     prenom = resul.getString("prenom");
                     mdp = resul.getString("mdp");
 
-                    String spec = resul.getString("service.specialite");
-                    
-                    Specialite sp = Specialite.valueOf(spec);
+                    String spec = resul.getString("specialite");
+                    Specialite sp = Specialite.valueOf("spec");
 
-                    //type = resul.getString("service");
-                    //types = TypeServices.valueOf(type);
-                    types = TypeServices.CLINIQUE;
+                    type = resul.getString("service");
+                    types = TypeServices.valueOf(type);
                     Services service = new Services(types, sp);
 
                     med = new Medecin(id, nom, prenom, mdp, service);
+                    //sout effacé
 
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAMedecin medecinResponsable: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
+            System.out.println("erreur DAOAdministratif: " + e);
         }
 
         return med;
+
     }
-    
 
     public Medecin medecinParID(String id) {
 
@@ -347,14 +282,13 @@ public class DAOMedecin {
         String mdp;
         String type;
         TypeServices types;
-        c = new ConnectionBD();
 
         try {
 
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL AND id= " + id);
 
             while (resul.next()) {
                 
@@ -364,28 +298,17 @@ public class DAOMedecin {
                     mdp = resul.getString("mdp");
                     type = resul.getString("type");
                     types = TypeServices.valueOf(type);
-                    String spec = resul.getString("specialite");
+                    String spec = resul.getString("service");
                     Specialite sp = Specialite.valueOf(spec);
                     Services service = new Services(types, sp);
 
                     med = new Medecin(id, nom, prenom, mdp, service);
-                    System.out.println(med.getNom());
+                    
             }
 
             
         } catch (SQLException e) {
             System.out.println("erreur DAOMedecin (medecin par ID): " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
         return med;
@@ -396,7 +319,6 @@ public class DAOMedecin {
        ResultSet res;
        Services service = null;
        String num = null; 
-       c = new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -407,18 +329,7 @@ public class DAOMedecin {
             
             }
         } catch (SQLException ex) {
-            System.out.println("Erreur DAOMedecin (IdService)" + ex);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
+            System.out.println("Erreur lors de la création du médecin" + ex);
         }
         
            return num;         
@@ -430,7 +341,6 @@ public class DAOMedecin {
         Statement ins;
         
         String s = IdService(service);
-        c = new ConnectionBD();
         
         try {
             ins = c.connexion.createStatement();
@@ -438,16 +348,6 @@ public class DAOMedecin {
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du médecin" + ex);
-        }finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
     }
 

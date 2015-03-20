@@ -22,7 +22,7 @@ import pichisNF.Resultat;
  */
 public class DAOPrestations {
 
-    ConnectionBD c ;
+    ConnectionBD c = new ConnectionBD();
 
     String naturePrestation;
     Medecin demandeur;
@@ -33,7 +33,6 @@ public class DAOPrestations {
     DAOMedecin daom = new DAOMedecin();
     DAODPI daod = new DAODPI();
     DAOResultat daor = new DAOResultat();
-    
 
     /**
      * Permet d'ajouter un patient dans la base de données, prend en paramètre
@@ -42,7 +41,6 @@ public class DAOPrestations {
      */
     public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id) {
         Statement ins;
-        c = new ConnectionBD();
 
         try {
             ins = c.connexion.createStatement();
@@ -51,21 +49,10 @@ public class DAOPrestations {
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création de la prestation" + ex);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
     }
 
     Prestations prestationsPatient(String idPatient) {
-        c= new ConnectionBD();
+
         try {
 
             ResultSet resul;
@@ -90,17 +77,6 @@ public class DAOPrestations {
         } catch (SQLException e) {
             System.out.println("erreur DAOPrestations: " + e);
         }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
-        }
 
         return p;
     }
@@ -108,7 +84,6 @@ public class DAOPrestations {
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
 
         ArrayList<Prestations> listePrestations = new ArrayList();
-        c = new ConnectionBD();
 
         try {
 
@@ -129,17 +104,6 @@ public class DAOPrestations {
             }
         } catch (SQLException e) {
             System.out.println("erreur DAOPrestations: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
-                    System.out.println(e);
-                }
-            }
-                   
         }
 
         return listePrestations;
