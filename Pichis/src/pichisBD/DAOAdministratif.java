@@ -29,7 +29,7 @@ public class DAOAdministratif {
         boolean b = false;
         ResultSet resul;
         Statement ins = null;
-        boolean r = false;
+        
 
         try {
 
@@ -43,7 +43,7 @@ public class DAOAdministratif {
 
                 if (mdp.equals(motDePasse)) {
                     b = true;
-                    r = resul.first();
+                    
                 } else {
                     b = false;
                 }
@@ -71,7 +71,7 @@ public class DAOAdministratif {
         
         
         
-        return r;
+        return b;
     }
 
     public ArrayList<Administratif> consulterListeAdministratif() {

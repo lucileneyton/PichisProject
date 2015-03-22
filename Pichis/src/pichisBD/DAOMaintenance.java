@@ -24,16 +24,18 @@ public class DAOMaintenance {
     public boolean estMaintenance(String id, String mdp ){
         ResultSet res ;
         c= new ConnectionBD();
-       
+       boolean b=false;
+        
         try {
-            boolean b;
+            
             Statement ins = c.connexion.createStatement();
-            res = ins.executeQuery("SELECT * FROM personnel WHERE service ='NULL' AND maintenance = 'true' AND id= "+id+";");
+            res = ins.executeQuery("SELECT * FROM personnel WHERE (maintenance!='NULL' OR maintenance IS NOT NULL) AND (service='NULL' OR service IS NULL) AND id="+id+";");
+            
             
             while (res.next()){
-            if (res.getRow()==0){
-            b= false;
-            return b;
+            if (res.getRow()!=0){
+            b= true;
+            
         }
             }
         } catch (SQLException ex) {
@@ -51,7 +53,7 @@ public class DAOMaintenance {
                    
         }
         
-        return true;
+        return b;
     }
 
     public boolean identification(String id, String motDePasse) {

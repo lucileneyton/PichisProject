@@ -5,7 +5,6 @@
  */
 package pichisUI;
 
-
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -308,6 +307,11 @@ public class Identification extends javax.swing.JFrame {
         i.setVisible(true);
     }
 
+    public void ouvrirInterfaceMaintenance() {
+        InterfaceMaintenance i = new InterfaceMaintenance();
+        i.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -372,42 +376,49 @@ public class Identification extends javax.swing.JFrame {
     private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
 
-    
     private void tentativeDeConnexion() throws SQLException {
         /**
          * Méthode de vérification des informations de connexion
          */
-        
+
         DAOMedecin daom = new DAOMedecin();
         DAOAdministratif daoa = new DAOAdministratif();
+        DAOMaintenance daomt = new DAOMaintenance();
 
         if (identifiant.getText().isEmpty() || mdp.getText().isEmpty()) {
             messageErreur.setVisible(true);
             messageErreur.setText("Remplir tous les champs.");
         } else {
-          
+
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
-                
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     DAOMedecin d = new DAOMedecin();
-                    
+
                     ouvrirInterfaceMedecin(d.medecinParID(identifiant.getText()));
-                    
+
                 } else {
                     messageErreur.setVisible(true);
                     messageErreur.setText("Informations de connexion inconnues. Les vérifier.");
 
                 }
-            } else {
-                System.out.println("interface est médecin boucle 1");
-                if (daoa.identification(identifiant.getText(), mdp.getText())) {
-                    System.out.println("interface est admi boucle 2");
+
+            }
+            
+            if(daomt.estMaintenance(identifiant.getText(),mdp.getText())){
+                if(daomt.identification(identifiant.getText(), mdp.getText())){
                     this.dispose();
-                    
-                    
-                    
+                    ouvrirInterfaceMaintenance();
+                }
+            }
+            
+            else {
+
+                if (daoa.identification(identifiant.getText(), mdp.getText())) {
+
+                    this.dispose();
+
                     ouvrirInterfaceAdministratif();
 
                 } else {
@@ -416,6 +427,7 @@ public class Identification extends javax.swing.JFrame {
                 }
 
             }
+
         }
 
     }
