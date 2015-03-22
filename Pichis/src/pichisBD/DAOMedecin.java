@@ -141,7 +141,7 @@ public class DAOMedecin {
 
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
-        boolean b = false;
+        boolean b =false;
         c = new ConnectionBD();
 
 
@@ -150,29 +150,16 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
-             res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id=" + id);
-             b = res.first();
-            //while (res.next()) {
-              //  if (res.getRow() == 0) {
-                //    b = false;
+             res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id=" + id+";");
+            
+            while (res.next()) {
+                if (res.getRow() != 0) {
+                    b = true;
 
-                //} else {
-                  //  b = true;
+                } 
+            }
 
-            //    }
-          //  }
 
-//            res = ins.executeQuery("SELECT * FROM personnel");
-//
-//            while (res.next()) {
-//                if (res.getRow() == 0) {
-//                    b = false;
-//
-//                } else {
-//                    b = true;
-//
-//                }
-//            }
 
         } catch (SQLException ex) {
             System.out.println("Erreur DAOMedecin (estMedecin)");
@@ -189,28 +176,10 @@ public class DAOMedecin {
                    
         }
 
-
+        System.out.println("estMedecin"+b);
         return b;
 
-//           
-
-//            System.out.println("" + res.first());
-//            if (res.getRow()==0){
-//               
-//            b= false;
-//            return b;
-//        }
-//            else{
-//                b = true;
-//                return b;
-//            }
-    
-//       
-//        if (res != null) {
-//            return res.first();
-//        } else {
-//            return false;
-//        }
+        
 
 
         
