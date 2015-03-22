@@ -47,10 +47,10 @@ public class DAOLocalisation {
                       String localisation = resul.getString("loc");
                       String numChambre = resul.getString("numerochambre");
                       String placement = resul.getString("placement");
-//                    String typeService = resul.getString("service.type");
-//                    String specialite = resul.getString("service.specialite");
+                  String typeService = resul.getString("service.type");
+                 String specialite = resul.getString("service.specialite");
                     
-                    TypeServices t = TypeServices.CLINIQUE;//valueOf(typeService);
+                    TypeServices t = TypeServices.valueOf(typeService);
                     Specialite sp = Specialite.valueOf(localisation);
                     Services s = new Services(t,sp); 
                     loc = new Localisation(s,numChambre,placement);
