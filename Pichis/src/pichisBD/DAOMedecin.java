@@ -333,9 +333,10 @@ public class DAOMedecin {
                     mdp = resul.getString("mdp");
                     type = resul.getString("type");
                     types = TypeServices.valueOf(type);
-                    String spec = resul.getString("specialite");
+                    String spec = resul.getString("specialite").toUpperCase();
                     Specialite sp = Specialite.valueOf(spec);
                     Services service = new Services(types, sp);
+                    
 
                     med = new Medecin(id, nom, prenom, mdp, service);
                     System.out.println(med.getNom());
