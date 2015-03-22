@@ -388,6 +388,7 @@ public class Identification extends javax.swing.JFrame {
           
             if (daom.estMedecin(identifiant.getText(), mdp.getText())) {
 
+                
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     DAOMedecin d = new DAOMedecin();
@@ -400,7 +401,9 @@ public class Identification extends javax.swing.JFrame {
 
                 }
             } else {
+                System.out.println("interface est médecin boucle 1");
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
+                    System.out.println("interface est admi boucle 2");
                     this.dispose();
                     
                     

@@ -97,10 +97,11 @@ public class DAOMedecin {
         String mdp;
         boolean b = false;
         c = new ConnectionBD();
+        ResultSet resul;
+            Statement ins;
 
         try {
-            ResultSet resul;
-            Statement ins;
+            
             ins = c.connexion.createStatement();
             resul = ins.executeQuery("SELECT * FROM personnel WHERE id= " + id);
 
