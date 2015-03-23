@@ -5,13 +5,13 @@
  */
 package pichisUI;
 
-
 import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAOPrestations;
 import pichisNF.DPI;
+import pichisNF.Prestations;
 
 /**
  *
@@ -23,7 +23,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceMedicoTechnique
      */
     DefaultListModel<pichisNF.Prestations> modeleListePrestations;
-    
+
     public InterfaceServiceMedicoTechnique() {
         initComponents();
 
@@ -40,10 +40,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        
+
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
-        
+
         for (int i = 0; i < daoPrestations.consulterListePrestationsNonRealisee().size(); i++) {
             modeleListePrestations.addElement(daoPrestations.consulterListePrestationsNonRealisee().get(i));
         }
@@ -589,36 +589,47 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
-       this.dispose();
+        this.dispose();
         new Identification();
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listePrestationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listePrestationsValueChanged
-            if(listePrestations.getSelectedValue() != null) {
+        if (listePrestations.getSelectedValue() != null) {
             this.affichageDonneesPatient();
-            }
+
+        }
     }//GEN-LAST:event_listePrestationsValueChanged
 
-        private void affichageDonneesPatient() {
-         /**
+    private void affichageDonneesPatient() {
+        /**
          * Méthode actualisant l'affichant des données d'un patient sur
          * l'interface
          */
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
+ 
+            Prestations p1 = (Prestations) listePrestations.getSelectedValue();
+            DAOPrestations daop =new DAOPrestations();
+            
+            Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+            System.out.println(p2.getPatient().getNom());
+//            jTextFieldNom.setText(p.getPatient().getNom());
+//            jTextFieldPrenom.setText(p.getPatient().getPrenom());
+//            jTextFieldSexe.setText(p.getPatient().getSexe());
+//            jTextFieldIPP.setText(p.getPatient().getIpp());
+//            jTextFieldDateNaissance.setText(p.getPatient().getDateNaissance().toString());
+//            jTextFieldAdresse.setText(p.getPatient().getAdresse());
 
-            DefaultListModel<pichisNF.Prestations> modele = (DefaultListModel<pichisNF.Prestations>) listePrestations.getModel();
-
-            int indice = listePrestations.getSelectedIndex();
-
-            jTextFieldNom.setText(modele.get(indice).getPatient().getNom());
-            jTextFieldPrenom.setText(modele.get(indice).getPatient().getPrenom());
-            jTextFieldSexe.setText(modele.get(indice).getPatient().getSexe());
-            jTextFieldIPP.setText(modele.get(indice).getPatient().getIpp());
-            jTextFieldDateNaissance.setText(modele.get(indice).getPatient().getDateNaissance().toString());
-            jTextFieldAdresse.setText(modele.get(indice).getPatient().getAdresse());
-
+//DefaultListModel<pichisNF.Prestations> modele = (DefaultListModel<pichisNF.Prestations>) listePrestations.getModel();
+//int indice = listePrestations.getSelectedIndex();
+//            jTextFieldNom.setText(modele.get(indice).getPatient().getNom());
+//            jTextFieldPrenom.setText(modele.get(indice).getPatient().getPrenom());
+//            jTextFieldSexe.setText(modele.get(indice).getPatient().getSexe());
+//            jTextFieldIPP.setText(modele.get(indice).getPatient().getIpp());
+//            jTextFieldDateNaissance.setText(modele.get(indice).getPatient().getDateNaissance().toString());
+//            jTextFieldAdresse.setText(modele.get(indice).getPatient().getAdresse());
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -711,6 +722,5 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPaneAjoutResultat;
     private javax.swing.JList listePrestations;
     // End of variables declaration//GEN-END:variables
-
 
 }

@@ -64,7 +64,7 @@ public class DAOPrestations {
         }
     }
 
-    Prestations prestationsPatient(String idPatient) {
+    public Prestations prestationsPatient(String idPatient) {
         c= new ConnectionBD();
         try {
 
