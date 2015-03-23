@@ -841,9 +841,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
 
-        if ((champNumeroChambre.getText().equals("") == false) && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
+        if ((champNumeroChambre.getText().equals("") == false) && 
+                (pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) && 
+                (comboBoxPlacement.getSelectedIndex() != -1 && comboBoxService.getSelectedIndex() != -1)) {
             //patientSelectionne.mettre a jour donnees
-            
 
             comboBoxService.setEnabled(false);
             comboBoxService.setBackground(Color.LIGHT_GRAY);

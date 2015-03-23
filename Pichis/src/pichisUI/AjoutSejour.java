@@ -378,6 +378,7 @@ public class AjoutSejour extends javax.swing.JFrame {
                 daoSejour.ajout(sejour, patient);
                 this.dispose();
                 interfaceAdmin.affichageSejoursDuPatient(patient); 
+                interfaceAdmin.affichageLocalisation();
                 fenetre.showMessageDialog(null, "Sejour ajouté avec succes");
                 
                 }

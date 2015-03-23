@@ -78,17 +78,17 @@ public class DateSimple implements Comparable {
 
     public String toString() {
         String texte;
-
+        
         if (jour.length() == 1) {
             jour = "0" + jour;
         }
         if (mois.length() == 1) {
             mois = "0" + mois;
         }
-        texte = this.jour + "-" + this.mois + "-" + this.annee;
+        texte = this.annee + "-" + this.mois + "-" + this.jour;
+        
         if (heure != null) {
             texte += " à " + heure + "h" + minute;
-
         }
 
         return texte;

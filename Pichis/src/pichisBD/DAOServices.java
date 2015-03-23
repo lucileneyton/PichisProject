@@ -58,4 +58,27 @@ public class DAOServices {
         }
         return s;
     }
+    
+    public String idParService(Services s){
+        String id = null;         
+
+        try {
+            Statement ins = c.connexion.createStatement();
+            ResultSet resul;
+            
+
+            resul = ins.executeQuery("SELECT * FROM service WHERE specialite= " + "'" + s.getSpecialite().toString() + "';");
+            
+
+            while (resul.next()) {
+                id = resul.getString("id");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOService (ID par Service): " + e);
+        }
+    
+        
+        return id;
+    }
 }

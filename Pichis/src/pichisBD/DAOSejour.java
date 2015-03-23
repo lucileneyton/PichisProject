@@ -53,7 +53,7 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datasortie"); //La base de données ne contient pas la colonne
+                String ds = resul.getString("datesortie"); //La base de données ne contient pas la colonne
                 //"datesortie"...
                 dateE = new DateSimple(de.substring(8, 10), de.substring(5, 7), de.substring(0, 4));
                 
@@ -99,6 +99,7 @@ public class DAOSejour {
         Statement ins;
         Statement verif;
         ResultSet res;
+        DAOServices daoServices = new DAOServices();
         c = new ConnectionBD();
         
         try {
@@ -112,7 +113,9 @@ public class DAOSejour {
             
             
             else{
-                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')");         
+                String idService = daoServices.idParService(sejour.getLocalisation().getService());
+                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + idService + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')"); 
+                //ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')");         
             }
 
         } catch (SQLException ex) {

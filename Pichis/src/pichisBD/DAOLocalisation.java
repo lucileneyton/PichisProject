@@ -38,7 +38,7 @@ public class DAOLocalisation {
            // resul = ins.executeQuery("SELECT sejour.ipp,sejour.id,sejour.dateentree, sejour.responsable,sejour.loc, sejour.datesortie,sejour.numerochambre,sejour.placement,service.id, service.specialite,service.type FROM sejour,service WHERE service.id = sejour.loc AND sejour.id= " + num);
 //            resul = ins.executeQuery("SELECT id, loc, numerochambre, placement FROM sejour WHERE id='" + num + "';");
 
-            resul = ins.executeQuery("SELECT loc, numerochambre, placement FROM sejour, service WHERE   sejour.id=" + num);
+            resul = ins.executeQuery("SELECT sejour.loc, sejour.numerochambre, sejour.placement FROM sejour, service WHERE sejour.id=" + num);
             if (resul.getRow() != 0) {
                 loc = null;
 
