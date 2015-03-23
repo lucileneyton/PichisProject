@@ -253,7 +253,7 @@ public class DAOMedecin {
 
                     String spec = resul.getString("service.specialite");
 
-                    Specialite sp = Specialite.valueOf(spec);
+                    Specialite sp = Specialite.valueOf(spec.toUpperCase());
 
                     //type = resul.getString("service");
                     //types = TypeServices.valueOf(type);

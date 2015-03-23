@@ -53,7 +53,8 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datesortie");
+                String ds = resul.getString("datasortie"); //La base de données ne contient pas la colonne
+                //"datesortie"...
                 dateE = new DateSimple(de.substring(8, 10), de.substring(5, 7), de.substring(0, 4));
                 
                              

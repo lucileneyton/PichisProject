@@ -74,7 +74,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
                 Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (servicePatient.equals(medecin.getSpecialite().getSpecialite())) {
+                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
                 }
