@@ -52,7 +52,7 @@ public class DAOResultat {
     } 
     
 
-    Resultat resultatPrestation(String idPrestation) {
+    public Resultat resultatPrestation(String idPrestation) {
         c = new ConnectionBD();
         try {
 
