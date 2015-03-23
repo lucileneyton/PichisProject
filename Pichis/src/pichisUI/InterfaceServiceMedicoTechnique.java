@@ -610,8 +610,13 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
             DAOPrestations daop =new DAOPrestations();
             
-            Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
-            System.out.println(p2.getPatient().getNom());
+//            Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+//            System.out.println(p2.getPatient().getNom());
+            
+            
+            
+            
+            
 //            jTextFieldNom.setText(p.getPatient().getNom());
 //            jTextFieldPrenom.setText(p.getPatient().getPrenom());
 //            jTextFieldSexe.setText(p.getPatient().getSexe());

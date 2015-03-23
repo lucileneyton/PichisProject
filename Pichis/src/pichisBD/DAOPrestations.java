@@ -22,7 +22,7 @@ import pichisNF.Resultat;
  */
 public class DAOPrestations {
 
-    ConnectionBD c ;
+    ConnectionBD c;
 
     String naturePrestation;
     Medecin demandeur;
@@ -33,7 +33,6 @@ public class DAOPrestations {
     DAOMedecin daom = new DAOMedecin();
     DAODPI daod = new DAODPI();
     DAOResultat daor = new DAOResultat();
-    
 
     /**
      * Permet d'ajouter un patient dans la base de données, prend en paramètre
@@ -50,22 +49,21 @@ public class DAOPrestations {
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création de la prestation" + ex);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
                     System.out.println(e);
                 }
             }
-                   
+
         }
     }
 
-    public Prestations prestationsPatient(String idPatient) {
-        c= new ConnectionBD();
+    public ArrayList<Prestations> prestationsPatient(String idPatient) {
+        ArrayList<Prestations> l = new ArrayList<Prestations>();
+        c = new ConnectionBD();
         try {
 
             ResultSet resul;
@@ -77,32 +75,32 @@ public class DAOPrestations {
             while (resul.next()) {
 
                 naturePrestation = resul.getString("nature");
-                demandeur = daom.medecinParID("demandeur");
+//                demandeur = daom.medecinParID("demandeur");
+                String idMedecin = resul.getString("demandeur");
+                demandeur = daom.medecinParID(idMedecin);
                 patient = daod.dpiParIPP("patient");
                 resultat = daor.resultatPrestation("resultat");
                 String d = resul.getString("date");
-                date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+                date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
 
                 p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
-
+                l.add(p);
             }
 
         } catch (SQLException e) {
             System.out.println("erreur DAOPrestations: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
                     System.out.println(e);
                 }
             }
-                   
+
         }
 
-        return p;
+        return l;
     }
 
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
@@ -129,17 +127,15 @@ public class DAOPrestations {
             }
         } catch (SQLException e) {
             System.out.println("erreur DAOPrestations: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
                     System.out.println(e);
                 }
             }
-                   
+
         }
 
         return listePrestations;

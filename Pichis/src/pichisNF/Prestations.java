@@ -56,7 +56,7 @@ public class Prestations {
     }
 
     public String toString() {
-        return "Prestation : " + this.naturePrestation + "      Date : " + date.toString();
+        return "Demande du " + date.toString();
     }
 
 }
