@@ -610,28 +610,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
             DAOPrestations daop =new DAOPrestations();
             
-//            Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
-//            System.out.println(p2.getPatient().getNom());
+            Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
             
-            
-            
-            
-            
-//            jTextFieldNom.setText(p.getPatient().getNom());
-//            jTextFieldPrenom.setText(p.getPatient().getPrenom());
-//            jTextFieldSexe.setText(p.getPatient().getSexe());
-//            jTextFieldIPP.setText(p.getPatient().getIpp());
-//            jTextFieldDateNaissance.setText(p.getPatient().getDateNaissance().toString());
-//            jTextFieldAdresse.setText(p.getPatient().getAdresse());
-
-//DefaultListModel<pichisNF.Prestations> modele = (DefaultListModel<pichisNF.Prestations>) listePrestations.getModel();
-//int indice = listePrestations.getSelectedIndex();
-//            jTextFieldNom.setText(modele.get(indice).getPatient().getNom());
-//            jTextFieldPrenom.setText(modele.get(indice).getPatient().getPrenom());
-//            jTextFieldSexe.setText(modele.get(indice).getPatient().getSexe());
-//            jTextFieldIPP.setText(modele.get(indice).getPatient().getIpp());
-//            jTextFieldDateNaissance.setText(modele.get(indice).getPatient().getDateNaissance().toString());
-//            jTextFieldAdresse.setText(modele.get(indice).getPatient().getAdresse());
+            jTextFieldNom.setText(p2.getPatient().getNom());
+            jTextFieldPrenom.setText(p2.getPatient().getPrenom());
+            jTextFieldSexe.setText(p2.getPatient().getSexe());
+            jTextFieldIPP.setText(p2.getPatient().getIpp());
+            jTextFieldDateNaissance.setText(p2.getPatient().getDateNaissance().toString());
+            jTextFieldAdresse.setText(p2.getPatient().getAdresse());
         }
     }
 

@@ -75,7 +75,6 @@ public class DAOPrestations {
             while (resul.next()) {
 
                 naturePrestation = resul.getString("nature");
-//                demandeur = daom.medecinParID("demandeur");
                 String idMedecin = resul.getString("demandeur");
                 demandeur = daom.medecinParID(idMedecin);
                 patient = daod.dpiParIPP("patient");
@@ -102,6 +101,48 @@ public class DAOPrestations {
 
         return l;
     }
+    
+     public Prestations prestationsPatient2(String idPatient) {
+        c = new ConnectionBD();
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+
+            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient='" + idPatient + "'");
+
+            while (resul.next()) {
+
+                naturePrestation = resul.getString("nature");
+                String idMedecin = resul.getString("demandeur");
+                demandeur = daom.medecinParID(idMedecin);
+                String idPatient2 = resul.getString("patient");
+                patient = daod.dpiParIPP(idPatient2);
+                String resultat2 = resul.getString("resultat");
+                resultat = daor.resultatPrestation(resultat2);
+                String d = resul.getString("date");
+                date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+
+                p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
+                
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOPrestations: " + e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+
+        return p;
+    }
 
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
 
@@ -116,9 +157,12 @@ public class DAOPrestations {
             while (resul.next()) {
 
                 String naturePrestation = resul.getString("nature");
-                demandeur = daom.medecinParID("demandeur");
-                patient = daod.dpiParIPP("patient");
-                resultat = daor.resultatPrestation("resultat");
+                String idMedecin = resul.getString("demandeur");
+                demandeur = daom.medecinParID(idMedecin);
+                String idPatient2 = resul.getString("patient");
+                patient = daod.dpiParIPP(idPatient2);
+                String resultat2 = resul.getString("resultat");
+                resultat = daor.resultatPrestation(resultat2);
                 String d = resul.getString("date");
                 date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
 

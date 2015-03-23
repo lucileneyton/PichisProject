@@ -51,12 +51,7 @@ public class Prestations {
         return date;
     }
 
-    public String toString2() {
-        return "Nom :" + patient.getNom().toUpperCase() + "      Prestation : " + this.naturePrestation + "      Date : " + date.toString();
-    }
-
     public String toString() {
-        return "Demande du " + date.toString();
+        return "Nom :" + patient.getNom().toUpperCase() + "    Prestation : " + this.naturePrestation + "    Date : " + date.toString();
     }
-
 }
