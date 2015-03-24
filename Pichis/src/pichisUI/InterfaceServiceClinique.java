@@ -27,6 +27,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceClinique
      */
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
+    DefaultListModel<pichisNF.Prestations> listePrestations;
 
     Medecin medecin;
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -60,6 +61,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
 
         modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
+        listePrestations = new DefaultListModel<pichisNF.Prestations>();
         ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
         
      
@@ -737,6 +739,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList4.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList4ValueChanged(evt);
+            }
+        });
         jScrollPane8.setViewportView(jList4);
 
         jPanel21.add(jScrollPane8);
@@ -1222,6 +1229,15 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         c.show(DM, "card2");
     }//GEN-LAST:event_listeDePatientsValueChanged
 
+    private void jList4ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList4ValueChanged
+afficherDossierMedical(); 
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jList4ValueChanged
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
