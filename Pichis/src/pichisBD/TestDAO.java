@@ -58,6 +58,9 @@ public class TestDAO {
        
        DAOPrestations prest = new DAOPrestations();
        prest.ajoutPrestation("Radio genou", "1234", "1546", null, "20032015", null);
+       
+       DAOObservation obs = new DAOObservation();
+       //obs.observationsPatient();
         
     }
     
