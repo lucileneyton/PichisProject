@@ -6,6 +6,7 @@
 package pichisNF;
 
 import java.util.ArrayList;
+import pichisBD.DAOResultat;
 import pichisBD.DAOSejour;
 
 /**
@@ -57,5 +58,15 @@ public class fonctions {
         String nbSejours = daoSejour.getNombreSejoursTotal();
         numSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + nbSejours;
         return numSejour;
+    }
+     
+     public static String genererIdResultat(){
+        int idResultat = 0;
+        DAOResultat daoResultat= new DAOResultat();
+        
+        int nbResultat = daoResultat.getNombreResultatTotal();
+        idResultat = nbResultat + 1;
+        String s = Integer.toString(idResultat);
+        return s;
     }
 }

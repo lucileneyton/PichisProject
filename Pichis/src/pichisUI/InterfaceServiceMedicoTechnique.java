@@ -6,10 +6,15 @@
 package pichisUI;
 
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAOPrestations;
+import pichisBD.DAOResultat;
 import pichisNF.DPI;
 import pichisNF.Prestations;
 
@@ -23,10 +28,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceMedicoTechnique
      */
     DefaultListModel<pichisNF.Prestations> modeleListePrestations;
-
+    
     public InterfaceServiceMedicoTechnique() {
         initComponents();
-
+        
         DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Médico-Technique");
@@ -43,7 +48,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
-
+        
         for (int i = 0; i < daoPrestations.consulterListePrestationsNonRealisee().size(); i++) {
             modeleListePrestations.addElement(daoPrestations.consulterListePrestationsNonRealisee().get(i));
         }
@@ -99,11 +104,11 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextPaneAjoutResultat = new javax.swing.JTextPane();
         jLabel15 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        jTextFieldIPP2 = new javax.swing.JTextField();
+        jTextFieldNaturePrestation = new javax.swing.JTextField();
+        jTextFieldPH = new javax.swing.JTextField();
+        jTextFieldDateDemande = new javax.swing.JTextField();
+        jFormattedTextFieldDateRealisation = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -250,7 +255,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jTextFieldNom.setEditable(false);
         jTextFieldNom.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldNom.setText("non edit");
         jTextFieldNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomActionPerformed(evt);
@@ -259,23 +263,23 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jTextFieldPrenom.setEditable(false);
         jTextFieldPrenom.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldPrenom.setText("non edit");
 
         jTextFieldSexe.setEditable(false);
         jTextFieldSexe.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldSexe.setText("non edit");
+        jTextFieldSexe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSexeActionPerformed(evt);
+            }
+        });
 
         jTextFieldIPP.setEditable(false);
         jTextFieldIPP.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldIPP.setText("non edit");
 
         jTextFieldDateNaissance.setEditable(false);
         jTextFieldDateNaissance.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldDateNaissance.setText("non edit");
 
         jTextFieldAdresse.setEditable(false);
         jTextFieldAdresse.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldAdresse.setText("non edit");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -354,30 +358,29 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             }
         });
 
-        jTextField10.setEditable(false);
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setText("non edit");
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldIPP2.setEditable(false);
+        jTextFieldIPP2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldIPP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                jTextFieldIPP2ActionPerformed(evt);
             }
         });
 
-        jTextField11.setEditable(false);
-        jTextField11.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField11.setText("non edit");
+        jTextFieldNaturePrestation.setEditable(false);
+        jTextFieldNaturePrestation.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTextField12.setEditable(false);
-        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField12.setText("non edit");
+        jTextFieldPH.setEditable(false);
+        jTextFieldPH.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTextField13.setEditable(false);
-        jTextField13.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField13.setText("non edit");
+        jTextFieldDateDemande.setEditable(false);
+        jTextFieldDateDemande.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTextField14.setEditable(false);
-        jTextField14.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField14.setText("non edit");
+        DateFormat df1 = new SimpleDateFormat("dd-mm-YYYY à HH:mm");
+        Date today1 = Calendar.getInstance().getTime();
+        String date = df1.format(today1);
+        jFormattedTextFieldDateRealisation .setText(date);
+        jFormattedTextFieldDateRealisation.setEditable(false);
+        jFormattedTextFieldDateRealisation.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -401,11 +404,11 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jLabel14))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextField11)
-                            .addComponent(jTextField12)
-                            .addComponent(jTextField13)
-                            .addComponent(jTextField14))))
+                            .addComponent(jTextFieldIPP2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNaturePrestation)
+                            .addComponent(jTextFieldPH)
+                            .addComponent(jTextFieldDateDemande)
+                            .addComponent(jFormattedTextFieldDateRealisation))))
                 .addContainerGap(647, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -414,23 +417,23 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIPP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNaturePrestation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDateDemande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldDateRealisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -565,28 +568,36 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane fenetre = new JOptionPane();
-
-        if (jTextPaneAjoutResultat.isEditable()) {
-            if (jTextPaneAjoutResultat.getText().isEmpty()) {
-                fenetre.showMessageDialog(null, "Veuillez saisir les résultats de la prestation demandée avant de pouvoir les ajouter au dossier médical du patient.");
-            } else {
-                String[] buttons = {"Oui", "Non"};
-                int reply = JOptionPane.showOptionDialog(null, "Voulez-vous confirmer l'ajout de ces résultats au dossier médical ? ", "Confirmation", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
-
-                if (reply == 0) {
-                    fenetre.showMessageDialog(null, "Les résultats ont été ajoutés avec succès ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
-                    jTextPaneAjoutResultat.setEditable(false);
-                    jTextPaneAjoutResultat.setBackground(new java.awt.Color(51, 255, 0));
-                }
-            }
+        if (listePrestations.isSelectionEmpty() == true) {
+            fenetre.showMessageDialog(null, "Veuillez sélectionner une prestation avant d'ajouter des résultats.");
         } else {
-            fenetre.showMessageDialog(null, "Les résultats ont déjà été soumis ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if (jTextPaneAjoutResultat.isEditable()) {
+                if (jTextPaneAjoutResultat.getText().isEmpty()) {
+                    fenetre.showMessageDialog(null, "Veuillez saisir les résultats de la prestation demandée avant de pouvoir les ajouter au dossier médical du patient.");
+                } else {
+                    String[] buttons = {"Oui", "Non"};
+                    int reply = JOptionPane.showOptionDialog(null, "Voulez-vous confirmer l'ajout de ces résultats au dossier médical ? ", "Confirmation", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
+                    
+                    if (reply == 0) {
+                        fenetre.showMessageDialog(null, "Les résultats ont été ajoutés avec succès ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                        Prestations p1 = (Prestations) listePrestations.getSelectedValue();
+                        DAOPrestations daop = new DAOPrestations();
+                        Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
+                        
+                        DAOResultat daoResultat = new DAOResultat();
+                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p2.getDemandeur().getId(), p2.getIdPrestation(), pichisNF.fonctions.genererIdResultat());
+                        jTextPaneAjoutResultat.setEnabled(false);
+                    }
+                }
+            } else {
+                fenetre.showMessageDialog(null, "Les résultats ont déjà été soumis ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jTextFieldIPP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIPP2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jTextFieldIPP2ActionPerformed
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
         this.dispose();
@@ -596,19 +607,24 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private void listePrestationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listePrestationsValueChanged
         if (listePrestations.getSelectedValue() != null) {
             this.affichageDonneesPatient();
-
+            this.ajoutRésultat();
+            
         }
     }//GEN-LAST:event_listePrestationsValueChanged
 
+    private void jTextFieldSexeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSexeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSexeActionPerformed
+    
     private void affichageDonneesPatient() {
         /**
          * Méthode actualisant l'affichant des données d'un patient sur
          * l'interface
          */
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
- 
+            
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
-            DAOPrestations daop =new DAOPrestations();
+            DAOPrestations daop = new DAOPrestations();
             
             Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
             
@@ -618,6 +634,30 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             jTextFieldIPP.setText(p2.getPatient().getIpp());
             jTextFieldDateNaissance.setText(p2.getPatient().getDateNaissance().toString());
             jTextFieldAdresse.setText(p2.getPatient().getAdresse());
+        }
+    }
+    
+    private void ajoutRésultat() {
+        /**
+         * Méthode actualisant l'affichant des données dans l'onglet "Résultats
+         * de la prestation demandée"
+         */
+        if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
+            Prestations p1 = (Prestations) listePrestations.getSelectedValue();
+            DAOPrestations daop = new DAOPrestations();
+            Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
+            
+            jTextFieldIPP2.setText(p2.getPatient().getIpp());
+            jTextFieldNaturePrestation.setText(p2.getNaturePrestation());
+            jTextFieldPH.setText(p2.getDemandeur().getPrenom() + " " + p2.getDemandeur().getNom());
+            jTextFieldDateDemande.setText(p2.getDate().toString());
+            if (p2.getResultat() != null) {
+                jTextPaneAjoutResultat.setText(p2.getResultat().getDescriptions());
+            } else {
+                jTextPaneAjoutResultat.setEditable(true);
+                jTextPaneAjoutResultat.setEnabled(true);
+                jTextPaneAjoutResultat.setText("");
+            }
         }
     }
 
@@ -659,6 +699,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel InterfaceServiceMedicoTechnique;
     private javax.swing.JButton jButton1;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDateRealisation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -696,18 +737,17 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextFieldAdresse;
+    private javax.swing.JTextField jTextFieldDateDemande;
     private javax.swing.JTextField jTextFieldDateNaissance;
     private javax.swing.JTextField jTextFieldIPP;
+    private javax.swing.JTextField jTextFieldIPP2;
+    private javax.swing.JTextField jTextFieldNaturePrestation;
     private javax.swing.JTextField jTextFieldNom;
+    private javax.swing.JTextField jTextFieldPH;
     private javax.swing.JTextField jTextFieldPrenom;
     private javax.swing.JTextField jTextFieldSexe;
     private javax.swing.JTextPane jTextPaneAjoutResultat;

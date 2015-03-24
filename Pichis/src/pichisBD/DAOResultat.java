@@ -12,45 +12,41 @@ import pichisNF.DateSimple;
 import pichisNF.Medecin;
 import pichisNF.Resultat;
 
-
 /**
  *
  * @author Lucile
  */
 public class DAOResultat {
 
-    ConnectionBD c ;
+    ConnectionBD c;
     DateSimple date;
     String descriptions;
     Medecin medecin;
     Resultat res;
     String numPrestation;
     DAOMedecin daom = new DAOMedecin();
-    
-    public void ajoutResultat(String date, String description, String medecin, String prestation, String id){
+
+    public void ajoutResultat(String date, String description, String medecin, String prestation, String id) {
         Statement ins;
         c = new ConnectionBD();
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO resultat(date, description, medecin,prestation, id)" + "VALUES ('" +date +"','" + description + "','" + medecin + "','" + prestation + "','" + id + "')");
-            
+            ins.executeUpdate("INSERT INTO resultat(date, description, medecin,prestation, id)" + "VALUES ('" + date + "','" + description + "','" + medecin + "','" + prestation + "','" + id + "')");
+
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création du résultat" + ex);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
                     System.out.println(e);
                 }
             }
-                   
+
         }
-    } 
-    
+    }
 
     public Resultat resultatPrestation(String idPrestation) {
         c = new ConnectionBD();
@@ -60,41 +56,69 @@ public class DAOResultat {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM resultat WHERE resultat.id='" + idPrestation +"'");
+            resul = ins.executeQuery("SELECT * FROM resultat WHERE resultat.id='" + idPrestation + "'");
 
             while (resul.next()) {
-                
-             if (resul.getRow()!=0){   
-             String d = resul.getString("date");   
-             date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
-             descriptions = resul.getString("description");
-             String id = resul.getString("medecin");
-             medecin = daom.medecinParID(id);
-             
-             res = new Resultat(date,descriptions, medecin);
-             
-             }
-             else{
-                 System.out.println("Il n'y a pas de résultat associé à la prestation");
-             }
+
+                if (resul.getRow() != 0) {
+                    String d = resul.getString("date");
+                    date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+                    descriptions = resul.getString("description");
+                    String id = resul.getString("medecin");
+                    medecin = daom.medecinParID(id);
+
+                    res = new Resultat(date, descriptions, medecin);
+
+                } else {
+                    System.out.println("Il n'y a pas de résultat associé à la prestation");
+                }
             }
 
         } catch (SQLException e) {
             System.out.println("erreur DAOResultat: " + e);
-        }
-        finally{
-            if(c!=null){
-                try{
-                   c.connexion.close();
-                }
-                catch(SQLException e){
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
                     System.out.println(e);
                 }
             }
-                   
+
         }
 
         return res;
     }
 
+    public int getNombreResultatTotal() {
+        int nbResultat = 0;
+        c = new ConnectionBD();
+
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+
+            resul = ins.executeQuery("SELECT COUNT(*) FROM resultat;");
+
+            if (resul.next()) {
+                nbResultat = resul.getInt("COUNT(*)");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour (getNombreResultatTotal): " + e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+
+        return nbResultat;
+    }
 }

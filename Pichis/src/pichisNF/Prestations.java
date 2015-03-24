@@ -18,6 +18,16 @@ public class Prestations {
     private DPI patient;
     private Resultat resultat;
     private DateSimple date;
+    private String idPrestation;
+
+    public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, DateSimple date, String idPrestation) {
+        this.naturePrestation = naturePrestation;
+        this.demandeur = demandeur;
+        this.patient = patient;
+        this.resultat = resultat;
+        this.date = date;
+        this.idPrestation = idPrestation;
+    }
 
     public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, DateSimple date) {
         this.naturePrestation = naturePrestation;
@@ -49,6 +59,10 @@ public class Prestations {
 
     public DateSimple getDate() {
         return date;
+    }
+
+    public String getIdPrestation() {
+        return idPrestation;
     }
 
     public String toString() {
