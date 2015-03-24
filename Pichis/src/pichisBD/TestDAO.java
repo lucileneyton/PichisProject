@@ -6,13 +6,11 @@
 
 package pichisBD;
 
+import java.util.ArrayList;
 import pichisNF.Administratif;
-import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Medecin;
-import pichisNF.Services;
-import pichisNF.Specialite;
-import pichisNF.TypeServices;
+import pichisNF.Observation;
 
 /**
  *
@@ -60,7 +58,8 @@ public class TestDAO {
        prest.ajoutPrestation("Radio genou", "1234", "1546", null, "20032015", null);
        
        DAOObservation obs = new DAOObservation();
-       //obs.observationsPatient();
+       ArrayList<Observation> o = obs.observationsPatient("123");
+       System.out.println(o.get(0).getDescription().toString());
         
     }
     
