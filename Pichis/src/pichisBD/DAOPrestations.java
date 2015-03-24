@@ -70,8 +70,8 @@ public class DAOPrestations {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient='" + idPatient + "'");
-
+            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient="+ idPatient);
+            
             while (resul.next()) {
 
                 naturePrestation = resul.getString("nature");
@@ -80,7 +80,9 @@ public class DAOPrestations {
                 patient = daod.dpiParIPP("patient");
                 resultat = daor.resultatPrestation("resultat");
                 String d = resul.getString("date");
+                if (d !=null){
                 date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                }
 
                 p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
                 l.add(p);

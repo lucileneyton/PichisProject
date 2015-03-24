@@ -61,67 +61,71 @@ public class TestsBD {
 
     
         try {
- resul = ins.executeQuery("SELECT * FROM service WHERE id= " + id);
- 
-
+ resul = ins.executeQuery("SELECT * FROM prestations WHERE id= " + id);
+ ArrayList<Prestations> l = new ArrayList<Prestations>();
+//            System.out.println("" + resul.next());
             while (resul.next()) {
                 
-//                naturePrestation = resul.getString("nature");
-//                String idMedecin = resul.getString("demandeur");
-//                demandeur = daom.medecinParID(idMedecin);
-//                patient = daod.dpiParIPP("patient");
-//                resultat = daor.resultatPrestation("resultat");
-//                String d = resul.getString("date");
-//                if (d !=null){
-//
-//                date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
-//                    
-//                }
-//                Prestations p4 = new Prestations(naturePrestation, demandeur, patient, resultat, date);
-//                ArrayList<Prestations> l = new ArrayList<Prestations>();
-//                l.add(p4);
-                String spec = resul.getString("specialite");
-                String type = resul.getString("type");
+                naturePrestation = resul.getString("nature");
+                String idMedecin = resul.getString("demandeur");
+                demandeur = daom.medecinParID(idMedecin);
+                patient = daod.dpiParIPP("patient");
+                resultat = daor.resultatPrestation("resultat");
+                String d = resul.getString("date");
+                if (d !=null){
 
-                System.out.println("" + spec);
-                Specialite sp = Specialite.valueOf(spec.toUpperCase());
-                TypeServices types = TypeServices.valueOf(type);
-                s = new Services(types, sp);
-                System.out.println("" +s);
+                date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                    
+                }
+                System.out.println("" +date);
+                Prestations p4 = new Prestations(naturePrestation, demandeur, patient, resultat, date);
                 
-                
+                l.add(p4);
             }
             
-
-        } catch (SQLException e) {
-            System.out.println("erreur DAOPrestations: " + e);
-        }
-        
-        
-        
-        
-        
-        
-
+            System.out.println("" +l);
+//                String spec = resul.getString("specialite");
+//                String type = resul.getString("type");
+//
+//                System.out.println("" + spec);
+//                Specialite sp = Specialite.valueOf(spec.toUpperCase());
+//                TypeServices types = TypeServices.valueOf(type);
+//                s = new Services(types, sp);
+//                System.out.println("" +s);
+//                
+//                
+//            }
 //            
-//            Statement ins = c.connexion.createStatement();
+//
+//        } catch (SQLException e) {
+//            System.out.println("erreur DAOPrestations: " + e);
+//        }
+//        
+        
+//        
+//        
+//        
+//        
+//
+////      
 //
 //            resul = ins.executeQuery("SELECT * FROM prestations");
 //
 ////            System.out.println("" + resul.next());
-////            if (resul.getRow() == 0) {)
+////            if (resul.getRow() == 0) {
 ////
 ////                loc = null;
 ////
 ////            } else {
-//            int i = 0;
-//            System.out.println("" + resul.first());
+//            int idResultat = 1;
+////            System.out.println("" + resul.first());
 //
 //            while (resul.next()) {
-//                i++;
+//                idResultat++;
 //            }
-
-//            System.out.println("" + i);
+//
+//            System.out.println("" + idResultat);
+            
 ////                    System.out.println("OK");
 //                    String localisation = resul.getString("loc");
 //                    String numChambre = resul.getString("numerochambre");
@@ -173,8 +177,8 @@ public class TestsBD {
 //
 //            }
 //
-//        } catch (SQLException e) {
-//            System.out.println("erreur DAOSejour: " + e);
-//        }
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour: " + e);
+        }
     }
 }

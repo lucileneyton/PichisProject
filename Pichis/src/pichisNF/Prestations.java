@@ -52,6 +52,6 @@ public class Prestations {
     }
 
     public String toString() {
-        return "Nom :" + patient.getNom().toUpperCase() + "    Prestation : " + this.naturePrestation + "    Date : " + date.toString();
+        return "Demande du " + date.toString();
     }
 }
