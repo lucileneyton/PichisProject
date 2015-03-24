@@ -17,7 +17,7 @@ public class Prescription {
     Medecin medecin;
     
     public Prescription(){
-    }
+    } 
     
     public Prescription(DateSimple date, String prescriptions, Medecin medecin){
         this.date = date;
