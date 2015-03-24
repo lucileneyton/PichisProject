@@ -57,7 +57,7 @@ public class DAODPI {
             prenom = resul.getString("prenom");
             sexe = resul.getString("sexe");
             String d = resul.getString("dateNaissance");
-            dateNaissance = new DateSimple(d.substring(8, 10), d.substring(5, 7), d.substring(0, 4));
+            dateNaissance = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
             adresse = resul.getString("adresse");
             String ouvert = resul.getString("ouvert");
             
@@ -156,7 +156,7 @@ public class DAODPI {
                 prenom = resul.getString("prenom");
                 sexe = resul.getString("sexe");
                 date = resul.getString("dateNaissance");
-                dateNaissance = new DateSimple(date.substring(8, 10), date.substring(5, 7), date.substring(0, 4));
+                dateNaissance = new DateSimple(date.substring(0, 2), date.substring(3, 5), date.substring(6, 10));
                 adresse = resul.getString("adresse");
                 listeDPI.add(new DPI(ipp, nom, prenom, sexe, dateNaissance, adresse));
 
