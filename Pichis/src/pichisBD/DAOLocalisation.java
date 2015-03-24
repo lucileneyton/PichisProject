@@ -80,6 +80,36 @@ public class DAOLocalisation {
 
         return loc;
     }
+    
+    public void changerLocalisationSejour(String idSejour, String idSpecialite, String numeroChambre, String placement){
+        c=new ConnectionBD();
+      
+        try {
+
+            int resul;
+
+            Statement ins = c.connexion.createStatement();
+            System.out.println("idSejour =" + idSejour);
+            System.out.println("idSpecialite =" + idSpecialite);
+            System.out.println("numeroChambre =" + numeroChambre);
+            System.out.println("placement =" + placement);
+            resul = ins.executeUpdate("UPDATE sejour SET loc=" + idSpecialite + ", numerochambre=" +  numeroChambre + ", placement=" + "'" + placement + "'" + " WHERE id=" + "'"  + idSejour + "' ;");
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOLocalisation (changerLocalisationSejour): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
+    }
 
     
 

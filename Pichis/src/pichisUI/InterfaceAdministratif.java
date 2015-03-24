@@ -16,11 +16,14 @@ import javax.swing.JOptionPane;
 import pichisBD.DAODPI;
 import pichisBD.DAOLocalisation;
 import pichisBD.DAOSejour;
+import pichisBD.DAOServices;
 import pichisNF.Administratif;
 import pichisNF.DPI;
 import pichisNF.Localisation;
 import pichisNF.Sejour;
+import pichisNF.Services;
 import pichisNF.Specialite;
+import pichisNF.TypeServices;
 import pichisNF.fonctions;
 
 /**
@@ -37,6 +40,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     DAOSejour daoSejour; 
     DAODPI daoDpi;
     DAOLocalisation daoLoc;
+    DAOServices daoService;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -54,6 +58,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
         daoLoc = new DAOLocalisation();
+        daoService = new DAOServices();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -852,6 +857,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             champNumeroChambre.setBackground(Color.LIGHT_GRAY);
             comboBoxPlacement.setEnabled(false);
             comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
+            
+            Sejour sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
+            
+            if(sejourRecent != null && comboBoxService.getSelectedIndex() != -1 && champNumeroChambre.getText().isEmpty() == false && comboBoxPlacement.getSelectedIndex() != -1){
+                Services s = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString()));
+                daoLoc.changerLocalisationSejour(sejourRecent.getNumeroSejour(), daoService.idParService(s), champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
+            }
+            
 
         } else {
             JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
