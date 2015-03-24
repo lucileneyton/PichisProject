@@ -99,22 +99,49 @@ public class DateSimple implements Comparable {
     }
 
     public boolean estAvant(DateSimple date) {
-        boolean rep = true;
-        if (Integer.valueOf(annee) > Integer.valueOf(date.getAnnee())) {
-            rep = false;
+        boolean rep = false;
+        
+        if (Integer.valueOf(annee) < Integer.valueOf(date.getAnnee())) {
+            return true;
         }
-        if (Integer.valueOf(mois) > Integer.valueOf(date.getMois())) {
-            rep = false;
+        else if(Integer.valueOf(annee) > Integer.valueOf(date.getAnnee())){
+            return false;
         }
-        if (Integer.valueOf(jour) > Integer.valueOf(date.getJour())) {
-            rep = false;
-        }
-        if (heure != null) {
-            if (Integer.valueOf(heure) > Integer.valueOf(date.getHeure())) {
-                rep = false;
+        
+        else{
+            if (Integer.valueOf(mois) < Integer.valueOf(date.getAnnee())) {
+                return true;
             }
-            if (Integer.valueOf(minute) > Integer.valueOf(date.getMinute())) {
-                rep = false;
+            else if(Integer.valueOf(mois) > Integer.valueOf(date.getAnnee())){
+                return false;
+            }
+            
+            else{
+                if (Integer.valueOf(jour) < Integer.valueOf(date.getAnnee())) {
+                    return true;
+                }
+                else if(Integer.valueOf(jour) > Integer.valueOf(date.getAnnee())){
+                    return false;
+                }
+                
+                else{
+                    if (heure != null && minute != null) {
+                        if (Integer.valueOf(heure) < Integer.valueOf(date.getAnnee())) {
+                            return true;
+                        }
+                        else if(Integer.valueOf(heure) > Integer.valueOf(date.getAnnee())){
+                            return false;
+                        }
+                        else{
+                            if (Integer.valueOf(minute) < Integer.valueOf(date.getAnnee())) {
+                                return true;
+                            }
+                            else if(Integer.valueOf(minute) > Integer.valueOf(date.getAnnee())){
+                                return false;
+                            }
+                        }
+                    }
+                }
             }
         }
 
