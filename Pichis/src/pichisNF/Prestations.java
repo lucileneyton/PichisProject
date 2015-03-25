@@ -62,6 +62,10 @@ public class Prestations implements Comparable {
     }
 
     public String toString() {
+        return "Nom : " + patient.getNom().toUpperCase() + "    Prestation : " + this.naturePrestation + "    Date : " + date.toString();
+    }
+
+    public String toString2() {
         return "Demande du " + date.toString();
     }
 
