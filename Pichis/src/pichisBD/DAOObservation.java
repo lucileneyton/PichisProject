@@ -23,6 +23,27 @@ public class DAOObservation {
     
     ConnectionBD c;
     
+    public void ajoutObservation(String id, String idMedecin, String texte, String patient, String date) {
+        Statement ins;
+        c = new ConnectionBD();
+
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO observations(id, medecin, texte,patient, date)" + "VALUES ('" + id + "','" + idMedecin + "','" + texte + "','" + patient + "','" + date + "')");
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création de l'observation" + ex);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+    }
     
     public ArrayList<Observation> observationsPatient(String idPatient) {
         
