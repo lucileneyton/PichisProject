@@ -24,6 +24,29 @@ public class DAOOperation {
     
     ConnectionBD c;
     //Operation(String numeroSejour, DateSimple date, String operation, Medecin medecin)
+    
+    public void ajoutOperation(String id, String numSejour, String date, String operation, String idMedecin) {
+        Statement ins;
+        c = new ConnectionBD();
+
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO operations(id, sejour, date,operation, medecin)" + "VALUES ('" + id + "','" + numSejour + "','" + date + "','" + operation + "','" + idMedecin + "')");
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création de l'opération" + ex);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+    }
+    
     public ArrayList<Operation> operationSejour(String numSejour){
         
         c = new ConnectionBD();
