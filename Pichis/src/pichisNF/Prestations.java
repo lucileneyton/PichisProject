@@ -62,14 +62,9 @@ public class Prestations implements Comparable {
     }
 
     public String toString() {
-        return "Nom : " + patient.getNom().toUpperCase() + "    Prestation : " + this.naturePrestation + "    Date : " + date.toString();
+        return "Demande du " + date.toString() + "    Prestation : " + this.naturePrestation;
     }
 
-    public String toString2() {
-        return "Demande du " + date.toString();
-    }
-
-    @Override
     public int compareTo(Object o) {
         Prestations p = (Prestations) o;
         DateSimple d = p.getDate();
