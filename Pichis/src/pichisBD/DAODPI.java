@@ -18,11 +18,10 @@ import pichisNF.Operation;
 import pichisNF.DPI;
 
 /**
- *
- * @author Lucile
+ * Data access object pour la classe DPI
+ * 
  */
 public class DAODPI {
-    //  boolean IPPexiste(ipp)
     
     String ipp;
     String nom;
@@ -39,7 +38,12 @@ public class DAODPI {
     
     ConnectionBD c ;
     
-    public DPI dpiParIPP(String ipp){
+ /**
+ * Méthode retournant le DPI d'un patient
+ * @param ipp l'identifiant du patient
+ * @return DPI  
+ */
+     public DPI dpiParIPP(String ipp){
         c= new ConnectionBD();
          try {
 
@@ -90,6 +94,16 @@ public class DAODPI {
         return dpi;
     }
     
+     /**
+ * Méthode permettant l'ajout d'un DPI dans la base de données 
+ * @param ipp l'identifiant du patient à créer 
+ * @param nom le nom du nouveau patient
+ * @param prenom le prénom du nouveau patient
+ * @param sexe le sexe du nouveau patient
+ * @param dateNaissance la date de naissance du nouveau patient
+ * @param adresse l'adresse du nouveau patient
+ *  
+ */
     public void ajout(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){       
         Statement ins;
         Statement verif;
@@ -127,6 +141,10 @@ public class DAODPI {
         }
     }
     
+    /**
+ * Méthode retournant la liste des DPI de l'hôpital
+ * @return ArrayList<DPI>   
+ */
     public ArrayList<DPI> consulterListeDPI() {
 
         ArrayList<DPI> listeDPI = new ArrayList();
@@ -173,6 +191,10 @@ public class DAODPI {
         return listeDPI;
     }
     
+    /**
+ * Méthode permettant de fermer le DPI d'un patient
+ * @param ipp l'identifiant du patient 
+ */
     public void fermerDPI(String ipp){
         c=new ConnectionBD();
       
@@ -198,6 +220,10 @@ public class DAODPI {
         }
     }
     
+    /**
+ * Méthode permettant de fermer le DPI d'un patient
+ * @param ipp l'identifiant du patient
+ */
     public void ouvrirDPI(String ipp){
         c=new ConnectionBD();
       
@@ -223,6 +249,11 @@ public class DAODPI {
         }
     }
     
+    /**
+ * Méthode permettant de savoir si le DPI d'un patient est ouvert ou non
+ * @param ipp l'identifiant du patient
+ * @return boolean true si le DPI est ouvert et false si le DPI est fermé 
+ */
     public boolean getOuvert(String ipp){
         c = new ConnectionBD();
         boolean b = false;

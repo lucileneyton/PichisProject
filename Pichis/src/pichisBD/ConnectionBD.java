@@ -11,27 +11,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author Lucile
+ * Classe permettant la connexion à la base de données
+ *  
  */
 public class ConnectionBD {
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
-/**
- *
- * @author Lucile
- */
 
 
 public Connection connexion;
 
 
-    
+    /**
+ * Méthode permettant de se connecter à la base de données
+ *  
+ */
     public ConnectionBD(){
         String pilote = "com.mysql.jdbc.Driver";
 
@@ -45,8 +39,8 @@ public Connection connexion;
         try {
             Class.forName(pilote);
 
-            connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe !
-            // réseau local : connexion = DriverManager.getConnection("jdbc:mysql://adresseip/pichisdatabase", "user", "user"); 
+            connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe pour se connecter au serveur
+            //connexion = DriverManager.getConnection("jdbc:mysql://adresseip/pichisdatabase", "user", "user"); // Enlever le commentaire pour configurer en réseau local
 
             
 
