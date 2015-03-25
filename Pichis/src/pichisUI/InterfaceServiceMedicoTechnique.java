@@ -375,7 +375,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextFieldDateDemande.setEditable(false);
         jTextFieldDateDemande.setBackground(new java.awt.Color(204, 204, 204));
 
-        DateFormat df1 = new SimpleDateFormat("dd-mm-YYYY à HH:mm");
+        DateFormat df1 = new SimpleDateFormat("dd-MM-YYYY à HHhmm");
         Date today1 = Calendar.getInstance().getTime();
         String date = df1.format(today1);
         jFormattedTextFieldDateRealisation .setText(date);

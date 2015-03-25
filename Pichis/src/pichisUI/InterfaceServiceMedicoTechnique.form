@@ -651,7 +651,7 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DateFormat df1 = new SimpleDateFormat(&quot;dd-mm-YYYY &#xe0; HH:mm&quot;);&#xa;Date today1 = Calendar.getInstance().getTime();        &#xa;String date = df1.format(today1);&#xa;jFormattedTextFieldDateRealisation .setText(date);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DateFormat df1 = new SimpleDateFormat(&quot;dd-MM-YYYY &#xe0; HHhmm&quot;);&#xa;Date today1 = Calendar.getInstance().getTime();        &#xa;String date = df1.format(today1);&#xa;jFormattedTextFieldDateRealisation .setText(date);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
