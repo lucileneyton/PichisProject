@@ -46,7 +46,7 @@ public Connection connexion;
             Class.forName(pilote);
 
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/pichisdatabase", "root", "pichisproject2015");// ATTENTION à bien changer l'identifiant et le mot de passe !
-            
+            // réseau local : connexion = DriverManager.getConnection("jdbc:mysql://adresseip/pichisdatabase", "user", "user"); 
 
             
 
