@@ -82,7 +82,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
                 Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())) {
+                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())  &&  servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
                 }
