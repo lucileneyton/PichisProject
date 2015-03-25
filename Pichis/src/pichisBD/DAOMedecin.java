@@ -160,7 +160,7 @@ public class DAOMedecin {
 
         }
 
-        System.out.println("estMedecin" + b);
+//        System.out.println("estMedecin" + b);
         return b;
 
     }
@@ -325,7 +325,7 @@ public class DAOMedecin {
                 
 
                 med = new Medecin(id, nom, prenom, mdp, service);
-                System.out.println(med.getNom());
+//                System.out.println(med.getNom());
             }
 
         } catch (SQLException e) {

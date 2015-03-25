@@ -78,15 +78,15 @@ public class DateSimple implements Comparable {
 
     public String toString() {
         String texte;
-        
+
         if (jour.length() == 1) {
             jour = "0" + jour;
         }
         if (mois.length() == 1) {
             mois = "0" + mois;
         }
-        texte = this.jour + "-"+ this.mois+ "-" + this.annee  ;
-        
+        texte = this.jour + "-" + this.mois + "-" + this.annee;
+
         if (heure != null) {
             texte += " à " + heure + "h" + minute;
         }
@@ -100,43 +100,31 @@ public class DateSimple implements Comparable {
 
     public boolean estAvant(DateSimple date) {
         boolean rep = false;
-        
+
         if (Integer.valueOf(annee) < Integer.valueOf(date.getAnnee())) {
             return true;
-        }
-        else if(Integer.valueOf(annee) > Integer.valueOf(date.getAnnee())){
+        } else if (Integer.valueOf(annee) > Integer.valueOf(date.getAnnee())) {
             return false;
-        }
-        
-        else{
+        } else {
             if (Integer.valueOf(mois) < Integer.valueOf(date.getAnnee())) {
                 return true;
-            }
-            else if(Integer.valueOf(mois) > Integer.valueOf(date.getAnnee())){
+            } else if (Integer.valueOf(mois) > Integer.valueOf(date.getAnnee())) {
                 return false;
-            }
-            
-            else{
+            } else {
                 if (Integer.valueOf(jour) < Integer.valueOf(date.getAnnee())) {
                     return true;
-                }
-                else if(Integer.valueOf(jour) > Integer.valueOf(date.getAnnee())){
+                } else if (Integer.valueOf(jour) > Integer.valueOf(date.getAnnee())) {
                     return false;
-                }
-                
-                else{
+                } else {
                     if (heure != null && minute != null) {
                         if (Integer.valueOf(heure) < Integer.valueOf(date.getAnnee())) {
                             return true;
-                        }
-                        else if(Integer.valueOf(heure) > Integer.valueOf(date.getAnnee())){
+                        } else if (Integer.valueOf(heure) > Integer.valueOf(date.getAnnee())) {
                             return false;
-                        }
-                        else{
+                        } else {
                             if (Integer.valueOf(minute) < Integer.valueOf(date.getAnnee())) {
                                 return true;
-                            }
-                            else if(Integer.valueOf(minute) > Integer.valueOf(date.getAnnee())){
+                            } else if (Integer.valueOf(minute) > Integer.valueOf(date.getAnnee())) {
                                 return false;
                             }
                         }
@@ -150,13 +138,49 @@ public class DateSimple implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-//        DateSimple d = (DateSimple) o;
-        int difference = 0;
+        DateSimple d = (DateSimple) o;
+        int resultat = 0;
 //        
-//        if (Integer.valueOf(annee) > Integer.valueOf(d.getAnnee())){
-//            difference = -1;
-//        }
-        
-        return difference;
+        if (Integer.valueOf(annee) != Integer.valueOf(d.getAnnee())) {
+            if (Integer.valueOf(annee) > Integer.valueOf(d.getAnnee())) {
+                resultat = -1;
+            } else {
+                resultat = 1;
+            }
+        } else {
+            if (Integer.valueOf(mois) != Integer.valueOf(d.getMois())) {
+                if (Integer.valueOf(mois) > Integer.valueOf(d.getMois())) {
+                    resultat = -1;
+                } else {
+                    resultat = 1;
+                }
+            } else {
+                if (Integer.valueOf(jour) != Integer.valueOf(d.getJour())) {
+                    if (Integer.valueOf(jour) > Integer.valueOf(d.getJour())) {
+                        resultat = -1;
+                    } else {
+                        resultat = 1;
+                    }
+                } else {
+                    if (Integer.valueOf(heure) != Integer.valueOf(d.getHeure())) {
+                        if (Integer.valueOf(heure) > Integer.valueOf(d.getHeure())) {
+                            resultat = -1;
+                        } else {
+                            resultat = 1;
+                        }
+                    } else {
+                        if (Integer.valueOf(minute) != Integer.valueOf(d.getMinute())) {
+                            if (Integer.valueOf(minute) > Integer.valueOf(d.getMinute())) {
+                                resultat = -1;
+                            } else {
+                                resultat = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return resultat;
     }
 }

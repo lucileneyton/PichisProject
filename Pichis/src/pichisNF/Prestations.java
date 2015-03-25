@@ -11,7 +11,7 @@ import java.util.Calendar;
  *
  * @author Johann
  */
-public class Prestations {
+public class Prestations implements Comparable{
 
     private String naturePrestation;
     private Medecin demandeur;
@@ -53,5 +53,18 @@ public class Prestations {
 
     public String toString() {
         return "Demande du " + date.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Prestations p = (Prestations) o;
+        DateSimple d = p.getDate();
+        int resultat = this.date.compareTo(d);
+        
+        
+        
+        return resultat;
+       
+        
     }
 }

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -43,7 +44,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceServiceClinique(Medecin medecin) {
-        
+
         listePrestations = new DefaultListModel<pichisNF.Prestations>();
         this.medecin = medecin;
         initComponents();
@@ -968,8 +969,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Opérations réalisées", jPanel6);
 
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
         jPanel27.setLayout(new javax.swing.BoxLayout(jPanel27, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -984,8 +983,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jScrollPane15.setViewportView(listeDePrestations);
 
         jPanel27.add(jScrollPane15);
-
-        jPanel7.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 27, 398, 440));
 
         jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder("Résultat de la prestation"));
 
@@ -1002,7 +999,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane16)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel28Layout.setVerticalGroup(
@@ -1012,11 +1009,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel7.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 27, 387, -1));
-
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Demande de prestation"));
         jPanel29.setMaximumSize(new java.awt.Dimension(375, 197));
         jPanel29.setMinimumSize(new java.awt.Dimension(387, 204));
+        jPanel29.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nouvelleDemande.setText("Nouvelle demande");
         nouvelleDemande.addActionListener(new java.awt.event.ActionListener() {
@@ -1024,6 +1020,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 nouvelleDemandeActionPerformed(evt);
             }
         });
+        jPanel29.add(nouvelleDemande, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 163, -1, -1));
+        nouvelleDemande.setVisible(false);
 
         enregistrerUnePrestation.setText("Enregistrer");
         enregistrerUnePrestation.addActionListener(new java.awt.event.ActionListener() {
@@ -1031,6 +1029,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 enregistrerUnePrestationActionPerformed(evt);
             }
         });
+        jPanel29.add(enregistrerUnePrestation, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 163, -1, -1));
 
         naturePrestation.setColumns(20);
         naturePrestation.setLineWrap(true);
@@ -1038,34 +1037,34 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         naturePrestation.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane1.setViewportView(naturePrestation);
 
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel29Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel29Layout.createSequentialGroup()
-                        .addComponent(nouvelleDemande)
-                        .addGap(149, 149, 149)
-                        .addComponent(enregistrerUnePrestation)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel29Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nouvelleDemande)
-                    .addComponent(enregistrerUnePrestation))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel29.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 355, 118));
 
-        jPanel7.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 218, -1, -1));
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         jTabbedPane1.addTab("Prestations", jPanel7);
 
@@ -1220,72 +1219,86 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void enregistrerUnePrestationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerUnePrestationActionPerformed
 
-        DAOPrestations d = new DAOPrestations();
-        DAOResultat r = new DAOResultat();
-        int i = listeDePatients.getSelectedIndex();
-        ConnectionBD c = new ConnectionBD();
-        int idResultat = 1;
-        try {
-            Statement ins = c.connexion.createStatement();
-            ResultSet resul;
-            resul = ins.executeQuery("SELECT * FROM prestations");
-            
-            
+        if (naturePrestation.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(naturePrestation, "Ajouter du contenu");
+//            showInternalMessageDialog(, , "Message d'erreur", JOptionPane.ERROR_MESSAGE, null);
+        } else {
+            int in = listeDePatients.getSelectedIndex();
+            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : " + naturePrestation.getText() + " pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
+            if (confirm == JOptionPane.YES_OPTION) {
+                DAOPrestations d = new DAOPrestations();
+                DAOResultat r = new DAOResultat();
+                int i = listeDePatients.getSelectedIndex();
+                ConnectionBD c = new ConnectionBD();
+                int idResultat = 1;
+                try {
+                    Statement ins = c.connexion.createStatement();
+                    ResultSet resul;
+                    resul = ins.executeQuery("SELECT * FROM prestations");
 
-            while (resul.next()) {
-                idResultat++;
+                    while (resul.next()) {
+                        idResultat++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Calendar ca = Calendar.getInstance();
+                String minute = "" + ca.getTime().getMinutes();
+                String heure = "" + ca.getTime().getHours();
+                int rangDuMois = ca.getTime().getMonth() + 1;
+                String mois = "" + rangDuMois;
+                String jour = "" + ca.getTime().getDate();
+
+                int anne = 1900 + ca.getTime().getYear();
+                String annee = "" + anne;
+                if (ca.getTime().getDate() < 10) {
+                    jour = "0" + ca.getTime().getDate();
+                }
+                if (ca.getTime().getMinutes() < 10) {
+                    minute = "0" + ca.getTime().getMinutes();
+                }
+                if (ca.getTime().getHours() < 10) {
+                    heure = "0" + ca.getTime().getHours();
+                }
+                if (ca.getTime().getMonth() < 10) {
+                    mois = "0" + rangDuMois;
+                }
+
+                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+                d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), "" + idResultat, date.toString(), "" + idResultat);
+                r.ajoutResultat(null, null, null, "" + idResultat, "" + idResultat);
+                afficherDossierMedical();
+                naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
+                naturePrestation.setText("");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-        
-        Calendar ca =Calendar.getInstance();
-        String minute = "" +ca.getTime().getMinutes();
-        String heure= "" +ca.getTime().getHours();
-        String mois= "" +ca.getTime().getMonth();
-        String jour= "" +ca.getTime().getDay();
-        int anne = 1900 + ca.getTime().getYear();
-        String annee = "" +anne;
-        if (ca.getTime().getDay() < 10){
-            jour = "0"+ca.getTime().getDay();
-        }
-        if (ca.getTime().getMinutes() < 10){
-            minute = "0"+ca.getTime().getMinutes();
-        }
-        if (ca.getTime().getHours() < 10){
-            heure = "0"+ca.getTime().getHours();
-        }
-        if (ca.getTime().getMonth() < 10){
-            heure = "0"+ca.getTime().getMonth();
-        }
-        
-        DateSimple date = new DateSimple (jour, mois, annee, heure, minute);
-        d.ajoutPrestation(naturePrestation.getText() ,medecin.getId() , modeleListeDPI.getElementAt(i).getIpp(),""+ idResultat, date.toString(), "" +idResultat);
-        r.ajoutResultat(null, null, null, null, "" +idResultat);
-        afficherDossierMedical();
-        
-// TODO add your handling code here:
     }//GEN-LAST:event_enregistrerUnePrestationActionPerformed
 
     private void listeDePrestationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePrestationsValueChanged
 
         int i = listeDePrestations.getSelectedIndex();
-        naturePrestation.setText(listePrestations.getElementAt(i).getNaturePrestation());
+        if (i >= 0) {
+            naturePrestation.setText(listePrestations.getElementAt(i).getNaturePrestation());
+        }
         naturePrestation.setEditable(false);
         naturePrestation.setBackground(new java.awt.Color(237, 228, 228));
         enregistrerUnePrestation.setVisible(false);
         nouvelleDemande.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_listeDePrestationsValueChanged
 
     private void nouvelleDemandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nouvelleDemandeActionPerformed
-       
+        listeDePrestations.clearSelection();
         naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
         naturePrestation.setEditable(true);
         nouvelleDemande.setVisible(false);
         enregistrerUnePrestation.setVisible(true);
+        naturePrestation.setText("");
+
     }//GEN-LAST:event_nouvelleDemandeActionPerformed
 
     public void afficherDossierMedical() {
@@ -1293,16 +1306,16 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
          * Méthode affichant le dossier médical
          */
         //Affichage de la liste des prestations
-        
+
         listePrestations.clear();
         DAOPrestations d = new DAOPrestations();
         int i = listeDePatients.getSelectedIndex();
         ArrayList<Prestations> p = d.prestationsPatient(modeleListeDPI.getElementAt(i).getIpp());
-        System.out.println("" + p);
+        Collections.sort(p);
         for (Prestations pr : p) {
-   
-                listePrestations.addElement(pr);
-            
+
+            listePrestations.addElement(pr);
+
         }
 
         listeDePrestations.setModel(listePrestations);
