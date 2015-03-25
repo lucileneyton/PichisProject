@@ -13,20 +13,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import pichisBD.DAODPI;
-import pichisBD.DAOLocalisation;
-import pichisBD.DAOPrestations;
-import pichisBD.DAOSejour;
-import pichisBD.DAOServices;
-import pichisNF.Administratif;
-import pichisNF.DPI;
-import pichisNF.Localisation;
-import pichisNF.Prestations;
-import pichisNF.Sejour;
-import pichisNF.Services;
-import pichisNF.Specialite;
-import pichisNF.TypeServices;
-import pichisNF.fonctions;
+import pichisBD.*;
+import pichisNF.*;
 
 /**
  *
@@ -168,6 +156,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         texteLettreSortie = new javax.swing.JTextArea();
         boutonFermerDPI = new javax.swing.JButton();
+        panelDPIFerme = new javax.swing.JPanel();
+        labelFerme = new javax.swing.JLabel();
+        boutonOuvrirDPI = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
@@ -769,6 +760,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jScrollPane2.setViewportView(texteLettreSortie);
 
         boutonFermerDPI.setText("Fermer DPI");
+        boutonFermerDPI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonFermerDPIActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ongletLettreSortieLayout = new javax.swing.GroupLayout(ongletLettreSortie);
         ongletLettreSortie.setLayout(ongletLettreSortieLayout);
@@ -795,6 +791,38 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         DMA.add(panelOnglets, "card2");
         panelOnglets.getAccessibleContext().setAccessibleName("Fiche du patient");
+
+        labelFerme.setText("Le DPI est fermé !");
+
+        boutonOuvrirDPI.setText("Ouvrir DPI");
+        boutonOuvrirDPI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonOuvrirDPIActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelDPIFermeLayout = new javax.swing.GroupLayout(panelDPIFerme);
+        panelDPIFerme.setLayout(panelDPIFermeLayout);
+        panelDPIFermeLayout.setHorizontalGroup(
+            panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDPIFermeLayout.createSequentialGroup()
+                .addContainerGap(500, Short.MAX_VALUE)
+                .addGroup(panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelFerme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(524, 524, 524))
+        );
+        panelDPIFermeLayout.setVerticalGroup(
+            panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDPIFermeLayout.createSequentialGroup()
+                .addContainerGap(273, Short.MAX_VALUE)
+                .addComponent(labelFerme, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutonOuvrirDPI)
+                .addGap(207, 207, 207))
+        );
+
+        DMA.add(panelDPIFerme, "card4");
 
         panelPrincipal.add(DMA, java.awt.BorderLayout.CENTER);
 
@@ -902,18 +930,24 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         if(listeDePatients.getSelectedValue() != null) {
+            if(daoDpi.getOuvert(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp())){
+                CardLayout c = (CardLayout) (DMA.getLayout());
+                c.show(DMA, "card2");
+            }    
+            else{
+                CardLayout c = (CardLayout) (DMA.getLayout());
+                c.show(DMA, "card4");
+            }
+                this.affichageDonneesPatient();
             
-            this.affichageDonneesPatient();
+                this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+                this.effaceDonneesSejour();
             
-            this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
-            this.effaceDonneesSejour();
+                this.effaceDonneesLocalisation();          
+                this.affichageLocalisation();
             
-            this.effaceDonneesLocalisation();          
-            this.affichageLocalisation();
-            
-            this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
-        } 
-        
+                this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
+        }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
     private void jTextFieldRechercheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyTyped
@@ -959,6 +993,20 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxServiceActionPerformed
 
+    private void boutonFermerDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFermerDPIActionPerformed
+        CardLayout c = (CardLayout) (DMA.getLayout());
+        c.show(DMA, "card4");
+        daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
+    }//GEN-LAST:event_boutonFermerDPIActionPerformed
+
+    private void boutonOuvrirDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonOuvrirDPIActionPerformed
+        CardLayout c = (CardLayout) (DMA.getLayout());
+        c.show(DMA, "card2");
+        daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
+        
+        
+    }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
+
     public void miseAJour() {
         /**
          * Méthode assurant la mise à jour de la liste des patients de
@@ -993,8 +1041,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
             textFieldAdresse.setText(modele.get(indice).getAdresse());
 
-            CardLayout c = (CardLayout) (DMA.getLayout());
-            c.show(DMA, "card2");
+            //CardLayout c = (CardLayout) (DMA.getLayout());
+            //c.show(DMA, "card2");
         }
     }
     
@@ -1127,6 +1175,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JButton boutonEnregistrer;
     private javax.swing.JButton boutonFermerDPI;
     private javax.swing.JButton boutonModifier;
+    private javax.swing.JButton boutonOuvrirDPI;
     private javax.swing.JTextField champAnneeEntree;
     private javax.swing.JTextField champAnneeSortie;
     private javax.swing.JTextField champJourEntree;
@@ -1162,6 +1211,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JLabel labelDateEntree;
     private javax.swing.JLabel labelDateSortie;
+    private javax.swing.JLabel labelFerme;
     private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelNumeroSejour;
     private javax.swing.JLabel labelPhResponsable;
@@ -1176,6 +1226,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JPanel ongletLocalisation;
     private javax.swing.JPanel ongletSejour;
     private javax.swing.JPanel panelBarreRecherche;
+    private javax.swing.JPanel panelDPIFerme;
     private javax.swing.JPanel panelDouverture;
     private javax.swing.JPanel panelListe;
     private javax.swing.JTabbedPane panelOnglets;

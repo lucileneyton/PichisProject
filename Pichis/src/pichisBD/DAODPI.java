@@ -67,13 +67,9 @@ public class DAODPI {
             else{
                 estOuvert = false;
             }
-            
-             
-             
+                          
             dpi = new DPI(ipp, nom, prenom, sexe, dateNaissance, adresse);
             
-             
-
             }
 
         } catch (SQLException e) {
@@ -94,9 +90,7 @@ public class DAODPI {
         return dpi;
     }
     
-    public void ajout(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){
-        
-       
+    public void ajout(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){       
         Statement ins;
         Statement verif;
         ResultSet res;
@@ -177,6 +171,94 @@ public class DAODPI {
         }
 
         return listeDPI;
+    }
+    
+    public void fermerDPI(String ipp){
+        c=new ConnectionBD();
+      
+        try {
+            int resul;
+            
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeUpdate("UPDATE dpi SET ouvert = 'F' WHERE ipp=" + "'"  + ipp + "' ;");
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAODPI (fermerDPI): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
+    }
+    
+    public void ouvrirDPI(String ipp){
+        c=new ConnectionBD();
+      
+        try {
+            int resul;
+            
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeUpdate("UPDATE dpi SET ouvert = 'T' WHERE ipp=" + "'"  + ipp + "' ;");
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAODPI (ouvrirDPI): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
+    }
+    
+    public boolean getOuvert(String ipp){
+        c = new ConnectionBD();
+        boolean b = false;
+        
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+
+            resul = ins.executeQuery("SELECT * FROM dpi WHERE ipp='" + ipp + "'");
+
+            while (resul.next()) {
+               
+                    String ouvert = resul.getString("ouvert");
+
+                    if(ouvert.equals("T")){
+                        b = true;
+                    }
+                
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAODPI: " + e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+
+        return b;
     }
     
 }
