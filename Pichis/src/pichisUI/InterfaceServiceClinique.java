@@ -82,7 +82,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
                 Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite())  &&  servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType())) {
+                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
                 }
@@ -202,7 +202,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         listeDePrestations = new javax.swing.JList();
         jPanel28 = new javax.swing.JPanel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        resultatPrestation = new javax.swing.JTextArea();
         jPanel29 = new javax.swing.JPanel();
         nouvelleDemande = new javax.swing.JButton();
         enregistrerUnePrestation = new javax.swing.JButton();
@@ -986,12 +986,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder("Résultat de la prestation"));
 
-        jTextArea7.setEditable(false);
-        jTextArea7.setColumns(20);
-        jTextArea7.setRows(5);
-        jTextArea7.setText("Prise de sang effectuée");
-        jTextArea7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane16.setViewportView(jTextArea7);
+        resultatPrestation.setEditable(false);
+        resultatPrestation.setColumns(20);
+        resultatPrestation.setRows(5);
+        resultatPrestation.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane16.setViewportView(resultatPrestation);
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -1278,7 +1277,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_enregistrerUnePrestationActionPerformed
 
     private void listeDePrestationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePrestationsValueChanged
-
+        //Affichage de la nature de la prestation
         int i = listeDePrestations.getSelectedIndex();
         if (i >= 0) {
             naturePrestation.setText(listePrestations.getElementAt(i).getNaturePrestation());
@@ -1287,6 +1286,18 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         naturePrestation.setBackground(new java.awt.Color(237, 228, 228));
         enregistrerUnePrestation.setVisible(false);
         nouvelleDemande.setVisible(true);
+
+        //Affichage de la prestation
+        DAOResultat d = new DAOResultat();
+        Resultat r =null;
+        if (i >= 0) {
+            r = d.resultatPrestation(listePrestations.getElementAt(i).getNaturePrestation());
+        }
+        if (r == null) {
+            resultatPrestation.setText("Aucun résultat pour le moment");
+        } else {
+            resultatPrestation.setText(r.getDescriptions());
+        }
 
 
     }//GEN-LAST:event_listeDePrestationsValueChanged
@@ -1445,7 +1456,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField12;
@@ -1470,5 +1480,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JList listeDePrestations;
     private javax.swing.JTextArea naturePrestation;
     private javax.swing.JButton nouvelleDemande;
+    private javax.swing.JTextArea resultatPrestation;
     // End of variables declaration//GEN-END:variables
 }
