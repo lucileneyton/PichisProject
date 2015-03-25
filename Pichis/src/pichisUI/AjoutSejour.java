@@ -367,20 +367,20 @@ public class AjoutSejour extends javax.swing.JFrame {
         if(champNumeroSejour.getText().isEmpty() == false){
             if(comboBoxNomPh.getSelectedIndex() >= 0 && comboBoxNomPh.getSelectedIndex() < comboBoxNomPh.getItemCount()){
                 if(champNumeroChambre.getText().isEmpty() == false){
+                    
+                    Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
+                    Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
                 
-               Services service = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString().toUpperCase()));
-               Localisation loc = new Localisation(service, champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
-                
-               Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
+                    Sejour sejour = new Sejour(patient.getDma(), champNumeroSejour.getText(), dateEntree, modelePh.getElementAt(comboBoxNomPh.getSelectedIndex()), loc);
                                      
-                int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le sejour : " + champNumeroSejour.getText() +" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.YES_OPTION) {
-                        this.dispose();
+                    int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le sejour : " + champNumeroSejour.getText() +" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION) {
+                            this.dispose();
                         
-                        patient.getDma().ajouterSejour(sejour); 
-                        daoSejour.ajout(sejour, patient);              
-                        interfaceAdmin.affichageSejoursDuPatient(patient); 
-                        interfaceAdmin.affichageLocalisation();
+                            patient.getDma().ajouterSejour(sejour); 
+                            daoSejour.ajout(sejour, patient);              
+                            interfaceAdmin.affichageSejoursDuPatient(patient); 
+                            interfaceAdmin.affichageLocalisation();
                         }
                 }
                 else{

@@ -347,7 +347,7 @@ public class AjoutPatient extends javax.swing.JDialog {
                                 mois = Integer.decode(champMois.getText());
                                 annee = Integer.decode(champAnnee.getText());
                                 
-                                if(jour>=1 && jour<=12 && mois>=1 && mois<=12 && annee>=1900 && annee<=Calendar.getInstance().get(Calendar.YEAR)){
+                                if(jour>=1 && jour<=31 && mois>=1 && mois<=12 && annee>=1900 && annee<=Calendar.getInstance().get(Calendar.YEAR)){
                                     date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
                                                            
                                 if (boutonHomme.isSelected()) {

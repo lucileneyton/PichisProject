@@ -792,6 +792,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         DMA.add(panelOnglets, "card2");
         panelOnglets.getAccessibleContext().setAccessibleName("Fiche du patient");
 
+        labelFerme.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
+        labelFerme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFerme.setText("Le DPI est fermé !");
 
         boutonOuvrirDPI.setText("Ouvrir DPI");
@@ -805,21 +807,21 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         panelDPIFerme.setLayout(panelDPIFermeLayout);
         panelDPIFermeLayout.setHorizontalGroup(
             panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDPIFermeLayout.createSequentialGroup()
-                .addContainerGap(500, Short.MAX_VALUE)
-                .addGroup(panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelFerme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(524, 524, 524))
+            .addGroup(panelDPIFermeLayout.createSequentialGroup()
+                .addGap(453, 453, 453)
+                .addGroup(panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFerme))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         panelDPIFermeLayout.setVerticalGroup(
             panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDPIFermeLayout.createSequentialGroup()
-                .addContainerGap(273, Short.MAX_VALUE)
+                .addContainerGap(172, Short.MAX_VALUE)
                 .addComponent(labelFerme, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boutonOuvrirDPI)
-                .addGap(207, 207, 207))
+                .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251))
         );
 
         DMA.add(panelDPIFerme, "card4");
