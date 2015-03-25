@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import pichisNF.Administratif;
 
 /**
- *
- * @author Lucile
+ * Data access object pour la classe Administratif
+ * 
  */
 public class DAOAdministratif {
 
