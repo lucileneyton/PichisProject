@@ -15,6 +15,7 @@ import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Localisation;
 import pichisNF.Medecin;
+import pichisNF.Resultat;
 import pichisNF.Sejour;
 
 /**
@@ -114,7 +115,7 @@ public class DAOSejour {
             
             else{
                 String idService = daoServices.idParService(sejour.getLocalisation().getService());
-                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + idService + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')"); 
+                ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement,lettre)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + idService + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+"','"+"false"+ "')"); 
                 //ins.executeUpdate("INSERT INTO sejour(ipp, id, dateentree, responsable, loc, datesortie, numerochambre, placement)" + "VALUES ('" + dpi.getIpp() + "','" + sejour.getNumeroSejour() + "','" + sejour.getDateEntree().toString() + "','" + sejour.getPHResponsable().getId() + "','" + sejour.getLocalisation().toString() + "','" + sejour.getDateSortie() + "','" + sejour.getLocalisation().getNumeroChambre() + "','" + sejour.getLocalisation().getPlacement()+ "')");         
             }
 
@@ -132,6 +133,45 @@ public class DAOSejour {
             }
                    
         }
+    }
+    
+    public boolean lettreDeSortie(String idSejour){
+        c = new ConnectionBD();
+        boolean b = false;
+        
+        try {
+
+            ResultSet resul;
+
+            Statement ins = c.connexion.createStatement();
+
+            resul = ins.executeQuery("SELECT * FROM sejour WHERE id='" + idSejour + "'");
+
+            while (resul.next()) {
+
+               
+                    String lettre = resul.getString("lettre");
+
+                    if(lettre.equals("true")){
+                        b= true;
+                    }
+                
+            }
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOResultat: " + e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+
+        return b;
     }
     
     public String getNombreSejoursTotal(){
