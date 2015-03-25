@@ -88,7 +88,7 @@ public class DateSimple implements Comparable {
         texte = this.jour + "-" + this.mois + "-" + this.annee;
 
         if (heure != null) {
-            texte += " à " + heure + "h" + minute;
+            texte += " à " + heure + ":" + minute;
         }
 
         return texte;

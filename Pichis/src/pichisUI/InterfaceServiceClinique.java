@@ -6,7 +6,6 @@
 package pichisUI;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.sql.ResultSet;
@@ -34,6 +33,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceClinique
      */
+    Sejour servicePatient;
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
     DefaultListModel<pichisNF.Prestations> listePrestations;
 
@@ -81,7 +81,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //            System.out.println("" + listeDeSejours);
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
-                Sejour servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
+                servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
                 if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                    .getPHResponsable().getSpecialite().getSpecialite().toString()
@@ -135,7 +135,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        adresse = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -153,8 +153,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         champNumeroChambre = new javax.swing.JTextField();
         labelPlacement = new javax.swing.JLabel();
         comboBoxPlacement = new javax.swing.JComboBox();
-        boutonModifier = new javax.swing.JButton();
-        boutonEnregistrer = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -393,13 +391,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jScrollPane14.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea6.setEditable(false);
-        jTextArea6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jTextArea6.setText("125 rue Volga-Plage 80560 Vladivostok, Empire de Russie");
-        jTextArea6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jScrollPane14.setViewportView(jTextArea6);
+        adresse.setEditable(false);
+        adresse.setBackground(new java.awt.Color(204, 204, 204));
+        adresse.setColumns(20);
+        adresse.setRows(5);
+        adresse.setText("125 rue Volga-Plage 80560 Vladivostok, Empire de Russie");
+        adresse.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane14.setViewportView(adresse);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -510,24 +508,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         labelPlacement.setText("Placement");
 
-        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenêtre", "Chambre unique" }));
+        comboBoxPlacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "porte", "fenetre", "Unique" }));
         comboBoxPlacement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPlacementActionPerformed(evt);
-            }
-        });
-
-        boutonModifier.setText("Modifier");
-        boutonModifier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonModifierActionPerformed(evt);
-            }
-        });
-
-        boutonEnregistrer.setText("Enregistrer les modifications");
-        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonEnregistrerActionPerformed(evt);
             }
         });
 
@@ -542,9 +526,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelNumeroChambre)
-                                        .addComponent(boutonModifier))
+                                    .addComponent(labelNumeroChambre)
                                     .addGap(32, 32, 32))
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(labelService)
@@ -556,8 +538,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(champNumeroChambre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boutonEnregistrer)))
+                            .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel20)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
@@ -610,11 +591,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPlacement)
                     .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutonModifier)
-                    .addComponent(boutonEnregistrer))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5);
@@ -1177,33 +1154,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxPlacementActionPerformed
 
-    private void boutonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonModifierActionPerformed
-
-        comboBoxService.setEnabled(true);
-        comboBoxService.setBackground(Color.white);
-        champNumeroChambre.setEditable(true);
-        champNumeroChambre.setBackground(Color.white);
-        comboBoxPlacement.setEnabled(true);
-        comboBoxPlacement.setBackground(Color.white);
-    }//GEN-LAST:event_boutonModifierActionPerformed
-
-    private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
-
-        if (champNumeroChambre.getText() != "" && pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) {
-            //patientSelectionne.mettre a jour donnees
-
-            comboBoxService.setEnabled(false);
-            comboBoxService.setBackground(Color.LIGHT_GRAY);
-            champNumeroChambre.setEditable(false);
-            champNumeroChambre.setBackground(Color.LIGHT_GRAY);
-            comboBoxPlacement.setEnabled(false);
-            comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre");
-        }
-    }//GEN-LAST:event_boutonEnregistrerActionPerformed
-
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         afficherDossierMedical();
 
@@ -1289,7 +1239,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         //Affichage de la prestation
         DAOResultat d = new DAOResultat();
-        Resultat r =null;
+        Resultat r = null;
         if (i >= 0) {
             r = d.resultatPrestation(listePrestations.getElementAt(i).getNaturePrestation());
         }
@@ -1314,7 +1264,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     public void afficherDossierMedical() {
         /**
-         * Méthode affichant le dossier médical
+         * Méthode affichant le dossier médical du patient sélection
          */
         //Affichage de la liste des prestations
 
@@ -1328,8 +1278,36 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             listePrestations.addElement(pr);
 
         }
-
         listeDePrestations.setModel(listePrestations);
+
+        //Affichage de la fiche du patient
+            //Localisation
+        Localisation loc;
+
+        if (servicePatient != null) {
+            DAOLocalisation daoLoc = new DAOLocalisation();
+            loc = daoLoc.localisationParNumeroDeSejour(servicePatient.getNumeroSejour());
+
+            comboBoxService.setSelectedItem(loc.getService().getSpecialite());
+            champNumeroChambre.setText(loc.getNumeroChambre());
+            
+            comboBoxPlacement.setSelectedItem(loc.getPlacement());
+            
+        }
+        
+            //Donnees personnelles
+        jTextField1.setText(modeleListeDPI.getElementAt(i).getNom());
+        jTextField2.setText(modeleListeDPI.getElementAt(i).getPrenom());
+        jTextField4.setText(modeleListeDPI.getElementAt(i).getSexe());
+        jTextField5.setText(modeleListeDPI.getElementAt(i).getIpp());
+        jTextField6.setText(modeleListeDPI.getElementAt(i).getDateNaissance().toString());
+        adresse.setText(modeleListeDPI.getElementAt(i).getAdresse());
+        
+            //Informations administratives
+        jTextField20.setText(servicePatient.getNumeroSejour());
+        jTextField19.setText(servicePatient.getPHResponsable().toString());
+        jTextField18.setText(servicePatient.getDateEntree().toString());
+        
     }
 
     /**
@@ -1370,8 +1348,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DM;
     private javax.swing.JPanel InterfaceServiceClinique;
-    private javax.swing.JButton boutonEnregistrer;
-    private javax.swing.JButton boutonModifier;
+    private javax.swing.JTextArea adresse;
     private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JComboBox comboBoxPlacement;
     private javax.swing.JComboBox comboBoxService;
@@ -1455,7 +1432,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField12;
