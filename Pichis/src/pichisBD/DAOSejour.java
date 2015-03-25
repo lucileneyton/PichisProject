@@ -53,9 +53,9 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datasortie"); //La base de données ne contient pas la colonne
+                String ds = resul.getString("datesortie"); //La base de données ne contient pas la colonne
                 //"datesortie"...
-                dateE = new DateSimple(de.substring(8, 10), de.substring(5, 7), de.substring(0, 4));
+                dateE = new DateSimple(de.substring(0, 2), de.substring(3, 5), de.substring(6, 10));
                 
                              
                 resp = daom.medecinResponsable(num); 
@@ -63,7 +63,7 @@ public class DAOSejour {
                 
                 Sejour s;
                 //if(ds.equalsIgnoreCase("null") != true){
-               //     dateS = new DateSimple(ds.substring(0, 1),ds.substring(2, 3),ds.substring(4, 7));
+               //     dateS = new DateSimple(ds.substring(0, 2),ds.substring(2, 3),ds.substring(4, 7));
                 //    s = new Sejour(dma,dateE,dateS,resp,loc);
                // }
                // else{
