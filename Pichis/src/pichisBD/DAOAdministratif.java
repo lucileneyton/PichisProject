@@ -72,10 +72,7 @@ public class DAOAdministratif {
             }
                    
         }
-        
-        
-        
-        
+
         return b;
     }
     
