@@ -297,7 +297,7 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
 
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE service IS NOT NULL or service!='NULL' AND id= " + id);
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service IS NOT NULL or service!='NULL') AND id= " + id);
             while (resul.next()) {
 
                 nom = resul.getString("nom");
