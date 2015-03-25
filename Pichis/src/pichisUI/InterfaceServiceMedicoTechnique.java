@@ -622,12 +622,18 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSexeActionPerformed
 
     private void listeObservationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeObservationsValueChanged
-         if (listePrestations.getSelectedValue() != null) {
-              Observation o = (Observation) listeObservations.getSelectedValue();
-             jTextFieldDateObservation.setText(o.getDate().toString());
-             jTextFieldPHObservation.setText(o.getMedecin().getPrenom()+" "+o.getMedecin().getNom());
-             jTextAreaDescription.setText(o.getDescription());
-         }
+
+        if (listeObservations.getSelectedValue() != null) {
+            Observation o = (Observation) listeObservations.getSelectedValue();
+            jTextFieldDateObservation.setText(o.getDate().toString());
+            jTextFieldPHObservation.setText(o.getMedecin().getPrenom() + " " + o.getMedecin().getNom());
+            jTextAreaDescription.setText(o.getDescription());
+        }
+        else{
+            jTextFieldDateObservation.setText("");
+            jTextFieldPHObservation.setText("");
+            jTextAreaDescription.setText("");
+        }
     }//GEN-LAST:event_listeObservationsValueChanged
 
     private void affichageDonneesPatient() {
@@ -684,7 +690,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
             ArrayList<Observation> listeObservations2 = daoObservations.observationsPatient(p1.getPatient().getIpp());
             DefaultListModel<Observation> modeleListeObservations = new DefaultListModel<pichisNF.Observation>();
-            for(int i=0; i<listeObservations2.size(); i++){
+            for (int i = 0; i < listeObservations2.size(); i++) {
                 modeleListeObservations.addElement(listeObservations2.get(i));
             }
             listeObservations.setModel(modeleListeObservations);
