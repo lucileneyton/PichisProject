@@ -15,11 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import pichisBD.DAODPI;
 import pichisBD.DAOLocalisation;
+import pichisBD.DAOPrestations;
 import pichisBD.DAOSejour;
 import pichisBD.DAOServices;
 import pichisNF.Administratif;
 import pichisNF.DPI;
 import pichisNF.Localisation;
+import pichisNF.Prestations;
 import pichisNF.Sejour;
 import pichisNF.Services;
 import pichisNF.Specialite;
@@ -35,12 +37,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     Administratif administratif;
     DefaultListModel<DPI> modeleListeDPI;
     DefaultListModel<Sejour> modeleListeSejour;
+    DefaultListModel<Prestations> modeleListePrestation;
     DefaultListModel<DPI> modeleListeDPIRecherche;
     
     DAOSejour daoSejour; 
     DAODPI daoDpi;
     DAOLocalisation daoLoc;
     DAOServices daoService;
+    DAOPrestations daoPrestations;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -55,10 +59,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         initComponents();
         modeleListeDPI = new DefaultListModel<DPI>();
         modeleListeSejour = new DefaultListModel<Sejour>();
+        modeleListePrestation = new DefaultListModel<Prestations>();
         daoDpi = new DAODPI();
         daoSejour = new DAOSejour();
         daoLoc = new DAOLocalisation();
         daoService = new DAOServices();
+        daoPrestations = new DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Administratif");
 
@@ -904,7 +910,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             
             this.effaceDonneesLocalisation();          
             this.affichageLocalisation();
-                     
+            
+            this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
         } 
         
     }//GEN-LAST:event_listeDePatientsValueChanged
@@ -1061,6 +1068,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         comboBoxPlacement.setSelectedIndex(-1);
         champNumeroChambre.setText("");
         comboBoxService.setSelectedIndex(-1);
+    }
+    
+    public void afficherPrestations(DPI dpi){
+        ArrayList<Prestations> listePrestationsTemp = new ArrayList<Prestations>();
+        listePrestationsTemp = daoPrestations.prestationsPatient(dpi.getIpp());
+        
+        modeleListePrestation.clear();
+        for (int i = 0; i < listePrestationsTemp.size(); i++) {  
+            modeleListePrestation.addElement(listePrestationsTemp.get(i));
+        }
+        
+        listePrestations.setModel(modeleListePrestation);
     }
     
     /**
