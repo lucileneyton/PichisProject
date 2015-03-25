@@ -11,13 +11,23 @@ import java.util.Calendar;
  *
  * @author Johann
  */
-public class Prestations implements Comparable{
+public class Prestations implements Comparable {
 
     private String naturePrestation;
     private Medecin demandeur;
     private DPI patient;
     private Resultat resultat;
     private DateSimple date;
+    private String idPrestation;
+
+    public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, DateSimple date, String idPrestation) {
+        this.naturePrestation = naturePrestation;
+        this.demandeur = demandeur;
+        this.patient = patient;
+        this.resultat = resultat;
+        this.date = date;
+        this.idPrestation = idPrestation;
+    }
 
     public Prestations(String naturePrestation, Medecin demandeur, DPI patient, Resultat resultat, DateSimple date) {
         this.naturePrestation = naturePrestation;
@@ -60,11 +70,13 @@ public class Prestations implements Comparable{
         Prestations p = (Prestations) o;
         DateSimple d = p.getDate();
         int resultat = this.date.compareTo(d);
-        
-        
-        
+
         return resultat;
-       
-        
+
     }
+
+    public String getIdPrestation() {
+        return idPrestation;
+    }
+
 }
