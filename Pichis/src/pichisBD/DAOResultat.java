@@ -62,7 +62,14 @@ public class DAOResultat {
 
                 if (resul.getRow() != 0) {
                     String d = resul.getString("date");
-                    date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+                    if (d !=null){
+                    if(d.length() <= 11){
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
+                    }
+                    else{
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                    }   
+                }
                     descriptions = resul.getString("description");
                     String id = resul.getString("medecin");
                     medecin = daom.medecinParID(id);
