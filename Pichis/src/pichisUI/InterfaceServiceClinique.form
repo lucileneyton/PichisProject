@@ -525,7 +525,7 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea6">
+                                <Component class="javax.swing.JTextArea" name="adresse">
                                   <Properties>
                                     <Property name="editable" type="boolean" value="false"/>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -564,10 +564,7 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="labelNumeroChambre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="boutonModifier" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
+                                                          <Component id="labelNumeroChambre" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
@@ -585,7 +582,6 @@
                                                   <Component id="champNumeroChambre" min="-2" pref="150" max="-2" attributes="0"/>
                                                   <Component id="comboBoxService" min="-2" max="-2" attributes="0"/>
                                                   <Component id="comboBoxPlacement" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="boutonEnregistrer" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -653,12 +649,7 @@
                                           <Component id="labelPlacement" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="comboBoxPlacement" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="boutonModifier" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="boutonEnregistrer" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                                      <EmptySpace pref="170" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -768,27 +759,11 @@
                             <Component class="javax.swing.JComboBox" name="comboBoxPlacement">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;porte&quot;, &quot;fen&#xea;tre&quot;, &quot;Chambre unique&quot; })" type="code"/>
+                                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;porte&quot;, &quot;fenetre&quot;, &quot;Unique&quot; })" type="code"/>
                                 </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxPlacementActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="boutonModifier">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Modifier"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonModifierActionPerformed"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="boutonEnregistrer">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Enregistrer les modifications"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonEnregistrerActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
