@@ -24,6 +24,28 @@ public class DAOPrescription {
     
     ConnectionBD c;
     
+    public void ajoutPrescription(String id, String idPatient, String idMedecin, String texte, String date) {
+        Statement ins;
+        c = new ConnectionBD();
+
+        try {
+            ins = c.connexion.createStatement();
+            ins.executeUpdate("INSERT INTO prescriptions(id, patient, medecin,texte, date)" + "VALUES ('" + id + "','" + idPatient + "','" + idMedecin + "','" + texte + "','" + date + "')");
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la création de la prescription" + ex);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+    }
+    
     
     public ArrayList<Prescription> prescriptionsPatient(String idPatient) {
         
