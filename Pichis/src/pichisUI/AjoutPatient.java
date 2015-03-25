@@ -5,10 +5,11 @@
  */
 package pichisUI;
 
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import pichisNF.DPI;
+import pichisNF.fonctions;
 
 /**
  *
@@ -329,6 +330,7 @@ public class AjoutPatient extends javax.swing.JDialog {
         JOptionPane fenetre = new JOptionPane();
         String sexe = "";
         pichisNF.DateSimple date;
+        int jour, mois, annee;
         // IPP
         if (champIPP.getText().length() == 9) {
             // NOM
@@ -339,23 +341,39 @@ public class AjoutPatient extends javax.swing.JDialog {
                     if (boutonHomme.isSelected() || boutonFemme.isSelected()) {
                         //ADRESSE
                         if (champAdresse.getText().isEmpty() == false) {
-                            date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
-                            if (boutonHomme.isSelected()) {
-                                //pichisNF.DPI p = new DPI(champIPP.getText(), champNom.getText(), champPrenom.getText(),"M", date, champAdresse.getText());
-                                sexe = "H";
-                            } else {
-                                sexe = "F";
+                            if(fonctions.isNumeric(champJour.getText()) && fonctions.isNumeric(champMois.getText()) && fonctions.isNumeric(champAnnee.getText())){
+                                
+                                jour = Integer.decode(champJour.getText());
+                                mois = Integer.decode(champMois.getText());
+                                annee = Integer.decode(champAnnee.getText());
+                                
+                                if(jour>=1 && jour<=12 && mois>=1 && mois<=12 && annee>=1900 && annee<=Calendar.getInstance().get(Calendar.YEAR)){
+                                    date = new pichisNF.DateSimple(champJour.getText(), champMois.getText(), champAnnee.getText());
+                                                           
+                                if (boutonHomme.isSelected()) {
+                                    sexe = "H";
+                                } 
+                                else {
+                                    sexe = "F";
+                                }
+
+                                int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le patient " + "'"+ champNom.getText() + " " + champPrenom.getText() + "'"+" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+                                if (confirm == JOptionPane.YES_OPTION) {
+                                    pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
+                                
+                                    daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
+                                    this.dispose();   
+                                    interfaceAdmin.affichageListeDePatients();                                     
+                                
+                                }
                             }
-
-                            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir ajouter le patient " + "'"+ champNom.getText() + " " + champPrenom.getText() + "'"+" ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
-                            if (confirm == JOptionPane.YES_OPTION) {
-                                pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-                                
-                                daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
-                                this.dispose();   
-                                interfaceAdmin.affichageListeDePatients();                                     
-                                
+                                else{
+                                    fenetre.showMessageDialog(null, "Veuillez entrer une date valide");
+                                }
+                            }
+                            else{
+                                fenetre.showMessageDialog(null, "Veuillez entrer des chiffres pour la date");
                             }
 
                         } else {
