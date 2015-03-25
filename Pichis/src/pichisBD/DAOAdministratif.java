@@ -20,7 +20,12 @@ public class DAOAdministratif {
     ConnectionBD c ;
     
     
-
+ /**
+ * Méthode permettant l'identification d'un personnel administratif
+ * @param id l'identifiant renseigné dans le champ identifiant de la fenêtre d'identification
+ * @param motDePasse le mot de passe renseigné dans le champ mot de passe de la fenêtre d'identification
+ * @return true si l'identification a fonctionné et false si la combinaison identifiant/mot de passe est incorrecte
+ */
     public boolean identification(String id, String motDePasse) throws SQLException {
 
         c = new ConnectionBD();
@@ -73,7 +78,12 @@ public class DAOAdministratif {
         
         return b;
     }
-
+    
+    
+ /**
+ * Méthode permettant de récupérer la liste des administratifs
+ * @return ArrayList<Administratif> 
+ */
     public ArrayList<Administratif> consulterListeAdministratif() {
 
         ArrayList<Administratif> listeAdministratif = new ArrayList();
@@ -113,7 +123,13 @@ public class DAOAdministratif {
 
         return listeAdministratif;
     }
-
+    
+    
+ /**
+ * Méthode permettant de récupérer un administratif en fonction de son identifiant
+ * @param id l'identifiant du personnel administratif
+ * @return Administratif 
+ */
     public Administratif administratifParID(String id) {
 
         Administratif admin = null;
@@ -154,6 +170,14 @@ public class DAOAdministratif {
         return admin;
     }
 
+    /**
+ * Méthode permettant d'ajouter un administratif dans la base de données
+ * @param id l'identifiant du nouvel administratif
+ * @param nom le nom du nouvel administratif
+ * @param prenom le prénom du nouvel administratif
+ * @param motDePasse le mot de passe du nouvel administratif
+ *  
+ */
     public void ajoutAdministratif(String id, String nom, String prenom, String motDePasse) {
 
         Statement ins;
