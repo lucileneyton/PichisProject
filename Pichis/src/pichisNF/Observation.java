@@ -42,6 +42,8 @@ public class Observation {
         this.description = description;
     }
     
-    
+    public String toString(){
+        return "Observation du " + this.getDate();
+    }
     
 }

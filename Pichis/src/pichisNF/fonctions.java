@@ -65,7 +65,7 @@ public class fonctions {
         DAOResultat daoResultat= new DAOResultat();
         
         int nbResultat = daoResultat.getNombreResultatTotal();
-        idResultat = nbResultat + 1;
+        idResultat = nbResultat + 100;
         String s = Integer.toString(idResultat);
         return s;
     }
