@@ -46,11 +46,11 @@ public class DAOServices {
                 String spec = resul.getString("specialite");
                 String type = resul.getString("type");
 
-                System.out.println("" + spec);
+               // System.out.println("" + spec);
                 Specialite sp = Specialite.valueOf(spec.toUpperCase());
                 TypeServices types = TypeServices.valueOf(type);
                 s = new Services(types, sp);
-                System.out.println("" +s);
+                //System.out.println("" +s);
             }
 
         } catch (SQLException e) {
