@@ -1266,8 +1266,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 }
 
                 DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
-                d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), "" + idResultat, date.toString(), "" + idResultat);
-                r.ajoutResultat(null, null, null, "" + idResultat, "" + idResultat);
+                d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), null, date.toString(), "" + idResultat);
+//                r.ajoutResultat(null, null, null, "" + idResultat, "" + idResultat);
                 afficherDossierMedical();
                 naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
                 naturePrestation.setText("");
