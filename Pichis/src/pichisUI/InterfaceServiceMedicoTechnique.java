@@ -8,6 +8,7 @@ package pichisUI;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -28,10 +29,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceMedicoTechnique
      */
     DefaultListModel<pichisNF.Prestations> modeleListePrestations;
-    
+
     public InterfaceServiceMedicoTechnique() {
         initComponents();
-        
+
         DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Médico-Technique");
@@ -48,7 +49,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
-        
+
         for (int i = 0; i < daoPrestations.consulterListePrestationsNonRealisee().size(); i++) {
             modeleListePrestations.addElement(daoPrestations.consulterListePrestationsNonRealisee().get(i));
         }
@@ -375,7 +376,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextFieldDateDemande.setEditable(false);
         jTextFieldDateDemande.setBackground(new java.awt.Color(204, 204, 204));
 
-        DateFormat df1 = new SimpleDateFormat("dd-MM-YYYY à HHhmm");
+        DateFormat df1 = new SimpleDateFormat("dd-MM-YYYY à HH:mm");
         Date today1 = Calendar.getInstance().getTime();
         String date = df1.format(today1);
         jFormattedTextFieldDateRealisation .setText(date);
@@ -577,15 +578,15 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                 } else {
                     String[] buttons = {"Oui", "Non"};
                     int reply = JOptionPane.showOptionDialog(null, "Voulez-vous confirmer l'ajout de ces résultats au dossier médical ? ", "Confirmation", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
-                    
+
                     if (reply == 0) {
                         fenetre.showMessageDialog(null, "Les résultats ont été ajoutés avec succès ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
                         Prestations p1 = (Prestations) listePrestations.getSelectedValue();
                         DAOPrestations daop = new DAOPrestations();
-                        Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
-                        
-                        DAOResultat daoResultat = new DAOResultat();
-                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p2.getDemandeur().getId(), p2.getIdPrestation(), pichisNF.fonctions.genererIdResultat());
+//                        Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+//
+//                        DAOResultat daoResultat = new DAOResultat();
+//                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p2.getDemandeur().getId(), p2.getIdPrestation(), pichisNF.fonctions.genererIdResultat());
                         jTextPaneAjoutResultat.setEnabled(false);
                     }
                 }
@@ -608,35 +609,34 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         if (listePrestations.getSelectedValue() != null) {
             this.affichageDonneesPatient();
             this.ajoutRésultat();
-            
+
         }
     }//GEN-LAST:event_listePrestationsValueChanged
 
     private void jTextFieldSexeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSexeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSexeActionPerformed
-    
+
     private void affichageDonneesPatient() {
         /**
          * Méthode actualisant l'affichant des données d'un patient sur
          * l'interface
          */
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
-            
+
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
             DAOPrestations daop = new DAOPrestations();
-            
-            Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
-            
-            jTextFieldNom.setText(p2.getPatient().getNom());
-            jTextFieldPrenom.setText(p2.getPatient().getPrenom());
-            jTextFieldSexe.setText(p2.getPatient().getSexe());
-            jTextFieldIPP.setText(p2.getPatient().getIpp());
-            jTextFieldDateNaissance.setText(p2.getPatient().getDateNaissance().toString());
-            jTextFieldAdresse.setText(p2.getPatient().getAdresse());
+
+            ArrayList<Prestations> p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+            jTextFieldNom.setText(p2.get(0).getPatient().getIpp());
+            jTextFieldPrenom.setText(p2.get(0).getPatient().getPrenom());
+            jTextFieldSexe.setText(p2.get(0).getPatient().getSexe());
+            jTextFieldIPP.setText(p2.get(0).getPatient().getIpp());
+            jTextFieldDateNaissance.setText(p2.get(0).getPatient().getDateNaissance().toString());
+            jTextFieldAdresse.setText(p2.get(0).getPatient().getAdresse());
         }
     }
-    
+
     private void ajoutRésultat() {
         /**
          * Méthode actualisant l'affichant des données dans l'onglet "Résultats
@@ -645,14 +645,17 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
             DAOPrestations daop = new DAOPrestations();
-            Prestations p2 = daop.prestationsPatient2(p1.getPatient().getIpp());
             
-            jTextFieldIPP2.setText(p2.getPatient().getIpp());
-            jTextFieldNaturePrestation.setText(p2.getNaturePrestation());
-            jTextFieldPH.setText(p2.getDemandeur().getPrenom() + " " + p2.getDemandeur().getNom());
-            jTextFieldDateDemande.setText(p2.getDate().toString());
-            if (p2.getResultat() != null) {
-                jTextPaneAjoutResultat.setText(p2.getResultat().getDescriptions());
+            ArrayList<Prestations> p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+            Prestations p3= (Prestations) listePrestations.getSelectedValue();
+            
+            jTextFieldIPP2.setText(p2.get(0).getPatient().getIpp());
+            jTextFieldNaturePrestation.setText(p3.getNaturePrestation());
+            jTextFieldPH.setText(p3.getDemandeur().getPrenom() + " " + p3.getDemandeur().getNom());
+            jTextFieldDateDemande.setText(p3.getDate().toString());
+            
+            if (p3.getResultat() != null) {
+                jTextPaneAjoutResultat.setText(p3.getResultat().getDescriptions());
             } else {
                 jTextPaneAjoutResultat.setEditable(true);
                 jTextPaneAjoutResultat.setEnabled(true);
