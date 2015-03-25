@@ -583,11 +583,13 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         fenetre.showMessageDialog(null, "Les résultats ont été ajoutés avec succès ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
                         Prestations p1 = (Prestations) listePrestations.getSelectedValue();
                         DAOPrestations daop = new DAOPrestations();
-//                        Prestations p2 = daop.prestationsPatient(p1.getPatient().getIpp());
-//
+                        ArrayList<Prestations> p2 = daop.prestationsPatient(p1.getPatient().getIpp());
+//                        while(){
+//                            
+//                        }
 //                        DAOResultat daoResultat = new DAOResultat();
 //                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p2.getDemandeur().getId(), p2.getIdPrestation(), pichisNF.fonctions.genererIdResultat());
-                        jTextPaneAjoutResultat.setEnabled(false);
+//                        jTextPaneAjoutResultat.setEnabled(false);
                     }
                 }
             } else {
