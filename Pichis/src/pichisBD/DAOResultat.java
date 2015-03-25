@@ -62,7 +62,7 @@ public class DAOResultat {
 
                 if (resul.getRow() != 0) {
                     String d = resul.getString("date");
-                    if (d !=null){
+                    if (d.equalsIgnoreCase("null")==false){
                     if(d.length() <= 11){
                         date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
                     }

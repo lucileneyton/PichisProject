@@ -70,23 +70,24 @@ public class DAOPrestations {
 
             Statement ins = c.connexion.createStatement();
 
-            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient="+ idPatient);
-            
+            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient=" + idPatient);
+
             while (resul.next()) {
 
                 naturePrestation = resul.getString("nature");
                 String idMedecin = resul.getString("demandeur");
                 demandeur = daom.medecinParID(idMedecin);
-                patient = daod.dpiParIPP("patient");
-                resultat = daor.resultatPrestation("resultat");
+                String idPatient2 = resul.getString("patient");
+                patient = daod.dpiParIPP(idPatient2);
+                String resultat2 = resul.getString("resultat");
+                resultat = daor.resultatPrestation(resultat2);
                 String d = resul.getString("date");
-                if (d !=null){
-                    if(d.length() <= 11){
+                if (d != null) {
+                    if (d.length() <= 11) {
                         date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
-                    }
-                    else{
+                    } else {
                         date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
-                    }   
+                    }
                 }
 
                 p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
@@ -107,48 +108,6 @@ public class DAOPrestations {
         }
 
         return l;
-    }
-    
-     public Prestations prestationsPatient2(String idPatient) {
-        c = new ConnectionBD();
-        try {
-
-            ResultSet resul;
-
-            Statement ins = c.connexion.createStatement();
-
-            resul = ins.executeQuery("SELECT * FROM prestations WHERE patient='" + idPatient + "'");
-
-            while (resul.next()) {
-
-                naturePrestation = resul.getString("nature");
-                String idMedecin = resul.getString("demandeur");
-                demandeur = daom.medecinParID(idMedecin);
-                String idPatient2 = resul.getString("patient");
-                patient = daod.dpiParIPP(idPatient2);
-                String resultat2 = resul.getString("resultat");
-                resultat = daor.resultatPrestation(resultat2);
-                String d = resul.getString("date");
-                date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
-
-                p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
-                
-            }
-
-        } catch (SQLException e) {
-            System.out.println("erreur DAOPrestations: " + e);
-        } finally {
-            if (c != null) {
-                try {
-                    c.connexion.close();
-                } catch (SQLException e) {
-                    System.out.println(e);
-                }
-            }
-
-        }
-
-        return p;
     }
 
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
@@ -171,7 +130,14 @@ public class DAOPrestations {
                 String resultat2 = resul.getString("resultat");
                 resultat = daor.resultatPrestation(resultat2);
                 String d = resul.getString("date");
-                date = new DateSimple(d.substring(0, 1), d.substring(2, 3), d.substring(4, 7));
+                
+                if (d != null) {
+                    if (d.length() <= 11) {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
+                    } else {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                    }
+                }
 
                 p = new Prestations(naturePrestation, demandeur, patient, resultat, date);
                 listePrestations.add(p);
