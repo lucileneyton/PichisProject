@@ -313,7 +313,7 @@ public class Identification extends javax.swing.JFrame {
     }
 
     public void ouvrirInterfaceMaintenance(Maintenance m) {
-        InterfaceMaintenance i = new InterfaceMaintenance(Maintenance m);
+        InterfaceMaintenance i = new InterfaceMaintenance(m);
         i.setVisible(true);
     }
 
