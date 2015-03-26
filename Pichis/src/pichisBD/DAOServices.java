@@ -13,72 +13,70 @@ import pichisNF.Specialite;
 import pichisNF.TypeServices;
 
 /**
+ * Data access object de la classe Services
  *
- * @author Lucile
  */
 public class DAOServices {
 
-    ConnectionBD c = new ConnectionBD();
+    public ConnectionBD c = new ConnectionBD();
 
-    public void ajoutService(String naturePrestation, String demandeur, String patient, String resultat, String date, String id) {
-
-    }
-
+    /**
+     * Méthode retournant une instance de Services par rapport à son identifiant
+     *
+     * @param id l'identifiant du service
+     * @return Services
+     * @exception SQLException
+     */
     public Services serviceParID(String id) throws SQLException {
 
-        /**
-         * Méthode permettant la création d'une instance "Services" à partir des
-         * informations contenues dans la base de données.
-         */
         Services s = null;
-         
 
         try {
             Statement ins = c.connexion.createStatement();
             ResultSet resul;
-            
 
             resul = ins.executeQuery("SELECT * FROM service WHERE id= " + id);
-            
 
             while (resul.next()) {
 
                 String spec = resul.getString("specialite");
                 String type = resul.getString("type");
 
-               // System.out.println("" + spec);
                 Specialite sp = Specialite.valueOf(spec.toUpperCase());
                 TypeServices types = TypeServices.valueOf(type);
                 s = new Services(types, sp);
-                //System.out.println("" +s);
+
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOService (service par ID): " + e);
+            System.out.println("erreur DAOService (serviceParID): " + e);
         }
         return s;
     }
-    
-    public String idParService(Services s){
-        String id = null;         
+
+    /**
+     * Méthode déterminant l'identifiant d'un service à partir d'une instance de Services
+     *
+     * @param s l'instance du service
+     * @return String
+     */
+    public String idParService(Services s) {
+        String id = null;
 
         try {
             Statement ins = c.connexion.createStatement();
             ResultSet resul;
-            
 
             resul = ins.executeQuery("SELECT * FROM service WHERE specialite= " + "'" + s.getSpecialite().toString() + "';");
-            
 
             while (resul.next()) {
                 id = resul.getString("id");
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOService (ID par Service): " + e);
+            System.out.println("erreur DAOService (idParService): " + e);
         }
-    
-        
+
         return id;
     }
 }
