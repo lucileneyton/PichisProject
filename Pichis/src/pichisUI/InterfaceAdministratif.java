@@ -951,6 +951,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
                 ajoutSejour.setVisible(true);
             }
+            
+            if (jTextFieldRecherche.getText().isEmpty()) {
+                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+            } else {
+                this.afficherLettre(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Veuillez choisir un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -996,6 +1003,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
 
             this.effacerLettre();
+            if (jTextFieldRecherche.getText().isEmpty()) {
+                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+            } else {
+                this.afficherLettre(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+            }
         }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -1056,6 +1069,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
                     daoSejour.ajoutDateSortie(sejour.getNumeroSejour());
                     this.effacerLettre();
+                    if (jTextFieldRecherche.getText().isEmpty()) {
+                    this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+                    } else {
+                        this.afficherLettre(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -1092,6 +1111,13 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
                 } else {
                     this.afficherPrestations(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+                }
+                
+                if (jTextFieldRecherche.getText().isEmpty()) {
+                    this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+                } else {
+                    this.afficherLettre(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
                 }
 
             }
