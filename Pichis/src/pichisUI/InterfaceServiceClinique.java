@@ -90,7 +90,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 //Vérification de la concordance entre service de travail du praticien et service d'admission du patient. 
                 //Le patient n'est enregistré dans la liste accessible au médecin qu si son DPI est ouvert.
 
-                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType()) && !daoSejour.lettreDeSortie(servicePatient.getNumeroSejour())) {
+                if (servicePatient.getPHResponsable().getSpecialite().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && !daoSejour.lettreDeSortie(servicePatient.getNumeroSejour())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                  
                 }

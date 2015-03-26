@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import pichisNF.Administratif;
 import pichisNF.Maintenance;
 import pichisNF.Medecin;
+import pichisNF.Prestations;
+import pichisNF.fonctions;
 
 /**
  *
@@ -213,6 +215,11 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel6.add(jLabel1);
 
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         jPanel6.add(jTextField1);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
@@ -334,6 +341,42 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
             listeMaintenance.clearSelection();
         }
     }//GEN-LAST:event_listeMaintenanceValueChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+//  private DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
+//    private DefaultListModel<pichisNF.Administratif> modeleListeAdministratifRecherche;
+//    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
+//    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenanceRecherche;
+//    private DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
+//    private DefaultListModel<pichisNF.Medecin> modeleListeRecherche;
+//        
+//        if (!jTextFieldRecherche.getText().isEmpty()) {
+//            ArrayList listeDesPrestations = new ArrayList();
+//
+//            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
+//
+//                listeDesPrestations.add(modeleListePrestations.get(i).getNaturePrestation());
+//
+//            }
+//
+//            ArrayList listeDesPrestationsRecherchee = fonctions.recherche(listeDesPrestations, jTextFieldRecherche.getText());
+//
+//            modeleListePrestationsPourRecherche = new DefaultListModel<Prestations>();
+//            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
+//
+//                for (int j = 0; j < listeDesPrestationsRecherchee.size(); j++) {
+//                    if (listeDesPrestationsRecherchee.get(j).equals(modeleListePrestations.get(i).getNaturePrestation()) && !modeleListePrestationsPourRecherche.contains(modeleListePrestations.elementAt(i))) {
+//                        modeleListePrestationsPourRecherche.addElement(modeleListePrestations.elementAt(i));
+//                    }
+//
+//                }
+//            }
+//
+//            listePrestations.setModel(modeleListePrestationsPourRecherche);
+//        } else {
+//            listePrestations.setModel(modeleListePrestations);
+//        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
