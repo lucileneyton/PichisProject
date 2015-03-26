@@ -988,7 +988,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             listeDePatients.setModel(modeleListeDPIRecherche);
         } else {
             listeDePatients.setModel(modeleListeDPI);
-        }// TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
     private void comboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxServiceActionPerformed
@@ -1006,11 +1006,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
             }    
             else{
-                JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente");
+                JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermture DPI", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente");
+            JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_boutonFermerDPIActionPerformed
 
