@@ -157,8 +157,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         texteLettreSortie = new javax.swing.JTextArea();
         boutonFermerDPI = new javax.swing.JButton();
         panelDPIFerme = new javax.swing.JPanel();
-        labelFerme = new javax.swing.JLabel();
         boutonOuvrirDPI = new javax.swing.JButton();
+        labelFerme = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
@@ -792,10 +792,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         DMA.add(panelOnglets, "card2");
         panelOnglets.getAccessibleContext().setAccessibleName("Fiche du patient");
 
-        labelFerme.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
-        labelFerme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelFerme.setText("Le DPI est fermé !");
-
         boutonOuvrirDPI.setText("Ouvrir DPI");
         boutonOuvrirDPI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -803,25 +799,29 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             }
         });
 
+        labelFerme.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
+        labelFerme.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelFerme.setText("Le DPI est fermé");
+
         javax.swing.GroupLayout panelDPIFermeLayout = new javax.swing.GroupLayout(panelDPIFerme);
         panelDPIFerme.setLayout(panelDPIFermeLayout);
         panelDPIFermeLayout.setHorizontalGroup(
             panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDPIFermeLayout.createSequentialGroup()
-                .addGap(453, 453, 453)
+                .addGap(419, 419, 419)
                 .addGroup(panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFerme))
-                .addContainerGap(496, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
         );
         panelDPIFermeLayout.setVerticalGroup(
             panelDPIFermeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDPIFermeLayout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(labelFerme, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193)
+                .addComponent(labelFerme)
                 .addGap(18, 18, 18)
-                .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251))
+                .addComponent(boutonOuvrirDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         DMA.add(panelDPIFerme, "card4");
@@ -996,16 +996,28 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxServiceActionPerformed
 
     private void boutonFermerDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFermerDPIActionPerformed
-        CardLayout c = (CardLayout) (DMA.getLayout());
-        c.show(DMA, "card4");
-        daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
+        DPI patient = modeleListeDPI.get(listeDePatients.getSelectedIndex());
+        Sejour sejour = daoSejour.consulterListeSejourParPatient(patient).getDernierSejour();
+        if(sejour != null){
+            if(daoSejour.lettreDeSortie(sejour.getNumeroSejour())){
+            
+                CardLayout c = (CardLayout) (DMA.getLayout());
+                c.show(DMA, "card4");
+                daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
+            }    
+            else{
+                JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente");
+        }
     }//GEN-LAST:event_boutonFermerDPIActionPerformed
 
     private void boutonOuvrirDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonOuvrirDPIActionPerformed
         CardLayout c = (CardLayout) (DMA.getLayout());
         c.show(DMA, "card2");
         daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
-        
         
     }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
 
