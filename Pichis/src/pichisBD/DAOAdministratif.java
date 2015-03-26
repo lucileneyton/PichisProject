@@ -90,7 +90,7 @@ public class DAOAdministratif {
 
             ResultSet resul;
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE service='NULL' AND maintenance ='false'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service='NULL' OR service IS NULL) AND (maintenance ='false' OR maintenance IS NULL OR maintenance='NULL')");
             while (resul.next()) {
 
                 String id = resul.getString("id");
