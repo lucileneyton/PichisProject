@@ -44,9 +44,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceAdministratif(Administratif a) {
-        
-        initComponents();
         this.a = a;
+        initComponents();
+        
         modeleListeDPI = new DefaultListModel<DPI>();
         modeleListeSejour = new DefaultListModel<Sejour>();
         modeleListePrestation = new DefaultListModel<Prestations>();
@@ -178,10 +178,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_43356_cc1.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
-        jLabel9.setText("Pat");
+        jLabel9.setText(a.getPrenom());
 
         jLabel10.setFont(new java.awt.Font("Garamond", 0, 36)); // NOI18N
-        jLabel10.setText("Hibulaire ");
+        jLabel10.setText(a.getNom());
 
         jLabel11.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel11.setText("Personnel administratif");
