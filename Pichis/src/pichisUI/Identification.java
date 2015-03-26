@@ -308,7 +308,7 @@ public class Identification extends javax.swing.JFrame {
         i.setVisible(true);
     }
     public void ouvrirInterfaceAdministratif(Administratif a) {
-        InterfaceAdministratif i = new InterfaceAdministratif();
+        InterfaceAdministratif i = new InterfaceAdministratif(a);
         i.setVisible(true);
     }
 
