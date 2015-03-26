@@ -591,6 +591,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p1.getDemandeur().getId(), p1.getIdPrestation(), idResultat);
                         daop.setResultat(p1.getIdPrestation(), idResultat);
                         jTextPaneAjoutResultat.setEnabled(false);
+                        listePrestations.setModel(modeleListePrestations);
                     }
                 }
             } else {

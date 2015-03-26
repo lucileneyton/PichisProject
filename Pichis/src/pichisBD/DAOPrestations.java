@@ -71,7 +71,7 @@ public class DAOPrestations {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("UPDATE prestations SET resultat='idResultat' WHERE id='idPrestation2'");
+            ins.executeUpdate("UPDATE prestations SET resultat=" + "'" + idResultat + "'" + " WHERE id=" + "'" + idPrestation2 + "' ;");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la modification du résultat de la prestation" + ex);
