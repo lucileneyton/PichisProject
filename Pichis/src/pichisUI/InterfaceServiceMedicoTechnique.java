@@ -8,6 +8,8 @@ package pichisUI;
 import java.awt.CardLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import pichisBD.DAOObservation;
 import pichisBD.DAOPrestations;
 import pichisBD.DAOResultat;
@@ -32,19 +35,38 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceMedicoTechnique
      */
+    
+    Timer chrono;
     private DefaultListModel<pichisNF.Prestations> modeleListePrestations;
     private Medecin m;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    
 
     public InterfaceServiceMedicoTechnique(Medecin m) {
         this.m = m;
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         initComponents();
+        ActionListener taskPerformer = null;
 
+        
+        
+        
+        
+        taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFormattedTextFieldDateRealisation.setText(pichisNF.fonctions.renvoieDateActuelle().toString());
+               
+
+            }
+        };
+        
+        chrono = new Timer(1000, taskPerformer);
+        chrono.start();
         DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Médico-Technique");
@@ -265,17 +287,17 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         panelDouverture.setLayout(panelDouvertureLayout);
         panelDouvertureLayout.setHorizontalGroup(
             panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDouvertureLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDouvertureLayout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(101, 101, 101))
         );
         panelDouvertureLayout.setVerticalGroup(
             panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDouvertureLayout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addGap(192, 192, 192)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         jPanel8.add(panelDouverture, "card3");
@@ -440,7 +462,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112)
+                .addGap(85, 85, 85)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,13 +542,18 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jFormattedTextFieldDateRealisation .setText(date);
         jFormattedTextFieldDateRealisation.setEditable(false);
         jFormattedTextFieldDateRealisation.setBackground(new java.awt.Color(204, 204, 204));
+        jFormattedTextFieldDateRealisation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldDateRealisationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -695,6 +722,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             jTextAreaDescription.setText("");
         }
     }//GEN-LAST:event_listeObservationsValueChanged
+
+    private void jFormattedTextFieldDateRealisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDateRealisationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldDateRealisationActionPerformed
 
     private void affichageDonneesPatient() {
         /**
