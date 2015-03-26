@@ -1,40 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisNF;
 
-/**
- *
- * @author molit_000
- */
 public class Services {
-    TypeServices type;
-    Specialite specialite;
-    
-    public Services(TypeServices type, Specialite specialite){
+
+    private TypeServices type;
+    private Specialite specialite;
+
+    /**
+     * Constructeur de la classe Services
+     *
+     * @param type
+     * @param specialite
+     */
+    public Services(TypeServices type, Specialite specialite) {
         this.type = type;
         this.specialite = specialite;
     }
 
+    /**
+     * Méthode permettant l'accès au type de service (clinique ou
+     * médico-technique) par d'autres classes
+     *
+     * @return TypesServices
+     */
     public TypeServices getType() {
         return type;
     }
 
-    public void setType(TypeServices type) {
-        this.type = type;
-    }
-
+    /**
+     * Méthode permettant l'accès à la spécialité du service (cardiologie,
+     * neurologie...) par d'autres classes
+     *
+     * @return Specialite
+     */
     public Specialite getSpecialite() {
         return specialite;
     }
 
-    public void setSpecialite(Specialite specialite) {
-        this.specialite = specialite;
-    }
-    
-    public String toString(){
+    /**
+     * Méthode permettant l'affichage de la spécialité d'un service
+     *
+     * @return String specialite
+     */
+    public String toString() {
         return specialite.toString();
     }
 }
