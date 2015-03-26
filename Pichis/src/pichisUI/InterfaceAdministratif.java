@@ -664,37 +664,30 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                             .addGroup(panelSejourLayout.createSequentialGroup()
                                 .addComponent(labelPhResponsable)
                                 .addGap(21, 21, 21)))
-                        .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(champPhResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelSejourLayout.createSequentialGroup()
-                                .addComponent(champPhResponsable)
-                                .addGap(565, 565, 565))
-                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSejourLayout.createSequentialGroup()
-                                        .addComponent(champJourSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(champMoisSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(champAnneeSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(466, 466, 466))
-                                    .addGroup(panelSejourLayout.createSequentialGroup()
-                                        .addComponent(champNumeroSejour, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(480, 480, 480)))
-                                .addGroup(panelSejourLayout.createSequentialGroup()
-                                    .addComponent(champJourEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(champMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(champAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(466, 466, 466)))))))
+                                .addComponent(champJourSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(champMoisSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(champAnneeSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(champNumeroSejour, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelSejourLayout.createSequentialGroup()
+                                .addComponent(champJourEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(champMoisEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(champAnneeEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(466, 466, 466))))
         );
         panelSejourLayout.setVerticalGroup(
             panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -920,13 +913,26 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             if(listeSejours.getSelectedValue() != null) {
                 this.effaceDonneesSejour();
                 this.affichageDonneesSejour();
+                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             }
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
         if(listeDePatients.getSelectedIndex() >= 0){
-        AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
-        ajoutSejour.setVisible(true);
+            DPI patientActuel = modeleListeDPI.get(listeDePatients.getSelectedIndex());
+            if(daoSejour.consulterListeSejourParPatient(patientActuel).getListeSejours().isEmpty() == false){
+                if(daoSejour.consulterListeSejourParPatient(patientActuel).getDernierSejour().getDateSortie() == null){
+                    JOptionPane.showMessageDialog(null, "Sejour deja en cours", "Ajout de sejour", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
+                    ajoutSejour.setVisible(true); 
+                }
+            }
+            else{
+                AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
+                ajoutSejour.setVisible(true); 
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Veuillez choisir un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
@@ -964,7 +970,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             
                 this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
         
-                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+                this.effacerLettre();
         }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -1024,6 +1030,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     c.show(DMA, "card4");
                     daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
                     daoSejour.ajoutDateSortie(sejour.getNumeroSejour());
+                    this.effacerLettre();
                 }    
                 else{
                     JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
@@ -1043,9 +1050,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             CardLayout c = (CardLayout) (DMA.getLayout());
             c.show(DMA, "card2");
             daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
-            if(listeSejours.getSelectedValue() != null && listeDePatients.getSelectedValue() != null) {
+            if(listeDePatients.getSelectedValue() != null) {
                 this.affichageDonneesPatient();
             
+                
                 this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
                 this.effaceDonneesSejour();
             
@@ -1054,7 +1062,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             
                 this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
         
-                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             }
         }
         else{
@@ -1198,6 +1205,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     
     public void afficherLettre(DPI dpi){
         if(daoSejour.consulterListeSejourParPatient(dpi).getListeSejours().isEmpty() == false){
+            
             Sejour sejourActuel = daoSejour.consulterListeSejourParPatient(dpi).getDernierSejour();
             if(daoSejour.lettreDeSortie(sejourActuel.getNumeroSejour())){
                 String txt = "Je soussigné docteur " + sejourActuel.getPHResponsable().toString() + ", médecin responsable du séjour du patient : " + dpi.getNom() + " " + dpi.getPrenom() + "\n" + " édite en ce jour sa lettre de sortie." + "\n\n" + "Date :" + pichisNF.fonctions.renvoieDateActuelle();
@@ -1207,6 +1215,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 texteLettreSortie.setText("");
             }
         }
+    }
+    
+
+    
+    public void effacerLettre(){
+        texteLettreSortie.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
