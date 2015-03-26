@@ -302,13 +302,17 @@ public class Identification extends javax.swing.JFrame {
         i.setVisible(true);
     }
 
+    public void ouvrirInterfaceMedicoTechnique(Medecin medecin) {
+        InterfaceServiceMedicoTechnique i = new InterfaceServiceMedicoTechnique(medecin);
+        i.setVisible(true);
+    }
     public void ouvrirInterfaceAdministratif() {
         InterfaceAdministratif i = new InterfaceAdministratif();
         i.setVisible(true);
     }
 
-    public void ouvrirInterfaceMaintenance() {
-        InterfaceMaintenance i = new InterfaceMaintenance();
+    public void ouvrirInterfaceMaintenance(Maintenance m) {
+        InterfaceMaintenance i = new InterfaceMaintenance(Maintenance m);
         i.setVisible(true);
     }
 
@@ -409,7 +413,10 @@ public class Identification extends javax.swing.JFrame {
             if(daomt.estMaintenance(identifiant.getText(),mdp.getText())){
                 if(daomt.identification(identifiant.getText(), mdp.getText())){
                     this.dispose();
-                    ouvrirInterfaceMaintenance();
+                    
+                    DAOMaintenance m = new DAOMaintenance();
+                    ouvrirInterfaceMaintenance(m.MaintenanceParID(identifiant.getText()));
+                    
                 }
             }
             

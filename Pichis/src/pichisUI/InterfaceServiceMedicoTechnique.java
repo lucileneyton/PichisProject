@@ -19,6 +19,7 @@ import pichisBD.DAOObservation;
 import pichisBD.DAOPrestations;
 import pichisBD.DAOResultat;
 import pichisNF.DPI;
+import pichisNF.Medecin;
 import pichisNF.Observation;
 import pichisNF.Prestations;
 
@@ -32,8 +33,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceMedicoTechnique
      */
     DefaultListModel<pichisNF.Prestations> modeleListePrestations;
+    Medecin m =null;
 
-    public InterfaceServiceMedicoTechnique() {
+    public InterfaceServiceMedicoTechnique(Medecin m) {
+        this.m = m;
         initComponents();
 
         DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
@@ -728,7 +731,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceServiceMedicoTechnique().setVisible(true);
+//                new InterfaceServiceMedicoTechnique().setVisible(true);
             }
         });
     }
