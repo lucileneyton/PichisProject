@@ -9,13 +9,12 @@ package pichisBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Calendar;
 import pichisNF.DMA;
 import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Localisation;
 import pichisNF.Medecin;
-import pichisNF.Resultat;
 import pichisNF.Sejour;
 
 /**
@@ -243,6 +242,41 @@ public class DAOSejour {
         }
         
         return nbSejours;
+    }
+   
+    public void ajoutDateSortie(String idSejour){
+        c=new ConnectionBD();
+        
+        int jourTemp = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int moisTemp = Calendar.getInstance().get((Calendar.getInstance().get(Calendar.MONTH) + 1));
+        int anneeTemp = Calendar.getInstance().get(Calendar.YEAR);
+        
+        String jour = Integer.toString(jourTemp);
+        String mois = Integer.toString(moisTemp);
+        String annee = Integer.toString(anneeTemp);
+        
+        DateSimple dateSortie = new DateSimple(jour, mois, annee);
+        
+        try {
+            int resul;
+
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeUpdate("UPDATE sejour SET datesortie=" + "'" + dateSortie + "'" + " WHERE id=" + "'"  + idSejour + "' ;");
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour (ajoutDateSortie): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
     }
 
 }

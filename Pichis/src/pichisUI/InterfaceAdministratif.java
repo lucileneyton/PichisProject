@@ -22,17 +22,18 @@ import pichisNF.*;
  */
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
-    Administratif administratif;
-    DefaultListModel<DPI> modeleListeDPI;
-    DefaultListModel<Sejour> modeleListeSejour;
-    DefaultListModel<Prestations> modeleListePrestation;
-    DefaultListModel<DPI> modeleListeDPIRecherche;
+    private Administratif administratif;
+    private DefaultListModel<DPI> modeleListeDPI;
+    private DefaultListModel<Sejour> modeleListeSejour;
+    private DefaultListModel<Prestations> modeleListePrestation;
+    private DefaultListModel<DPI> modeleListeDPIRecherche;
     
-    DAOSejour daoSejour; 
-    DAODPI daoDpi;
-    DAOLocalisation daoLoc;
-    DAOServices daoService;
-    DAOPrestations daoPrestations;
+    private DAOSejour daoSejour; 
+    private DAODPI daoDpi;
+    private DAOLocalisation daoLoc;
+    private DAOServices daoService;
+    private DAOPrestations daoPrestations;
+    private Administratif a;
     /**
      * Creates new form InterfaceAdministratif
      */
@@ -42,9 +43,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
-    public InterfaceAdministratif() {
+    public InterfaceAdministratif(Administratif a) {
         
         initComponents();
+        this.a = a;
         modeleListeDPI = new DefaultListModel<DPI>();
         modeleListeSejour = new DefaultListModel<Sejour>();
         modeleListePrestation = new DefaultListModel<Prestations>();
@@ -1004,6 +1006,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 CardLayout c = (CardLayout) (DMA.getLayout());
                 c.show(DMA, "card4");
                 daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
+                daoSejour.ajoutDateSortie(sejour.getNumeroSejour());
             }    
             else{
                 JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermture DPI", JOptionPane.INFORMATION_MESSAGE);
@@ -1142,41 +1145,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         
         listePrestations.setModel(modeleListePrestation);
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceAdministratif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceAdministratif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceAdministratif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceAdministratif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfaceAdministratif().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
