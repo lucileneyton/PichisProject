@@ -39,7 +39,7 @@ public class DAOAdministratif {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id=" + id + " AND (maintenance='NULL' OR maintenance IS NULL) AND (service='NULL' OR service IS NULL)");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id='" + id + "' AND (maintenance='NULL' OR maintenance IS NULL) AND (service='NULL' OR service IS NULL)");
 
             while (resul.next()) {
 

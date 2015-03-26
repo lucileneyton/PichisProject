@@ -98,7 +98,7 @@ public class DAOMedecin {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= " + id);
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= '" + id+"'");
 
             while (resul.next()) {
                 identif = resul.getString("id");
@@ -138,7 +138,7 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
-            res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id=" + id + ";");
+            res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id='" + id + "'");
 
             while (res.next()) {
                 if (res.getRow() != 0) {
@@ -297,7 +297,7 @@ public class DAOMedecin {
             Statement ins = c.connexion.createStatement();
             //resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
 
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service IS NOT NULL or service!='NULL') AND id= " + id);
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service IS NOT NULL or service!='NULL') AND id= '" + id+"'");
             while (resul.next()) {
 
                 nom = resul.getString("nom");
