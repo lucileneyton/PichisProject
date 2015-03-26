@@ -62,7 +62,7 @@ public class Prestations implements Comparable {
     }
 
     public String toString() {
-        return "Demande du " + date.toString() + "    Prestation : " + this.naturePrestation;
+        return "Demande du " + date.toString() + " / Prestation : " + this.naturePrestation;
     }
 
     public int compareTo(Object o) {

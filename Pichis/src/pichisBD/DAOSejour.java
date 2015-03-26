@@ -60,15 +60,19 @@ public class DAOSejour {
                 resp = daom.medecinResponsable(num); 
                 loc = daol.localisationParNumeroDeSejour(num);
                 
-                Sejour s;
-                if(ds.isEmpty() || ds.equalsIgnoreCase("null")){
+                Sejour s = null;
+                System.out.println("the error is there !" + ds);
+                if(ds ==null){
+//                if(ds.isEmpty() || ds.equalsIgnoreCase("null") !=true){
                     s = new Sejour(dma,num,dateE,resp,loc);
-                }
+                    
+//                }
+            }
                 else{
                     dateS = new DateSimple(ds.substring(0, 2),ds.substring(3, 5),ds.substring(6, 10));
                     s = new Sejour(dma,num,dateE,dateS,resp,loc);
                 }
-                
+//                }
                 
                 dma.ajouterSejour(s);
                 
