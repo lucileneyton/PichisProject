@@ -5,6 +5,7 @@
  */
 package pichisUI;
 
+import java.awt.CardLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.text.DateFormat;
@@ -32,7 +33,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
      * Creates new form InterfaceServiceMedicoTechnique
      */
     private DefaultListModel<pichisNF.Prestations> modeleListePrestations;
-    private Medecin m =null;
+    private Medecin m;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
@@ -40,7 +41,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
     public InterfaceServiceMedicoTechnique(Medecin m) {
         this.m = m;
-        
+
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         initComponents();
 
@@ -58,7 +59,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
 
-        
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
 
@@ -94,6 +94,9 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listePrestations = new javax.swing.JList();
+        jPanel8 = new javax.swing.JPanel();
+        panelDouverture = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -132,8 +135,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextFieldPH = new javax.swing.JTextField();
         jTextFieldDateDemande = new javax.swing.JTextField();
         jFormattedTextFieldDateRealisation = new javax.swing.JFormattedTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,10 +151,10 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_59269_cc.png"))); // NOI18N
 
         jLabel32.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
-        jLabel32.setText("Agathe");
+        jLabel32.setText(m.getNom());
 
         jLabel33.setFont(new java.awt.Font("Garamond", 0, 36)); // NOI18N
-        jLabel33.setText("Deblouze");
+        jLabel33.setText(m.getNom());
 
         jLabel34.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel34.setText("Service Médico-Technique");
@@ -192,7 +193,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 625, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel37)
                 .addGap(86, 86, 86)
                 .addComponent(jLabel38)
@@ -252,9 +253,32 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listePrestations);
 
-        jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel7.add(jScrollPane1, java.awt.BorderLayout.WEST);
 
-        InterfaceServiceMedicoTechnique.add(jPanel7, java.awt.BorderLayout.WEST);
+        jPanel8.setLayout(new java.awt.CardLayout());
+
+        jLabel15.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Sélectionner une prestation");
+
+        javax.swing.GroupLayout panelDouvertureLayout = new javax.swing.GroupLayout(panelDouverture);
+        panelDouverture.setLayout(panelDouvertureLayout);
+        panelDouvertureLayout.setHorizontalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelDouvertureLayout.setVerticalGroup(
+            panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDouvertureLayout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel8.add(panelDouverture, "card3");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -361,14 +385,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(167, 167, 167)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Fiche du patient", jPanel1);
@@ -430,7 +454,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jTextFieldPHObservation)
                             .addComponent(jTextFieldDateObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +473,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jTextFieldPHObservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Observations", jPanel3);
@@ -521,7 +545,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                             .addComponent(jFormattedTextFieldDateRealisation, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,43 +572,19 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(jFormattedTextFieldDateRealisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)))
+                            .addComponent(jFormattedTextFieldDateRealisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Résultats de la prestation demandée", jPanel4);
 
-        InterfaceServiceMedicoTechnique.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        jPanel8.add(jTabbedPane1, "card4");
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(1559, 20));
+        jPanel7.add(jPanel8, java.awt.BorderLayout.CENTER);
 
-        jTextField1.setText("12:13");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(1515, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        InterfaceServiceMedicoTechnique.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        InterfaceServiceMedicoTechnique.add(jPanel7, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -641,10 +641,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
                         DAOResultat daoResultat = new DAOResultat();
                         String idResultat = pichisNF.fonctions.genererIdResultat();
-                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), p1.getDemandeur().getId(), p1.getIdPrestation(), idResultat);
+                        daoResultat.ajoutResultat(jFormattedTextFieldDateRealisation.getText(), jTextPaneAjoutResultat.getText(), m.getId(), p1.getIdPrestation(), idResultat);
                         daop.setResultat(p1.getIdPrestation(), idResultat);
                         jTextPaneAjoutResultat.setEnabled(false);
+                        modeleListePrestations.remove(listePrestations.getSelectedIndex());
                         listePrestations.setModel(modeleListePrestations);
+
+                        CardLayout c = (CardLayout) (jPanel8.getLayout());
+                        c.show(jPanel8, "card3");
                     }
                 }
             } else {
@@ -668,6 +672,9 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             this.affichageRésultat();
             this.affichageObservations();
 
+            CardLayout c = (CardLayout) (jPanel8.getLayout());
+            c.show(jPanel8, "card4");
+
         }
     }//GEN-LAST:event_listePrestationsValueChanged
 
@@ -682,17 +689,12 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             jTextFieldDateObservation.setText(o.getDate().toString());
             jTextFieldPHObservation.setText(o.getMedecin().getPrenom() + " " + o.getMedecin().getNom());
             jTextAreaDescription.setText(o.getDescription());
-        }
-        else{
+        } else {
             jTextFieldDateObservation.setText("");
             jTextFieldPHObservation.setText("");
             jTextAreaDescription.setText("");
         }
     }//GEN-LAST:event_listeObservationsValueChanged
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void affichageDonneesPatient() {
         /**
@@ -800,6 +802,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
@@ -819,18 +822,17 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaDescription;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextFieldAdresse;
     private javax.swing.JTextField jTextFieldDateDemande;
@@ -847,6 +849,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPaneAjoutResultat;
     private javax.swing.JList listeObservations;
     private javax.swing.JList listePrestations;
+    private javax.swing.JPanel panelDouverture;
     // End of variables declaration//GEN-END:variables
 
 }
