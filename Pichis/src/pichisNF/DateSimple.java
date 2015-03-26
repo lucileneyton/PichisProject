@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisNF;
 
 import java.util.Calendar;
 
 /**
  *
- * @author molit_000
+ * @author Johann
  */
 public class DateSimple implements Comparable {
 
@@ -19,6 +14,14 @@ public class DateSimple implements Comparable {
     private String heure;
     private String minute;
 
+/** Premier constructeur de la classe DateSimple permettant d'initialiser la date avec les heures et les minutes (utilisés pour la traçabilité des actions)
+ * 
+ * @param jour
+ * @param mois
+ * @param annee
+ * @param heure
+ * @param minute 
+ */
     public DateSimple(String jour, String mois, String annee, String heure, String minute) {
         this.jour = jour;
         this.mois = mois;
@@ -27,6 +30,12 @@ public class DateSimple implements Comparable {
         this.minute = minute;
     }
 
+    /** Deuxième constructeur de la classe DateSimple permettant d'initialisé la date de naissance des patients
+     * 
+     * @param jour
+     * @param mois
+     * @param annee 
+     */
     public DateSimple(String jour, String mois, String annee) {
         this.jour = jour;
         this.mois = mois;
@@ -34,18 +43,34 @@ public class DateSimple implements Comparable {
 
     }
 
+    /** Méthode permettant l'accès au jour par d'autres classes
+     * 
+     * @return String jour
+     */
     public String getJour() {
         return jour;
     }
 
+    /** Méthode permettant l'accès aux heures par d'autres classes
+     * 
+     * @return String heure
+     */
     public String getHeure() {
         return heure;
     }
 
+    /** Méthode permettant l'accès aux minutes par d'autres classes
+     * 
+     * @return String minute
+     */
     public String getMinute() {
         return minute;
     }
 
+    /** Méthode permettant de modifier le jour avec un contrôle de validité au niveau des champs de l'interface
+     * 
+     * @param jour 
+     */
     public void setJour(String jour) {
         if (Integer.parseInt(jour) >= 1 && Integer.parseInt(jour) <= 31) {
             this.jour = jour;
@@ -54,20 +79,36 @@ public class DateSimple implements Comparable {
         }
     }
 
+     /** Méthode permettant l'accès au mois par d'autres classes
+     * 
+     * @return String mois
+     */
     public String getMois() {
         return mois;
     }
-
+    
+    /** Méthode permettant de modifier le mois avec un contrôle de validité au niveau des champs de l'interface
+     * 
+     * @param mois 
+     */
     public void setMois(String mois) {
         if (Integer.parseInt(mois) >= 1 && Integer.parseInt(mois) <= 12) {
             this.mois = mois;
         }
     }
 
+     /** Méthode permettant l'accès à l'année par d'autres classes
+     * 
+     * @return String annee
+     */
     public String getAnnee() {
         return annee;
     }
 
+    /** Méthode permettant de modifier l'année avec un contrôle de validité au niveau des champs de l'interface
+     *
+     * @param annee
+     */
     public void setAnnee(String annee) {
         if (Integer.parseInt(annee) >= 1800 && Integer.parseInt(annee) <= Calendar.getInstance().get(Calendar.YEAR)) {
             this.annee = annee;
@@ -76,6 +117,10 @@ public class DateSimple implements Comparable {
         }
     }
 
+    /** Méthode permettant l'affichage de la date
+     * 
+     * @return 
+     */
     public String toString() {
         String texte;
 
@@ -94,10 +139,19 @@ public class DateSimple implements Comparable {
         return texte;
     }
 
+    /**
+     *
+     * @return
+     */
     public String get2derniersChiffresAnnee() {
         return annee.substring(2);
     }
 
+    /**
+     *
+     * @param date
+     * @return
+     */
     public boolean estAvant(DateSimple date) {
         boolean rep = false;
 

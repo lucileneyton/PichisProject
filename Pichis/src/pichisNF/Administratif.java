@@ -2,24 +2,28 @@ package pichisNF;
 
 import pichisBD.DAOAdministratif;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author molit_000
- */
 public class Administratif extends Personnel {
 
+    /**
+     * Constructeur de la classe Amnistratif
+     *
+     * @param id
+     * @param nom
+     * @param prenom
+     * @param motDePasse
+     */
     public Administratif(String id, String nom, String prenom, String motDePasse) {
         super(id, nom, prenom, motDePasse);
-
     }
 
-    @SuppressWarnings("null")
+    /**
+     * Méthode permettant l'identification d'un personnel administratif à la
+     * connexion
+     *
+     * @param id
+     * @param mdp
+     * @return boolean
+     */
     public boolean identification(String id, String mdp) {
 
         DAOAdministratif daoAdministratif;
@@ -41,7 +45,14 @@ public class Administratif extends Personnel {
             return false;
         }
     }
-    public String toString(){
-        return super.getNom().toUpperCase()+" "+super.getPrenom();
+
+    /**
+     * Méthode permettant l'affichage du nom et prénom du personnel
+     * administratif
+     *
+     * @return String
+     */
+    public String toString() {
+        return super.getNom().toUpperCase() + " " + super.getPrenom();
     }
 }

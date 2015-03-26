@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisNF;
 
 import java.text.DateFormat;
@@ -11,14 +6,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- *
- * @author molit_000
- */
 public class DPI {
+
     private String ipp;
     private String nom;
-    private String prenom; 
+    private String prenom;
     private String sexe;
     private DateSimple dateNaissance;
     private String adresse;
@@ -27,8 +19,18 @@ public class DPI {
     private ArrayList<LettreDeSortie> lettresDeSortie;
     private ArrayList<Operation> operations;
     private boolean estOuvert;
-    
-    public DPI(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse){
+
+    /**
+     * Constructeur de la classe Dossier Patient Informatisé (DPI)
+     *
+     * @param ipp
+     * @param nom
+     * @param prenom
+     * @param sexe
+     * @param dateNaissance
+     * @param adresse
+     */
+    public DPI(String ipp, String nom, String prenom, String sexe, DateSimple dateNaissance, String adresse) {
         this.dma = new DMA();
         this.dm = new DM();
         this.ipp = ipp;
@@ -42,179 +44,230 @@ public class DPI {
         estOuvert = true; // le DPI est ouvert à l'ouverture
     }
 
+    /**
+     * Méthode permettant l'accès au dossier médical administratif (dma) par
+     * d'autres classes
+     *
+     * @return String dma
+     */
     public DMA getDma() {
         return dma;
     }
 
-    public void setDma(DMA dma) {
-        this.dma = dma;
-    }
-
+    /**
+     * Méthode permettant l'accès au dossier médical (dm) par d'autres classes
+     *
+     * @return String dm
+     */
     public DM getDm() {
         return dm;
     }
 
-    public void setDm(DM dm) {
-        this.dm = dm;
-    }
-
+    /**
+     * /** Méthode permettant l'accès à l'IPP du patient par d'autres classes
+     *
+     * @return String ipp
+     */
     public String getIpp() {
         return ipp;
     }
 
-    public void setIpp(String ipp) {
-        this.ipp = ipp;
-    }
-
+    /**
+     * Méthode permettant l'accès au nom du patient par d'autres classes
+     *
+     * @return String nom
+     */
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Méthode permettant l'accès au prénom du patient par d'autres classes
+     *
+     * @return String prenom
+     */
     public String getPrenom() {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
+    /**
+     * Méthode permettant l'accès à la date de naissance du patient par d'autres
+     * classes
+     *
+     * @return String dateNaissance
+     */
     public DateSimple getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(DateSimple dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
+    /**
+     * Méthode permettant l'accès au sexe du patient par d'autres classes
+     *
+     * @return String sexe
+     */
     public String getSexe() {
         return sexe;
     }
 
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
-    }
-
+    /**
+     * Méthode permettant l'accès à l'adresse du patient par d'autres classes
+     *
+     * @return String adresse
+     */
     public String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
+    /**
+     * Méthode permettant de savoir si le dossier patient informatisé (dpi) est
+     * ouvert (patient dans l'hôpital) ou non
+     *
+     * @return boolean
+     */
     public boolean isEstOuvert() {
         return estOuvert;
     }
 
+    /**
+     * Méthode permettant de modifier le statut (ouvert/fermé) du dossier
+     * patient informatisé (dpi)
+     *
+     * @param estOuvert vaut true si le dpi est ouvert, false s'il est fermé
+     */
     public void setEstOuvert(boolean estOuvert) {
         this.estOuvert = estOuvert;
     }
 
+    /**
+     * Méthode permettant l'accès à la liste de lettres de sortie du patient par
+     * d'autres classes
+     *
+     * @return ArrayList lettresDeSortie
+     */
     public ArrayList<LettreDeSortie> getLettresDeSortie() {
         return lettresDeSortie;
     }
 
-    public void setLettresDeSortie(ArrayList<LettreDeSortie> lettresDeSortie) {
-        this.lettresDeSortie = lettresDeSortie;
-    }
-
+    /**
+     * Méthode permettant l'accès à la liste d'opérations du patient par
+     * d'autres classes
+     *
+     * @return ArrayList operations
+     */
     public ArrayList<Operation> getOperations() {
         return operations;
     }
 
-    public void setOperations(ArrayList<Operation> operations) {
-        this.operations = operations;
+    /**
+     * Méthode permettant l'ajout d'une lettre de sortie à la liste de lettres
+     * de sortie
+     *
+     * @param lettreDeSortie Lettre de sortie à ajouter
+     */
+    public void ajouterLettreDeSortie(LettreDeSortie lettreDeSortie) {
+        this.lettresDeSortie.add(lettreDeSortie);
     }
-    
-    
-    
-    public void ajouterLettreDeSortie(LettreDeSortie l){
-        this.lettresDeSortie.add(l);
+
+    /**
+     * Méthode permettant l'ajout d'opérations à la liste d'opérations
+     *
+     * @param operation Opération à ajouter
+     */
+    public void ajouterOperation(Operation operation) {
+        this.operations.add(operation);
     }
-    
-    public void ajouterOperation(Operation op){
-        this.operations.add(op);
+
+    /**
+     * Méthode de test permettant d'afficher le dossier médical administratif
+     * (dma) du patient
+     *
+     * @return String texteDMA
+     */
+    public String afficherDMA() {
+        String texteDMA;
+        Sejour sejourEnCours = this.getDma().getListeSejours().get(this.getDma().getListeSejours().size() - 1); // on affiche le dernier sejour de la liste, on suppose que c'est le sejour en cours
+        texteDMA = "----- DMA -----\nPatient : " + this.nom + this.prenom;
+
+        texteDMA = texteDMA + "\n" + sejourEnCours.toString();
+
+        if (this.getDma().getListeSejours().size() <= 0) {
+            System.out.println("Aucune lettre de sortie disponible");
+        } else {
+            texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
+        }
+        return texteDMA;
     }
-    
-    public String afficherDM(){
-        return "----- DM -----"
-                +"\nPatient : " + this.nom + " " +this.prenom
-                +"\nOperation : "; // a finir !
-            }
-    
-public String afficherDMA(){
-    String texteDMA;
-    Sejour sejourEnCours = this.getDma().getListeSejours().get(this.getDma().getListeSejours().size() - 1); // on affiche le dernier sejour de la liste, on suppose que c'est le sejour en cours
-    texteDMA = "----- DMA -----\nPatient : " + this.nom + this.prenom;
-    
-    texteDMA = texteDMA + "\n" + sejourEnCours.toString();
-  
-    if(this.getDma().getListeSejours().size() <= 0){
-        System.out.println("Aucune lettre de sortie disponible");
-    }
-    else{
-        //texteDMA = texteDMA + "\n" + this.getLettreDeSortieDuSejour(sejourEnCours).toString();
-    }     
-    
-    return texteDMA;
-    
-}
-    
-    public String toString(){
-//        
+
+    /**
+     * Méthode permettant l'affichage du nom et du prénom du patient
+     *
+     * @return String nom + prenom
+     */
+    public String toString() {
         return nom.toUpperCase() + " " + prenom;
     }
-    
-    public String afficherDPI(){
-        if(this.estOuvert == true){
-           return "----- DPI -----"
-             + "\nipp : " + this.ipp
-             + "\nnom : " + this.nom 
-             + "\nprenom : "+this.prenom
-             + "\nDate de Naissance : "+this.dateNaissance.toString()
-             + "\nSexe : "+this.sexe
-             + "\nAdresse : "+this.adresse
-             + "\nNombre operations : " +this.operations.size()
-             + "\nNombre lettre de sorties : " +this.lettresDeSortie.size();
-        }
-        else{
+
+    /**
+     * Méthode de test permettant l'affichage du dossier patient informatisé
+     * (dpi)
+     *
+     * @return String dpi
+     */
+    public String afficherDPI() {
+        if (this.estOuvert == true) {
+            return "----- DPI -----"
+                    + "\nipp : " + this.ipp
+                    + "\nnom : " + this.nom
+                    + "\nprenom : " + this.prenom
+                    + "\nDate de Naissance : " + this.dateNaissance.toString()
+                    + "\nSexe : " + this.sexe
+                    + "\nAdresse : " + this.adresse
+                    + "\nNombre operations : " + this.operations.size()
+                    + "\nNombre lettre de sorties : " + this.lettresDeSortie.size();
+        } else {
             return "----- dpi -----"
-                   + "\nCe DPI n'est pas ouvert \n";
+                    + "\nCe DPI n'est pas ouvert \n";
         }
     }
-    
-    public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour){
+
+    /**
+     * Méthode permettant l'accès à une lettre de sortie pour un séjour donné
+     *
+     * @param sejour
+     * @return LettreDeSortie
+     */
+    public LettreDeSortie getLettreDeSortieDuSejour(Sejour sejour) {
         int i = 0;
-        while(i<this.getLettresDeSortie().size() && (this.getLettresDeSortie().get(i).getNumeroSejour().equals(sejour.getNumeroSejour())==false)){
+        while (i < this.getLettresDeSortie().size() && (this.getLettresDeSortie().get(i).getNumeroSejour().equals(sejour.getNumeroSejour()) == false)) {
             i++;
         }
-        if(i == this.getLettresDeSortie().size()){
+        if (i == this.getLettresDeSortie().size()) {
             return null;
-        }
-        else{
+        } else {
             return this.getLettresDeSortie().get(i);
         }
     }
-    
-    public static String CreerIpp(){
+
+    /**
+     * Méthode permettant de créer un IPP pour un patient
+     *
+     * @return String ipp
+     */
+    public static String CreerIpp() {
         String ipp;
-          
-        //Pour les deux premiers chiffres de l'ipp
+
+        //Création pour les deux premiers chiffres de l'ipp
         DateFormat df3 = new SimpleDateFormat("yy");
         Date today = Calendar.getInstance().getTime();
-        Calendar.getInstance(); 
+        Calendar.getInstance();
         ipp = df3.format(today);
 
-        //pour le reste 
-        for(int i=0; i<7; i++){
-            ipp = ipp + (int)(Math.random()*10);
+        //Création du reste de l'ipp
+        for (int i = 0; i < 7; i++) {
+            ipp = ipp + (int) (Math.random() * 10);
         }
-        
+
         return ipp;
     }
-    
+
 }
