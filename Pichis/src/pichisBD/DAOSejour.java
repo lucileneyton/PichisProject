@@ -96,16 +96,17 @@ public class DAOSejour {
      }
      
      public boolean setLettre(String idSejour){
-        c=new ConnectionBD();
+        
         boolean b = false;
+        int resul;
       
         try {
-
-            if(!lettreDeSortie(idSejour)){
-                int resul;
-
+            
+            if(!lettreDeSortie(idSejour)){         
+            c=new ConnectionBD();
             Statement ins = c.connexion.createStatement();
             resul = ins.executeUpdate("UPDATE sejour SET lettre='true' WHERE id=" + "'"  + idSejour + "' ;");
+            
             b=true;
             }
             

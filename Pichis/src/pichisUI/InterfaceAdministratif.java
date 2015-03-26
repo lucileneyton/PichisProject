@@ -954,6 +954,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 this.affichageLocalisation();
             
                 this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
+        
+                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
         }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -1024,10 +1026,18 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         CardLayout c = (CardLayout) (DMA.getLayout());
         c.show(DMA, "card2");
         daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
-        if(listeSejours.getSelectedValue() != null) {
+        if(listeSejours.getSelectedValue() != null && listeDePatients.getSelectedValue() != null) {
+                this.affichageDonneesPatient();
+            
                 this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
                 this.effaceDonneesSejour();
-                this.affichageDonneesSejour();
+            
+                this.effaceDonneesLocalisation();          
+                this.affichageLocalisation();
+            
+                this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
+        
+                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
             }
     }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
 
@@ -1163,6 +1173,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         
         listePrestations.setModel(modeleListePrestation);
+    }
+    
+    public void afficherLettre(DPI dpi){
+        Sejour sejourActuel = daoSejour.consulterListeSejourParPatient(dpi).getDernierSejour();
+        if(daoSejour.lettreDeSortie(sejourActuel.getNumeroSejour())){
+            String txt = "Je soussigné docteur " + sejourActuel.getPHResponsable().toString() + ", médecin responsable du séjour du patient : " + dpi.getNom() + " " + dpi.getPrenom() + "\n" + " édite en ce jour sa lettre de sortie." + "\n\n" + "Date :" + pichisNF.fonctions.renvoieDateActuelle();
+            texteLettreSortie.setText(txt);
+        }
+        else{
+            texteLettreSortie.setText("");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

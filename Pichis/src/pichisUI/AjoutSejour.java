@@ -49,8 +49,8 @@ public class AjoutSejour extends javax.swing.JFrame {
         champNumeroSejour.setText(fonctions.genererNumeroSejour(dateEntree));
         
         
-        for(int i =0; i<daoMedecin.consulterListeMedecin2().size();i++){
-            modelePh.addElement(daoMedecin.consulterListeMedecin2().get(i));
+        for(int i =0; i<daoMedecin.consulterListeMedecin().size();i++){
+            modelePh.addElement(daoMedecin.consulterListeMedecin().get(i));
         }  
         comboBoxNomPh.setModel(modelePh);
      
