@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import pichisNF.DPI;
 import pichisNF.DateSimple;
 import pichisNF.Medecin;
+import pichisNF.Observation;
 import pichisNF.Prescription;
 
 /**
