@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisBD;
 
 import java.sql.ResultSet;
@@ -13,22 +8,20 @@ import pichisNF.Medecin;
 import pichisNF.Services;
 import pichisNF.Specialite;
 import pichisNF.TypeServices;
+
 /**
  *
  * Data access object de la classe Medecin
  */
-
-
 public class DAOMedecin {
-    
-    ConnectionBD c;
-    
-    
+
+    public ConnectionBD c;
 
     /**
- * Méthode permettant de consulter la liste des médecins
- * @return ArrayList<Medecin> 
- */
+     * Méthode permettant de consulter la liste des médecins
+     *
+     * @return ArrayList
+     */
     public ArrayList<Medecin> consulterListeMedecin2() {
 
         ArrayList<Medecin> listeMedecin = new ArrayList();
@@ -84,12 +77,13 @@ public class DAOMedecin {
     }
 
     /**
- *
- * Méthode pour l'identification d'un médecin
- * @param id l'identifiant entré par le médecin
- * @param motDePasse le mot de passe renseigné par le médecin
- * @return boolean
- */
+     *
+     * Méthode pour l'identification d'un médecin
+     *
+     * @param id l'identifiant entré par le médecin
+     * @param motDePasse le mot de passe renseigné par le médecin
+     * @return boolean
+     */
     public boolean identification(String id, String motDePasse) {
 
         String identif;
@@ -102,7 +96,7 @@ public class DAOMedecin {
         try {
 
             ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= '" + id+"'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id= '" + id + "'");
 
             while (resul.next()) {
                 identif = resul.getString("id");
@@ -133,11 +127,13 @@ public class DAOMedecin {
     }
 
     /**
- * Méthode déterminant si un personnel est un médecin ou non
- * @param id l'identifiant du personnel
- * @param mdp le mot de passe du personnel
- * @return boolean
- */
+     * Méthode déterminant si un personnel est un médecin ou non
+     *
+     * @param id l'identifiant du personnel
+     * @param mdp le mot de passe du personnel
+     * @return boolean
+     * @exception SQLException
+     */
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
         boolean b = false;
@@ -146,7 +142,6 @@ public class DAOMedecin {
         try {
 
             Statement ins = c.connexion.createStatement();
-            //res = ins.executeQuery("SELECT * FROM personnel WHERE id= '"+id+"'");
 
             res = ins.executeQuery("SELECT * FROM personnel WHERE service!='NULL' AND id='" + id + "'");
 
@@ -170,12 +165,15 @@ public class DAOMedecin {
 
         }
 
-//        System.out.println("estMedecin" + b);
         return b;
 
     }
 
-    
+    /**
+     * Méthode permettant d'avoir la liste des médecins
+     *
+     * @return ArrayList
+     */
     public ArrayList<Medecin> consulterListeMedecin() {
 
         ArrayList<Medecin> listeMedecin = new ArrayList();
@@ -230,6 +228,12 @@ public class DAOMedecin {
 
     }
 
+    /**
+     * Méthode retournant le médecin responsable d'un séjour
+     *
+     * @param numSejour le numéro du séjour concerné
+     * @return Medecin
+     */
     public Medecin medecinResponsable(String numSejour) {
         Medecin med = null;
         String id;
@@ -276,7 +280,7 @@ public class DAOMedecin {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOAMedecin medecinResponsable: " + e);
+            System.out.println("erreur DAOAMedecin (medecinResponsable): " + e);
         } finally {
             if (c != null) {
                 try {
@@ -291,6 +295,12 @@ public class DAOMedecin {
         return med;
     }
 
+    /**
+     * Méthode donnant une instance de médecin à partir de son identifiant
+     *
+     * @param id l'identifiant du médecin
+     * @return Medecin
+     */
     public Medecin medecinParID(String id) {
 
         Medecin med = null;
@@ -306,37 +316,21 @@ public class DAOMedecin {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            //resul = ins.executeQuery("SELECT personnel.id,personnel.mdp,personnel.nom,personnel.prenom,personnel.service,service.type,service.specialite FROM personnel,service WHERE personnel.service=service.id AND personnel.service!='NULL' AND personnel.id='" + id + "'");
 
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service IS NOT NULL or service!='NULL') AND id= '" + id+"'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE (service IS NOT NULL or service!='NULL') AND id= '" + id + "'");
             while (resul.next()) {
 
                 nom = resul.getString("nom");
                 prenom = resul.getString("prenom");
                 mdp = resul.getString("mdp");
                 String idService = resul.getString("service");
-//                    type = resul.getString("type");
-//                    types = TypeServices.valueOf(type);
-//                    String spec = resul.getString("specialite").toUpperCase();
-//                    Specialite sp = Specialite.valueOf(spec);
-//                    
-//                    if (spec.equals("Radiologie") || spec.equals("Anesthesie")){
-//                        types = TypeServices.MEDICO_TECHNIQUE;
-//                    }
-//                    else{
-//                        types = TypeServices.CLINIQUE;
-//                    }
-//                    Services service = new Services(types, sp);
 
                 DAOServices d = new DAOServices();
 
                 Services service = d.serviceParID(idService);
-                
-
-                
 
                 med = new Medecin(id, nom, prenom, mdp, service);
-//                System.out.println(med.getNom());
+
             }
 
         } catch (SQLException e) {
@@ -355,6 +349,12 @@ public class DAOMedecin {
         return med;
     }
 
+    /**
+     * Méthode déterminant l'identifiant du service à partir de sa spécialité
+     *
+     * @param specialite le nom de la spécialité du service
+     * @return String
+     */
     public String IdService(String specialite) {
         Statement ins;
         ResultSet res;
@@ -387,6 +387,15 @@ public class DAOMedecin {
 
     }
 
+    /**
+     * Méthode permettant d'ajouter un médecin dans la base de données
+     *
+     * @param id l'identifiant du personnel
+     * @param nom le nom du nouveau personnel
+     * @param prenom le prénom du personnel
+     * @param motDePasse le mot de passe du nouveau personnel
+     * @param service l'id du service du personnel
+     */
     public void ajoutMedecin(String id, String nom, String prenom, String motDePasse, String service) {
 
         Statement ins;
