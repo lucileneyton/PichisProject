@@ -40,20 +40,20 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private DefaultListModel<pichisNF.Observation> listeObservations;
     private DefaultListModel<pichisNF.Prescription> listePrescriptions;
     private DefaultListModel<pichisNF.Operation> listeOperations;
-
+    
     private Medecin medecin;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-
+    
     public InterfaceServiceClinique(Medecin medecin) {
         modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
         listePrestations = new DefaultListModel<pichisNF.Prestations>();
         listeOperations = new DefaultListModel<pichisNF.Operation>();
         listeObservations = new DefaultListModel<pichisNF.Observation>();
         listePrescriptions = new DefaultListModel<pichisNF.Prescription>();
-
+        
         this.medecin = medecin;
         initComponents();
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
@@ -74,14 +74,14 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         comboBoxService.setModel(new javax.swing.DefaultComboBoxModel(Specialite.values()));
         comboBoxService.setEnabled(false);
         comboBoxPlacement.setEnabled(false);
-
+        
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
-
+        
         ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
 
 //        System.out.println(""+ daoSejour.consulterListeSejourParPatient("123").getListeSejours());
         for (int i = 0; i < listeDeDPI.size(); i++) {
-
+            
             ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i)).getListeSejours();
 
 //            }
@@ -95,10 +95,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //                  
                 }
             }
-
+            
+        }
+        if (!servicePatient.getPHResponsable().getId().equals(medecin.getId())) {
+            jTabbedPane1.remove(panelLettreDeSortie);
         }
         listeDePatients.setModel(modeleListeDPI);
-
+        
     }
 
     /**
@@ -218,7 +221,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel30 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         lettreDeSortie = new javax.swing.JTextPane();
-        jButton5 = new javax.swing.JButton();
+        envoyerLettreDeSejour = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listeDePatients = new javax.swing.JList();
@@ -276,7 +280,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -461,7 +465,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelFichePatient.add(jPanel2);
@@ -603,7 +607,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPlacement)
                     .addComponent(comboBoxPlacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelFichePatient.add(jPanel5);
@@ -692,7 +696,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
-                .addGap(0, 235, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelPrescriptionsLayout.setVerticalGroup(
             panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +708,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Prescriptions", panelPrescriptions);
@@ -810,7 +814,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelObservationsLayout.setVerticalGroup(
             panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,7 +826,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Observations", panelObservations);
@@ -937,7 +941,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGroup(panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelOperationsRéaliseesLayout.setVerticalGroup(
             panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1049,7 +1053,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jTabbedPane1.addTab("Prestations demandées", panelPrestationsDemandees);
+        jTabbedPane1.addTab("Demandes de prestations", panelPrestationsDemandees);
 
         jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder("Edition d'une lettre de sortie"));
         jPanel30.setMaximumSize(new java.awt.Dimension(375, 197));
@@ -1071,14 +1075,19 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(27, 16, 0, 16);
         jPanel30.add(jScrollPane18, gridBagConstraints);
 
-        jButton5.setText("Envoyer");
+        envoyerLettreDeSejour.setText("Envoyer");
+        envoyerLettreDeSejour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                envoyerLettreDeSejourActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(15, 18, 18, 16);
-        jPanel30.add(jButton5, gridBagConstraints);
+        jPanel30.add(envoyerLettreDeSejour, gridBagConstraints);
 
         javax.swing.GroupLayout panelLettreDeSortieLayout = new javax.swing.GroupLayout(panelLettreDeSortie);
         panelLettreDeSortie.setLayout(panelLettreDeSortieLayout);
@@ -1087,17 +1096,30 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(panelLettreDeSortieLayout.createSequentialGroup()
                 .addGap(177, 177, 177)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLettreDeSortieLayout.setVerticalGroup(
             panelLettreDeSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLettreDeSortieLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lettre de sortie", panelLettreDeSortie);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1009, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 546, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Prestations demandées", jPanel1);
 
         DM.add(jTabbedPane1, "card2");
 
@@ -1163,7 +1185,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
         afficherDossierMedical();
-
+        
         CardLayout c = (CardLayout) (DM.getLayout());
         c.show(DM, "card2");
     }//GEN-LAST:event_listeDePatientsValueChanged
@@ -1172,7 +1194,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         int i = listeDesPrescriptions.getSelectedIndex();
         if (i >= 0) {
             Prescription p = listePrescriptions.elementAt(i);
-
+            
             contenuNvlePrescription.setText("");
             detailPrescriptionSelectionnee.setText(p.getPrescriptions());
             signaturePrescription.setText(p.getMedecin().toString());
@@ -1186,16 +1208,16 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 //JOptionPane pour la confirmation
             if (naturePrestation.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(naturePrestation, "Ajouter du contenu");
-
+                
             } else {
-
+                
                 int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : '" + naturePrestation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
+                
                 if (confirm == JOptionPane.YES_OPTION) {
 
                     //Détermination de l'identifiant de la nouvelle demande de prestation
                     DAOPrestations d = new DAOPrestations();
-
+                    
                     int i = listeDePatients.getSelectedIndex();
                     ConnectionBD c = new ConnectionBD();
                     int idResultat = 1;
@@ -1203,14 +1225,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         Statement ins = c.connexion.createStatement();
                         ResultSet resul;
                         resul = ins.executeQuery("SELECT * FROM prestations");
-
+                        
                         while (resul.next()) {
                             idResultat++;
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
 
                     //Ajout dans la base de données
                     d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), null, pichisNF.fonctions.renvoieDateActuelle().toString(), "" + idResultat);
@@ -1219,12 +1240,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     afficherDossierMedical();
                     naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
                     naturePrestation.setText("");
-
+                    
                 }
-
+                
             }
-
-        }else {
+            
+        } else {
             JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_enregistrerUnePrestationActionPerformed
@@ -1252,7 +1273,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         } else {
             resultatPrestation.setText(r.getDescriptions());
         }
-
+        
 
     }//GEN-LAST:event_listeDePrestationsValueChanged
 
@@ -1271,17 +1292,17 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         if (in >= 0) {
             if (nouvelleObservation.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(nouvelleObservation, "Ajouter du contenu");
-
+                
             } else {
-
+                
                 int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'observation : '" + nouvelleObservation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
+                
                 if (confirm == JOptionPane.YES_OPTION) {
                     //Réinitialisation de l'affichage 
                     listeDesObservations.clearSelection();
                     detailObservation.setText("");
                     signature.setText("");
-
+                    
                     DAOObservation o = new DAOObservation();
                     int i = listeDePatients.getSelectedIndex();
                     DPI patient = modeleListeDPI.elementAt(i);
@@ -1293,7 +1314,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         Statement ins = c.connexion.createStatement();
                         ResultSet resul;
                         resul = ins.executeQuery("SELECT * FROM observations");
-
+                        
                         while (resul.next()) {
                             idObservation++;
                         }
@@ -1301,16 +1322,15 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-
                     //Ajout de l'observation
                     o.ajoutObservation("" + idObservation, medecin.getId(), nouvelleObservation.getText(), patient.getIpp(), pichisNF.fonctions.renvoieDateActuelle().toString());
-
+                    
                     nouvelleObservation.setText("");
                     afficherDossierMedical();
-
+                    
                 }
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_ajoutObservationActionPerformed
@@ -1330,19 +1350,19 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         int in = listeDePatients.getSelectedIndex();
         if (in >= 0) {
             if (contenuNvlePrescription.getText().isEmpty()) {
-
+                
                 JOptionPane.showMessageDialog(contenuNvlePrescription, "Ajouter du contenu");
-
+                
             } else {
-
+                
                 int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous la prescription : '" + contenuNvlePrescription.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
+                
                 if (confirm == JOptionPane.YES_OPTION) {
                     //Réinitialisation de l'affichage 
                     listeDesPrescriptions.clearSelection();
                     detailPrescriptionSelectionnee.setText("");
                     signaturePrescription.setText("");
-
+                    
                     DAOPrescription dp = new DAOPrescription();
                     int i = listeDePatients.getSelectedIndex();
                     DPI patient = modeleListeDPI.elementAt(i);
@@ -1354,7 +1374,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         Statement ins = c.connexion.createStatement();
                         ResultSet resul;
                         resul = ins.executeQuery("SELECT * FROM prescriptions");
-
+                        
                         while (resul.next()) {
                             idPrescription++;
                         }
@@ -1362,14 +1382,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-
                     //Ajout de l'observation
                     dp.ajoutPrescription("" + idPrescription, patient.getIpp(), medecin.getId(), contenuNvlePrescription.getText(), pichisNF.fonctions.renvoieDateActuelle().toString());
                     contenuNvlePrescription.setText("");
                     afficherDossierMedical();
                 }
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1377,24 +1396,24 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private void enregistrerOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerOperationActionPerformed
         int in = listeDePatients.getSelectedIndex();
         if (in >= 0) {
-
+            
             if (detailOperationAAjouter.getText().isEmpty()) {
-
+                
                 JOptionPane.showMessageDialog(detailOperationAAjouter, "Ajouter du contenu");
-
+                
             } else {
                 if (signatureNvleOperation.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(detailOperationAAjouter, "Signer");
                 } else {
-
+                    
                     int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'opération : '" + detailOperationAAjouter.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
+                    
                     if (confirm == JOptionPane.YES_OPTION) {
                         //Réinitialisation de l'affichage 
                         listeDesOperations.clearSelection();
                         detailOperationSelectionnee.setText("");
                         signatureOperationSelectionnee.setText("");
-
+                        
                         DAOOperation op = new DAOOperation();
                         int i = listeDePatients.getSelectedIndex();
                         DPI patient = modeleListeDPI.elementAt(i);
@@ -1406,14 +1425,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                             Statement ins = c.connexion.createStatement();
                             ResultSet resul;
                             resul = ins.executeQuery("SELECT * FROM operations");
-
+                            
                             while (resul.next()) {
                                 idOperation++;
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
 
                         //Ajout de l'observation
                         op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), pichisNF.fonctions.renvoieDateActuelle().toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
@@ -1439,29 +1457,29 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_listeDesOperationsValueChanged
 
     private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
-
+        
         if (!jTextFieldRecherche.getText().isEmpty()) {
             ArrayList listeDesPatients = new ArrayList();
-
+            
             for (int i = 0; i < modeleListeDPI.getSize(); i++) {
-
+                
                 listeDesPatients.add(modeleListeDPI.get(i).getNom());
-
+                
             }
-
+            
             ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
-
+            
             modeleListeDPIRecherche = new DefaultListModel<DPI>();
             for (int i = 0; i < modeleListeDPI.getSize(); i++) {
-
+                
                 for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
                     if (listeDesPatientsRecherchee.get(j).equals(modeleListeDPI.get(i).getNom()) && !modeleListeDPIRecherche.contains(modeleListeDPI.elementAt(i))) {
                         modeleListeDPIRecherche.addElement(modeleListeDPI.elementAt(i));
                     }
-
+                    
                 }
             }
-
+            
             listeDePatients.setModel(modeleListeDPIRecherche);
         } else {
             listeDePatients.setModel(modeleListeDPI);
@@ -1469,7 +1487,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
-    
+    private void envoyerLettreDeSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_envoyerLettreDeSejourActionPerformed
+        DAOSejour s = new DAOSejour();
+        s.setLettre(servicePatient.getNumeroSejour());
+        lettreDeSortie.setBackground(new java.awt.Color(204, 204, 204));
+        envoyerLettreDeSejour.setEnabled(false);
+    }//GEN-LAST:event_envoyerLettreDeSejourActionPerformed
     
     public void afficherDossierMedical() {
         /**
@@ -1477,42 +1500,42 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
          */
         int i = listeDePatients.getSelectedIndex();
         if (i >= 0) {
-
+            
             DPI patient = modeleListeDPI.getElementAt(i);
-
+            
             DAOSejour daoSejour = new pichisBD.DAOSejour();
             ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(patient).getListeSejours();
-
+            
             servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
 
             //Affichage de la liste des prestations
             listePrestations.clear();
             DAOPrestations d = new DAOPrestations();
-
+            
             ArrayList<Prestations> p = d.prestationsPatient(patient.getIpp());
             Collections.sort(p);
             
             System.out.println("" + p);
-            for (Prestations pr : p) {
-
-                listePrestations.addElement(pr);
-
+            for (int f = p.size() - 1; f >= 0; f--) {
+                
+                listePrestations.addElement(p.get(f));
+                
             }
             listeDePrestations.setModel(listePrestations);
 
             //Affichage de la fiche du patient
             //Localisation
             Localisation loc;
-
+            
             if (servicePatient != null) {
                 DAOLocalisation daoLoc = new DAOLocalisation();
                 loc = daoLoc.localisationParNumeroDeSejour(servicePatient.getNumeroSejour());
-
+                
                 comboBoxService.setSelectedItem(loc.getService().getSpecialite());
                 champNumeroChambre.setText(loc.getNumeroChambre());
-
+                
                 comboBoxPlacement.setSelectedItem(loc.getPlacement());
-
+                
             }
 
             //Donnees personnelles
@@ -1532,11 +1555,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             listeObservations.clear();
             DAOObservation o = new DAOObservation();
             ArrayList<Observation> lob = o.observationsPatient(patient.getIpp());
-
+            
             for (Observation observ : lob) {
-
+                
                 listeObservations.addElement(observ);
-
+                
             }
             listeDesObservations.setModel(listeObservations);
 
@@ -1544,11 +1567,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             listePrescriptions.clear();
             DAOPrescription pres = new DAOPrescription();
             ArrayList<Prescription> lpres = pres.prescriptionsPatient(patient.getIpp());
-
+            
             for (Prescription prescription : lpres) {
-
+                
                 listePrescriptions.addElement(prescription);
-
+                
             }
             listeDesPrescriptions.setModel(listePrescriptions);
 
@@ -1556,18 +1579,25 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             listeOperations.clear();
             DAOOperation op = new DAOOperation();
             ArrayList<Operation> lop = op.operationSejour(servicePatient.getNumeroSejour());
-
+            
             for (Operation ope : lop) {
-
+                
                 listeOperations.addElement(ope);
-
+                
             }
             listeDesOperations.setModel(listeOperations);
-            
+
             //Lettre de sortie par défaut
-            String lettreSortie = "Je soussigné docteur " + medecin.getNom() + ", médecin responsable du séjour du patient : " + patient.getNom()+ '\n'+ " édite en ce jour sa lettre de sortie" 
-                    + "\n" + "\n" + "Date : " + pichisNF.fonctions.renvoieDateActuelle() ;
-            lettreDeSortie.setText(lettreSortie);
+            DAOSejour s = new DAOSejour();
+            if (servicePatient.getPHResponsable().getId().equals(medecin.getId()) && !s.lettreDeSortie(servicePatient.getNumeroSejour())) {
+                String lettreSortie = "Je soussigné docteur " + medecin.getNom() + ", médecin responsable du séjour du patient : " + patient.getNom() + '\n' + " édite en ce jour sa lettre de sortie."
+                        + "\n" + "\n" + "Date : " + pichisNF.fonctions.renvoieDateActuelle();
+                lettreDeSortie.setText(lettreSortie);
+            } else {
+                lettreDeSortie.setBackground(new java.awt.Color(204, 204, 204));
+                envoyerLettreDeSejour.setVisible(false);
+            }
+            
         }
     }
 
@@ -1621,8 +1651,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextArea detailPrescriptionSelectionnee;
     private javax.swing.JButton enregistrerOperation;
     private javax.swing.JButton enregistrerUnePrestation;
+    private javax.swing.JButton envoyerLettreDeSejour;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -1648,6 +1678,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
