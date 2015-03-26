@@ -91,7 +91,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         panelBarreRecherche = new javax.swing.JPanel();
         labelRecherche = new javax.swing.JLabel();
@@ -185,12 +184,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel11.setText("Personnel administratif");
 
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
-        jLabel37.setText("Préférences");
-        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel38.setText("Déconnexion");
         jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -219,16 +212,14 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                     .addGroup(PanelBarreTitreLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 365, Short.MAX_VALUE)
-                .addComponent(jLabel37)
-                .addGap(86, 86, 86)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 515, Short.MAX_VALUE)
                 .addComponent(jLabel38)
                 .addGap(44, 44, 44))
         );
         PanelBarreTitreLayout.setVerticalGroup(
             PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBarreTitreLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,10 +230,8 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(34, 34, 34))
             .addGroup(PanelBarreTitreLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(PanelBarreTitreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel38)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -673,15 +662,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelSejourLayout.createSequentialGroup()
                         .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelSejourLayout.createSequentialGroup()
-                                    .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labelDateEntree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(labelNumeroSejour))
+                            .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelDateEntree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelNumeroSejour)
                             .addComponent(labelPhResponsable))
-                        .addGap(207, 207, 207)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(champPhResponsable)
                             .addGroup(panelSejourLayout.createSequentialGroup()
@@ -755,7 +741,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 .addGroup(ongletSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollSejours, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boutonAjouterSejour, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(panelSejour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
         );
@@ -1352,7 +1338,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

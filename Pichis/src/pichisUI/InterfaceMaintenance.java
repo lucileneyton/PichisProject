@@ -89,7 +89,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -132,12 +131,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel11.setText("Personnel de maintenance");
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
-        jLabel14.setText("Préférences");
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel15.setText("Déconnexion");
         jLabel15.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -163,16 +156,14 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(jLabel14)
-                .addGap(81, 81, 81)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(51, 51, 51))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,10 +175,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel11))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14))))
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel15)))
                 .addGap(34, 34, 34))
         );
 
@@ -278,7 +267,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel7.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Ajouter un membre du personnel");
-        jButton1.setPreferredSize(new java.awt.Dimension(189, 25));
+        jButton1.setPreferredSize(new java.awt.Dimension(189, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -453,7 +442,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

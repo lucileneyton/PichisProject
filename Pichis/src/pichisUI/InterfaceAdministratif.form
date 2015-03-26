@@ -78,9 +78,7 @@
                                   <Component id="jLabel11" min="-2" pref="569" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="365" max="32767" attributes="0"/>
-                          <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                          <EmptySpace pref="515" max="32767" attributes="0"/>
                           <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
@@ -89,7 +87,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                           <Component id="image" min="-2" pref="163" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -102,11 +100,8 @@
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -146,19 +141,6 @@
                       <Font name="Trajan Pro" size="37" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Personnel administratif"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel37">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/data/Images/iconmonstr-wrench-20-icon-64.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Pr&#xe9;f&#xe9;rences"/>
-                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Curseur en forme de main"/>
-                    </Property>
-                    <Property name="horizontalTextPosition" type="int" value="0"/>
-                    <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel38">
@@ -795,7 +777,7 @@
                                       <Component id="jScrollSejours" min="-2" pref="248" max="-2" attributes="0"/>
                                       <Component id="boutonAjouterSejour" min="-2" pref="248" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="134" max="32767" attributes="0"/>
+                                  <EmptySpace pref="71" max="32767" attributes="0"/>
                                   <Component id="panelSejour" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
@@ -862,19 +844,14 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="labelDateEntree" max="32767" attributes="0"/>
-                                                              <Component id="labelDateSortie" min="-2" pref="79" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="labelNumeroSejour" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="labelDateEntree" max="32767" attributes="0"/>
+                                                      <Component id="labelDateSortie" min="-2" pref="79" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Component id="labelNumeroSejour" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="labelPhResponsable" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
+                                              <EmptySpace min="207" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="champPhResponsable" alignment="1" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">

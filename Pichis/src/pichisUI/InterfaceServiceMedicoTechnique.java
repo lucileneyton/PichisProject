@@ -115,7 +115,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
@@ -190,12 +189,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel34.setText("Service Médico-Technique");
 
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
-        jLabel37.setText("Préférences");
-        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-logout-3-icon-64.png"))); // NOI18N
         jLabel38.setText("Déconnexion");
         jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -224,16 +217,14 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel37)
-                .addGap(86, 86, 86)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(jLabel38)
                 .addGap(38, 38, 38))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,9 +234,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                         .addComponent(jLabel34))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel37))))
+                        .addComponent(jLabel38)))
                 .addGap(34, 34, 34))
             .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
@@ -891,7 +880,6 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
