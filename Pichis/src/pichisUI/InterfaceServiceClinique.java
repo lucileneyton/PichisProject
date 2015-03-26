@@ -35,6 +35,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
      */
     Sejour servicePatient;
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
+    DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
     DefaultListModel<pichisNF.Prestations> listePrestations;
     DefaultListModel<pichisNF.Observation> listeObservations;
     DefaultListModel<pichisNF.Prescription> listePrescriptions;
@@ -88,7 +89,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
                 //Vérification de la concordance entre service de travail du praticien et service d'admission du patient. 
                 //Le patient n'est enregistré dans la liste accessible au médecin qu si son DPI est ouvert.
-                
+
                 if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType()) && daoDpi.consulterListeDPI().get(i).isEstOuvert()) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                  
@@ -122,7 +123,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldRecherche = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         DM = new javax.swing.JPanel();
@@ -322,8 +323,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel39.setText("Rechercher un patient :");
         jPanel14.add(jLabel39);
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jPanel14.add(jTextField3);
+        jTextFieldRecherche.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        jTextFieldRecherche.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldRechercheKeyReleased(evt);
+            }
+        });
+        jPanel14.add(jTextFieldRecherche);
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
         jPanel14.add(jLabel40);
@@ -402,7 +408,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         adresse.setBackground(new java.awt.Color(204, 204, 204));
         adresse.setColumns(20);
         adresse.setRows(5);
-        adresse.setText("125 rue Volga-Plage 80560 Vladivostok, Empire de Russie");
         adresse.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane14.setViewportView(adresse);
 
@@ -1165,12 +1170,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void listeDesPrescriptionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesPrescriptionsValueChanged
         int i = listeDesPrescriptions.getSelectedIndex();
-        if (i>=0){
-        Prescription p = listePrescriptions.elementAt(i);
-        
-        contenuNvlePrescription.setText("");
-        detailPrescriptionSelectionnee.setText(p.getPrescriptions());
-        signaturePrescription.setText(p.getMedecin().toString());
+        if (i >= 0) {
+            Prescription p = listePrescriptions.elementAt(i);
+
+            contenuNvlePrescription.setText("");
+            detailPrescriptionSelectionnee.setText(p.getPrescriptions());
+            signaturePrescription.setText(p.getMedecin().toString());
         }
     }//GEN-LAST:event_listeDesPrescriptionsValueChanged
 
@@ -1235,7 +1240,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 afficherDossierMedical();
                 naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
                 naturePrestation.setText("");
-                
+
             }
 
         }
@@ -1347,11 +1352,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void listeDesObservationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesObservationsValueChanged
         int i = listeDesObservations.getSelectedIndex();
-        if (i>=0){
-        Observation o = listeObservations.elementAt(i);
-        nouvelleObservation.setText("");
-        detailObservation.setText(o.getDescription());
-        signature.setText(o.getMedecin().toString());
+        if (i >= 0) {
+            Observation o = listeObservations.elementAt(i);
+            nouvelleObservation.setText("");
+            detailObservation.setText(o.getDescription());
+            signature.setText(o.getMedecin().toString());
         }
 
     }//GEN-LAST:event_listeDesObservationsValueChanged
@@ -1424,6 +1429,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void enregistrerOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerOperationActionPerformed
+        int in = listeDePatients.getSelectedIndex();
+        if (in>= 0){
+        
         if (detailOperationAAjouter.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(detailOperationAAjouter, "Ajouter du contenu");
@@ -1432,8 +1440,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             if (signatureNvleOperation.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(detailOperationAAjouter, "Signer");
             } else {
-
-                int in = listeDePatients.getSelectedIndex();
+                
+                
+                
+                
                 int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'opération : '" + detailOperationAAjouter.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
                 if (confirm == JOptionPane.YES_OPTION) {
@@ -1441,8 +1451,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     listeDesOperations.clearSelection();
                     detailOperationSelectionnee.setText("");
                     signatureOperationSelectionnee.setText("");
-                    
-                    
 
                     DAOOperation op = new DAOOperation();
                     int i = listeDePatients.getSelectedIndex();
@@ -1496,107 +1504,145 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 }
             }
         }
+        }
+        else{
+            JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
+        }
     }//GEN-LAST:event_enregistrerOperationActionPerformed
 
     private void listeDesOperationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesOperationsValueChanged
-      int i = listeDesOperations.getSelectedIndex();
-        if (i>=0){
-        Operation o = listeOperations.elementAt(i);
-        nouvelleObservation.setText("");
-        detailOperationSelectionnee.setText(o.getOperation());
-        signatureOperationSelectionnee.setText(o.getAuteur());
+        int i = listeDesOperations.getSelectedIndex();
+        if (i >= 0) {
+            Operation o = listeOperations.elementAt(i);
+            nouvelleObservation.setText("");
+            detailOperationSelectionnee.setText(o.getOperation());
+            signatureOperationSelectionnee.setText(o.getAuteur());
         }
     }//GEN-LAST:event_listeDesOperationsValueChanged
+
+    private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
+
+        if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listeDesPatients = new ArrayList();
+
+            for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+
+                listeDesPatients.add(modeleListeDPI.get(i).getNom());
+
+            }
+
+            ArrayList listeDesPatientsRecherchee = fonctions.recherche(listeDesPatients, jTextFieldRecherche.getText());
+
+            modeleListeDPIRecherche = new DefaultListModel<DPI>();
+            for (int i = 0; i < modeleListeDPI.getSize(); i++) {
+
+                for (int j = 0; j < listeDesPatientsRecherchee.size(); j++) {
+                    if (listeDesPatientsRecherchee.get(j).equals(modeleListeDPI.get(i).getNom()) && !modeleListeDPIRecherche.contains(modeleListeDPI.elementAt(i))) {
+                        modeleListeDPIRecherche.addElement(modeleListeDPI.elementAt(i));
+                    }
+
+                }
+            }
+
+            listeDePatients.setModel(modeleListeDPIRecherche);
+        } else {
+            listeDePatients.setModel(modeleListeDPI);
+        }
+
+    }//GEN-LAST:event_jTextFieldRechercheKeyReleased
+
 
     public void afficherDossierMedical() {
         /**
          * Méthode affichant le dossier médical du patient sélection
          */
-
         int i = listeDePatients.getSelectedIndex();
-        DPI patient = modeleListeDPI.getElementAt(i);
+        if (i >= 0) {
+            
+            DPI patient = modeleListeDPI.getElementAt(i);
 
-        DAOSejour daoSejour = new pichisBD.DAOSejour();
-        ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(patient).getListeSejours();
+            DAOSejour daoSejour = new pichisBD.DAOSejour();
+            ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(patient).getListeSejours();
 
-        servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
+            servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
 
-        //Affichage de la liste des prestations
-        listePrestations.clear();
-        DAOPrestations d = new DAOPrestations();
+            //Affichage de la liste des prestations
+            listePrestations.clear();
+            DAOPrestations d = new DAOPrestations();
 
-        ArrayList<Prestations> p = d.prestationsPatient(patient.getIpp());
-        Collections.sort(p);
-        for (Prestations pr : p) {
+            ArrayList<Prestations> p = d.prestationsPatient(patient.getIpp());
+            Collections.sort(p);
+            for (Prestations pr : p) {
 
-            listePrestations.addElement(pr);
+                listePrestations.addElement(pr);
 
-        }
-        listeDePrestations.setModel(listePrestations);
+            }
+            listeDePrestations.setModel(listePrestations);
 
         //Affichage de la fiche du patient
-        //Localisation
-        Localisation loc;
+            //Localisation
+            Localisation loc;
 
-        if (servicePatient != null) {
-            DAOLocalisation daoLoc = new DAOLocalisation();
-            loc = daoLoc.localisationParNumeroDeSejour(servicePatient.getNumeroSejour());
+            if (servicePatient != null) {
+                DAOLocalisation daoLoc = new DAOLocalisation();
+                loc = daoLoc.localisationParNumeroDeSejour(servicePatient.getNumeroSejour());
 
-            comboBoxService.setSelectedItem(loc.getService().getSpecialite());
-            champNumeroChambre.setText(loc.getNumeroChambre());
+                comboBoxService.setSelectedItem(loc.getService().getSpecialite());
+                champNumeroChambre.setText(loc.getNumeroChambre());
 
-            comboBoxPlacement.setSelectedItem(loc.getPlacement());
+                comboBoxPlacement.setSelectedItem(loc.getPlacement());
 
+            }
+
+            //Donnees personnelles
+            jTextField1.setText(patient.getNom());
+            jTextField2.setText(patient.getPrenom());
+            jTextField4.setText(patient.getSexe());
+            jTextField5.setText(patient.getIpp());
+            jTextField6.setText(patient.getDateNaissance().toString());
+            adresse.setText(patient.getAdresse());
+
+            //Informations administratives
+            jTextField20.setText(servicePatient.getNumeroSejour());
+            jTextField19.setText(servicePatient.getPHResponsable().toString());
+            jTextField18.setText(servicePatient.getDateEntree().toString());
+
+            //Affichage de la liste des observations :
+            listeObservations.clear();
+            DAOObservation o = new DAOObservation();
+            ArrayList<Observation> lob = o.observationsPatient(patient.getIpp());
+
+            for (Observation observ : lob) {
+
+                listeObservations.addElement(observ);
+
+            }
+            listeDesObservations.setModel(listeObservations);
+
+            //Affichage de la liste des prescriptions
+            listePrescriptions.clear();
+            DAOPrescription pres = new DAOPrescription();
+            ArrayList<Prescription> lpres = pres.prescriptionsPatient(patient.getIpp());
+
+            for (Prescription prescription : lpres) {
+
+                listePrescriptions.addElement(prescription);
+
+            }
+            listeDesPrescriptions.setModel(listePrescriptions);
+
+            //Afficher liste d'opérations
+            listeOperations.clear();
+            DAOOperation op = new DAOOperation();
+            ArrayList<Operation> lop = op.operationSejour(servicePatient.getNumeroSejour());
+
+            for (Operation ope : lop) {
+
+                listeOperations.addElement(ope);
+
+            }
+            listeDesOperations.setModel(listeOperations);
         }
-
-        //Donnees personnelles
-        jTextField1.setText(patient.getNom());
-        jTextField2.setText(patient.getPrenom());
-        jTextField4.setText(patient.getSexe());
-        jTextField5.setText(patient.getIpp());
-        jTextField6.setText(patient.getDateNaissance().toString());
-        adresse.setText(patient.getAdresse());
-
-        //Informations administratives
-        jTextField20.setText(servicePatient.getNumeroSejour());
-        jTextField19.setText(servicePatient.getPHResponsable().toString());
-        jTextField18.setText(servicePatient.getDateEntree().toString());
-
-        //Affichage de la liste des observations :
-        listeObservations.clear();
-        DAOObservation o = new DAOObservation();
-        ArrayList<Observation> lob = o.observationsPatient(patient.getIpp());
-
-        for (Observation observ : lob) {
-
-            listeObservations.addElement(observ);
-
-        }
-        listeDesObservations.setModel(listeObservations);
-
-        //Affichage de la liste des prescriptions
-        listePrescriptions.clear();
-        DAOPrescription pres = new DAOPrescription();
-        ArrayList<Prescription> lpres = pres.prescriptionsPatient(patient.getIpp());
-
-        for (Prescription prescription : lpres) {
-
-            listePrescriptions.addElement(prescription);
-
-        }
-        listeDesPrescriptions.setModel(listePrescriptions);
-
-        //Afficher liste d'opérations
-        listeOperations.clear();
-        DAOOperation op = new DAOOperation();
-        ArrayList<Operation> lop = op.operationSejour(servicePatient.getNumeroSejour());
-
-        for (Operation ope : lop) {
-
-            listeOperations.addElement(ope);
-
-        }
-        listeDesOperations.setModel(listeOperations);
     }
 
     /**
@@ -1719,10 +1765,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JTextPane jTextPaneAjoutResultat4;
     private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelPlacement;
