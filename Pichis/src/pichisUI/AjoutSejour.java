@@ -25,8 +25,10 @@ public class AjoutSejour extends javax.swing.JFrame {
     private DateSimple dateEntree;
     private DefaultComboBoxModel<Medecin> modelePh;
     InterfaceAdministratif interfaceAdmin;
-    /**
-     * Creates new form AjoutSejour
+    /** constructeur AjoutSejour
+     * 
+     * @param patientActuel
+     * @param interAdmin 
      */
     public AjoutSejour(DPI patientActuel, InterfaceAdministratif interAdmin) {       
         patient = patientActuel;
