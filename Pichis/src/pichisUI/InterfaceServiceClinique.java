@@ -1261,7 +1261,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         DAOResultat d = new DAOResultat();
         Resultat r = null;
         if (i >= 0) {
-            r = d.resultatPrestation(listePrestations.getElementAt(i).getNaturePrestation());
+            Prestations p1 = (Prestations) listeDePrestations.getSelectedValue();
+            r = p1.getResultat();
         }
         if (r == null) {
             resultatPrestation.setText("Aucun résultat pour le moment");
@@ -1430,82 +1431,78 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void enregistrerOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerOperationActionPerformed
         int in = listeDePatients.getSelectedIndex();
-        if (in>= 0){
-        
-        if (detailOperationAAjouter.getText().isEmpty()) {
+        if (in >= 0) {
 
-            JOptionPane.showMessageDialog(detailOperationAAjouter, "Ajouter du contenu");
+            if (detailOperationAAjouter.getText().isEmpty()) {
 
-        } else {
-            if (signatureNvleOperation.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(detailOperationAAjouter, "Signer");
+                JOptionPane.showMessageDialog(detailOperationAAjouter, "Ajouter du contenu");
+
             } else {
-                
-                
-                
-                
-                int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'opération : '" + detailOperationAAjouter.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (signatureNvleOperation.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(detailOperationAAjouter, "Signer");
+                } else {
 
-                if (confirm == JOptionPane.YES_OPTION) {
-                    //Réinitialisation de l'affichage 
-                    listeDesOperations.clearSelection();
-                    detailOperationSelectionnee.setText("");
-                    signatureOperationSelectionnee.setText("");
+                    int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'opération : '" + detailOperationAAjouter.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-                    DAOOperation op = new DAOOperation();
-                    int i = listeDePatients.getSelectedIndex();
-                    DPI patient = modeleListeDPI.elementAt(i);
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        //Réinitialisation de l'affichage 
+                        listeDesOperations.clearSelection();
+                        detailOperationSelectionnee.setText("");
+                        signatureOperationSelectionnee.setText("");
 
-                    //Détermination de l'id de la nouvelle observation :
-                    ConnectionBD c = new ConnectionBD();
-                    int idOperation = 1;
-                    try {
-                        Statement ins = c.connexion.createStatement();
-                        ResultSet resul;
-                        resul = ins.executeQuery("SELECT * FROM operations");
+                        DAOOperation op = new DAOOperation();
+                        int i = listeDePatients.getSelectedIndex();
+                        DPI patient = modeleListeDPI.elementAt(i);
 
-                        while (resul.next()) {
-                            idOperation++;
+                        //Détermination de l'id de la nouvelle observation :
+                        ConnectionBD c = new ConnectionBD();
+                        int idOperation = 1;
+                        try {
+                            Statement ins = c.connexion.createStatement();
+                            ResultSet resul;
+                            resul = ins.executeQuery("SELECT * FROM operations");
+
+                            while (resul.next()) {
+                                idOperation++;
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
-                    }
 
-                    //Définition de la date d'édition
-                    Calendar ca = Calendar.getInstance();
-                    String minute = "" + ca.getTime().getMinutes();
-                    String heure = "" + ca.getTime().getHours();
-                    int rangDuMois = ca.getTime().getMonth() + 1;
-                    String mois = "" + rangDuMois;
-                    String jour = "" + ca.getTime().getDate();
+                        //Définition de la date d'édition
+                        Calendar ca = Calendar.getInstance();
+                        String minute = "" + ca.getTime().getMinutes();
+                        String heure = "" + ca.getTime().getHours();
+                        int rangDuMois = ca.getTime().getMonth() + 1;
+                        String mois = "" + rangDuMois;
+                        String jour = "" + ca.getTime().getDate();
 
-                    int anne = 1900 + ca.getTime().getYear();
-                    String annee = "" + anne;
-                    if (ca.getTime().getDate() < 10) {
-                        jour = "0" + ca.getTime().getDate();
-                    }
-                    if (ca.getTime().getMinutes() < 10) {
-                        minute = "0" + ca.getTime().getMinutes();
-                    }
-                    if (ca.getTime().getHours() < 10) {
-                        heure = "0" + ca.getTime().getHours();
-                    }
-                    if (ca.getTime().getMonth() < 10) {
-                        mois = "0" + rangDuMois;
-                    }
+                        int anne = 1900 + ca.getTime().getYear();
+                        String annee = "" + anne;
+                        if (ca.getTime().getDate() < 10) {
+                            jour = "0" + ca.getTime().getDate();
+                        }
+                        if (ca.getTime().getMinutes() < 10) {
+                            minute = "0" + ca.getTime().getMinutes();
+                        }
+                        if (ca.getTime().getHours() < 10) {
+                            heure = "0" + ca.getTime().getHours();
+                        }
+                        if (ca.getTime().getMonth() < 10) {
+                            mois = "0" + rangDuMois;
+                        }
 
-                    DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+                        DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
 
-                    //Ajout de l'observation
-                    op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), date.toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
-                    detailOperationAAjouter.setText("");
-                    signatureNvleOperation.setText("");
-                    afficherDossierMedical();
+                        //Ajout de l'observation
+                        op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), date.toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
+                        detailOperationAAjouter.setText("");
+                        signatureNvleOperation.setText("");
+                        afficherDossierMedical();
+                    }
                 }
             }
-        }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_enregistrerOperationActionPerformed
@@ -1551,14 +1548,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
-
     public void afficherDossierMedical() {
         /**
          * Méthode affichant le dossier médical du patient sélection
          */
         int i = listeDePatients.getSelectedIndex();
         if (i >= 0) {
-            
+
             DPI patient = modeleListeDPI.getElementAt(i);
 
             DAOSejour daoSejour = new pichisBD.DAOSejour();
@@ -1579,7 +1575,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             }
             listeDePrestations.setModel(listePrestations);
 
-        //Affichage de la fiche du patient
+            //Affichage de la fiche du patient
             //Localisation
             Localisation loc;
 
