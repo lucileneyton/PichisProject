@@ -1,4 +1,3 @@
-
 package pichisBD;
 
 import java.sql.ResultSet;
@@ -18,20 +17,20 @@ import pichisNF.DPI;
  */
 public class DAODPI {
 
-    String ipp;
-    String nom;
-    String prenom;
-    String sexe;
-    DateSimple dateNaissance;
-    String adresse;
-    DMA dma;
-    DM dm;
-    ArrayList<LettreDeSortie> lettresDeSortie;
-    ArrayList<Operation> operations;
-    boolean estOuvert;
-    DPI dpi;
+    public String ipp;
+    public String nom;
+    public String prenom;
+    public String sexe;
+    public DateSimple dateNaissance;
+    public String adresse;
+    public DMA dma;
+    public DM dm;
+    public ArrayList<LettreDeSortie> lettresDeSortie;
+    public ArrayList<Operation> operations;
+    public boolean estOuvert;
+    public DPI dpi;
 
-    ConnectionBD c;
+    public ConnectionBD c;
 
     /**
      * Méthode retournant le DPI d'un patient
@@ -137,7 +136,7 @@ public class DAODPI {
     public ArrayList<DPI> consulterListeDPI() {
 
         ArrayList<DPI> listeDPI = new ArrayList();
-        String ipp="";
+        String ipp = "";
         String nom = "";
         String prenom = "";
         String sexe = "";
