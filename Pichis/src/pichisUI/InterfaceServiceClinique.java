@@ -82,15 +82,16 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         for (int i = 0; i < listeDeDPI.size(); i++) {
 
             ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i)).getListeSejours();
-//            if(listeDeSejours != null){
 
-//            System.out.println("" + listeDeSejours);
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
                 servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
-                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType())) {
+                //Vérification de la concordance entre service de travail du praticien et service d'admission du patient. 
+                //Le patient n'est enregistré dans la liste accessible au médecin qu si son DPI est ouvert.
+                
+                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType()) && daoDpi.consulterListeDPI().get(i).isEstOuvert()) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
-//                    .getPHResponsable().getSpecialite().getSpecialite().toString()
+//                  
                 }
             }
 
@@ -169,9 +170,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         signaturePrescription = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        contenuNvlePrescription = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        contenuNvlePrescription = new javax.swing.JTextArea();
         panelObservations = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -195,11 +196,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         signatureOperationSelectionnee = new javax.swing.JTextField();
         jPanel26 = new javax.swing.JPanel();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        detailOperationAAjouter = new javax.swing.JTextPane();
         enregistrerOperation = new javax.swing.JButton();
         signatureNvleOperation = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        detailOperationAAjouter = new javax.swing.JTextArea();
         panelPrestationsDemandees = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
@@ -624,7 +625,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         detailPrescriptionSelectionnee.setEditable(false);
         detailPrescriptionSelectionnee.setColumns(20);
         detailPrescriptionSelectionnee.setRows(5);
-        detailPrescriptionSelectionnee.setText("Effectuer une prise de sang.");
         detailPrescriptionSelectionnee.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane9.setViewportView(detailPrescriptionSelectionnee);
 
@@ -662,11 +662,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle prescription"));
         jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        contenuNvlePrescription.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane10.setViewportView(contenuNvlePrescription);
-
-        jPanel23.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 307, 159));
-
         jButton2.setText("Prescrire");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -674,6 +669,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             }
         });
         jPanel23.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 197, -1, -1));
+
+        contenuNvlePrescription.setColumns(20);
+        contenuNvlePrescription.setRows(5);
+        jScrollPane4.setViewportView(contenuNvlePrescription);
+
+        jPanel23.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 150));
 
         javax.swing.GroupLayout panelPrescriptionsLayout = new javax.swing.GroupLayout(panelPrescriptions);
         panelPrescriptions.setLayout(panelPrescriptionsLayout);
@@ -692,13 +693,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrescriptionsLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelPrescriptionsLayout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Prescriptions", panelPrescriptions);
@@ -827,6 +828,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         listeDesOperations.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeDesOperations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeDesOperations.setModel(listePrescriptions);
+        listeDesOperations.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeDesOperationsValueChanged(evt);
+            }
+        });
         jScrollPane11.setViewportView(listeDesOperations);
 
         jPanel24.add(jScrollPane11);
@@ -873,9 +879,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle opération"));
         jPanel26.setMaximumSize(new java.awt.Dimension(375, 197));
 
-        detailOperationAAjouter.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane13.setViewportView(detailOperationAAjouter);
-
         enregistrerOperation.setText("Enregistrer");
         enregistrerOperation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -885,6 +888,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jLabel7.setText("Auteur (infirmier)");
 
+        detailOperationAAjouter.setColumns(20);
+        detailOperationAAjouter.setLineWrap(true);
+        detailOperationAAjouter.setRows(5);
+        jScrollPane6.setViewportView(detailOperationAAjouter);
+
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
@@ -892,7 +900,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane13)
+                    .addComponent(jScrollPane6)
                     .addGroup(jPanel26Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -904,9 +912,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enregistrerOperation)
                     .addComponent(signatureNvleOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1158,11 +1165,13 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     private void listeDesPrescriptionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesPrescriptionsValueChanged
         int i = listeDesPrescriptions.getSelectedIndex();
+        if (i>=0){
         Prescription p = listePrescriptions.elementAt(i);
+        
         contenuNvlePrescription.setText("");
         detailPrescriptionSelectionnee.setText(p.getPrescriptions());
         signaturePrescription.setText(p.getMedecin().toString());
-
+        }
     }//GEN-LAST:event_listeDesPrescriptionsValueChanged
 
     private void enregistrerUnePrestationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerUnePrestationActionPerformed
@@ -1226,6 +1235,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 afficherDossierMedical();
                 naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
                 naturePrestation.setText("");
+                
             }
 
         }
@@ -1408,7 +1418,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 //Ajout de l'observation
                 dp.ajoutPrescription("" + idPrescription, patient.getIpp(), medecin.getId(), contenuNvlePrescription.getText(), date.toString());
                 contenuNvlePrescription.setText("");
-
+                afficherDossierMedical();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1431,6 +1441,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     listeDesOperations.clearSelection();
                     detailOperationSelectionnee.setText("");
                     signatureOperationSelectionnee.setText("");
+                    
+                    
 
                     DAOOperation op = new DAOOperation();
                     int i = listeDePatients.getSelectedIndex();
@@ -1479,11 +1491,22 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     //Ajout de l'observation
                     op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), date.toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
                     detailOperationAAjouter.setText("");
-
+                    signatureNvleOperation.setText("");
+                    afficherDossierMedical();
                 }
             }
         }
     }//GEN-LAST:event_enregistrerOperationActionPerformed
+
+    private void listeDesOperationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesOperationsValueChanged
+      int i = listeDesOperations.getSelectedIndex();
+        if (i>=0){
+        Operation o = listeOperations.elementAt(i);
+        nouvelleObservation.setText("");
+        detailOperationSelectionnee.setText(o.getOperation());
+        signatureOperationSelectionnee.setText(o.getAuteur());
+        }
+    }//GEN-LAST:event_listeDesOperationsValueChanged
 
     public void afficherDossierMedical() {
         /**
@@ -1619,9 +1642,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JComboBox comboBoxPlacement;
     private javax.swing.JComboBox comboBoxService;
-    private javax.swing.JTextPane contenuNvlePrescription;
+    private javax.swing.JTextArea contenuNvlePrescription;
     private javax.swing.JTextArea detailObservation;
-    private javax.swing.JTextPane detailOperationAAjouter;
+    private javax.swing.JTextArea detailOperationAAjouter;
     private javax.swing.JTextArea detailOperationSelectionnee;
     private javax.swing.JTextArea detailPrescriptionSelectionnee;
     private javax.swing.JButton enregistrerOperation;
@@ -1674,17 +1697,17 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;

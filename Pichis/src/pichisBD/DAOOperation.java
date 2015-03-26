@@ -32,7 +32,7 @@ public class DAOOperation {
 
         try {
             ins = c.connexion.createStatement();
-            ins.executeUpdate("INSERT INTO operations(id, sejour, date,operation, medecin)" + "VALUES ('" + id + "','" + numSejour + "','" + date + "','" + operation + "','" + auteur + "')");
+            ins.executeUpdate("INSERT INTO operations(id, numsejour, date,operation, medecin)" + "VALUES ('" + id + "','" + numSejour + "','" + date + "','" + operation + "','" + auteur + "')");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la création de l'opération" + ex);
@@ -54,7 +54,7 @@ public class DAOOperation {
         ArrayList<Operation> listeOperations = new ArrayList<Operation>();
 //        String medecin;
         String auteur;
-        String date;
+        DateSimple date;
         String operation;
         
         try {
@@ -74,10 +74,17 @@ public class DAOOperation {
                 
                 operation = resul.getString("operation");
                 
-                date = resul.getString("date");
-                DateSimple d = new DateSimple(date.substring(0, 1), date.substring(2, 3), date.substring(4, 7));
+                String d = resul.getString("date");
                 
-                Operation o = new Operation(numSejour,d,operation,auteur);
+                
+                 if (d != null) {
+                    if (d.length() <= 11) {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
+                    } else {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                    }
+                }
+                Operation o = new Operation(numSejour,date,operation,auteur);
 
                 listeOperations.add(o);
                 

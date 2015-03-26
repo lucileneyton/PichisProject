@@ -52,7 +52,7 @@ public class DAOPrescription {
         
         c = new ConnectionBD();
         ArrayList<Prescription> liste = new ArrayList<Prescription>();
-        String date;
+        DateSimple date = null;
         String m;
         String texte;
         String p;
@@ -78,10 +78,19 @@ public class DAOPrescription {
                 DAODPI daop = new DAODPI();
                 DPI dpi = daop.dpiParIPP(p);
                 
-                date = resul.getString("date");
-                DateSimple d = new DateSimple(date.substring(0, 1), date.substring(2, 3), date.substring(4, 7));
+                String d = resul.getString("date");
+//                DateSimple d = new DateSimple(date.substring(0, 1), date.substring(2, 3), date.substring(4, 7));
                 
-                Prescription pres = new Prescription(d,texte,med);
+                
+                if (d != null) {
+                    if (d.length() <= 11) {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
+                    } else {
+                        date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
+                    }
+                }
+                
+                Prescription pres = new Prescription(date,texte,med);
 
                 liste.add(pres);
                 

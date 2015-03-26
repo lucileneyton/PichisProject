@@ -46,10 +46,11 @@ public class Prescription {
     }
     
     public String toString(){
-        return "----- Prescription -----"
-                + "\ndate : " + this.date.toString()
-                +"\nprescription : " + this.prescriptions
-                +"\nmedecin : " +this.medecin.toString();
+//        return "----- Prescription -----"
+//                + "\ndate : " + this.date.toString()
+//                +"\nprescription : " + this.prescriptions
+//                +"\nmedecin : " +this.medecin.toString();
+        return "Editée le " + this.date.toString();
     }
     
 }

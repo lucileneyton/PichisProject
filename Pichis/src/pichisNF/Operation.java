@@ -66,7 +66,7 @@ public class Operation {
     }
     
     public String toString(){
-        return "date : " + this.date
-                +"\noperation : " + this.operation;
+        return "Réalisée le : " + this.date.toString()
+                ;
     }
 }
