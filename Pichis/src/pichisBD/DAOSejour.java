@@ -96,6 +96,42 @@ public class DAOSejour {
         return dma;
      }
      
+     public boolean setLettre(String idSejour){
+        c=new ConnectionBD();
+        boolean b;
+      
+        try {
+
+            if(!lettreDeSortie(idSejour)){
+                int resul;
+
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeUpdate("UPDATE sejour SET lettre='true' WHERE id=" + "'"  + idSejour + "' ;");
+            b=true;
+            }
+            
+            else{
+                b=false;
+            }
+              
+            
+
+        } catch (SQLException e) {
+            System.out.println("erreur DAOSejour (setLettre): " + e);
+        }
+        finally{
+            if(c!=null){
+                try{
+                   c.connexion.close();
+                }
+                catch(SQLException e){
+                    System.out.println(e);
+                }
+            }
+                   
+        }
+    }
+     
     public void ajout(Sejour sejour, DPI dpi){
         Statement ins;
         Statement verif;
