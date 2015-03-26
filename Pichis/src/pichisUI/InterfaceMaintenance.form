@@ -383,7 +383,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter un membre du personnel"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[189, 50]"/>
+                  <Dimension value="[189, 25]"/>
                 </Property>
               </Properties>
               <Events>

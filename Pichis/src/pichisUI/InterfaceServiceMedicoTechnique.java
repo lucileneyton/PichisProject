@@ -46,7 +46,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private Medecin m;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
-    private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
+    private int width = (int) (maximumWindowBounds.width - 0.005 * maximumWindowBounds.width);
     private int height = (int) (maximumWindowBounds.height - 0.05 * maximumWindowBounds.height);
     
 

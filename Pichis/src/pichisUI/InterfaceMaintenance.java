@@ -278,7 +278,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel7.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Ajouter un membre du personnel");
-        jButton1.setPreferredSize(new java.awt.Dimension(189, 50));
+        jButton1.setPreferredSize(new java.awt.Dimension(189, 25));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
