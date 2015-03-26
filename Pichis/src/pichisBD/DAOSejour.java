@@ -53,8 +53,7 @@ public class DAOSejour {
 
                 num = resul.getString("id");
                 String de = resul.getString("dateentree");
-                String ds = resul.getString("datesortie"); //La base de données ne contient pas la colonne
-                //"datesortie"...
+                String ds = resul.getString("datesortie");
                 dateE = new DateSimple(de.substring(0, 2), de.substring(3, 5), de.substring(6, 10));
                 
                              
@@ -62,13 +61,13 @@ public class DAOSejour {
                 loc = daol.localisationParNumeroDeSejour(num);
                 
                 Sejour s;
-                //if(ds.equalsIgnoreCase("null") != true){
-               //     dateS = new DateSimple(ds.substring(0, 2),ds.substring(2, 3),ds.substring(4, 7));
-                //    s = new Sejour(dma,dateE,dateS,resp,loc);
-               // }
-               // else{
-                    s = new Sejour(dma, num, dateE,resp,loc);
-                //}
+                if(ds.isEmpty() || ds.equalsIgnoreCase("null")){
+                    s = new Sejour(dma,num,dateE,resp,loc);
+                }
+                else{
+                    dateS = new DateSimple(ds.substring(0, 2),ds.substring(3, 5),ds.substring(6, 10));
+                    s = new Sejour(dma,num,dateE,dateS,resp,loc);
+                }
                 
                 
                 dma.ajouterSejour(s);
@@ -248,7 +247,7 @@ public class DAOSejour {
         c=new ConnectionBD();
         
         int jourTemp = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        int moisTemp = Calendar.getInstance().get((Calendar.getInstance().get(Calendar.MONTH) + 1));
+        int moisTemp = Calendar.getInstance().get((Calendar.getInstance().get(Calendar.MONTH))) + 1;
         int anneeTemp = Calendar.getInstance().get(Calendar.YEAR);
         
         String jour = Integer.toString(jourTemp);

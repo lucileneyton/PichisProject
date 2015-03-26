@@ -606,6 +606,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         champJourSortie.setEditable(false);
         champJourSortie.setBackground(new java.awt.Color(204, 204, 204));
+        champJourSortie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                champJourSortieActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("/");
 
@@ -845,10 +850,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         AjoutPatient test = new AjoutPatient(this, true, this);
         test.setVisible(true);
-//            AjoutPatient ajout = new AjoutPatient(this);
-//            ajout.setVisible(true);
-
-
+        
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
@@ -1009,7 +1011,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 daoSejour.ajoutDateSortie(sejour.getNumeroSejour());
             }    
             else{
-                JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermture DPI", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         else{
@@ -1023,6 +1025,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
         
     }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
+
+    private void champJourSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourSortieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_champJourSortieActionPerformed
 
     public void miseAJour() {
         /**
@@ -1077,6 +1083,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             champNumeroSejour.setText(sejourActuel.getNumeroSejour());
            
             champPhResponsable.setText(sejourActuel.getPHResponsable().toString());
+            
+            if(sejourActuel.getDateSortie() != null){             
+                champJourSortie.setText(sejourActuel.getDateSortie().getJour());
+                champMoisSortie.setText(sejourActuel.getDateSortie().getMois());
+                champAnneeSortie.setText(sejourActuel.getDateSortie().getAnnee());
+            }
             
             this.affichageLocalisation();
         }
