@@ -82,16 +82,14 @@
                                       <Component id="jLabel33" min="-2" pref="271" max="-2" attributes="0"/>
                                       <Component id="jLabel32" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="586" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel34" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                           <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
@@ -113,7 +111,6 @@
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel42" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -183,6 +180,9 @@
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel38MouseClicked"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jLabel38.addMouseListener(new MouseListener() {&#xa;&#xa;&#xa;            @Override&#xa;            public void mouseClicked(MouseEvent e) {&#xa;&#xa;              &#xa;            }&#xa;&#xa;            @Override&#xa;            public void mousePressed(MouseEvent e) {&#xa;           &#xa;&#xa;&#xa;            }&#xa;&#xa;@Override&#xa;            public void mouseReleased(MouseEvent e) {&#xa;         &#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseEntered(MouseEvent e) {&#xa;           setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));&#xa;&#xa;            }&#xa;&#xa;            @Override&#xa;            public void mouseExited(MouseEvent e) {&#xa;&#xa;setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));&#xa;}  &#xa;}&#xa;        );"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel41">
                   <Properties>
@@ -190,16 +190,6 @@
                       <Image iconType="3" name="/data/Images/iconmonstr-wrench-20-icon-64.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Param&#xe8;tres"/>
-                    <Property name="horizontalTextPosition" type="int" value="0"/>
-                    <Property name="verticalTextPosition" type="int" value="3"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel42">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/data/Images/iconmonstr-refresh-3-icon-48.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Actualisation"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
