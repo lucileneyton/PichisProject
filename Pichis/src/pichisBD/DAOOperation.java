@@ -54,7 +54,7 @@ public class DAOOperation {
         ArrayList<Operation> listeOperations = new ArrayList<Operation>();
 //        String medecin;
         String auteur;
-        DateSimple date;
+        DateSimple date = null;
         String operation;
         
         try {
