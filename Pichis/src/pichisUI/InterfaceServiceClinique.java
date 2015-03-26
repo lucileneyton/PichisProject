@@ -1565,7 +1565,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             //Lettre de sortie par défaut
             String lettreSortie = "Je soussigné docteur " + medecin.getNom() + ", médecin responsable du séjour du patient : " + patient.getNom()+ '\n'+ " édite en ce jour sa lettre de sortie" 
                     + "\n" + "Date : " + pichisNF.fonctions.renvoieDateActuelle();
-            lettreDeSortie.setText(lettreSortie);
+            lettreDeSortie.setText(null);
         }
     }
 
