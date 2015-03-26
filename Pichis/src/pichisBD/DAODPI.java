@@ -276,5 +276,46 @@ public class DAODPI {
 
         return b;
     }
+    
+    public boolean estDejaPresent(String nomAttr, String prenomAttr, DateSimple dateAttr){
+        boolean b = false;
+        
+        c = new ConnectionBD();
+
+        try {
+
+            ResultSet resul;
+            Statement ins = c.connexion.createStatement();
+            resul = ins.executeQuery("SELECT * FROM dpi");
+            while (resul.next()) {
+                
+                nom = resul.getString("nom");
+                prenom = resul.getString("prenom");
+                
+                if(nom.equalsIgnoreCase(nomAttr)){
+                    if(prenom.equalsIgnoreCase(prenomAttr)){
+                        String d = resul.getString("dateNaissance");
+                        dateNaissance = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
+                        if(d.equalsIgnoreCase(dateAttr.toString())){
+                            b = true;
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur DAODPI (consulterListeDPI): " + e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.connexion.close();
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            }
+
+        }
+        
+        return b;
+    }
 
 }

@@ -361,8 +361,14 @@ public class AjoutPatient extends javax.swing.JDialog {
 
                                 if (confirm == JOptionPane.YES_OPTION) {
                                     pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
-                                
-                                    daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
+                                    
+                                    if(daoDpi.estDejaPresent(champNom.getText(), champPrenom.getText(), date)){
+                                        JOptionPane.showMessageDialog(null, "Patient deja present", "Patient deja present", JOptionPane.INFORMATION_MESSAGE);
+                                    }
+                                    else{
+                                        daoDpi.ajout(champIPP.getText(), champNom.getText(), champPrenom.getText(), sexe, date, champAdresse.getText());
+                                    }
+                                    
                                     this.dispose();   
                                     interfaceAdmin.affichageListeDePatients();                                     
                                 
