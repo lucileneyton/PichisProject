@@ -1097,7 +1097,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     public void effaceDonneesSejour(){
           champJourEntree.setText("");
           champMoisEntree.setText("");
-          champAnneeEntree.setText("");  
+          champAnneeEntree.setText(""); 
+          champJourSortie.setText("");
+          champMoisSortie.setText("");
+          champAnneeSortie.setText("");
           champNumeroSejour.setText("");
           champPhResponsable.setText("");
           
