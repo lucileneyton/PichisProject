@@ -22,7 +22,8 @@ import pichisNF.TypeServices;
 public class AjoutPersonnel extends javax.swing.JFrame {
 
     private InterfaceMaintenance interfaceMaintenance;
-
+    private Maintenance m;
+    
     public AjoutPersonnel(InterfaceMaintenance interfaceMaintenance) {
         initComponents();
 //        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
@@ -301,7 +302,8 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             jop.hide();
                             this.dispose();
                             interfaceMaintenance.dispose();
-                            interfaceMaintenance = new InterfaceMaintenance();
+                            
+                            interfaceMaintenance = new InterfaceMaintenance(m);
                             interfaceMaintenance.setVisible(true);
                         }
 
