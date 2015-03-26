@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisUI;
 
 import java.awt.CardLayout;
@@ -22,73 +17,56 @@ import javax.swing.Timer;
 import pichisBD.DAOObservation;
 import pichisBD.DAOPrestations;
 import pichisBD.DAOResultat;
-import pichisNF.DPI;
 import pichisNF.Medecin;
 import pichisNF.Observation;
 import pichisNF.Prestations;
 import pichisNF.fonctions;
 
-/**
- *
- * @author Johann
- */
 public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfaceServiceMedicoTechnique
-     */
-    
-    Timer chrono;
+    private Timer chrono;
     private DefaultListModel<pichisNF.Prestations> modeleListePrestations;
     private DefaultListModel<pichisNF.Prestations> modeleListePrestationsPourRecherche;
-    
-                
+
     private Medecin m;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
-    
 
+    /**
+     * Constructeur de l'interface ServiceMedicoTechnique
+     *
+     * @param m Personnel du service médico-technique qui s'est identifié à la
+     * connexion
+     */
     public InterfaceServiceMedicoTechnique(Medecin m) {
         this.m = m;
 
-        
         initComponents();
         ActionListener taskPerformer = null;
 
-        
-        
-        
-        
         taskPerformer = new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent e) {
                 jFormattedTextFieldDateRealisation.setText(pichisNF.fonctions.renvoieDateActuelle().toString());
-               
 
             }
         };
-        
+
         chrono = new Timer(1000, taskPerformer);
         chrono.start();
         DAOPrestations daoPrestations = new pichisBD.DAOPrestations();
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Service Médico-Technique");
-        //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        //setSize(1365, 765);
-        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        
-//        this.setDefaultLookAndFeelDecorated(true);
-//        this.setExtendedState(this.MAXIMIZED_BOTH);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         this.pack();
-        
+
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
 
@@ -675,6 +653,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
                     int reply = JOptionPane.showOptionDialog(null, "Voulez-vous confirmer l'ajout de ces résultats au dossier médical ? ", "Confirmation", JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
 
                     if (reply == 0) {
+                        // Ajout d'un résultat à la prestation demandée
                         fenetre.showMessageDialog(null, "Les résultats ont été ajoutés avec succès ! ", "Information", JOptionPane.INFORMATION_MESSAGE);
                         Prestations p1 = (Prestations) listePrestations.getSelectedValue();
                         DAOPrestations daop = new DAOPrestations();
@@ -698,7 +677,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldIPP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIPP2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldIPP2ActionPerformed
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
@@ -741,7 +720,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextFieldDateRealisationActionPerformed
 
     private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
-if (!jTextFieldRecherche.getText().isEmpty()) {
+        if (!jTextFieldRecherche.getText().isEmpty()) {
             ArrayList listeDesPrestations = new ArrayList();
 
             for (int i = 0; i < modeleListePrestations.getSize(); i++) {
@@ -767,16 +746,13 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
         } else {
             listePrestations.setModel(modeleListePrestations);
         }
-     
-
-// TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
+    /**
+     * Méthode actualisant l'affichant des données d'un patient sur l'interface
+     *
+     */
     private void affichageDonneesPatient() {
-        /**
-         * Méthode actualisant l'affichant des données d'un patient sur
-         * l'interface
-         */
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
 
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
@@ -790,11 +766,13 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
         }
     }
 
+    /**
+     * Méthode actualisant l'affichant des données dans l'onglet "Résultats de
+     * la prestation demandée"
+     *
+     */
     private void affichageRésultat() {
-        /**
-         * Méthode actualisant l'affichant des données dans l'onglet "Résultats
-         * de la prestation demandée"
-         */
+
         if (listePrestations.getModel().getSize() != 0 && listePrestations.getSelectedIndex() >= 0) {
             Prestations p1 = (Prestations) listePrestations.getSelectedValue();
 
@@ -816,7 +794,9 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
     }
 
     /**
-     * Remplissage de la liste des observations pour un patient
+     * Méthode permettant le remplissage de la liste des observations pour un
+     * patient
+     *
      */
     public void affichageObservations() {
 
@@ -863,7 +843,6 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new InterfaceServiceMedicoTechnique().setVisible(true);
             }
         });
     }
