@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import pichisBD.*;
 import pichisNF.*;
+import static pichisNF.TypeServices.CLINIQUE;
 
 /**
  *
@@ -399,8 +400,13 @@ public class Identification extends javax.swing.JFrame {
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     DAOMedecin d = new DAOMedecin();
-
-                    ouvrirInterfaceMedecin(d.medecinParID(identifiant.getText()));
+                    Medecin  m =d.medecinParID(identifiant.getText());
+                    if (m.getSpecialite().getType() ==CLINIQUE){
+                    ouvrirInterfaceMedecin(m);
+                    }
+                    else{
+                        ouvrirInterfaceMedicoTechnique(m);
+                    }
 
                 } else {
                     messageErreur.setVisible(true);
