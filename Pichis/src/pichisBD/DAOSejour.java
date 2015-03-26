@@ -98,7 +98,7 @@ public class DAOSejour {
      
      public boolean setLettre(String idSejour){
         c=new ConnectionBD();
-        boolean b;
+        boolean b = false;
       
         try {
 
@@ -130,6 +130,7 @@ public class DAOSejour {
             }
                    
         }
+        return b;
     }
      
     public void ajout(Sejour sejour, DPI dpi){
