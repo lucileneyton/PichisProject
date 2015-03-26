@@ -236,7 +236,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Practiciens Hospitaliers"));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        listeMedecin.setBackground(new java.awt.Color(204, 204, 204));
         listeMedecin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMedecin.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeMedecin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -255,7 +254,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel Administratif"));
         jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
 
-        listeAdministratif.setBackground(new java.awt.Color(204, 204, 204));
         listeAdministratif.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeAdministratif.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeAdministratif.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -274,7 +272,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Personnel du service de Maintenance"));
         jPanel19.setLayout(new javax.swing.BoxLayout(jPanel19, javax.swing.BoxLayout.LINE_AXIS));
 
-        listeMaintenance.setBackground(new java.awt.Color(204, 204, 204));
         listeMaintenance.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMaintenance.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeMaintenance.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

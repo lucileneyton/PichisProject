@@ -293,7 +293,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         scrollPaneListePatient.setMinimumSize(new java.awt.Dimension(258, 23));
 
-        listeDePatients.setBackground(new java.awt.Color(204, 204, 204));
         listeDePatients.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeDePatients.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listeDePatients.setModel(new javax.swing.AbstractListModel() {
@@ -680,9 +679,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                                         .addComponent(labelDateEntree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labelDateSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(panelSejourLayout.createSequentialGroup()
-                                    .addComponent(labelNumeroSejour)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(labelNumeroSejour))
                             .addComponent(labelPhResponsable))
                         .addGap(207, 207, 207)
                         .addGroup(panelSejourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)

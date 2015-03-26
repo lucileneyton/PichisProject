@@ -47,7 +47,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
-    private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    private int height = (int) (maximumWindowBounds.height - 0.05 * maximumWindowBounds.height);
     
 
     public InterfaceServiceMedicoTechnique(Medecin m) {
@@ -122,6 +122,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jTextFieldRecherche = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listePrestations = new javax.swing.JList();
         jPanel8 = new javax.swing.JPanel();
@@ -170,7 +171,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         InterfaceServiceMedicoTechnique.setBackground(new java.awt.Color(229, 229, 229));
         InterfaceServiceMedicoTechnique.setMaximumSize(new java.awt.Dimension(1600, 500));
-        InterfaceServiceMedicoTechnique.setPreferredSize(new java.awt.Dimension(maximumWindowBounds.width, maximumWindowBounds.height));
+        InterfaceServiceMedicoTechnique.setPreferredSize(new java.awt.Dimension(width,height));
         InterfaceServiceMedicoTechnique.setLayout(new java.awt.BorderLayout());
 
         jPanel12.setLayout(new java.awt.BorderLayout());
@@ -278,8 +279,11 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        listePrestations.setBackground(new java.awt.Color(204, 204, 204));
-        listePrestations.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des prestations"));
+        jPanel2.setPreferredSize(new java.awt.Dimension(475, 200));
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        listePrestations.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         listePrestations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
         listePrestations.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -288,7 +292,9 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listePrestations);
 
-        jPanel7.add(jScrollPane1, java.awt.BorderLayout.WEST);
+        jPanel2.add(jScrollPane1, "card2");
+
+        jPanel7.add(jPanel2, java.awt.BorderLayout.WEST);
 
         jPanel8.setLayout(new java.awt.CardLayout());
 
@@ -473,7 +479,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -566,7 +572,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -898,6 +904,7 @@ if (!jTextFieldRecherche.getText().isEmpty()) {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
