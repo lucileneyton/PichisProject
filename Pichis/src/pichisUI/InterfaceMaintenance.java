@@ -301,7 +301,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AjoutPersonnel ajout = new AjoutPersonnel(this);
+        AjoutPersonnel ajout = new AjoutPersonnel(this,m);
         ajout.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -313,7 +313,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private void listeMedecinValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeMedecinValueChanged
         if (listeMedecin.getSelectedValue() != null) {
             Medecin medecin = (Medecin) listeMedecin.getSelectedValue();
-            JOptionPane.showMessageDialog(null, "Identifiant : " + medecin.getId() + "    Mot de passe : " + medecin.getMotDePasse(), "Informations sur " + medecin.getPrenom() + " " + medecin.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Identifiant : " + medecin.getId() + "    Mot de passe : " + medecin.getMotDePasse() +"\n Service : " + medecin.getSpecialite().getSpecialite(), "Informations sur " + medecin.getPrenom() + " " + medecin.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
             listeMedecin.clearSelection();
         }
     }//GEN-LAST:event_listeMedecinValueChanged
