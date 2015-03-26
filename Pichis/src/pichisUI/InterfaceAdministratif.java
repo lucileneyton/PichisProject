@@ -914,6 +914,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
             if(listeSejours.getSelectedValue() != null) {
+                this.effaceDonneesSejour();
                 this.affichageDonneesSejour();
             }
     }//GEN-LAST:event_listeSejoursValueChanged
@@ -1023,7 +1024,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         CardLayout c = (CardLayout) (DMA.getLayout());
         c.show(DMA, "card2");
         daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
-        
+        if(listeSejours.getSelectedValue() != null) {
+                this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+                this.effaceDonneesSejour();
+                this.affichageDonneesSejour();
+            }
     }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
 
     private void champJourSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourSortieActionPerformed
@@ -1064,8 +1069,6 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
             textFieldDateNaissance.setText(modele.get(indice).getDateNaissance().toString());
             textFieldAdresse.setText(modele.get(indice).getAdresse());
 
-            //CardLayout c = (CardLayout) (DMA.getLayout());
-            //c.show(DMA, "card2");
         }
     }
     
