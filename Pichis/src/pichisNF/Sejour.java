@@ -41,6 +41,15 @@ public class Sejour {
         this.localisation = localisation;
     }
     
+    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
+        
+        this.numeroSejour = numeroSejour;
+        this.dateEntree = dateEntree;
+        this.dateSortie = dateSortie;
+        this.PHResponsable = PHResponsable;
+        this.localisation = localisation;
+    }
+    
     public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
         //int compteurSejour = 10000 + dma.getListeSejours().size();
         //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;

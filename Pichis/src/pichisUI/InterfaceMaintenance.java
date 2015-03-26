@@ -10,7 +10,10 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import pichisNF.Administratif;
 import pichisNF.Maintenance;
+import pichisNF.Medecin;
 
 /**
  *
@@ -18,27 +21,27 @@ import pichisNF.Maintenance;
  */
 public class InterfaceMaintenance extends javax.swing.JFrame {
 
-    DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
-    DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
-    DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
-    Maintenance m;
+    private DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
+    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
+    private DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
+    private Maintenance m;
 
-    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
-    int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
-    int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
+    private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
+    private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     /**
      * Creates new form InterfaceMaintenance
      */
     public InterfaceMaintenance(Maintenance m) {
-        initComponents();
 
-        this.m=m;
+        this.m = m;
+        initComponents();
         pichisBD.DAOAdministratif daoAdministratif = new pichisBD.DAOAdministratif();
         pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
         pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
-        
+
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Maintenance");
         //Définit sa taille : 400 pixels de large et 100 pixels de haut
@@ -68,8 +71,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
             modeleListeMaintenance.addElement(daoMaintenance.consulterListeMaintenance().get(i));
         }
         listeMaintenance.setModel(modeleListeMaintenance);
-        
-         //Remplissage de la liste des practiciens hospitaliers
+
+        //Remplissage de la liste des practiciens hospitaliers
         modeleListeMedecin = new DefaultListModel<pichisNF.Medecin>();
         for (int i = 0; i < daoMedecin.consulterListeMedecin().size(); i++) {
             modeleListeMedecin.addElement(daoMedecin.consulterListeMedecin().get(i));
@@ -127,10 +130,10 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_43356_cc1.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
-        jLabel9.setText("Pat");
+        jLabel9.setText(m.getPrenom());
 
         jLabel10.setFont(new java.awt.Font("Garamond", 0, 36)); // NOI18N
-        jLabel10.setText("Hibulaire ");
+        jLabel10.setText(m.getNom());
 
         jLabel11.setFont(new java.awt.Font("Trajan Pro", 0, 37)); // NOI18N
         jLabel11.setText("Personnel de maintenance");
@@ -229,6 +232,12 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeMedecin.setBackground(new java.awt.Color(204, 204, 204));
         listeMedecin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMedecin.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeMedecin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listeMedecin.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeMedecinValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listeMedecin);
 
         jPanel9.add(jScrollPane1);
@@ -242,6 +251,12 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeAdministratif.setBackground(new java.awt.Color(204, 204, 204));
         listeAdministratif.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeAdministratif.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeAdministratif.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listeAdministratif.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeAdministratifValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(listeAdministratif);
 
         jPanel18.add(jScrollPane3);
@@ -255,6 +270,12 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         listeMaintenance.setBackground(new java.awt.Color(204, 204, 204));
         listeMaintenance.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         listeMaintenance.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeMaintenance.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listeMaintenance.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeMaintenanceValueChanged(evt);
+            }
+        });
         jScrollPane4.setViewportView(listeMaintenance);
 
         jPanel19.add(jScrollPane4);
@@ -264,6 +285,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel7.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Ajouter un membre du personnel");
+        jButton1.setPreferredSize(new java.awt.Dimension(189, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -279,7 +301,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AjoutPersonnel ajout = new AjoutPersonnel(this);
+        AjoutPersonnel ajout = new AjoutPersonnel(this,m);
         ajout.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -287,6 +309,30 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         this.dispose();
         new Identification();
     }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void listeMedecinValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeMedecinValueChanged
+        if (listeMedecin.getSelectedValue() != null) {
+            Medecin medecin = (Medecin) listeMedecin.getSelectedValue();
+            JOptionPane.showMessageDialog(null, "Identifiant : " + medecin.getId() + "    Mot de passe : " + medecin.getMotDePasse() +"\n Service : " + medecin.getSpecialite().getSpecialite(), "Informations sur " + medecin.getPrenom() + " " + medecin.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
+            listeMedecin.clearSelection();
+        }
+    }//GEN-LAST:event_listeMedecinValueChanged
+
+    private void listeAdministratifValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeAdministratifValueChanged
+        if (listeAdministratif.getSelectedValue() != null) {
+            Administratif administratif = (Administratif) listeAdministratif.getSelectedValue();
+            JOptionPane.showMessageDialog(null, "Identifiant : " + administratif.getId() + "    Mot de passe : " + administratif.getMotDePasse(), "Informations sur " + administratif.getPrenom() + " " + administratif.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
+            listeAdministratif.clearSelection();
+        }
+    }//GEN-LAST:event_listeAdministratifValueChanged
+
+    private void listeMaintenanceValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeMaintenanceValueChanged
+        if (listeMaintenance.getSelectedValue() != null) {
+            Maintenance maintenance = (Maintenance) listeMaintenance.getSelectedValue();
+            JOptionPane.showMessageDialog(null, "Identifiant : " + maintenance.getId() + "    Mot de passe : " + maintenance.getMotDePasse(), "Informations sur " + maintenance.getPrenom() + " " + maintenance.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
+            listeMaintenance.clearSelection();
+        }
+    }//GEN-LAST:event_listeMaintenanceValueChanged
 
     /**
      * @param args the command line arguments

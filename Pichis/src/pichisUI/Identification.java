@@ -421,6 +421,7 @@ public class Identification extends javax.swing.JFrame {
                     this.dispose();
                     
                     DAOMaintenance m = new DAOMaintenance();
+                    
                     ouvrirInterfaceMaintenance(m.MaintenanceParID(identifiant.getText()));
                     
                 }
