@@ -16,10 +16,7 @@ import javax.swing.JOptionPane;
 import pichisBD.*;
 import pichisNF.*;
 
-/**
- *
- * @author Johann
- */
+
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private Administratif administratif;
@@ -34,15 +31,17 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private DAOServices daoService;
     private DAOPrestations daoPrestations;
     private Administratif a;
-    /**
-     * Creates new form InterfaceAdministratif
-     */
+   
 
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
+    /** constructeur de la classe InterfaceAdministratif
+     * 
+     * @param a 
+     */
     public InterfaceAdministratif(Administratif a) {
         this.a = a;
         initComponents();
@@ -1073,11 +1072,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourSortieActionPerformed
 
+    /** Méthode assurant la mise à jour de la liste des patients de l'etablissement
+     * 
+     */
     public void miseAJour() {
-        /**
-         * Méthode assurant la mise à jour de la liste des patients de
-         * l'établissement
-         */
         daoDpi = new pichisBD.DAODPI();
 
         modeleListeDPI.clear();
@@ -1089,11 +1087,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients.setModel(modeleListeDPI);
     }
     
+    /** Methode actualisant l'affichage des donnees concernant le patient
+     * 
+     */
     public void affichageDonneesPatient() {
-        /**
-         * Méthode actualisant l'affichant des données d'un patient sur
-         * l'interface
-         */
         if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
 
             DefaultListModel<pichisNF.DPI> modele = (DefaultListModel<pichisNF.DPI>) listeDePatients.getModel();
@@ -1110,6 +1107,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
     }
     
+    /** methode actualisant l'affichage du sejour
+     * 
+     */
     public void affichageDonneesSejour(){      
         if (listeSejours.getModel().getSize() != 0 && listeSejours.getSelectedIndex() >= 0) {
             DefaultListModel<Sejour> modele = (DefaultListModel<Sejour>) listeSejours.getModel();
@@ -1135,6 +1135,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
     }
     
+    /** efface les champs concernant les donnees du sejour
+     * 
+     */
     public void effaceDonneesSejour(){
           champJourEntree.setText("");
           champMoisEntree.setText("");
@@ -1147,6 +1150,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
           
     }
     
+    /** methode affichant la liste de sejours du patient
+     * 
+     * @param dpi 
+     */
     public void affichageSejoursDuPatient(DPI dpi){
         ArrayList<Sejour> listeSejoursTemp = new ArrayList<Sejour>();
         modeleListeSejour.clear();
@@ -1159,6 +1166,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeSejours.setModel(modeleListeSejour);     
     }
     
+    /** methode affichage liste des patients
+     * 
+     */
     public void affichageListeDePatients(){    
         ArrayList<DPI> listeDPITemp = new ArrayList<DPI>();
         listeDPITemp = daoDpi.consulterListeDPI();
@@ -1170,6 +1180,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listeDePatients.setModel(modeleListeDPI);       
     }
     
+    /** methode qui affiche la localisation
+     * 
+     */
     public void affichageLocalisation(){
         Sejour sejourRecent;
         Localisation loc;       
@@ -1185,12 +1198,19 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
     }
     
+    /** methode qui efface les champs concernant la localisation
+     * 
+     */
     public void effaceDonneesLocalisation(){
         comboBoxPlacement.setSelectedIndex(-1);
         champNumeroChambre.setText("");
         comboBoxService.setSelectedIndex(-1);
     }
     
+    /** methode qui affiche la prestation
+     * 
+     * @param dpi 
+     */
     public void afficherPrestations(DPI dpi){
         ArrayList<Prestations> listePrestationsTemp = new ArrayList<Prestations>();
         listePrestationsTemp = daoPrestations.prestationsPatient(dpi.getIpp());
@@ -1203,6 +1223,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         listePrestations.setModel(modeleListePrestation);
     }
     
+    /** methode qui affiche la lettre de sortie
+     * 
+     * @param dpi 
+     */
     public void afficherLettre(DPI dpi){
         if(daoSejour.consulterListeSejourParPatient(dpi).getListeSejours().isEmpty() == false){
             
@@ -1217,8 +1241,9 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
     }
     
-
-    
+    /** methode qui efface le texte de la lettre de sortie
+     * 
+     */
     public void effacerLettre(){
         texteLettreSortie.setText("");
     }
