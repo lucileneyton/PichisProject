@@ -277,6 +277,14 @@ public class DAODPI {
         return b;
     }
     
+    
+    /** methode permettant de verifier si un patient est deja present dans la base
+     * 
+     * @param nomAttr
+     * @param prenomAttr
+     * @param dateAttr
+     * @return boolean
+     */
     public boolean estDejaPresent(String nomAttr, String prenomAttr, DateSimple dateAttr){
         boolean b = false;
         
