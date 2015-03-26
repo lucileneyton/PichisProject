@@ -168,9 +168,9 @@ public class DAOMaintenance {
             ResultSet resul;
 
             Statement ins = c.connexion.createStatement();
-            resul = ins.executeQuery("SELECT * FROM personnel WHERE id='" + id+"'");
+            resul = ins.executeQuery("SELECT * FROM personnel WHERE id='" + id + "' ;");
 
-            if (resul.getRow() == 0) {
+            if (resul.getRow() != 0) {
 
                 maintenance = null;
 
