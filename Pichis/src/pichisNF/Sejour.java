@@ -15,25 +15,36 @@ import java.util.Date;
  * @author molit_000
  */
 public class Sejour {
+
     private String numeroSejour;
     private DateSimple dateEntree;
     private DateSimple dateSortie;
     private Medecin PHResponsable;
     private Localisation localisation;
-    
-    
-    public Sejour(DMA dma, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation){
-        //int compteurSejour = 10000 + dma.getListeSejours().size();
-        //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+
+    /**
+     * constructeur de la classe sejour qui génère un numéro de séjour et qui ne
+     * possède pas de dateSortie
+     *
+     *
+     */
+    public Sejour(DMA dma, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation) {
         this.numeroSejour = fonctions.genererNumeroSejour(dateEntree);
         this.dateEntree = dateEntree;
         this.dateSortie = null;
         this.PHResponsable = PHResponsable;
         this.localisation = localisation;
     }
-    
-    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation){
-        
+
+    /** constructeur de la classe séjour qui ne possède pas de dateSortie
+     * 
+     * @param dma
+     * @param numeroSejour
+     * @param dateEntree
+     * @param PHResponsable
+     * @param localisation 
+     */
+    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, Medecin PHResponsable, Localisation localisation) {
         this.numeroSejour = numeroSejour;
         this.dateEntree = dateEntree;
         this.dateSortie = null;
@@ -41,18 +52,32 @@ public class Sejour {
         this.localisation = localisation;
     }
     
-    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
-        
+    /** constructeur de la classe séjour qui prend un numéroSéjour et dateSortie
+     * 
+     * @param dma
+     * @param numeroSejour
+     * @param dateEntree
+     * @param dateSortie
+     * @param PHResponsable
+     * @param localisation 
+     */
+    public Sejour(DMA dma, String numeroSejour, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation) {
         this.numeroSejour = numeroSejour;
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.PHResponsable = PHResponsable;
         this.localisation = localisation;
     }
-    
-    public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation){
-        //int compteurSejour = 10000 + dma.getListeSejours().size();
-        //this.numeroSejour = dateEntree.get2derniersChiffresAnnee() + dateEntree.getMois() + compteurSejour;
+
+    /** constructeur de la classe séjour qui prend un numéro de séjour et une date de sortie
+     * 
+     * @param dma
+     * @param dateEntree
+     * @param dateSortie
+     * @param PHResponsable
+     * @param localisation 
+     */
+    public Sejour(DMA dma, DateSimple dateEntree, DateSimple dateSortie, Medecin PHResponsable, Localisation localisation) {
         this.numeroSejour = fonctions.genererNumeroSejour(dateEntree);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
@@ -61,15 +86,22 @@ public class Sejour {
         this.localisation = localisation;
     }
 
+    /** méthode permettant l'accès de la date d'entrée aux autres classes
+     * 
+     * 
+     */
     public DateSimple getDateEntree() {
         return dateEntree;
     }
-    
 
     public void setDateEntree(DateSimple dateEntree) {
         this.dateEntree = dateEntree;
     }
-
+    
+    /** méthode permettant l'accès de la date de sortie aux autres classes
+     * 
+     * 
+     */
     public DateSimple getDateSortie() {
         return dateSortie;
     }
@@ -78,6 +110,10 @@ public class Sejour {
         this.dateSortie = dateSortie;
     }
 
+    /** méthode permettant l'accès au numéro de séjour aux autres classes
+     * 
+     * 
+     */
     public String getNumeroSejour() {
         return numeroSejour;
     }
@@ -86,6 +122,10 @@ public class Sejour {
         this.numeroSejour = numeroSejour;
     }
 
+    /** méthode permettant l'accès au PH responsable aux autres classes
+     * 
+     * 
+     */
     public Medecin getPHResponsable() {
         return PHResponsable;
     }
@@ -93,7 +133,11 @@ public class Sejour {
     public void setPHResponsable(Medecin PHResponsable) {
         this.PHResponsable = PHResponsable;
     }
-
+    
+    /** méthode permettant l'accès de la localisation aux autres classes
+     * 
+     * 
+     */
     public Localisation getLocalisation() {
         return localisation;
     }
@@ -101,10 +145,14 @@ public class Sejour {
     public void setLocalisation(Localisation localisation) {
         this.localisation = localisation;
     }
-    
-    public String toString(){
-        return  this.numeroSejour;
+
+    /** méthode qui renvoie le numéro de séjour sous version texte
+     * 
+     * 
+     */
+    public String toString() {
+        return this.numeroSejour;
 
     }
-    
+
 }
