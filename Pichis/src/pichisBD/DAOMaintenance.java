@@ -14,13 +14,19 @@ import java.util.logging.Logger;
 import pichisNF.Maintenance;
 
 /**
- *
- * @author Johann
+ * Data access object pour la classe Maintenance
+ * 
  */
 public class DAOMaintenance {
 
     ConnectionBD c ;
     
+    /**
+ * Méthode permettant de déterminer si un personnel est un personnel de maintenance
+ * @param id l'identifiant du personnel
+ * @param mdp le mot de passe du personnel
+ * @return boolean
+ */
     public boolean estMaintenance(String id, String mdp ){
         ResultSet res ;
         c= new ConnectionBD();
@@ -56,6 +62,12 @@ public class DAOMaintenance {
         return b;
     }
 
+    /**
+ * Méthode permettant l'identification d'un personnel de maintenance
+ * @param id l'identifiant entré dans le champ identifiant
+ * @param motDePasse le mot de passe entré dans le champ mot de passe 
+ * @return boolean
+ */
     public boolean identification(String id, String motDePasse) {
 
         String identif;
@@ -100,6 +112,10 @@ public class DAOMaintenance {
 
     }
 
+    /**
+ * Méthode permettant de consulter la liste du personnel de maintenance
+ * @return ArrayList<Maintenance> 
+ */
     public ArrayList<Maintenance> consulterListeMaintenance() {
 
         ArrayList<Maintenance> listeMaintenance = new ArrayList();
@@ -137,6 +153,11 @@ public class DAOMaintenance {
         return listeMaintenance;
     }
 
+    /**
+ * Méthode permettant de récupérer un personnel de maintenance
+ * @param id l'identifiant du personnel
+ * @return Maintenance
+ */
     public Maintenance MaintenanceParID(String id) {
 
         Maintenance maintenance = null;
@@ -182,6 +203,13 @@ public class DAOMaintenance {
         return maintenance;
     }
 
+    /**
+ * Méthode permettant d'ajouter un personnel de maintenance dans la base de données
+ * @param id l'identifiant du nouveau personnel
+ * @param nom le nom du nouveau personnel
+ * @param prenom le prénom du nouveau personnel
+ * @param motDePasse le mot de passe du nouveau personnel
+ */
     public void ajoutMaintenance(String id, String nom, String prenom, String motDePasse) {
 
         Statement ins;
