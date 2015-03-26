@@ -15,14 +15,19 @@ import pichisNF.Specialite;
 import pichisNF.TypeServices;
 
 /**
- *
- * @author Lucile
+ * Data access object pour la classe Localisation
+ * 
  */
 public class DAOLocalisation {
  
     ConnectionBD c ;
 
    
+    /**
+ * Méthode permettant de récupérer la localisation d'un séjour
+ * @param num le numéro du séjour
+ * @return Localisation
+ */
     public Localisation localisationParNumeroDeSejour(String num) {
 
         c=new ConnectionBD();
@@ -81,6 +86,13 @@ public class DAOLocalisation {
         return loc;
     }
     
+    /**
+ * Méthode permettant de changer la localisation d'un séjour dans la base de données 
+ * @param idSejour l'id du séjour 
+ * @param idSpecialite l'id du nouveau service où va se trouver le patient
+ * @param numeroChambre le numéro de la nouvelle chambre du patient
+ * @param placement le nouveau placement dans la chambre
+ */
     public void changerLocalisationSejour(String idSejour, String idSpecialite, String numeroChambre, String placement){
         c=new ConnectionBD();
       
