@@ -35,9 +35,13 @@ public class DAOPrestations {
     DAOResultat daor = new DAOResultat();
 
     /**
-     * Permet d'ajouter un patient dans la base de données, prend en paramètre
-     * la nature de la prestation, l'id du médecin demandeur, l'ipp du patient,
-     * l'id du résultat associé si il existe, la date et l'id de la prestation
+     * Permet d'ajouter un patient dans la base de données
+     * @param naturePrestation la nature de la prestation
+     * @param demandeur l'id du médecin demandeur
+     * @param patient l'ipp du patient
+     * @param resultat l'id du résultat associé si il existe
+     * @param date la date de la prestation
+     * @param id l'id de la prestation
      */
     public void ajoutPrestation(String naturePrestation, String demandeur, String patient, String resultat, String date, String id) {
         Statement ins;
