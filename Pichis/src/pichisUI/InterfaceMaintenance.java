@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import pichisNF.Administratif;
 import pichisNF.Maintenance;
 import pichisNF.Medecin;
-import pichisNF.Prestations;
 import pichisNF.fonctions;
 
 /**
@@ -105,7 +104,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldRecherche = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -214,13 +213,13 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jLabel1.setText("Rechercher un membre du personnel :");
         jPanel6.add(jLabel1);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldRecherche.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        jTextFieldRecherche.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                jTextFieldRechercheKeyReleased(evt);
             }
         });
-        jPanel6.add(jTextField1);
+        jPanel6.add(jTextFieldRecherche);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
         jPanel6.add(jLabel7);
@@ -342,7 +341,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listeMaintenanceValueChanged
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
 //  private DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
 //    private DefaultListModel<pichisNF.Administratif> modeleListeAdministratifRecherche;
 //    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
@@ -350,33 +349,95 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 //    private DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
 //    private DefaultListModel<pichisNF.Medecin> modeleListeRecherche;
 //        
-//        if (!jTextFieldRecherche.getText().isEmpty()) {
-//            ArrayList listeDesPrestations = new ArrayList();
-//
-//            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
-//
-//                listeDesPrestations.add(modeleListePrestations.get(i).getNaturePrestation());
-//
-//            }
-//
-//            ArrayList listeDesPrestationsRecherchee = fonctions.recherche(listeDesPrestations, jTextFieldRecherche.getText());
-//
-//            modeleListePrestationsPourRecherche = new DefaultListModel<Prestations>();
-//            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
-//
-//                for (int j = 0; j < listeDesPrestationsRecherchee.size(); j++) {
-//                    if (listeDesPrestationsRecherchee.get(j).equals(modeleListePrestations.get(i).getNaturePrestation()) && !modeleListePrestationsPourRecherche.contains(modeleListePrestations.elementAt(i))) {
-//                        modeleListePrestationsPourRecherche.addElement(modeleListePrestations.elementAt(i));
-//                    }
-//
-//                }
-//            }
-//
-//            listePrestations.setModel(modeleListePrestationsPourRecherche);
-//        } else {
-//            listePrestations.setModel(modeleListePrestations);
-//        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1KeyReleased
+        //Recherche dans la liste du personnel administratif
+        if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listePersonnelAdministratif = new ArrayList();
+
+            for (int i = 0; i < modeleListeAdministratif.getSize(); i++) {
+
+                listePersonnelAdministratif.add(modeleListeAdministratif.get(i).getNom());
+
+            }
+
+            ArrayList listePersonnelAdministratifRecherchee = fonctions.recherche(listePersonnelAdministratif, jTextFieldRecherche.getText());
+
+            modeleListeAdministratifRecherche = new DefaultListModel<Administratif>();
+            for (int i = 0; i < modeleListeAdministratif.getSize(); i++) {
+
+                for (int j = 0; j < listePersonnelAdministratifRecherchee.size(); j++) {
+                    if (listePersonnelAdministratifRecherchee.get(j).equals(modeleListeAdministratif.get(i).getNom()) && !modeleListeAdministratifRecherche.contains(modeleListeAdministratif.elementAt(i))) {
+                        modeleListeAdministratifRecherche.addElement(modeleListeAdministratif.elementAt(i));
+                    }
+
+                }
+            }
+
+            listeAdministratif.setModel(modeleListeAdministratifRecherche);
+        } else {
+            listeAdministratif.setModel(modeleListeAdministratif);
+        }
+        
+        //Recherche dans la liste du personnel médical
+        if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listePersonnelMedical = new ArrayList();
+
+            for (int i = 0; i < modeleListeMedecin.getSize(); i++) {
+
+                listePersonnelMedical.add(modeleListeMedecin.get(i).getNom());
+
+            }
+
+            ArrayList listePersonnelMedicalRecherchee = fonctions.recherche(listePersonnelMedical, jTextFieldRecherche.getText());
+
+            modeleListeRecherche = new DefaultListModel<Medecin>();
+            for (int i = 0; i < modeleListeMedecin.getSize(); i++) {
+
+                for (int j = 0; j < listePersonnelMedicalRecherchee.size(); j++) {
+                    if (listePersonnelMedicalRecherchee.get(j).equals(modeleListeMedecin.get(i).getNom()) && !modeleListeRecherche.contains(modeleListeMedecin.elementAt(i))) {
+                        modeleListeRecherche.addElement(modeleListeMedecin.elementAt(i));
+                    }
+
+                }
+            }
+
+            listeMedecin.setModel(modeleListeRecherche);
+        } else {
+            listeMedecin.setModel(modeleListeMedecin);
+        }
+        
+        //Recherche dans la liste du personnel maintenance
+
+        if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listePersonnelMaintenance = new ArrayList();
+
+            for (int i = 0; i < modeleListeMaintenance.getSize(); i++) {
+
+                listePersonnelMaintenance.add(modeleListeMaintenance.get(i).getNom());
+
+            }
+
+            ArrayList listePersonnelMaintenanceRecherchee = fonctions.recherche(listePersonnelMaintenance, jTextFieldRecherche.getText());
+
+            modeleListeMaintenanceRecherche = new DefaultListModel<Maintenance>();
+            for (int i = 0; i < modeleListeMaintenance.getSize(); i++) {
+
+                for (int j = 0; j < listePersonnelMaintenanceRecherchee.size(); j++) {
+                    if (listePersonnelMaintenanceRecherchee.get(j).equals(modeleListeMaintenance.get(i).getNom()) && !modeleListeMaintenanceRecherche.contains(modeleListeMaintenance.elementAt(i))) {
+                        modeleListeMaintenanceRecherche.addElement(modeleListeMaintenance.elementAt(i));
+                    }
+
+                }
+            }
+
+            listeMaintenance.setModel(modeleListeMaintenanceRecherche);
+        } else {
+            listeMaintenance.setModel(modeleListeMaintenance);
+        }
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
     /**
      * @param args the command line arguments
@@ -434,7 +495,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JList listeAdministratif;
     private javax.swing.JList listeMaintenance;
     private javax.swing.JList listeMedecin;
