@@ -1,76 +1,67 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisNF;
 
-
-import java.sql.ResultSet;
-import java.sql.Statement;
-import pichisBD.ConnectionBD;
-
-
-
-/**
- *
- * @author molit_000
- */
 public class Personnel {
+
     private String id;
     private String nom;
     private String prenom;
     private String motDePasse;
-    
-    
-    
-    public Personnel(String id, String nom, String prenom, String motDePasse){
+
+    /**
+     * Constructeur de la classe Personnel
+     *
+     * @param id
+     * @param nom
+     * @param prenom
+     * @param motDePasse
+     */
+    public Personnel(String id, String nom, String prenom, String motDePasse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.motDePasse = motDePasse;  
-         
+        this.motDePasse = motDePasse;
+
     }
-  
+
+    /**
+     * Méthode permettant l'accès à l'id du personnel par d'autres classes
+     *
+     * @return String id
+     */
     public String getId() {
-        if(this.equals(null)){
+        if (this.equals(null)) {
             return "NULL";
-        }
-        else{
+        } else {
             return id;
         }
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     * Méthode permettant l'accès au nom du personnel par d'autres classes
+     *
+     * @return String nom
+     */
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Méthode permettant l'accès au prénom du personnel par d'autres classes
+     *
+     * @return String
+     */
     public String getPrenom() {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
+    /**
+     * Méthode permettant l'accès au mot de passe du personnel par d'autres
+     * classes
+     *
+     * @return String motDePasse
+     */
     public String getMotDePasse() {
         return motDePasse;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
-    
-    
-    
-    
-    
 }
