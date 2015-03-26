@@ -851,7 +851,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
             .addGroup(panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(67, Short.MAX_VALUE))
+            .addContainerGap(197, Short.MAX_VALUE))
     );
     panelObservationsLayout.setVerticalGroup(
         panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1133,7 +1133,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         .addGroup(panelLettreDeSortieLayout.createSequentialGroup()
             .addGap(177, 177, 177)
             .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(87, Short.MAX_VALUE))
+            .addContainerGap(217, Short.MAX_VALUE))
     );
     panelLettreDeSortieLayout.setVerticalGroup(
         panelLettreDeSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1175,6 +1175,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     centreDesActivites.add(jPanel15, "card2");
 
     jPanel3.setBackground(new java.awt.Color(255, 204, 51));
+    jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jPanel3MouseEntered(evt);
+        }
+    });
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
@@ -1646,6 +1651,24 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         this.dispose();
         new Identification();
     }//GEN-LAST:event_jLabel38MouseClicked
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+jPanel14.setBackground(new java.awt.Color(255, 204, 51));
+jPanel13.setBackground(new java.awt.Color(255, 204, 51));
+listeDePatients.setBackground(new java.awt.Color(255, 204, 51));
+listeDesPrescriptions.setBackground(new java.awt.Color(255, 204, 51));
+detailPrescriptionSelectionnee.setBackground(new java.awt.Color(255, 204, 51));
+contenuNvlePrescription.setBackground(new java.awt.Color(255, 204, 51));
+listeDesObservations.setBackground(new java.awt.Color(255, 204, 51));
+detailObservation.setBackground(new java.awt.Color(255, 204, 51));
+nouvelleObservation.setBackground(new java.awt.Color(255, 204, 51));
+listeDesOperations.setBackground(new java.awt.Color(255, 204, 51));
+detailOperationSelectionnee.setBackground(new java.awt.Color(255, 204, 51));
+detailOperationAAjouter.setBackground(new java.awt.Color(255, 204, 51));
+listeDePrestations.setBackground(new java.awt.Color(255, 204, 51));
+resultatPrestation.setBackground(new java.awt.Color(255, 204, 51));
+naturePrestation.setBackground(new java.awt.Color(255, 204, 51));        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseEntered
 
     public void afficherDossierMedical() {
         /**
