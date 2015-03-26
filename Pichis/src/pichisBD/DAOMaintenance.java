@@ -19,7 +19,7 @@ import pichisNF.Maintenance;
  */
 public class DAOMaintenance {
 
-    ConnectionBD c;
+    public ConnectionBD c;
 
     /**
      * Méthode permettant de déterminer si un personnel est un personnel de
