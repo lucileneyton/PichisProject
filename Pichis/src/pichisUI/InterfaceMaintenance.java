@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import pichisNF.Maintenance;
 
 /**
  *
@@ -20,6 +21,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
     DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
     DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
+    Maintenance m;
 
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
@@ -29,9 +31,10 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceMaintenance
      */
-    public InterfaceMaintenance() {
+    public InterfaceMaintenance(Maintenance m) {
         initComponents();
 
+        this.m=m;
         pichisBD.DAOAdministratif daoAdministratif = new pichisBD.DAOAdministratif();
         pichisBD.DAOMaintenance daoMaintenance = new pichisBD.DAOMaintenance();
         pichisBD.DAOMedecin daoMedecin = new pichisBD.DAOMedecin();
@@ -315,7 +318,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceMaintenance().setVisible(true);
             }
         });
     }
