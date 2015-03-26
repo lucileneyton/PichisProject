@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pichisBD;
 
 import java.sql.ResultSet;
@@ -17,12 +16,21 @@ import pichisNF.Prescription;
 
 /**
  *
- * @author Lucile
+ * Data access object de la classe Prescription
  */
 public class DAOPrescription {
-    
-    ConnectionBD c;
-    
+
+    public ConnectionBD c;
+
+    /**
+     * Méthode permettant d'ajouter une prescription dans la base de données
+     *
+     * @param id l'identifiant de la prescription
+     * @param idPatient l'ipp du patient concerné
+     * @param idMedecin l'identifiant du médecin
+     * @param texte le détail de la prescription
+     * @param date la date de la prescription
+     */
     public void ajoutPrescription(String id, String idPatient, String idMedecin, String texte, String date) {
         Statement ins;
         c = new ConnectionBD();
@@ -44,19 +52,22 @@ public class DAOPrescription {
 
         }
     }
-    
-    
+
+    /**
+     * Méthode permettant de récupérer les prescriptions d'un patient
+     *
+     * @param idPatient l'ipp du patient
+     * @return ArrayList
+     */
     public ArrayList<Prescription> prescriptionsPatient(String idPatient) {
-        
-        
+
         c = new ConnectionBD();
         ArrayList<Prescription> liste = new ArrayList<Prescription>();
         DateSimple date = null;
         String m;
         String texte;
         String p;
-        
-        
+
         try {
 
             ResultSet resul;
@@ -70,17 +81,15 @@ public class DAOPrescription {
                 m = resul.getString("medecin");
                 DAOMedecin daom = new DAOMedecin();
                 Medecin med = daom.medecinParID(m);
-                
+
                 texte = resul.getString("texte");
-                
+
                 p = resul.getString("patient");
                 DAODPI daop = new DAODPI();
                 DPI dpi = daop.dpiParIPP(p);
-                
+
                 String d = resul.getString("date");
-//                DateSimple d = new DateSimple(date.substring(0, 1), date.substring(2, 3), date.substring(4, 7));
-                
-                
+
                 if (d != null) {
                     if (d.length() <= 11) {
                         date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10));
@@ -88,15 +97,15 @@ public class DAOPrescription {
                         date = new DateSimple(d.substring(0, 2), d.substring(3, 5), d.substring(6, 10), d.substring(13, 15), d.substring(16, 18));
                     }
                 }
-                
-                Prescription pres = new Prescription(date,texte,med);
+
+                Prescription pres = new Prescription(date, texte, med);
 
                 liste.add(pres);
-                
+
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOObservation: " + e);
+            System.out.println("erreur DAOPrescription (prescriptionsPatient): " + e);
         } finally {
             if (c != null) {
                 try {
@@ -110,5 +119,5 @@ public class DAOPrescription {
 
         return liste;
     }
-    
+
 }
