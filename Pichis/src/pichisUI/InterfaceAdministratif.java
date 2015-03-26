@@ -934,12 +934,12 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
 
     private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
-        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir vous déconnecter" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
-        if (confirm == JOptionPane.YES_OPTION) {
+//        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir vous déconnecter" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+//
+//        if (confirm == JOptionPane.YES_OPTION) {
             this.dispose();
             new Identification();
-        }
+//        }
 
 
     }//GEN-LAST:event_jLabel38MouseClicked

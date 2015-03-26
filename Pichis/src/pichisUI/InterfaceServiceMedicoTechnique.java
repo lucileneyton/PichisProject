@@ -22,9 +22,11 @@ import javax.swing.Timer;
 import pichisBD.DAOObservation;
 import pichisBD.DAOPrestations;
 import pichisBD.DAOResultat;
+import pichisNF.DPI;
 import pichisNF.Medecin;
 import pichisNF.Observation;
 import pichisNF.Prestations;
+import pichisNF.fonctions;
 
 /**
  *
@@ -38,6 +40,9 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     
     Timer chrono;
     private DefaultListModel<pichisNF.Prestations> modeleListePrestations;
+    private DefaultListModel<pichisNF.Prestations> modeleListePrestationsPourRecherche;
+    
+                
     private Medecin m;
     private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
@@ -48,7 +53,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     public InterfaceServiceMedicoTechnique(Medecin m) {
         this.m = m;
 
-        setSize(maximumWindowBounds.width, maximumWindowBounds.height);
+        
         initComponents();
         ActionListener taskPerformer = null;
 
@@ -77,10 +82,13 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        this.pack();
+//        
 //        this.setDefaultLookAndFeelDecorated(true);
 //        this.setExtendedState(this.MAXIMIZED_BOTH);
 
+        setSize(maximumWindowBounds.width, maximumWindowBounds.height);
+        this.pack();
+        
         //Remplissage de la liste des prestations demandées
         modeleListePrestations = new DefaultListModel<pichisNF.Prestations>();
 
@@ -111,7 +119,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldRecherche = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -162,7 +170,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
 
         InterfaceServiceMedicoTechnique.setBackground(new java.awt.Color(229, 229, 229));
         InterfaceServiceMedicoTechnique.setMaximumSize(new java.awt.Dimension(1600, 500));
-        InterfaceServiceMedicoTechnique.setPreferredSize(new java.awt.Dimension(width, height));
+        InterfaceServiceMedicoTechnique.setPreferredSize(new java.awt.Dimension(maximumWindowBounds.width, maximumWindowBounds.height));
         InterfaceServiceMedicoTechnique.setLayout(new java.awt.BorderLayout());
 
         jPanel12.setLayout(new java.awt.BorderLayout());
@@ -170,7 +178,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(1550, 165));
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/noun_59269_cc.png"))); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-danger-3-icon-128.png"))); // NOI18N
 
         jLabel32.setFont(new java.awt.Font("Garamond", 0, 24)); // NOI18N
         jLabel32.setText(m.getNom());
@@ -249,12 +257,17 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel39.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
-        jLabel39.setText("Rechercher un patient :");
-        jLabel39.setPreferredSize(new java.awt.Dimension(145, 50));
+        jLabel39.setText("Rechercher une prestation (nature) :");
+        jLabel39.setPreferredSize(new java.awt.Dimension(230, 50));
         jPanel14.add(jLabel39);
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jPanel14.add(jTextField3);
+        jTextFieldRecherche.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        jTextFieldRecherche.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldRechercheKeyReleased(evt);
+            }
+        });
+        jPanel14.add(jTextFieldRecherche);
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
         jPanel14.add(jLabel40);
@@ -288,7 +301,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         panelDouvertureLayout.setHorizontalGroup(
             panelDouvertureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDouvertureLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
         );
@@ -297,7 +310,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
             .addGroup(panelDouvertureLayout.createSequentialGroup()
                 .addGap(192, 192, 192)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel8.add(panelDouverture, "card3");
@@ -727,6 +740,38 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldDateRealisationActionPerformed
 
+    private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
+if (!jTextFieldRecherche.getText().isEmpty()) {
+            ArrayList listeDesPrestations = new ArrayList();
+
+            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
+
+                listeDesPrestations.add(modeleListePrestations.get(i).getNaturePrestation());
+
+            }
+
+            ArrayList listeDesPrestationsRecherchee = fonctions.recherche(listeDesPrestations, jTextFieldRecherche.getText());
+
+            modeleListePrestationsPourRecherche = new DefaultListModel<Prestations>();
+            for (int i = 0; i < modeleListePrestations.getSize(); i++) {
+
+                for (int j = 0; j < listeDesPrestationsRecherchee.size(); j++) {
+                    if (listeDesPrestationsRecherchee.get(j).equals(modeleListePrestations.get(i).getNaturePrestation()) && !modeleListePrestationsPourRecherche.contains(modeleListePrestations.elementAt(i))) {
+                        modeleListePrestationsPourRecherche.addElement(modeleListePrestations.elementAt(i));
+                    }
+
+                }
+            }
+
+            listePrestations.setModel(modeleListePrestationsPourRecherche);
+        } else {
+            listePrestations.setModel(modeleListePrestations);
+        }
+     
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRechercheKeyReleased
+
     private void affichageDonneesPatient() {
         /**
          * Méthode actualisant l'affichant des données d'un patient sur
@@ -864,7 +909,6 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaDescription;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextFieldAdresse;
     private javax.swing.JTextField jTextFieldDateDemande;
     private javax.swing.JTextField jTextFieldDateNaissance;
@@ -876,6 +920,7 @@ public class InterfaceServiceMedicoTechnique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPH;
     private javax.swing.JTextField jTextFieldPHObservation;
     private javax.swing.JTextField jTextFieldPrenom;
+    private javax.swing.JTextField jTextFieldRecherche;
     private javax.swing.JTextField jTextFieldSexe;
     private javax.swing.JTextPane jTextPaneAjoutResultat;
     private javax.swing.JList listeObservations;

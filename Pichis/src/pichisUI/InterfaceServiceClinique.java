@@ -90,7 +90,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 //Vérification de la concordance entre service de travail du praticien et service d'admission du patient. 
                 //Le patient n'est enregistré dans la liste accessible au médecin qu si son DPI est ouvert.
 
-                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType()) && daoDpi.consulterListeDPI().get(i).isEstOuvert()) {
+                if (servicePatient.getLocalisation().getService().getSpecialite().equals(medecin.getSpecialite().getSpecialite()) && servicePatient.getLocalisation().getService().getType().equals(medecin.getSpecialite().getType()) && !daoSejour.lettreDeSortie(servicePatient.getNumeroSejour())) {
                     modeleListeDPI.addElement(daoDpi.consulterListeDPI().get(i));
 //                  
                 }
@@ -257,6 +257,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel38.setIconTextGap(0);
         jLabel38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel38MouseClicked(evt);
+            }
+        });
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-wrench-20-icon-64.png"))); // NOI18N
         jLabel41.setText("Paramètres");
@@ -1276,7 +1281,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         if (r == null) {
             resultatPrestation.setText("Aucun résultat pour le moment");
         } else {
-            resultatPrestation.setText(r.getDescriptions() + "\n" + "\n" + "Envoyé le " + r.getDate().toString() );
+            resultatPrestation.setText(r.getDescriptions() +"\n\n" + "Transmis par :" +
+                    
+                    r.getMedecin() + "\n" + "\n" + "Envoyé le " + r.getDate().toString() );
         }
         
 
@@ -1499,6 +1506,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         envoyerLettreDeSejour.setEnabled(false);
         lettreDeSortie.setEditable(false);
     }//GEN-LAST:event_envoyerLettreDeSejourActionPerformed
+
+    private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
+        this.dispose();
+            new Identification();
+    }//GEN-LAST:event_jLabel38MouseClicked
     
     public void afficherDossierMedical() {
         /**
