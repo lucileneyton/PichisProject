@@ -33,19 +33,19 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceServiceClinique
      */
-    Sejour servicePatient;
-    DefaultListModel<pichisNF.DPI> modeleListeDPI;
-    DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
-    DefaultListModel<pichisNF.Prestations> listePrestations;
-    DefaultListModel<pichisNF.Observation> listeObservations;
-    DefaultListModel<pichisNF.Prescription> listePrescriptions;
-    DefaultListModel<pichisNF.Operation> listeOperations;
+    private Sejour servicePatient;
+    private DefaultListModel<pichisNF.DPI> modeleListeDPI;
+    private DefaultListModel<pichisNF.DPI> modeleListeDPIRecherche;
+    private DefaultListModel<pichisNF.Prestations> listePrestations;
+    private DefaultListModel<pichisNF.Observation> listeObservations;
+    private DefaultListModel<pichisNF.Prescription> listePrescriptions;
+    private DefaultListModel<pichisNF.Operation> listeOperations;
 
-    Medecin medecin;
-    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
-    int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
-    int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
+    private Medecin medecin;
+    private GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    private Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
+    private int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
+    private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceServiceClinique(Medecin medecin) {
         modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
@@ -217,7 +217,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         panelLettreDeSortie = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
-        jTextPaneAjoutResultat4 = new javax.swing.JTextPane();
+        lettreDeSortie = new javax.swing.JTextPane();
         jButton5 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -1055,8 +1055,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jPanel30.setMaximumSize(new java.awt.Dimension(375, 197));
         jPanel30.setLayout(new java.awt.GridBagLayout());
 
-        jTextPaneAjoutResultat4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane18.setViewportView(jTextPaneAjoutResultat4);
+        lettreDeSortie.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane18.setViewportView(lettreDeSortie);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1180,69 +1180,52 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_listeDesPrescriptionsValueChanged
 
     private void enregistrerUnePrestationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerUnePrestationActionPerformed
-        //JOptionPane pour la confirmation
-        if (naturePrestation.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(naturePrestation, "Ajouter du contenu");
+        int in = listeDePatients.getSelectedIndex();
+        if (in >= 0) {
 
-        } else {
-            int in = listeDePatients.getSelectedIndex();
-            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : '" + naturePrestation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+//JOptionPane pour la confirmation
+            if (naturePrestation.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(naturePrestation, "Ajouter du contenu");
 
-            if (confirm == JOptionPane.YES_OPTION) {
+            } else {
 
-                //Détermination de l'identifiant de la nouvelle demande de prestation
-                DAOPrestations d = new DAOPrestations();
+                int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : '" + naturePrestation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-                int i = listeDePatients.getSelectedIndex();
-                ConnectionBD c = new ConnectionBD();
-                int idResultat = 1;
-                try {
-                    Statement ins = c.connexion.createStatement();
-                    ResultSet resul;
-                    resul = ins.executeQuery("SELECT * FROM prestations");
+                if (confirm == JOptionPane.YES_OPTION) {
 
-                    while (resul.next()) {
-                        idResultat++;
+                    //Détermination de l'identifiant de la nouvelle demande de prestation
+                    DAOPrestations d = new DAOPrestations();
+
+                    int i = listeDePatients.getSelectedIndex();
+                    ConnectionBD c = new ConnectionBD();
+                    int idResultat = 1;
+                    try {
+                        Statement ins = c.connexion.createStatement();
+                        ResultSet resul;
+                        resul = ins.executeQuery("SELECT * FROM prestations");
+
+                        while (resul.next()) {
+                            idResultat++;
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
-                }
 
-                //Définition de sa date
-                Calendar ca = Calendar.getInstance();
-                String minute = "" + ca.getTime().getMinutes();
-                String heure = "" + ca.getTime().getHours();
-                int rangDuMois = ca.getTime().getMonth() + 1;
-                String mois = "" + rangDuMois;
-                String jour = "" + ca.getTime().getDate();
 
-                int anne = 1900 + ca.getTime().getYear();
-                String annee = "" + anne;
-                if (ca.getTime().getDate() < 10) {
-                    jour = "0" + ca.getTime().getDate();
-                }
-                if (ca.getTime().getMinutes() < 10) {
-                    minute = "0" + ca.getTime().getMinutes();
-                }
-                if (ca.getTime().getHours() < 10) {
-                    heure = "0" + ca.getTime().getHours();
-                }
-                if (ca.getTime().getMonth() < 10) {
-                    mois = "0" + rangDuMois;
-                }
+                    //Ajout dans la base de données
+                    d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), null, pichisNF.fonctions.renvoieDateActuelle().toString(), "" + idResultat);
 
-                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+                    //Affichage
+                    afficherDossierMedical();
+                    naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
+                    naturePrestation.setText("");
 
-                //Ajout dans la base de données
-                d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), null, date.toString(), "" + idResultat);
-
-                //Affichage
-                afficherDossierMedical();
-                naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
-                naturePrestation.setText("");
+                }
 
             }
 
+        }else {
+            JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_enregistrerUnePrestationActionPerformed
 
@@ -1284,70 +1267,51 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_nouvelleDemandeActionPerformed
 
     private void ajoutObservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutObservationActionPerformed
-        if (nouvelleObservation.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(nouvelleObservation, "Ajouter du contenu");
+        int in = listeDePatients.getSelectedIndex();
+        if (in >= 0) {
+            if (nouvelleObservation.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(nouvelleObservation, "Ajouter du contenu");
 
-        } else {
-            int in = listeDePatients.getSelectedIndex();
-            int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'observation : '" + nouvelleObservation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            } else {
 
-            if (confirm == JOptionPane.YES_OPTION) {
-                //Réinitialisation de l'affichage 
-                listeDesObservations.clearSelection();
-                detailObservation.setText("");
-                signature.setText("");
+                int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'observation : '" + nouvelleObservation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-                DAOObservation o = new DAOObservation();
-                int i = listeDePatients.getSelectedIndex();
-                DPI patient = modeleListeDPI.elementAt(i);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    //Réinitialisation de l'affichage 
+                    listeDesObservations.clearSelection();
+                    detailObservation.setText("");
+                    signature.setText("");
 
-                //Détermination de l'id de la nouvelle observation :
-                ConnectionBD c = new ConnectionBD();
-                int idObservation = 1;
-                try {
-                    Statement ins = c.connexion.createStatement();
-                    ResultSet resul;
-                    resul = ins.executeQuery("SELECT * FROM observations");
+                    DAOObservation o = new DAOObservation();
+                    int i = listeDePatients.getSelectedIndex();
+                    DPI patient = modeleListeDPI.elementAt(i);
 
-                    while (resul.next()) {
-                        idObservation++;
+                    //Détermination de l'id de la nouvelle observation :
+                    ConnectionBD c = new ConnectionBD();
+                    int idObservation = 1;
+                    try {
+                        Statement ins = c.connexion.createStatement();
+                        ResultSet resul;
+                        resul = ins.executeQuery("SELECT * FROM observations");
+
+                        while (resul.next()) {
+                            idObservation++;
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+
+
+                    //Ajout de l'observation
+                    o.ajoutObservation("" + idObservation, medecin.getId(), nouvelleObservation.getText(), patient.getIpp(), pichisNF.fonctions.renvoieDateActuelle().toString());
+
+                    nouvelleObservation.setText("");
+                    afficherDossierMedical();
+
                 }
-
-                //Définition de la date d'édition
-                Calendar ca = Calendar.getInstance();
-                String minute = "" + ca.getTime().getMinutes();
-                String heure = "" + ca.getTime().getHours();
-                int rangDuMois = ca.getTime().getMonth() + 1;
-                String mois = "" + rangDuMois;
-                String jour = "" + ca.getTime().getDate();
-
-                int anne = 1900 + ca.getTime().getYear();
-                String annee = "" + anne;
-                if (ca.getTime().getDate() < 10) {
-                    jour = "0" + ca.getTime().getDate();
-                }
-                if (ca.getTime().getMinutes() < 10) {
-                    minute = "0" + ca.getTime().getMinutes();
-                }
-                if (ca.getTime().getHours() < 10) {
-                    heure = "0" + ca.getTime().getHours();
-                }
-                if (ca.getTime().getMonth() < 10) {
-                    mois = "0" + rangDuMois;
-                }
-
-                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
-
-                //Ajout de l'observation
-                o.ajoutObservation("" + idObservation, medecin.getId(), nouvelleObservation.getText(), patient.getIpp(), date.toString());
-
-                nouvelleObservation.setText("");
-                afficherDossierMedical();
-
             }
+        }else {
+            JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_ajoutObservationActionPerformed
 
@@ -1363,69 +1327,50 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     }//GEN-LAST:event_listeDesObservationsValueChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (contenuNvlePrescription.getText().isEmpty()) {
+        int in = listeDePatients.getSelectedIndex();
+        if (in >= 0) {
+            if (contenuNvlePrescription.getText().isEmpty()) {
 
-            JOptionPane.showMessageDialog(contenuNvlePrescription, "Ajouter du contenu");
+                JOptionPane.showMessageDialog(contenuNvlePrescription, "Ajouter du contenu");
 
-        } else {
-            int in = listeDePatients.getSelectedIndex();
-            int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous la prescription : '" + contenuNvlePrescription.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            } else {
 
-            if (confirm == JOptionPane.YES_OPTION) {
-                //Réinitialisation de l'affichage 
-                listeDesPrescriptions.clearSelection();
-                detailPrescriptionSelectionnee.setText("");
-                signaturePrescription.setText("");
+                int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous la prescription : '" + contenuNvlePrescription.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-                DAOPrescription dp = new DAOPrescription();
-                int i = listeDePatients.getSelectedIndex();
-                DPI patient = modeleListeDPI.elementAt(i);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    //Réinitialisation de l'affichage 
+                    listeDesPrescriptions.clearSelection();
+                    detailPrescriptionSelectionnee.setText("");
+                    signaturePrescription.setText("");
 
-                //Détermination de l'id de la nouvelle observation :
-                ConnectionBD c = new ConnectionBD();
-                int idPrescription = 1;
-                try {
-                    Statement ins = c.connexion.createStatement();
-                    ResultSet resul;
-                    resul = ins.executeQuery("SELECT * FROM prescriptions");
+                    DAOPrescription dp = new DAOPrescription();
+                    int i = listeDePatients.getSelectedIndex();
+                    DPI patient = modeleListeDPI.elementAt(i);
 
-                    while (resul.next()) {
-                        idPrescription++;
+                    //Détermination de l'id de la nouvelle observation :
+                    ConnectionBD c = new ConnectionBD();
+                    int idPrescription = 1;
+                    try {
+                        Statement ins = c.connexion.createStatement();
+                        ResultSet resul;
+                        resul = ins.executeQuery("SELECT * FROM prescriptions");
+
+                        while (resul.next()) {
+                            idPrescription++;
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
-                }
 
-                //Définition de la date d'édition
-                Calendar ca = Calendar.getInstance();
-                String minute = "" + ca.getTime().getMinutes();
-                String heure = "" + ca.getTime().getHours();
-                int rangDuMois = ca.getTime().getMonth() + 1;
-                String mois = "" + rangDuMois;
-                String jour = "" + ca.getTime().getDate();
 
-                int anne = 1900 + ca.getTime().getYear();
-                String annee = "" + anne;
-                if (ca.getTime().getDate() < 10) {
-                    jour = "0" + ca.getTime().getDate();
+                    //Ajout de l'observation
+                    dp.ajoutPrescription("" + idPrescription, patient.getIpp(), medecin.getId(), contenuNvlePrescription.getText(), pichisNF.fonctions.renvoieDateActuelle().toString());
+                    contenuNvlePrescription.setText("");
+                    afficherDossierMedical();
                 }
-                if (ca.getTime().getMinutes() < 10) {
-                    minute = "0" + ca.getTime().getMinutes();
-                }
-                if (ca.getTime().getHours() < 10) {
-                    heure = "0" + ca.getTime().getHours();
-                }
-                if (ca.getTime().getMonth() < 10) {
-                    mois = "0" + rangDuMois;
-                }
-
-                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
-
-                //Ajout de l'observation
-                dp.ajoutPrescription("" + idPrescription, patient.getIpp(), medecin.getId(), contenuNvlePrescription.getText(), date.toString());
-                contenuNvlePrescription.setText("");
-                afficherDossierMedical();
             }
+        }else {
+            JOptionPane.showMessageDialog(detailOperationAAjouter, "Sélectionner un patient.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1469,33 +1414,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                             Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
-                        //Définition de la date d'édition
-                        Calendar ca = Calendar.getInstance();
-                        String minute = "" + ca.getTime().getMinutes();
-                        String heure = "" + ca.getTime().getHours();
-                        int rangDuMois = ca.getTime().getMonth() + 1;
-                        String mois = "" + rangDuMois;
-                        String jour = "" + ca.getTime().getDate();
-
-                        int anne = 1900 + ca.getTime().getYear();
-                        String annee = "" + anne;
-                        if (ca.getTime().getDate() < 10) {
-                            jour = "0" + ca.getTime().getDate();
-                        }
-                        if (ca.getTime().getMinutes() < 10) {
-                            minute = "0" + ca.getTime().getMinutes();
-                        }
-                        if (ca.getTime().getHours() < 10) {
-                            heure = "0" + ca.getTime().getHours();
-                        }
-                        if (ca.getTime().getMonth() < 10) {
-                            mois = "0" + rangDuMois;
-                        }
-
-                        DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
 
                         //Ajout de l'observation
-                        op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), date.toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
+                        op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), pichisNF.fonctions.renvoieDateActuelle().toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
                         detailOperationAAjouter.setText("");
                         signatureNvleOperation.setText("");
                         afficherDossierMedical();
@@ -1548,6 +1469,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
+    
+    
     public void afficherDossierMedical() {
         /**
          * Méthode affichant le dossier médical du patient sélection
@@ -1638,6 +1561,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
             }
             listeDesOperations.setModel(listeOperations);
+            
+            //Lettre de sortie par défaut
+            String lettreSortie = "Je soussigné docteur " + medecin.getNom() + ", médecin responsable du séjour du patient : " + patient.getNom()+ '\n'+ " édite en ce jour sa lettre de sortie" 
+                    + "\n" + "Date : " + pichisNF.fonctions.renvoieDateActuelle();
+            lettreDeSortie.setText(null);
         }
     }
 
@@ -1765,10 +1693,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextFieldRecherche;
-    private javax.swing.JTextPane jTextPaneAjoutResultat4;
     private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelPlacement;
     private javax.swing.JLabel labelService;
+    private javax.swing.JTextPane lettreDeSortie;
     private javax.swing.JList listeDePatients;
     private javax.swing.JList listeDePrestations;
     private javax.swing.JList listeDesObservations;
