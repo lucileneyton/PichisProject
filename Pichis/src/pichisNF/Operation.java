@@ -15,18 +15,30 @@ public class Operation {
     DateSimple date;
     String operation;
     String numeroSejour;
-    Medecin medecin;
+//    Medecin medecin;
+    String auteur;
     
-    public Operation(String numeroSejour, DateSimple date, String operation, Medecin medecin){
+//    public Operation(String numeroSejour, DateSimple date, String operation, Medecin medecin){
+//        this.date = date;
+//        this.operation = operation;
+//        this.numeroSejour = numeroSejour;
+//        this.medecin=medecin;
+//    }
+    
+     public Operation(String numeroSejour, DateSimple date, String operation, String auteur){
         this.date = date;
         this.operation = operation;
         this.numeroSejour = numeroSejour;
-        this.medecin=medecin;
+        this.auteur = auteur;
     }
 
-    public Medecin getMedecin() {
-        return medecin;
+    public String getAuteur() {
+        return auteur;
     }
+
+//    public Medecin getMedecin() {
+//        return medecin;
+//    }
 
     public String getNumeroSejour() {
         return numeroSejour;

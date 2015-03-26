@@ -37,6 +37,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     DefaultListModel<pichisNF.DPI> modeleListeDPI;
     DefaultListModel<pichisNF.Prestations> listePrestations;
     DefaultListModel<pichisNF.Observation> listeObservations;
+    DefaultListModel<pichisNF.Prescription> listePrescriptions;
+    DefaultListModel<pichisNF.Operation> listeOperations;
 
     Medecin medecin;
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -45,8 +47,12 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     public InterfaceServiceClinique(Medecin medecin) {
-
+        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
         listePrestations = new DefaultListModel<pichisNF.Prestations>();
+        listeOperations = new DefaultListModel<pichisNF.Operation>();
+        listeObservations = new DefaultListModel<pichisNF.Observation>();
+        listePrescriptions = new DefaultListModel<pichisNF.Prescription>();
+
         this.medecin = medecin;
         initComponents();
         pichisBD.DAODPI daoDpi = new pichisBD.DAODPI();
@@ -70,8 +76,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
 
-        modeleListeDPI = new DefaultListModel<pichisNF.DPI>();
-        listePrestations = new DefaultListModel<pichisNF.Prestations>();
         ArrayList<DPI> listeDeDPI = daoDpi.consulterListeDPI();
 
 //        System.out.println(""+ daoSejour.consulterListeSejourParPatient("123").getListeSejours());
@@ -79,6 +83,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
             ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(listeDeDPI.get(i)).getListeSejours();
 //            if(listeDeSejours != null){
+
 //            System.out.println("" + listeDeSejours);
 //            }
             if ((listeDeSejours.size() != 0) && listeDeSejours.get(listeDeSejours.size() - 1) != null) {
@@ -122,7 +127,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         DM = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        panelFichePatient = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -154,35 +159,48 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         champNumeroChambre = new javax.swing.JTextField();
         labelPlacement = new javax.swing.JLabel();
         comboBoxPlacement = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
+        panelPrescriptions = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList();
+        listeDesPrescriptions = new javax.swing.JList();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        detailPrescriptionSelectionnee = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        signaturePrescription = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPaneAjoutResultat1 = new javax.swing.JTextPane();
+        contenuNvlePrescription = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        panelObservations = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        listeDesObservations = new javax.swing.JList();
+        jPanel19 = new javax.swing.JPanel();
+        ajoutObservation = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        nouvelleObservation = new javax.swing.JTextArea();
+        jPanel20 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        detailObservation = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        signature = new javax.swing.JTextField();
+        panelOperationsRéalisees = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList();
+        listeDesOperations = new javax.swing.JList();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        detailOperationSelectionnee = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        signatureOperationSelectionnee = new javax.swing.JTextField();
         jPanel26 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jTextPaneAjoutResultat2 = new javax.swing.JTextPane();
-        jButton3 = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
+        detailOperationAAjouter = new javax.swing.JTextPane();
+        enregistrerOperation = new javax.swing.JButton();
+        signatureNvleOperation = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        panelPrestationsDemandees = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
         listeDePrestations = new javax.swing.JList();
@@ -194,24 +212,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         enregistrerUnePrestation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         naturePrestation = new javax.swing.JTextArea();
-        jPanel8 = new javax.swing.JPanel();
+        panelLettreDeSortie = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         jTextPaneAjoutResultat4 = new javax.swing.JTextPane();
         jButton5 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
-        jPanel19 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPanel20 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listeDePatients = new javax.swing.JList();
@@ -338,7 +343,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        panelFichePatient.setLayout(new javax.swing.BoxLayout(panelFichePatient, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Informations personnelles"));
 
@@ -453,7 +458,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2);
+        panelFichePatient.add(jPanel2);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Informations de séjour"));
 
@@ -595,43 +600,39 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addContainerGap(170, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5);
+        panelFichePatient.add(jPanel5);
 
-        jTabbedPane1.addTab("Fiche du patient", jPanel1);
+        jTabbedPane1.addTab("Fiche du patient", panelFichePatient);
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Prescriptions"));
         jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList4.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList4.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Prescription du 09/02/2014 à 13h30", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList4.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        listeDesPrescriptions.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeDesPrescriptions.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeDesPrescriptions.setModel(listePrescriptions);
+        listeDesPrescriptions.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList4ValueChanged(evt);
+                listeDesPrescriptionsValueChanged(evt);
             }
         });
-        jScrollPane8.setViewportView(jList4);
+        jScrollPane8.setViewportView(listeDesPrescriptions);
 
         jPanel21.add(jScrollPane8);
 
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de la prescription"));
 
-        jTextArea4.setEditable(false);
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("Effectuer une prise de sang.");
-        jTextArea4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane9.setViewportView(jTextArea4);
+        detailPrescriptionSelectionnee.setEditable(false);
+        detailPrescriptionSelectionnee.setColumns(20);
+        detailPrescriptionSelectionnee.setRows(5);
+        detailPrescriptionSelectionnee.setText("Effectuer une prise de sang.");
+        detailPrescriptionSelectionnee.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane9.setViewportView(detailPrescriptionSelectionnee);
 
         jLabel12.setText("Auteur");
 
-        jTextField12.setEditable(false);
-        jTextField12.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        signaturePrescription.setEditable(false);
+        signaturePrescription.setBackground(new java.awt.Color(204, 204, 204));
+        signaturePrescription.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -643,7 +644,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField12))
+                        .addComponent(signaturePrescription))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -654,96 +655,195 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(signaturePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle prescription"));
+        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextPaneAjoutResultat1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane10.setViewportView(jTextPaneAjoutResultat1);
+        contenuNvlePrescription.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane10.setViewportView(contenuNvlePrescription);
+
+        jPanel23.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 307, 159));
 
         jButton2.setText("Prescrire");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 197, -1, -1));
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(39, 39, 39))
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPrescriptionsLayout = new javax.swing.GroupLayout(panelPrescriptions);
+        panelPrescriptions.setLayout(panelPrescriptionsLayout);
+        panelPrescriptionsLayout.setHorizontalGroup(
+            panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrescriptionsLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, Short.MAX_VALUE))
-                .addGap(0, 179, Short.MAX_VALUE))
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                .addGap(0, 235, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelPrescriptionsLayout.setVerticalGroup(
+            panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrescriptionsLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(panelPrescriptionsLayout.createSequentialGroup()
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Prescriptions", jPanel3);
+        jTabbedPane1.addTab("Prescriptions", panelPrescriptions);
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Observations"));
+        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
+
+        listeDesObservations.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeDesObservations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeDesObservations.setModel(listeObservations);
+        listeDesObservations.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listeDesObservationsValueChanged(evt);
+            }
+        });
+        jScrollPane5.setViewportView(listeDesObservations);
+
+        jPanel18.add(jScrollPane5);
+
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle observation"));
+
+        ajoutObservation.setText("Soumettre l'observation");
+        ajoutObservation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutObservationActionPerformed(evt);
+            }
+        });
+
+        nouvelleObservation.setColumns(20);
+        nouvelleObservation.setLineWrap(true);
+        nouvelleObservation.setRows(5);
+        jScrollPane3.setViewportView(nouvelleObservation);
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(ajoutObservation)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addGap(18, 18, 18)
+                .addComponent(ajoutObservation))
+        );
+
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de l'observation"));
+
+        detailObservation.setEditable(false);
+        detailObservation.setColumns(20);
+        detailObservation.setRows(5);
+        detailObservation.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane7.setViewportView(detailObservation);
+
+        jLabel10.setText("Signature");
+
+        signature.setEditable(false);
+        signature.setBackground(new java.awt.Color(204, 204, 204));
+        signature.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(signature, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelObservationsLayout = new javax.swing.GroupLayout(panelObservations);
+        panelObservations.setLayout(panelObservationsLayout);
+        panelObservationsLayout.setHorizontalGroup(
+            panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelObservationsLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addGroup(panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
+        );
+        panelObservationsLayout.setVerticalGroup(
+            panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelObservationsLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(panelObservationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelObservationsLayout.createSequentialGroup()
+                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Observations", panelObservations);
 
         jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des opérations"));
         jPanel24.setLayout(new javax.swing.BoxLayout(jPanel24, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList5.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList5.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Opération du 09/02/2014 à 13h30", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane11.setViewportView(jList5);
+        listeDesOperations.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        listeDesOperations.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
+        listeDesOperations.setModel(listePrescriptions);
+        jScrollPane11.setViewportView(listeDesOperations);
 
         jPanel24.add(jScrollPane11);
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de l'opération"));
 
-        jTextArea5.setEditable(false);
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jTextArea5.setText("Prise de sang effectuée");
-        jTextArea5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane12.setViewportView(jTextArea5);
+        detailOperationSelectionnee.setEditable(false);
+        detailOperationSelectionnee.setColumns(20);
+        detailOperationSelectionnee.setRows(5);
+        detailOperationSelectionnee.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane12.setViewportView(detailOperationSelectionnee);
 
         jLabel14.setText("Opérateur");
 
-        jTextField14.setEditable(false);
-        jTextField14.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        signatureOperationSelectionnee.setEditable(false);
+        signatureOperationSelectionnee.setBackground(new java.awt.Color(204, 204, 204));
+        signatureOperationSelectionnee.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -756,7 +856,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel25Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField14)))
+                        .addComponent(signatureOperationSelectionnee)))
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
@@ -766,17 +866,22 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(signatureOperationSelectionnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle opération"));
         jPanel26.setMaximumSize(new java.awt.Dimension(375, 197));
 
-        jTextPaneAjoutResultat2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane13.setViewportView(jTextPaneAjoutResultat2);
+        detailOperationAAjouter.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jScrollPane13.setViewportView(detailOperationAAjouter);
 
-        jButton3.setText("Enregistrer");
+        enregistrerOperation.setText("Enregistrer");
+        enregistrerOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enregistrerOperationActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Auteur (infirmier)");
 
@@ -791,9 +896,9 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     .addGroup(jPanel26Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(signatureNvleOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
+                        .addComponent(enregistrerOperation)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
@@ -803,38 +908,38 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enregistrerOperation)
+                    .addComponent(signatureNvleOperation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelOperationsRéaliseesLayout = new javax.swing.GroupLayout(panelOperationsRéalisees);
+        panelOperationsRéalisees.setLayout(panelOperationsRéaliseesLayout);
+        panelOperationsRéaliseesLayout.setHorizontalGroup(
+            panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOperationsRéaliseesLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        panelOperationsRéaliseesLayout.setVerticalGroup(
+            panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOperationsRéaliseesLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelOperationsRéaliseesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGroup(panelOperationsRéaliseesLayout.createSequentialGroup()
                         .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jTabbedPane1.addTab("Opérations réalisées", jPanel6);
+        jTabbedPane1.addTab("Opérations réalisées", panelOperationsRéalisees);
 
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder("Prestations demandées"));
         jPanel27.setLayout(new javax.swing.BoxLayout(jPanel27, javax.swing.BoxLayout.LINE_AXIS));
@@ -905,34 +1010,34 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel29.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 355, 118));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPrestationsDemandeesLayout = new javax.swing.GroupLayout(panelPrestationsDemandees);
+        panelPrestationsDemandees.setLayout(panelPrestationsDemandeesLayout);
+        panelPrestationsDemandeesLayout.setHorizontalGroup(
+            panelPrestationsDemandeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrestationsDemandeesLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(panelPrestationsDemandeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrestationsDemandeesLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGroup(panelPrestationsDemandeesLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        panelPrestationsDemandeesLayout.setVerticalGroup(
+            panelPrestationsDemandeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrestationsDemandeesLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPrestationsDemandeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGroup(panelPrestationsDemandeesLayout.createSequentialGroup()
                         .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jTabbedPane1.addTab("Prestations", jPanel7);
+        jTabbedPane1.addTab("Prestations demandées", panelPrestationsDemandees);
 
         jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder("Edition d'une lettre de sortie"));
         jPanel30.setMaximumSize(new java.awt.Dimension(375, 197));
@@ -963,133 +1068,24 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 18, 18, 16);
         jPanel30.add(jButton5, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelLettreDeSortieLayout = new javax.swing.GroupLayout(panelLettreDeSortie);
+        panelLettreDeSortie.setLayout(panelLettreDeSortieLayout);
+        panelLettreDeSortieLayout.setHorizontalGroup(
+            panelLettreDeSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLettreDeSortieLayout.createSequentialGroup()
                 .addGap(177, 177, 177)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(217, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        panelLettreDeSortieLayout.setVerticalGroup(
+            panelLettreDeSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLettreDeSortieLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(142, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lettre de sortie", jPanel8);
-
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Observations"));
-        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
-
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList3.setFont(new java.awt.Font("SimHei", 0, 18)); // NOI18N
-        jList3.setModel(listeObservations);
-        jScrollPane5.setViewportView(jList3);
-
-        jPanel18.add(jScrollPane5);
-
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder("Nouvelle observation"));
-
-        jButton1.setText("Soumettre l'observation");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1))
-        );
-
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Détail de l'observation"));
-
-        jTextArea3.setEditable(false);
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("Etat comateux...");
-        jTextArea3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane7.setViewportView(jTextArea3);
-
-        jLabel10.setText("Signature");
-
-        jTextField10.setEditable(false);
-        jTextField10.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7))
-                .addContainerGap())
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(197, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Observations", jPanel4);
+        jTabbedPane1.addTab("Lettre de sortie", panelLettreDeSortie);
 
         DM.add(jTabbedPane1, "card2");
 
@@ -1160,23 +1156,29 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         c.show(DM, "card2");
     }//GEN-LAST:event_listeDePatientsValueChanged
 
-    private void jList4ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList4ValueChanged
+    private void listeDesPrescriptionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesPrescriptionsValueChanged
+        int i = listeDesPrescriptions.getSelectedIndex();
+        Prescription p = listePrescriptions.elementAt(i);
+        contenuNvlePrescription.setText("");
+        detailPrescriptionSelectionnee.setText(p.getPrescriptions());
+        signaturePrescription.setText(p.getMedecin().toString());
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_jList4ValueChanged
+    }//GEN-LAST:event_listeDesPrescriptionsValueChanged
 
     private void enregistrerUnePrestationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerUnePrestationActionPerformed
-
+        //JOptionPane pour la confirmation
         if (naturePrestation.getText().isEmpty()) {
             JOptionPane.showMessageDialog(naturePrestation, "Ajouter du contenu");
-//            showInternalMessageDialog(, , "Message d'erreur", JOptionPane.ERROR_MESSAGE, null);
+
         } else {
             int in = listeDePatients.getSelectedIndex();
-            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : " + naturePrestation.getText() + " pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir demander la prestation : '" + naturePrestation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
+
+                //Détermination de l'identifiant de la nouvelle demande de prestation
                 DAOPrestations d = new DAOPrestations();
-                DAOResultat r = new DAOResultat();
+
                 int i = listeDePatients.getSelectedIndex();
                 ConnectionBD c = new ConnectionBD();
                 int idResultat = 1;
@@ -1192,6 +1194,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                     Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+                //Définition de sa date
                 Calendar ca = Calendar.getInstance();
                 String minute = "" + ca.getTime().getMinutes();
                 String heure = "" + ca.getTime().getHours();
@@ -1215,8 +1218,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 }
 
                 DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+
+                //Ajout dans la base de données
                 d.ajoutPrestation(naturePrestation.getText(), medecin.getId(), modeleListeDPI.getElementAt(i).getIpp(), null, date.toString(), "" + idResultat);
-//                r.ajoutResultat(null, null, null, "" + idResultat, "" + idResultat);
+
+                //Affichage
                 afficherDossierMedical();
                 naturePrestation.setBackground(new java.awt.Color(255, 255, 255));
                 naturePrestation.setText("");
@@ -1261,16 +1267,242 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
     }//GEN-LAST:event_nouvelleDemandeActionPerformed
 
+    private void ajoutObservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutObservationActionPerformed
+        if (nouvelleObservation.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(nouvelleObservation, "Ajouter du contenu");
+
+        } else {
+            int in = listeDePatients.getSelectedIndex();
+            int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'observation : '" + nouvelleObservation.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                //Réinitialisation de l'affichage 
+                listeDesObservations.clearSelection();
+                detailObservation.setText("");
+                signature.setText("");
+
+                DAOObservation o = new DAOObservation();
+                int i = listeDePatients.getSelectedIndex();
+                DPI patient = modeleListeDPI.elementAt(i);
+
+                //Détermination de l'id de la nouvelle observation :
+                ConnectionBD c = new ConnectionBD();
+                int idObservation = 1;
+                try {
+                    Statement ins = c.connexion.createStatement();
+                    ResultSet resul;
+                    resul = ins.executeQuery("SELECT * FROM observations");
+
+                    while (resul.next()) {
+                        idObservation++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                //Définition de la date d'édition
+                Calendar ca = Calendar.getInstance();
+                String minute = "" + ca.getTime().getMinutes();
+                String heure = "" + ca.getTime().getHours();
+                int rangDuMois = ca.getTime().getMonth() + 1;
+                String mois = "" + rangDuMois;
+                String jour = "" + ca.getTime().getDate();
+
+                int anne = 1900 + ca.getTime().getYear();
+                String annee = "" + anne;
+                if (ca.getTime().getDate() < 10) {
+                    jour = "0" + ca.getTime().getDate();
+                }
+                if (ca.getTime().getMinutes() < 10) {
+                    minute = "0" + ca.getTime().getMinutes();
+                }
+                if (ca.getTime().getHours() < 10) {
+                    heure = "0" + ca.getTime().getHours();
+                }
+                if (ca.getTime().getMonth() < 10) {
+                    mois = "0" + rangDuMois;
+                }
+
+                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+
+                //Ajout de l'observation
+                o.ajoutObservation("" + idObservation, medecin.getId(), nouvelleObservation.getText(), patient.getIpp(), date.toString());
+
+                nouvelleObservation.setText("");
+                afficherDossierMedical();
+
+            }
+        }
+    }//GEN-LAST:event_ajoutObservationActionPerformed
+
+    private void listeDesObservationsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDesObservationsValueChanged
+        int i = listeDesObservations.getSelectedIndex();
+        if (i>=0){
+        Observation o = listeObservations.elementAt(i);
+        nouvelleObservation.setText("");
+        detailObservation.setText(o.getDescription());
+        signature.setText(o.getMedecin().toString());
+        }
+
+    }//GEN-LAST:event_listeDesObservationsValueChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (contenuNvlePrescription.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(contenuNvlePrescription, "Ajouter du contenu");
+
+        } else {
+            int in = listeDePatients.getSelectedIndex();
+            int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous la prescription : '" + contenuNvlePrescription.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                //Réinitialisation de l'affichage 
+                listeDesPrescriptions.clearSelection();
+                detailPrescriptionSelectionnee.setText("");
+                signaturePrescription.setText("");
+
+                DAOPrescription dp = new DAOPrescription();
+                int i = listeDePatients.getSelectedIndex();
+                DPI patient = modeleListeDPI.elementAt(i);
+
+                //Détermination de l'id de la nouvelle observation :
+                ConnectionBD c = new ConnectionBD();
+                int idPrescription = 1;
+                try {
+                    Statement ins = c.connexion.createStatement();
+                    ResultSet resul;
+                    resul = ins.executeQuery("SELECT * FROM prescriptions");
+
+                    while (resul.next()) {
+                        idPrescription++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                //Définition de la date d'édition
+                Calendar ca = Calendar.getInstance();
+                String minute = "" + ca.getTime().getMinutes();
+                String heure = "" + ca.getTime().getHours();
+                int rangDuMois = ca.getTime().getMonth() + 1;
+                String mois = "" + rangDuMois;
+                String jour = "" + ca.getTime().getDate();
+
+                int anne = 1900 + ca.getTime().getYear();
+                String annee = "" + anne;
+                if (ca.getTime().getDate() < 10) {
+                    jour = "0" + ca.getTime().getDate();
+                }
+                if (ca.getTime().getMinutes() < 10) {
+                    minute = "0" + ca.getTime().getMinutes();
+                }
+                if (ca.getTime().getHours() < 10) {
+                    heure = "0" + ca.getTime().getHours();
+                }
+                if (ca.getTime().getMonth() < 10) {
+                    mois = "0" + rangDuMois;
+                }
+
+                DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+
+                //Ajout de l'observation
+                dp.ajoutPrescription("" + idPrescription, patient.getIpp(), medecin.getId(), contenuNvlePrescription.getText(), date.toString());
+                contenuNvlePrescription.setText("");
+
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void enregistrerOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerOperationActionPerformed
+        if (detailOperationAAjouter.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(detailOperationAAjouter, "Ajouter du contenu");
+
+        } else {
+            if (signatureNvleOperation.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(detailOperationAAjouter, "Signer");
+            } else {
+
+                int in = listeDePatients.getSelectedIndex();
+                int confirm = JOptionPane.showConfirmDialog(null, "Confirmez-vous l'opération : '" + detailOperationAAjouter.getText() + "' pour le patient " + "'" + modeleListeDPI.getElementAt(in) + "'" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    //Réinitialisation de l'affichage 
+                    listeDesOperations.clearSelection();
+                    detailOperationSelectionnee.setText("");
+                    signatureOperationSelectionnee.setText("");
+
+                    DAOOperation op = new DAOOperation();
+                    int i = listeDePatients.getSelectedIndex();
+                    DPI patient = modeleListeDPI.elementAt(i);
+
+                    //Détermination de l'id de la nouvelle observation :
+                    ConnectionBD c = new ConnectionBD();
+                    int idOperation = 1;
+                    try {
+                        Statement ins = c.connexion.createStatement();
+                        ResultSet resul;
+                        resul = ins.executeQuery("SELECT * FROM operations");
+
+                        while (resul.next()) {
+                            idOperation++;
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfaceServiceClinique.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    //Définition de la date d'édition
+                    Calendar ca = Calendar.getInstance();
+                    String minute = "" + ca.getTime().getMinutes();
+                    String heure = "" + ca.getTime().getHours();
+                    int rangDuMois = ca.getTime().getMonth() + 1;
+                    String mois = "" + rangDuMois;
+                    String jour = "" + ca.getTime().getDate();
+
+                    int anne = 1900 + ca.getTime().getYear();
+                    String annee = "" + anne;
+                    if (ca.getTime().getDate() < 10) {
+                        jour = "0" + ca.getTime().getDate();
+                    }
+                    if (ca.getTime().getMinutes() < 10) {
+                        minute = "0" + ca.getTime().getMinutes();
+                    }
+                    if (ca.getTime().getHours() < 10) {
+                        heure = "0" + ca.getTime().getHours();
+                    }
+                    if (ca.getTime().getMonth() < 10) {
+                        mois = "0" + rangDuMois;
+                    }
+
+                    DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+
+                    //Ajout de l'observation
+                    op.ajoutOperation("" + idOperation, servicePatient.getNumeroSejour(), date.toString(), detailOperationAAjouter.getText(), signatureNvleOperation.getText());
+                    detailOperationAAjouter.setText("");
+
+                }
+            }
+        }
+    }//GEN-LAST:event_enregistrerOperationActionPerformed
+
     public void afficherDossierMedical() {
         /**
          * Méthode affichant le dossier médical du patient sélection
          */
-        //Affichage de la liste des prestations
 
+        int i = listeDePatients.getSelectedIndex();
+        DPI patient = modeleListeDPI.getElementAt(i);
+
+        DAOSejour daoSejour = new pichisBD.DAOSejour();
+        ArrayList<Sejour> listeDeSejours = daoSejour.consulterListeSejourParPatient(patient).getListeSejours();
+
+        servicePatient = listeDeSejours.get(listeDeSejours.size() - 1);
+
+        //Affichage de la liste des prestations
         listePrestations.clear();
         DAOPrestations d = new DAOPrestations();
-        int i = listeDePatients.getSelectedIndex();
-        ArrayList<Prestations> p = d.prestationsPatient(modeleListeDPI.getElementAt(i).getIpp());
+
+        ArrayList<Prestations> p = d.prestationsPatient(patient.getIpp());
         Collections.sort(p);
         for (Prestations pr : p) {
 
@@ -1280,7 +1512,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         listeDePrestations.setModel(listePrestations);
 
         //Affichage de la fiche du patient
-            //Localisation
+        //Localisation
         Localisation loc;
 
         if (servicePatient != null) {
@@ -1289,24 +1521,59 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
             comboBoxService.setSelectedItem(loc.getService().getSpecialite());
             champNumeroChambre.setText(loc.getNumeroChambre());
-            
+
             comboBoxPlacement.setSelectedItem(loc.getPlacement());
-            
+
         }
-        
-            //Donnees personnelles
-        jTextField1.setText(modeleListeDPI.getElementAt(i).getNom());
-        jTextField2.setText(modeleListeDPI.getElementAt(i).getPrenom());
-        jTextField4.setText(modeleListeDPI.getElementAt(i).getSexe());
-        jTextField5.setText(modeleListeDPI.getElementAt(i).getIpp());
-        jTextField6.setText(modeleListeDPI.getElementAt(i).getDateNaissance().toString());
-        adresse.setText(modeleListeDPI.getElementAt(i).getAdresse());
-        
-            //Informations administratives
+
+        //Donnees personnelles
+        jTextField1.setText(patient.getNom());
+        jTextField2.setText(patient.getPrenom());
+        jTextField4.setText(patient.getSexe());
+        jTextField5.setText(patient.getIpp());
+        jTextField6.setText(patient.getDateNaissance().toString());
+        adresse.setText(patient.getAdresse());
+
+        //Informations administratives
         jTextField20.setText(servicePatient.getNumeroSejour());
         jTextField19.setText(servicePatient.getPHResponsable().toString());
         jTextField18.setText(servicePatient.getDateEntree().toString());
-        
+
+        //Affichage de la liste des observations :
+        listeObservations.clear();
+        DAOObservation o = new DAOObservation();
+        ArrayList<Observation> lob = o.observationsPatient(patient.getIpp());
+
+        for (Observation observ : lob) {
+
+            listeObservations.addElement(observ);
+
+        }
+        listeDesObservations.setModel(listeObservations);
+
+        //Affichage de la liste des prescriptions
+        listePrescriptions.clear();
+        DAOPrescription pres = new DAOPrescription();
+        ArrayList<Prescription> lpres = pres.prescriptionsPatient(patient.getIpp());
+
+        for (Prescription prescription : lpres) {
+
+            listePrescriptions.addElement(prescription);
+
+        }
+        listeDesPrescriptions.setModel(listePrescriptions);
+
+        //Afficher liste d'opérations
+        listeOperations.clear();
+        DAOOperation op = new DAOOperation();
+        ArrayList<Operation> lop = op.operationSejour(servicePatient.getNumeroSejour());
+
+        for (Operation ope : lop) {
+
+            listeOperations.addElement(ope);
+
+        }
+        listeDesOperations.setModel(listeOperations);
     }
 
     /**
@@ -1348,13 +1615,18 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JPanel DM;
     private javax.swing.JPanel InterfaceServiceClinique;
     private javax.swing.JTextArea adresse;
+    private javax.swing.JButton ajoutObservation;
     private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JComboBox comboBoxPlacement;
     private javax.swing.JComboBox comboBoxService;
+    private javax.swing.JTextPane contenuNvlePrescription;
+    private javax.swing.JTextArea detailObservation;
+    private javax.swing.JTextPane detailOperationAAjouter;
+    private javax.swing.JTextArea detailOperationSelectionnee;
+    private javax.swing.JTextArea detailPrescriptionSelectionnee;
+    private javax.swing.JButton enregistrerOperation;
     private javax.swing.JButton enregistrerUnePrestation;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1381,10 +1653,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList jList3;
-    private javax.swing.JList jList4;
-    private javax.swing.JList jList5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1403,13 +1671,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -1428,14 +1691,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
@@ -1444,17 +1700,28 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextPane jTextPaneAjoutResultat1;
-    private javax.swing.JTextPane jTextPaneAjoutResultat2;
     private javax.swing.JTextPane jTextPaneAjoutResultat4;
     private javax.swing.JLabel labelNumeroChambre;
     private javax.swing.JLabel labelPlacement;
     private javax.swing.JLabel labelService;
     private javax.swing.JList listeDePatients;
     private javax.swing.JList listeDePrestations;
+    private javax.swing.JList listeDesObservations;
+    private javax.swing.JList listeDesOperations;
+    private javax.swing.JList listeDesPrescriptions;
     private javax.swing.JTextArea naturePrestation;
     private javax.swing.JButton nouvelleDemande;
+    private javax.swing.JTextArea nouvelleObservation;
+    private javax.swing.JPanel panelFichePatient;
+    private javax.swing.JPanel panelLettreDeSortie;
+    private javax.swing.JPanel panelObservations;
+    private javax.swing.JPanel panelOperationsRéalisees;
+    private javax.swing.JPanel panelPrescriptions;
+    private javax.swing.JPanel panelPrestationsDemandees;
     private javax.swing.JTextArea resultatPrestation;
+    private javax.swing.JTextField signature;
+    private javax.swing.JTextField signatureNvleOperation;
+    private javax.swing.JTextField signatureOperationSelectionnee;
+    private javax.swing.JTextField signaturePrescription;
     // End of variables declaration//GEN-END:variables
 }

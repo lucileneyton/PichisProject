@@ -77,9 +77,16 @@ public class DAOObservation {
                 DPI dpi = daop.dpiParIPP(p);
                 
                 date = resul.getString("date");
-                DateSimple d = new DateSimple(date.substring(0, 1), date.substring(2, 3), date.substring(4, 7));
                 
-                Observation o = new Observation(d,texte,med);
+                DateSimple dateRenvoyee =null;
+                if (date != null) {
+                    if (date.length() <= 11) {
+                        dateRenvoyee = new DateSimple(date.substring(0, 2), date.substring(3, 5), date.substring(6, 10));
+                    } else {
+                        dateRenvoyee = new DateSimple(date.substring(0, 2), date.substring(3, 5), date.substring(6, 10), date.substring(13, 15), date.substring(16, 18));
+                    }
+                }
+                Observation o = new Observation(dateRenvoyee,texte,med);
 
                 liste.add(o);
                 

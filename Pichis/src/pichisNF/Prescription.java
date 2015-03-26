@@ -37,6 +37,10 @@ public class Prescription {
         return prescriptions;
     }
 
+    public Medecin getMedecin() {
+        return medecin;
+    }
+
     public void setPrescriptions(String prescriptions) {
         this.prescriptions = prescriptions;
     }
