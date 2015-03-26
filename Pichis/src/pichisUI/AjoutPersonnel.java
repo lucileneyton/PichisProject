@@ -15,25 +15,23 @@ import pichisNF.Services;
 import pichisNF.Specialite;
 import pichisNF.TypeServices;
 
-/**
- *
- * @author Johann
- */
 public class AjoutPersonnel extends javax.swing.JFrame {
 
     private InterfaceMaintenance interfaceMaintenance;
     private Maintenance m;
-    
+
+    /**
+     * constructeur de la classe AjoutPersonnel
+     *
+     * @param interfaceMaintenance
+     * @param m
+     */
     public AjoutPersonnel(InterfaceMaintenance interfaceMaintenance, Maintenance m) {
         this.interfaceMaintenance = interfaceMaintenance;
-        this.m=m;
+        this.m = m;
         initComponents();
-//        int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - (int) this.getSize().getWidth() / 2;
-//        int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - (int) this.getSize().getHeight() / 2;
-//        this.setLocation(x, y);
         setLocationRelativeTo(null);
 
-        
     }
 
     /**
@@ -303,7 +301,7 @@ public class AjoutPersonnel extends javax.swing.JFrame {
                             jop.hide();
                             this.dispose();
                             interfaceMaintenance.dispose();
-                            
+
                             interfaceMaintenance = new InterfaceMaintenance(m);
                             interfaceMaintenance.setVisible(true);
                         }

@@ -11,16 +11,16 @@ import javax.swing.JOptionPane;
 import pichisNF.DPI;
 import pichisNF.fonctions;
 
-/**
- *
- * @author Matilas
- */
+
 public class AjoutPatient extends javax.swing.JDialog {
 
-    InterfaceAdministratif interfaceAdmin;
+    private InterfaceAdministratif interfaceAdmin;
 
-    /**
-     * Creates new form Test
+    /** constructeur de la classe ajoutPatient
+     * 
+     * @param parent
+     * @param modal
+     * @param interfaceAdmin 
      */
     public AjoutPatient(java.awt.Frame parent, boolean modal, InterfaceAdministratif interfaceAdmin) {
         super(parent, modal);
@@ -299,7 +299,7 @@ public class AjoutPatient extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void boutonHommeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonHommeActionPerformed
         if (boutonFemme.isSelected()) {
             boutonFemme.setSelected(false);
