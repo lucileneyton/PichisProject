@@ -10,28 +10,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import pichisNF.Medecin;
-
-/**
- *
- * @author Lucile
- */
 import pichisNF.Services;
 import pichisNF.Specialite;
 import pichisNF.TypeServices;
+/**
+ *
+ * Data access object de la classe Medecin
+ */
+
 
 public class DAOMedecin {
-    /*
-     * To change this license header, choose License Headers in Project Properties.
-     * To change this template file, choose Tools | Templates
-     * and open the template in the editor.
-     */
+    
+    ConnectionBD c;
+    
+    
 
     /**
-     *
-     * @author Lucile
-     */
-    ConnectionBD c;
-
+ * Méthode permettant de consulter la liste des médecins
+ * @return ArrayList<Medecin> 
+ */
     public ArrayList<Medecin> consulterListeMedecin2() {
 
         ArrayList<Medecin> listeMedecin = new ArrayList();
@@ -86,6 +83,13 @@ public class DAOMedecin {
 
     }
 
+    /**
+ *
+ * Méthode pour l'identification d'un médecin
+ * @param id l'identifiant entré par le médecin
+ * @param motDePasse le mot de passe renseigné par le médecin
+ * @return boolean
+ */
     public boolean identification(String id, String motDePasse) {
 
         String identif;
@@ -128,6 +132,12 @@ public class DAOMedecin {
 
     }
 
+    /**
+ * Méthode déterminant si un personnel est un médecin ou non
+ * @param id l'identifiant du personnel
+ * @param mdp le mot de passe du personnel
+ * @return boolean
+ */
     public boolean estMedecin(String id, String mdp) throws SQLException {
         ResultSet res = null;
         boolean b = false;
@@ -165,6 +175,7 @@ public class DAOMedecin {
 
     }
 
+    
     public ArrayList<Medecin> consulterListeMedecin() {
 
         ArrayList<Medecin> listeMedecin = new ArrayList();
