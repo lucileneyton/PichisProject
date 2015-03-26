@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import pichisBD.*;
 import pichisNF.*;
 
-
 public class InterfaceAdministratif extends javax.swing.JFrame {
 
     private Administratif administratif;
@@ -24,28 +23,28 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     private DefaultListModel<Sejour> modeleListeSejour;
     private DefaultListModel<Prestations> modeleListePrestation;
     private DefaultListModel<DPI> modeleListeDPIRecherche;
-    
-    private DAOSejour daoSejour; 
+
+    private DAOSejour daoSejour;
     private DAODPI daoDpi;
     private DAOLocalisation daoLoc;
     private DAOServices daoService;
     private DAOPrestations daoPrestations;
     private Administratif a;
-   
 
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
-    /** constructeur de la classe InterfaceAdministratif
-     * 
-     * @param a 
+    /**
+     * constructeur de la classe InterfaceAdministratif
+     *
+     * @param a
      */
     public InterfaceAdministratif(Administratif a) {
         this.a = a;
         initComponents();
-        
+
         modeleListeDPI = new DefaultListModel<DPI>();
         modeleListeSejour = new DefaultListModel<Sejour>();
         modeleListePrestation = new DefaultListModel<Prestations>();
@@ -63,7 +62,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Termine le processus lorsqu'on clique sur la croix rouge
-        
+
         this.setDefaultLookAndFeelDecorated(true);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
@@ -869,7 +868,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         AjoutPatient test = new AjoutPatient(this, true, this);
         test.setVisible(true);
-        
+
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
     private void champJourEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_champJourEntreeActionPerformed
@@ -904,11 +903,11 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxPlacementActionPerformed
 
     private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
-        if(listeDePatients.getSelectedIndex() >= 0){
-            if ((champNumeroChambre.getText().equals("") == false) && 
-                (pichisNF.fonctions.isNumeric(champNumeroChambre.getText())) && 
-                (comboBoxPlacement.getSelectedIndex() != -1 && comboBoxService.getSelectedIndex() != -1)) {
-            //patientSelectionne.mettre a jour donnees
+        if (listeDePatients.getSelectedIndex() >= 0) {
+            if ((champNumeroChambre.getText().equals("") == false)
+                    && (pichisNF.fonctions.isNumeric(champNumeroChambre.getText()))
+                    && (comboBoxPlacement.getSelectedIndex() != -1 && comboBoxService.getSelectedIndex() != -1)) {
+                //patientSelectionne.mettre a jour donnees
 
                 comboBoxService.setEnabled(false);
                 comboBoxService.setBackground(Color.LIGHT_GRAY);
@@ -916,51 +915,46 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
                 champNumeroChambre.setBackground(Color.LIGHT_GRAY);
                 comboBoxPlacement.setEnabled(false);
                 comboBoxPlacement.setBackground(Color.LIGHT_GRAY);
-            
+
                 Sejour sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
-            
-                if(sejourRecent != null && comboBoxService.getSelectedIndex() != -1 && champNumeroChambre.getText().isEmpty() == false && comboBoxPlacement.getSelectedIndex() != -1){
+
+                if (sejourRecent != null && comboBoxService.getSelectedIndex() != -1 && champNumeroChambre.getText().isEmpty() == false && comboBoxPlacement.getSelectedIndex() != -1) {
                     Services s = new Services(TypeServices.CLINIQUE, Specialite.valueOf(comboBoxService.getSelectedItem().toString()));
                     daoLoc.changerLocalisationSejour(sejourRecent.getNumeroSejour(), daoService.idParService(s), champNumeroChambre.getText(), comboBoxPlacement.getSelectedItem().toString());
                 }
-            
 
             } else {
                 JOptionPane.showMessageDialog(null, "Veuillez rentrer un nombre pour le numéro de chambre", "Changement Localisation", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Veuillez choisir un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     private void listeSejoursValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeSejoursValueChanged
-            if(listeSejours.getSelectedValue() != null) {
-                this.effaceDonneesSejour();
-                this.affichageDonneesSejour();
-                this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
-            }
+        if (listeSejours.getSelectedValue() != null) {
+            this.effaceDonneesSejour();
+            this.affichageDonneesSejour();
+            this.afficherLettre(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+        }
     }//GEN-LAST:event_listeSejoursValueChanged
 
     private void boutonAjouterSejourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterSejourActionPerformed
-        if(listeDePatients.getSelectedIndex() >= 0){
+        if (listeDePatients.getSelectedIndex() >= 0) {
             DPI patientActuel = modeleListeDPI.get(listeDePatients.getSelectedIndex());
-            if(daoSejour.consulterListeSejourParPatient(patientActuel).getListeSejours().isEmpty() == false){
-                if(daoSejour.consulterListeSejourParPatient(patientActuel).getDernierSejour().getDateSortie() == null){
+            if (daoSejour.consulterListeSejourParPatient(patientActuel).getListeSejours().isEmpty() == false) {
+                if (daoSejour.consulterListeSejourParPatient(patientActuel).getDernierSejour().getDateSortie() == null) {
                     JOptionPane.showMessageDialog(null, "Sejour deja en cours", "Ajout de sejour", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
+                } else {
                     AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
-                    ajoutSejour.setVisible(true); 
+                    ajoutSejour.setVisible(true);
                 }
-            }
-            else{
+            } else {
                 AjoutSejour ajoutSejour = new AjoutSejour(modeleListeDPI.get(listeDePatients.getSelectedIndex()), this);
-                ajoutSejour.setVisible(true); 
+                ajoutSejour.setVisible(true);
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Veuillez choisir un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_boutonAjouterSejourActionPerformed
@@ -969,34 +963,42 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 //        int confirm = JOptionPane.showConfirmDialog(null, "Êtes vous sûr de vouloir vous déconnecter" + " ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 //
 //        if (confirm == JOptionPane.YES_OPTION) {
-            this.dispose();
-            new Identification();
+        this.dispose();
+        new Identification();
 //        }
 
 
     }//GEN-LAST:event_jLabel38MouseClicked
 
     private void listeDePatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeDePatientsValueChanged
-        if(listeDePatients.getSelectedValue() != null) {
-            if(daoDpi.getOuvert(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp())){
+        if (listeDePatients.getSelectedValue() != null) {
+            if (daoDpi.getOuvert(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp())) {
                 CardLayout c = (CardLayout) (DMA.getLayout());
                 c.show(DMA, "card2");
-            }    
-            else{
+            } else {
                 CardLayout c = (CardLayout) (DMA.getLayout());
                 c.show(DMA, "card4");
             }
-                this.affichageDonneesPatient();
-            
+            this.affichageDonneesPatient();
+            if (jTextFieldRecherche.getText().isEmpty()) {
                 this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
-                this.effaceDonneesSejour();
-            
-                this.effaceDonneesLocalisation();          
-                this.affichageLocalisation();
-            
-                this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
-        
-                this.effacerLettre();
+
+            } else {
+                this.affichageSejoursDuPatient(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+            }
+
+            this.effaceDonneesSejour();
+
+            this.effaceDonneesLocalisation();
+            this.affichageLocalisation();
+            if (jTextFieldRecherche.getText().isEmpty()) {
+                this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+            } else {
+                this.afficherPrestations(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+            }
+
+            this.effacerLettre();
         }
     }//GEN-LAST:event_listeDePatientsValueChanged
 
@@ -1037,7 +1039,7 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         } else {
             listeDePatients.setModel(modeleListeDPI);
         }
-        
+
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
     private void comboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxServiceActionPerformed
@@ -1045,52 +1047,58 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxServiceActionPerformed
 
     private void boutonFermerDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFermerDPIActionPerformed
-        if(listeDePatients.getSelectedIndex() >= 0){
-        
+        if (listeDePatients.getSelectedIndex() >= 0) {
+
             DPI patient = modeleListeDPI.get(listeDePatients.getSelectedIndex());
             Sejour sejour = daoSejour.consulterListeSejourParPatient(patient).getDernierSejour();
-            if(sejour != null){
-                if(daoSejour.lettreDeSortie(sejour.getNumeroSejour())){
-            
+            if (sejour != null) {
+                if (daoSejour.lettreDeSortie(sejour.getNumeroSejour())) {
+
                     CardLayout c = (CardLayout) (DMA.getLayout());
                     c.show(DMA, "card4");
                     daoDpi.fermerDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
                     daoSejour.ajoutDateSortie(sejour.getNumeroSejour());
                     this.effacerLettre();
-                }    
-                else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Aucune lettre de sortie presente", "Fermeture DPI", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Veuillez selectionner un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_boutonFermerDPIActionPerformed
 
     private void boutonOuvrirDPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonOuvrirDPIActionPerformed
-        if(listeDePatients.getSelectedIndex() >= 0){
+        if (listeDePatients.getSelectedIndex() >= 0) {
             CardLayout c = (CardLayout) (DMA.getLayout());
             c.show(DMA, "card2");
             daoDpi.ouvrirDPI(modeleListeDPI.get(listeDePatients.getSelectedIndex()).getIpp());
-            if(listeDePatients.getSelectedValue() != null) {
+            if (listeDePatients.getSelectedValue() != null) {
                 this.affichageDonneesPatient();
-            
-                
-                this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+                if (jTextFieldRecherche.getText().isEmpty()) {
+                    this.affichageSejoursDuPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+                } else {
+                    this.affichageSejoursDuPatient(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+                }
+
                 this.effaceDonneesSejour();
-            
-                this.effaceDonneesLocalisation();          
+
+                this.effaceDonneesLocalisation();
                 this.affichageLocalisation();
-            
-                this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));        
-        
+
+                if (jTextFieldRecherche.getText().isEmpty()) {
+                    this.afficherPrestations(modeleListeDPI.get(listeDePatients.getSelectedIndex()));
+
+                } else {
+                    this.afficherPrestations(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex()));
+                }
+
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Veuillez choisir un patient", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_boutonOuvrirDPIActionPerformed
@@ -1099,8 +1107,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_champJourSortieActionPerformed
 
-    /** Méthode assurant la mise à jour de la liste des patients de l'etablissement
-     * 
+    /**
+     * Méthode assurant la mise à jour de la liste des patients de
+     * l'etablissement
+     *
      */
     public void miseAJour() {
         daoDpi = new pichisBD.DAODPI();
@@ -1113,9 +1123,10 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
         }
         listeDePatients.setModel(modeleListeDPI);
     }
-    
-    /** Methode actualisant l'affichage des donnees concernant le patient
-     * 
+
+    /**
+     * Methode actualisant l'affichage des donnees concernant le patient
+     *
      */
     public void affichageDonneesPatient() {
         if (listeDePatients.getModel().getSize() != 0 && listeDePatients.getSelectedIndex() >= 0) {
@@ -1133,145 +1144,157 @@ public class InterfaceAdministratif extends javax.swing.JFrame {
 
         }
     }
-    
-    /** methode actualisant l'affichage du sejour
-     * 
+
+    /**
+     * methode actualisant l'affichage du sejour
+     *
      */
-    public void affichageDonneesSejour(){      
+    public void affichageDonneesSejour() {
         if (listeSejours.getModel().getSize() != 0 && listeSejours.getSelectedIndex() >= 0) {
             DefaultListModel<Sejour> modele = (DefaultListModel<Sejour>) listeSejours.getModel();
-            
+
             int indice = listeSejours.getSelectedIndex();
             Sejour sejourActuel = modele.get(indice);
-            
+
             champJourEntree.setText(sejourActuel.getDateEntree().getJour());
             champMoisEntree.setText(sejourActuel.getDateEntree().getMois());
             champAnneeEntree.setText(sejourActuel.getDateEntree().getAnnee());
-            
+
             champNumeroSejour.setText(sejourActuel.getNumeroSejour());
-           
+
             champPhResponsable.setText(sejourActuel.getPHResponsable().toString());
-            
-            if(sejourActuel.getDateSortie() != null){             
+
+            if (sejourActuel.getDateSortie() != null) {
                 champJourSortie.setText(sejourActuel.getDateSortie().getJour());
                 champMoisSortie.setText(sejourActuel.getDateSortie().getMois());
                 champAnneeSortie.setText(sejourActuel.getDateSortie().getAnnee());
             }
-            
+
             this.affichageLocalisation();
         }
     }
-    
-    /** efface les champs concernant les donnees du sejour
-     * 
+
+    /**
+     * efface les champs concernant les donnees du sejour
+     *
      */
-    public void effaceDonneesSejour(){
-          champJourEntree.setText("");
-          champMoisEntree.setText("");
-          champAnneeEntree.setText(""); 
-          champJourSortie.setText("");
-          champMoisSortie.setText("");
-          champAnneeSortie.setText("");
-          champNumeroSejour.setText("");
-          champPhResponsable.setText("");
-          
+    public void effaceDonneesSejour() {
+        champJourEntree.setText("");
+        champMoisEntree.setText("");
+        champAnneeEntree.setText("");
+        champJourSortie.setText("");
+        champMoisSortie.setText("");
+        champAnneeSortie.setText("");
+        champNumeroSejour.setText("");
+        champPhResponsable.setText("");
+
     }
-    
-    /** methode affichant la liste de sejours du patient
-     * 
-     * @param dpi 
+
+    /**
+     * methode affichant la liste de sejours du patient
+     *
+     * @param dpi
      */
-    public void affichageSejoursDuPatient(DPI dpi){
+    public void affichageSejoursDuPatient(DPI dpi) {
         ArrayList<Sejour> listeSejoursTemp = new ArrayList<Sejour>();
         modeleListeSejour.clear();
 
         listeSejoursTemp = daoSejour.consulterListeSejourParPatient(dpi).getListeSejours();
-        
-            for(int j=0; j<listeSejoursTemp.size(); j++){
-                modeleListeSejour.addElement(listeSejoursTemp.get(j));
-            }
-        listeSejours.setModel(modeleListeSejour);     
+
+        for (int j = 0; j < listeSejoursTemp.size(); j++) {
+            modeleListeSejour.addElement(listeSejoursTemp.get(j));
+        }
+        listeSejours.setModel(modeleListeSejour);
     }
-    
-    /** methode affichage liste des patients
-     * 
+
+    /**
+     * methode affichage liste des patients
+     *
      */
-    public void affichageListeDePatients(){    
+    public void affichageListeDePatients() {
         ArrayList<DPI> listeDPITemp = new ArrayList<DPI>();
         listeDPITemp = daoDpi.consulterListeDPI();
-        
+
         modeleListeDPI.clear();
-        for (int i = 0; i < listeDPITemp.size(); i++) {  
+        for (int i = 0; i < listeDPITemp.size(); i++) {
             modeleListeDPI.addElement(listeDPITemp.get(i));
         }
-        listeDePatients.setModel(modeleListeDPI);       
+        listeDePatients.setModel(modeleListeDPI);
     }
-    
-    /** methode qui affiche la localisation
-     * 
+
+    /**
+     * methode qui affiche la localisation
+     *
      */
-    public void affichageLocalisation(){
+    public void affichageLocalisation() {
         Sejour sejourRecent;
-        Localisation loc;       
-        
-        sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
-        
-        if(sejourRecent != null){        
+        Localisation loc;
+        if (jTextFieldRecherche.getText().isEmpty()) {
+            sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPI.get(listeDePatients.getSelectedIndex())).getDernierSejour();
+
+        } else {
+            sejourRecent = daoSejour.consulterListeSejourParPatient(modeleListeDPIRecherche.get(listeDePatients.getSelectedIndex())).getDernierSejour();
+        }
+
+        if (sejourRecent != null) {
             loc = daoLoc.localisationParNumeroDeSejour(sejourRecent.getNumeroSejour());
-                      
+
             comboBoxService.setSelectedItem(loc.getService().getSpecialite());
             champNumeroChambre.setText(loc.getNumeroChambre());
             comboBoxPlacement.setSelectedItem(loc.getPlacement());
         }
     }
-    
-    /** methode qui efface les champs concernant la localisation
-     * 
+
+    /**
+     * methode qui efface les champs concernant la localisation
+     *
      */
-    public void effaceDonneesLocalisation(){
+    public void effaceDonneesLocalisation() {
         comboBoxPlacement.setSelectedIndex(-1);
         champNumeroChambre.setText("");
         comboBoxService.setSelectedIndex(-1);
     }
-    
-    /** methode qui affiche la prestation
-     * 
-     * @param dpi 
+
+    /**
+     * methode qui affiche la prestation
+     *
+     * @param dpi
      */
-    public void afficherPrestations(DPI dpi){
+    public void afficherPrestations(DPI dpi) {
         ArrayList<Prestations> listePrestationsTemp = new ArrayList<Prestations>();
         listePrestationsTemp = daoPrestations.prestationsPatient(dpi.getIpp());
-        
+
         modeleListePrestation.clear();
-        for (int i = 0; i < listePrestationsTemp.size(); i++) {  
+        for (int i = 0; i < listePrestationsTemp.size(); i++) {
             modeleListePrestation.addElement(listePrestationsTemp.get(i));
         }
-        
+
         listePrestations.setModel(modeleListePrestation);
     }
-    
-    /** methode qui affiche la lettre de sortie
-     * 
-     * @param dpi 
+
+    /**
+     * methode qui affiche la lettre de sortie
+     *
+     * @param dpi
      */
-    public void afficherLettre(DPI dpi){
-        if(daoSejour.consulterListeSejourParPatient(dpi).getListeSejours().isEmpty() == false){
-            
+    public void afficherLettre(DPI dpi) {
+        if (daoSejour.consulterListeSejourParPatient(dpi).getListeSejours().isEmpty() == false) {
+
             Sejour sejourActuel = daoSejour.consulterListeSejourParPatient(dpi).getDernierSejour();
-            if(daoSejour.lettreDeSortie(sejourActuel.getNumeroSejour())){
+            if (daoSejour.lettreDeSortie(sejourActuel.getNumeroSejour())) {
                 String txt = "Je soussigné docteur " + sejourActuel.getPHResponsable().toString() + ", médecin responsable du séjour du patient : " + dpi.getNom() + " " + dpi.getPrenom() + "\n" + " édite en ce jour sa lettre de sortie." + "\n\n" + "Date :" + pichisNF.fonctions.renvoieDateActuelle();
                 texteLettreSortie.setText(txt);
-            }
-            else{
+            } else {
                 texteLettreSortie.setText("");
             }
         }
     }
-    
-    /** methode qui efface le texte de la lettre de sortie
-     * 
+
+    /**
+     * methode qui efface le texte de la lettre de sortie
+     *
      */
-    public void effacerLettre(){
+    public void effacerLettre() {
         texteLettreSortie.setText("");
     }
 
