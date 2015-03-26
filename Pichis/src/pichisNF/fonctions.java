@@ -6,6 +6,7 @@
 package pichisNF;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import pichisBD.DAOResultat;
 import pichisBD.DAOSejour;
 
@@ -68,5 +69,33 @@ public class fonctions {
         idResultat = nbResultat + 100;
         String s = Integer.toString(idResultat);
         return s;
+    }
+     
+     public static DateSimple renvoieDateActuelle(){
+        Calendar ca = Calendar.getInstance();
+                        String minute = "" + ca.getTime().getMinutes();
+                        String heure = "" + ca.getTime().getHours();
+                        int rangDuMois = ca.getTime().getMonth() + 1;
+                        String mois = "" + rangDuMois;
+                        String jour = "" + ca.getTime().getDate();
+
+                        int anne = 1900 + ca.getTime().getYear();
+                        String annee = "" + anne;
+                        if (ca.getTime().getDate() < 10) {
+                            jour = "0" + ca.getTime().getDate();
+                        }
+                        if (ca.getTime().getMinutes() < 10) {
+                            minute = "0" + ca.getTime().getMinutes();
+                        }
+                        if (ca.getTime().getHours() < 10) {
+                            heure = "0" + ca.getTime().getHours();
+                        }
+                        if (ca.getTime().getMonth() < 10) {
+                            mois = "0" + rangDuMois;
+                        }
+                        
+                        DateSimple date = new DateSimple(jour, mois, annee, heure, minute);
+                        
+                        return date;
     }
 }
