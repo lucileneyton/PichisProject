@@ -14,14 +14,17 @@ public class DateSimple implements Comparable {
     private String heure;
     private String minute;
 
-/** Premier constructeur de la classe DateSimple permettant d'initialiser la date avec les heures et les minutes (utilisés pour la traçabilité des actions)
- * 
- * @param jour
- * @param mois
- * @param annee
- * @param heure
- * @param minute 
- */
+    /**
+     * Premier constructeur de la classe DateSimple permettant d'initialiser la
+     * date avec les heures et les minutes (utilisés pour la traçabilité des
+     * actions)
+     *
+     * @param jour
+     * @param mois
+     * @param annee
+     * @param heure
+     * @param minute
+     */
     public DateSimple(String jour, String mois, String annee, String heure, String minute) {
         this.jour = jour;
         this.mois = mois;
@@ -30,11 +33,13 @@ public class DateSimple implements Comparable {
         this.minute = minute;
     }
 
-    /** Deuxième constructeur de la classe DateSimple permettant d'initialisé la date de naissance des patients
-     * 
+    /**
+     * Deuxième constructeur de la classe DateSimple permettant d'initialiser la
+     * date de naissance des patients
+     *
      * @param jour
      * @param mois
-     * @param annee 
+     * @param annee
      */
     public DateSimple(String jour, String mois, String annee) {
         this.jour = jour;
@@ -43,33 +48,38 @@ public class DateSimple implements Comparable {
 
     }
 
-    /** Méthode permettant l'accès au jour par d'autres classes
-     * 
+    /**
+     * Méthode permettant l'accès au jour par d'autres classes
+     *
      * @return String jour
      */
     public String getJour() {
         return jour;
     }
 
-    /** Méthode permettant l'accès aux heures par d'autres classes
-     * 
+    /**
+     * Méthode permettant l'accès aux heures par d'autres classes
+     *
      * @return String heure
      */
     public String getHeure() {
         return heure;
     }
 
-    /** Méthode permettant l'accès aux minutes par d'autres classes
-     * 
+    /**
+     * Méthode permettant l'accès aux minutes par d'autres classes
+     *
      * @return String minute
      */
     public String getMinute() {
         return minute;
     }
 
-    /** Méthode permettant de modifier le jour avec un contrôle de validité au niveau des champs de l'interface
-     * 
-     * @param jour 
+    /**
+     * Méthode permettant de modifier le jour avec un contrôle de validité au
+     * niveau des champs de l'interface
+     *
+     * @param jour
      */
     public void setJour(String jour) {
         if (Integer.parseInt(jour) >= 1 && Integer.parseInt(jour) <= 31) {
@@ -79,17 +89,20 @@ public class DateSimple implements Comparable {
         }
     }
 
-     /** Méthode permettant l'accès au mois par d'autres classes
-     * 
+    /**
+     * Méthode permettant l'accès au mois par d'autres classes
+     *
      * @return String mois
      */
     public String getMois() {
         return mois;
     }
-    
-    /** Méthode permettant de modifier le mois avec un contrôle de validité au niveau des champs de l'interface
-     * 
-     * @param mois 
+
+    /**
+     * Méthode permettant de modifier le mois avec un contrôle de validité au
+     * niveau des champs de l'interface
+     *
+     * @param mois
      */
     public void setMois(String mois) {
         if (Integer.parseInt(mois) >= 1 && Integer.parseInt(mois) <= 12) {
@@ -97,15 +110,18 @@ public class DateSimple implements Comparable {
         }
     }
 
-     /** Méthode permettant l'accès à l'année par d'autres classes
-     * 
+    /**
+     * Méthode permettant l'accès à l'année par d'autres classes
+     *
      * @return String annee
      */
     public String getAnnee() {
         return annee;
     }
 
-    /** Méthode permettant de modifier l'année avec un contrôle de validité au niveau des champs de l'interface
+    /**
+     * Méthode permettant de modifier l'année avec un contrôle de validité au
+     * niveau des champs de l'interface
      *
      * @param annee
      */
@@ -117,12 +133,13 @@ public class DateSimple implements Comparable {
         }
     }
 
-    /** Méthode permettant l'affichage de la date
-     * 
-     * @return 
+    /**
+     * Méthode permettant l'affichage de la date
+     *
+     * @return String date
      */
     public String toString() {
-        String texte;
+        String date;
 
         if (jour.length() == 1) {
             jour = "0" + jour;
@@ -130,27 +147,31 @@ public class DateSimple implements Comparable {
         if (mois.length() == 1) {
             mois = "0" + mois;
         }
-        texte = this.jour + "-" + this.mois + "-" + this.annee;
+        date = this.jour + "-" + this.mois + "-" + this.annee;
 
         if (heure != null) {
-            texte += " à " + heure + ":" + minute;
+            date += " à " + heure + ":" + minute;
         }
 
-        return texte;
+        return date;
     }
 
     /**
+     * Méthode permettant de récupérer les deux derniers chiffres de l'année
+     * pour la génération du numéro de séjour
      *
-     * @return
+     * @return String annee
      */
     public String get2derniersChiffresAnnee() {
         return annee.substring(2);
     }
 
     /**
+     * Méthode permettant de comparer deux dates afin de voir si la date voulue
+     * est plus récente que la date entrée en paramètre
      *
      * @param date
-     * @return
+     * @return boolean
      */
     public boolean estAvant(DateSimple date) {
         boolean rep = false;
@@ -190,7 +211,13 @@ public class DateSimple implements Comparable {
         return rep;
     }
 
-    @Override
+    /**
+     * Méthode permettant de classer les listes de la date la plus récente à la
+     * plus ancienne
+     *
+     * @param o
+     * @return int
+     */
     public int compareTo(Object o) {
         DateSimple d = (DateSimple) o;
         int resultat = 0;
