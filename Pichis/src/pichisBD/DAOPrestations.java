@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pichisBD;
 
 import java.sql.ResultSet;
@@ -17,11 +13,11 @@ import pichisNF.Resultat;
 
 /**
  *
- * @author Lucile
+ * Data access object de la classe Prestations
  */
 public class DAOPrestations {
 
-    ConnectionBD c;
+    public ConnectionBD c;
 
     String naturePrestation;
     Medecin demandeur;
@@ -35,7 +31,8 @@ public class DAOPrestations {
     DAOResultat daor = new DAOResultat();
 
     /**
-     * Permet d'ajouter un patient dans la base de données
+     * Permet d'ajouter une prestation dans la base de données
+     *
      * @param naturePrestation la nature de la prestation
      * @param demandeur l'id du médecin demandeur
      * @param patient l'ipp du patient
@@ -65,6 +62,12 @@ public class DAOPrestations {
         }
     }
 
+    /**
+     * Méthode ajoutant un résultat associé à une prestation
+     *
+     * @param idPrestation2 l'identifiant de la prestation associée au nouveau résultat
+     * @param idResultat l'identifiant du résultat
+     */
     public void setResultat(String idPrestation2, String idResultat) {
         Statement ins;
         c = new ConnectionBD();
@@ -87,6 +90,12 @@ public class DAOPrestations {
         }
     }
 
+    /**
+     * Méthode retournant les prestations d'un patient 
+     *
+     * @param idPatient l'ipp du patient
+     * @return ArrayList
+     */
     public ArrayList<Prestations> prestationsPatient(String idPatient) {
         ArrayList<Prestations> l = new ArrayList<Prestations>();
         c = new ConnectionBD();
@@ -121,7 +130,7 @@ public class DAOPrestations {
             }
 
         } catch (SQLException e) {
-            System.out.println("erreur DAOPrestations: " + e);
+            System.out.println("erreur DAOPrestations(prestationsPatient): " + e);
         } finally {
             if (c != null) {
                 try {
@@ -136,6 +145,10 @@ public class DAOPrestations {
         return l;
     }
 
+    /**
+     * Méthode retournant ls prestations non réalisées d'un patient  
+     * @return ArrayList
+     */
     public ArrayList<Prestations> consulterListePrestationsNonRealisee() {
 
         ArrayList<Prestations> listePrestations = new ArrayList();
@@ -169,7 +182,7 @@ public class DAOPrestations {
                 listePrestations.add(p);
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOPrestations: " + e);
+            System.out.println("erreur DAOPrestations(consulterListePrestationsNonRealisee): " + e);
         } finally {
             if (c != null) {
                 try {
@@ -184,6 +197,10 @@ public class DAOPrestations {
         return listePrestations;
     }
 
+    /**
+     * Méthode retournant ls prestations d'un patient
+     * @return ArrayList
+     */
     public ArrayList<Prestations> consulterListePrestationsNonRealisee2() {
 
         ArrayList<Prestations> listePrestations = new ArrayList();
@@ -218,7 +235,7 @@ public class DAOPrestations {
                 listePrestations.add(p);
             }
         } catch (SQLException e) {
-            System.out.println("erreur DAOPrestations: " + e);
+            System.out.println("erreur DAOPrestations(consulterListePrestationsNonRealisee2): " + e);
         } finally {
             if (c != null) {
                 try {
