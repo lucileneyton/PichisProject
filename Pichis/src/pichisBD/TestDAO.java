@@ -38,29 +38,32 @@ public class TestDAO {
         System.out.println(p.getNaturePrestation().toString());
                 */
         
-        DAOMedecin daom = new DAOMedecin();
-        Medecin m = daom.medecinParID("1");
-        System.out.println(m.getNom().toString());
+//        DAOMedecin daom = new DAOMedecin();
+//        Medecin m = daom.medecinParID("1");
+//        System.out.println(m.getNom().toString());
+//        
+//        DAOAdministratif daoa = new DAOAdministratif();
+//        Administratif a = daoa.administratifParID("123");
+//        System.out.println(a.getNom().toString());
+//        
+//        daom.ajoutMedecin("1234","X","Jean" ,"abcd" ,"CARDIOLOGIE" );
+//        
+//       
+//       
+//       DateSimple date1 = new DateSimple("24", "04", "1993");
+//       DAODPI dpi = new DAODPI();
+//       dpi.ajout("1546", "Me", "Henry", "H", date1, "21, rue des agagous");
+//       
+//       DAOPrestations prest = new DAOPrestations();
+//       prest.ajoutPrestation("Radio genou", "1234", "1546", null, "20032015", null);
+//       
+//       DAOObservation obs = new DAOObservation();
+//       ArrayList<Observation> o = obs.observationsPatient("123");
+//       System.out.println(o.get(0).getDescription().toString());
         
-        DAOAdministratif daoa = new DAOAdministratif();
-        Administratif a = daoa.administratifParID("123");
-        System.out.println(a.getNom().toString());
-        
-        daom.ajoutMedecin("1234","X","Jean" ,"abcd" ,"CARDIOLOGIE" );
-        
-       
-       
-       DateSimple date1 = new DateSimple("24", "04", "1993");
-       DAODPI dpi = new DAODPI();
-       dpi.ajout("1546", "Me", "Henry", "H", date1, "21, rue des agagous");
-       
-       DAOPrestations prest = new DAOPrestations();
-       prest.ajoutPrestation("Radio genou", "1234", "1546", null, "20032015", null);
-       
-       DAOObservation obs = new DAOObservation();
-       ArrayList<Observation> o = obs.observationsPatient("123");
-       System.out.println(o.get(0).getDescription().toString());
-        
+       DAOMaintenance daoma = new DAOMaintenance();
+       boolean b =daoma.estMaintenance("ab", "ab");
+        System.out.println(b);
     }
     
 }
