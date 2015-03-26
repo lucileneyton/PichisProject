@@ -307,7 +307,7 @@ public class Identification extends javax.swing.JFrame {
         InterfaceServiceMedicoTechnique i = new InterfaceServiceMedicoTechnique(medecin);
         i.setVisible(true);
     }
-    public void ouvrirInterfaceAdministratif() {
+    public void ouvrirInterfaceAdministratif(Administratif a) {
         InterfaceAdministratif i = new InterfaceAdministratif();
         i.setVisible(true);
     }
@@ -431,8 +431,8 @@ public class Identification extends javax.swing.JFrame {
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
 
                     this.dispose();
-
-                    ouvrirInterfaceAdministratif();
+                    DAOAdministratif a = new DAOAdministratif();
+                    ouvrirInterfaceAdministratif(a.administratifParID(identifiant.getText()));
 
                 } else {
                     messageErreur.setVisible(true);
