@@ -18,7 +18,7 @@ import pichisNF.TypeServices;
  */
 public class DAOServices {
 
-    public ConnectionBD c = new ConnectionBD();
+    public ConnectionBD c;
 
     /**
      * Méthode retournant une instance de Services par rapport à son identifiant
@@ -28,7 +28,7 @@ public class DAOServices {
      * @exception SQLException
      */
     public Services serviceParID(String id) throws SQLException {
-
+        c= new ConnectionBD();
         Services s = null;
 
         try {
@@ -61,6 +61,7 @@ public class DAOServices {
      * @return String
      */
     public String idParService(Services s) {
+        c= new ConnectionBD();
         String id = null;
 
         try {

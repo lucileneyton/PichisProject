@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisUI;
 
 import java.awt.GraphicsEnvironment;
@@ -16,10 +11,6 @@ import pichisNF.Maintenance;
 import pichisNF.Medecin;
 import pichisNF.fonctions;
 
-/**
- *
- * @author Johann
- */
 public class InterfaceMaintenance extends javax.swing.JFrame {
 
     private DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
@@ -36,7 +27,9 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
     /**
-     * Creates new form InterfaceMaintenance
+     * Constructeur de l'interface Maintenance
+     *
+     * @param m Personnel de maintenance qui s'est identifié à la connexion
      */
     public InterfaceMaintenance(Maintenance m) {
 
@@ -48,16 +41,12 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHIS Maintenance");
-        //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        //setSize(1365, 765);
-        //this.setResizable(false);
+
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
+
         //Termine le processus lorsqu'on clique sur la croix rouge
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.pack();
-//        this.setDefaultLookAndFeelDecorated(true);
-//        this.setExtendedState(this.MAXIMIZED_BOTH);
 
         setSize(maximumWindowBounds.width, maximumWindowBounds.height);
         this.pack();
@@ -289,7 +278,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         jPanel7.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Ajouter un membre du personnel");
-        jButton1.setPreferredSize(new java.awt.Dimension(189, 25));
+        jButton1.setPreferredSize(new java.awt.Dimension(189, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -305,7 +294,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AjoutPersonnel ajout = new AjoutPersonnel(this,m);
+        AjoutPersonnel ajout = new AjoutPersonnel(this, m);
         ajout.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -317,7 +306,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     private void listeMedecinValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listeMedecinValueChanged
         if (listeMedecin.getSelectedValue() != null) {
             Medecin medecin = (Medecin) listeMedecin.getSelectedValue();
-            JOptionPane.showMessageDialog(null, "Identifiant : " + medecin.getId() + "    Mot de passe : " + medecin.getMotDePasse() +"\n Service : " + medecin.getSpecialite().getSpecialite(), "Informations sur " + medecin.getPrenom() + " " + medecin.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Identifiant : " + medecin.getId() + "    Mot de passe : " + medecin.getMotDePasse() + "\n Service : " + medecin.getSpecialite().getSpecialite(), "Informations sur " + medecin.getPrenom() + " " + medecin.getNom().toUpperCase(), JOptionPane.INFORMATION_MESSAGE);
             listeMedecin.clearSelection();
         }
     }//GEN-LAST:event_listeMedecinValueChanged
@@ -339,13 +328,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_listeMaintenanceValueChanged
 
     private void jTextFieldRechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRechercheKeyReleased
-//  private DefaultListModel<pichisNF.Administratif> modeleListeAdministratif;
-//    private DefaultListModel<pichisNF.Administratif> modeleListeAdministratifRecherche;
-//    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenance;
-//    private DefaultListModel<pichisNF.Maintenance> modeleListeMaintenanceRecherche;
-//    private DefaultListModel<pichisNF.Medecin> modeleListeMedecin;
-//    private DefaultListModel<pichisNF.Medecin> modeleListeRecherche;
-//        
         //Recherche dans la liste du personnel administratif
         if (!jTextFieldRecherche.getText().isEmpty()) {
             ArrayList listePersonnelAdministratif = new ArrayList();
@@ -373,7 +355,7 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         } else {
             listeAdministratif.setModel(modeleListeAdministratif);
         }
-        
+
         //Recherche dans la liste du personnel médical
         if (!jTextFieldRecherche.getText().isEmpty()) {
             ArrayList listePersonnelMedical = new ArrayList();
@@ -401,9 +383,8 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         } else {
             listeMedecin.setModel(modeleListeMedecin);
         }
-        
-        //Recherche dans la liste du personnel maintenance
 
+        //Recherche dans la liste du personnel maintenance
         if (!jTextFieldRecherche.getText().isEmpty()) {
             ArrayList listePersonnelMaintenance = new ArrayList();
 
@@ -430,10 +411,6 @@ public class InterfaceMaintenance extends javax.swing.JFrame {
         } else {
             listeMaintenance.setModel(modeleListeMaintenance);
         }
-
-
-
-// TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldRechercheKeyReleased
 
     /**

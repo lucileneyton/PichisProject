@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pichisUI;
 
 import java.awt.Cursor;
@@ -22,29 +17,23 @@ import pichisBD.*;
 import pichisNF.*;
 import static pichisNF.TypeServices.CLINIQUE;
 
-/**
- *
- * @author Matilas
- */
 public class Identification extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PICHIS_Manager
-     */
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
     Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
     int width = (int) (maximumWindowBounds.width - 0.015 * maximumWindowBounds.width);
     int height = (int) (maximumWindowBounds.height - 0.02 * maximumWindowBounds.height);
 
+    /**
+     * Constructeur de l'interface identification
+     *
+     */
     public Identification() {
         initComponents();
         this.setVisible(true);
 
         //Définit un titre pour notre fenêtre
         setTitle("PICHISManager");
-        //Définit sa taille : 400 pixels de large et 100 pixels de haut
-        //setSize(1365, 765);
-        //this.setResizable(false);
         //Nous demandons maintenant à notre objet de se positionner au centre
         setLocationRelativeTo(null);
         //Termine le processus lorsqu'on clique sur la croix rouge
@@ -294,26 +283,46 @@ public class Identification extends javax.swing.JFrame {
                 messageErreur.setVisible(false);
             }
         }
-
-// TODO add your handling code here:
     }//GEN-LAST:event_mdpKeyPressed
 
+    /**
+     * Méthode permettant d'ouvrir l'interface clinique après connexion
+     *
+     * @param medecin
+     */
     public void ouvrirInterfaceMedecin(Medecin medecin) {
         InterfaceServiceClinique i = new InterfaceServiceClinique(medecin);
         i.setVisible(true);
     }
 
+    /**
+     * Méthode permettant d'ouvrir l'interface médico-technique après connexion
+     * d'un médecin radiologue
+     *
+     * @param medecin
+     */
     public void ouvrirInterfaceMedicoTechnique(Medecin medecin) {
         InterfaceServiceMedicoTechnique i = new InterfaceServiceMedicoTechnique(medecin);
         i.setVisible(true);
     }
-    public void ouvrirInterfaceAdministratif(Administratif a) {
-        InterfaceAdministratif i = new InterfaceAdministratif(a);
+
+    /**
+     * Méthode permettant d'ouvrir l'interface admistratif après connexion
+     *
+     * @param administratif
+     */
+    public void ouvrirInterfaceAdministratif(Administratif administratif) {
+        InterfaceAdministratif i = new InterfaceAdministratif(administratif);
         i.setVisible(true);
     }
 
-    public void ouvrirInterfaceMaintenance(Maintenance m) {
-        InterfaceMaintenance i = new InterfaceMaintenance(m);
+    /**
+     * Méthode permettant d'ouvrir l'interface de maintenance après connexion
+     *
+     * @param maintenance
+     */
+    public void ouvrirInterfaceMaintenance(Maintenance maintenance) {
+        InterfaceMaintenance i = new InterfaceMaintenance(maintenance);
         i.setVisible(true);
     }
 
@@ -381,10 +390,12 @@ public class Identification extends javax.swing.JFrame {
     private javax.swing.JLabel messageErreur;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Méthode de vérification des informations de connexion
+     *
+     * @throws SQLException
+     */
     private void tentativeDeConnexion() throws SQLException {
-        /**
-         * Méthode de vérification des informations de connexion
-         */
 
         DAOMedecin daom = new DAOMedecin();
         DAOAdministratif daoa = new DAOAdministratif();
@@ -400,11 +411,10 @@ public class Identification extends javax.swing.JFrame {
                 if (daom.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
                     DAOMedecin d = new DAOMedecin();
-                    Medecin  m =d.medecinParID(identifiant.getText());
-                    if (m.getSpecialite().getType() ==CLINIQUE){
-                    ouvrirInterfaceMedecin(m);
-                    }
-                    else{
+                    Medecin m = d.medecinParID(identifiant.getText());
+                    if (m.getSpecialite().getType() == CLINIQUE) {
+                        ouvrirInterfaceMedecin(m);
+                    } else {
                         ouvrirInterfaceMedicoTechnique(m);
                     }
 
@@ -415,19 +425,17 @@ public class Identification extends javax.swing.JFrame {
                 }
 
             }
-            
-            if(daomt.estMaintenance(identifiant.getText(),mdp.getText())){
-                if(daomt.identification(identifiant.getText(), mdp.getText())){
+
+            if (daomt.estMaintenance(identifiant.getText(), mdp.getText())) {
+                if (daomt.identification(identifiant.getText(), mdp.getText())) {
                     this.dispose();
-                    
+
                     DAOMaintenance m = new DAOMaintenance();
-                    
+
                     ouvrirInterfaceMaintenance(m.MaintenanceParID(identifiant.getText()));
-                    
+
                 }
-            }
-            
-            else {
+            } else {
 
                 if (daoa.identification(identifiant.getText(), mdp.getText())) {
 
