@@ -115,7 +115,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         InterfaceServiceClinique = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
+        entete = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -128,6 +128,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jTextFieldRecherche = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
+        centreDesActivites = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         DM = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -222,10 +223,10 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jScrollPane18 = new javax.swing.JScrollPane();
         lettreDeSortie = new javax.swing.JTextPane();
         envoyerLettreDeSejour = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listeDePatients = new javax.swing.JList();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -233,8 +234,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         InterfaceServiceClinique.setPreferredSize(new java.awt.Dimension(width, height));
         InterfaceServiceClinique.setLayout(new java.awt.BorderLayout());
 
-        jPanel12.setPreferredSize(new java.awt.Dimension(1400, 213));
-        jPanel12.setLayout(new java.awt.BorderLayout());
+        entete.setPreferredSize(new java.awt.Dimension(1400, 213));
+        entete.setLayout(new java.awt.BorderLayout());
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(1550, 158));
@@ -316,7 +317,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        jPanel12.add(jPanel13, java.awt.BorderLayout.PAGE_START);
+        entete.add(jPanel13, java.awt.BorderLayout.PAGE_START);
 
         jPanel14.setBackground(new java.awt.Color(230, 230, 230));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -338,9 +339,11 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/Images/iconmonstr-magnifier-5-icon-32.png"))); // NOI18N
         jPanel14.add(jLabel40);
 
-        jPanel12.add(jPanel14, java.awt.BorderLayout.PAGE_END);
+        entete.add(jPanel14, java.awt.BorderLayout.PAGE_END);
 
-        InterfaceServiceClinique.add(jPanel12, java.awt.BorderLayout.PAGE_START);
+        InterfaceServiceClinique.add(entete, java.awt.BorderLayout.PAGE_START);
+
+        centreDesActivites.setLayout(new java.awt.CardLayout());
 
         jPanel15.setPreferredSize(new java.awt.Dimension(1290, 200));
         jPanel15.setLayout(new java.awt.BorderLayout());
@@ -683,25 +686,25 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         contenuNvlePrescription.setRows(5);
         jScrollPane4.setViewportView(contenuNvlePrescription);
 
-        jPanel23.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 150));
+        jPanel23.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 300, 150));
 
         javax.swing.GroupLayout panelPrescriptionsLayout = new javax.swing.GroupLayout(panelPrescriptions);
         panelPrescriptions.setLayout(panelPrescriptionsLayout);
         panelPrescriptionsLayout.setHorizontalGroup(
             panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrescriptionsLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPrescriptionsLayout.setVerticalGroup(
             panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrescriptionsLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(21, 21, 21)
                 .addGroup(panelPrescriptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelPrescriptionsLayout.createSequentialGroup()
@@ -1053,7 +1056,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                         .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jTabbedPane1.addTab("Demandes de prestations", panelPrestationsDemandees);
+        jTabbedPane1.addTab("Prestations demandées", panelPrestationsDemandees);
 
         jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder("Edition d'une lettre de sortie"));
         jPanel30.setMaximumSize(new java.awt.Dimension(375, 197));
@@ -1108,19 +1111,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lettre de sortie", panelLettreDeSortie);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1009, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Prestations demandées", jPanel1);
-
         DM.add(jTabbedPane1, "card2");
 
         jPanel15.add(DM, java.awt.BorderLayout.CENTER);
@@ -1148,7 +1138,22 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
 
         jPanel15.add(jPanel17, java.awt.BorderLayout.WEST);
 
-        InterfaceServiceClinique.add(jPanel15, java.awt.BorderLayout.CENTER);
+        centreDesActivites.add(jPanel15, "card2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        centreDesActivites.add(jPanel1, "card3");
+
+        InterfaceServiceClinique.add(centreDesActivites, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(InterfaceServiceClinique, java.awt.BorderLayout.CENTER);
 
@@ -1271,7 +1276,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         if (r == null) {
             resultatPrestation.setText("Aucun résultat pour le moment");
         } else {
-            resultatPrestation.setText(r.getDescriptions());
+            resultatPrestation.setText(r.getDescriptions() + "\n" + "\n" + "Envoyé le " + r.getDate().toString() );
         }
         
 
@@ -1492,6 +1497,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
         s.setLettre(servicePatient.getNumeroSejour());
         lettreDeSortie.setBackground(new java.awt.Color(204, 204, 204));
         envoyerLettreDeSejour.setEnabled(false);
+        lettreDeSortie.setEditable(false);
     }//GEN-LAST:event_envoyerLettreDeSejourActionPerformed
     
     public void afficherDossierMedical() {
@@ -1595,7 +1601,8 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
                 lettreDeSortie.setText(lettreSortie);
             } else {
                 lettreDeSortie.setBackground(new java.awt.Color(204, 204, 204));
-                envoyerLettreDeSejour.setVisible(false);
+                envoyerLettreDeSejour.setEnabled(false);
+                lettreDeSortie.setEditable(false);
             }
             
         }
@@ -1641,6 +1648,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JPanel InterfaceServiceClinique;
     private javax.swing.JTextArea adresse;
     private javax.swing.JButton ajoutObservation;
+    private javax.swing.JPanel centreDesActivites;
     private javax.swing.JTextField champNumeroChambre;
     private javax.swing.JComboBox comboBoxPlacement;
     private javax.swing.JComboBox comboBoxService;
@@ -1651,6 +1659,7 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JTextArea detailPrescriptionSelectionnee;
     private javax.swing.JButton enregistrerOperation;
     private javax.swing.JButton enregistrerUnePrestation;
+    private javax.swing.JPanel entete;
     private javax.swing.JButton envoyerLettreDeSejour;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -1679,7 +1688,6 @@ public class InterfaceServiceClinique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
